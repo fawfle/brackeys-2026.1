@@ -21,7 +21,8 @@ func begin_day() -> void:
 	manage_next_guest()
 
 func manage_next_guest() -> void:
-	current_guest = guest_queue[0].duplicate(true)
+	# TODO!!!!!! Need to add some fields PROPRETY_USED_STORAGE to resources for copying
+	current_guest = guest_queue[0].duplicate_deep()
 	guest_queue.pop_front()
 	
 	# clean children
