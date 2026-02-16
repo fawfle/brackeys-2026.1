@@ -1,13 +1,89 @@
 [gd_scene format=3 uid="uid://d10v8ay10dsu6"]
 
 [ext_resource type="Script" uid="uid://fehsvnq2kohw" path="res://scenes/game manager.gd" id="1_w5aja"]
-[ext_resource type="Texture2D" uid="uid://b71bqndcej6nv" path="res://icon.svg" id="2_onqr8"]
+[ext_resource type="Texture2D" uid="uid://wugsl7xevnu8" path="res://sprites/characters/four-eyes.png" id="2_onqr8"]
+[ext_resource type="PackedScene" uid="uid://4gii0y616804" path="res://scenes/hotel/room.tscn" id="3_ycayy"]
 
 [node name="GameScene" type="Node2D" unique_id=1746918585]
 script = ExtResource("1_w5aja")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=2131477491]
+anchor_mode = 0
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=569171118]
-position = Vector2(-420, -152)
+position = Vector2(147, 116)
 texture = ExtResource("2_onqr8")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1013869446]
+
+[node name="BottomBar" type="ColorRect" parent="CanvasLayer" unique_id=2033105175]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -57.0
+offset_right = 440.0
+grow_vertical = 0
+color = Color(0, 0, 0, 1)
+
+[node name="GuestText" type="Label" parent="CanvasLayer/BottomBar" unique_id=787348684]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = -184.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+theme_override_font_sizes/font_size = 10
+text = "this is sample text. Imagine something really interesting was here. I have preferences and they matter. This text box is also three lines long."
+autowrap_mode = 3
+clip_text = true
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/BottomBar" unique_id=1087483858]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = -10.0
+offset_right = -176.0
+grow_horizontal = 2
+color = Color(0.68793684, 0.57098234, 0.50276214, 1)
+
+[node name="Separator" type="ColorRect" parent="CanvasLayer" unique_id=1946174638]
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 261.0
+offset_right = -175.0
+offset_bottom = 247.0
+grow_horizontal = 2
+color = Color(0.9254544, 0.88364726, 0.8582994, 1)
+
+[node name="Hotel" type="Node" parent="." unique_id=1856963853]
+
+[node name="Rooms" type="Control" parent="Hotel" unique_id=1048854769]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="Room" parent="Hotel/Rooms" unique_id=378997809 instance=ExtResource("3_ycayy")]
+layout_mode = 0
+offset_left = 273.0
+offset_top = 140.0
+offset_right = 321.0
+offset_bottom = 165.0
+
+[node name="Room2" parent="Hotel/Rooms" unique_id=2130832592 instance=ExtResource("3_ycayy")]
+layout_mode = 0
+offset_left = 326.0
+offset_top = 140.0
+offset_right = 374.0
+offset_bottom = 165.0
+
+[node name="Room3" parent="Hotel/Rooms" unique_id=1707477686 instance=ExtResource("3_ycayy")]
+layout_mode = 0
+offset_left = 380.0
+offset_top = 139.0
+offset_right = 428.0
+offset_bottom = 164.0
