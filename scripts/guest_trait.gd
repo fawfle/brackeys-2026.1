@@ -1,12 +1,14 @@
 class_name GuestTrait extends Resource
 
-var name: String
-var condition: Callable
-var preference: Preference
-var on_leave: Callable
+@export var name: String
+@export var condition: Callable
+@export var preference: Preference
+@export var on_leave: Callable
 
 ## traits that are mutually exclusive with this one
-var blacklisted_traits: Array[TraitList.Trait] = []
+@export var blacklisted_traits: Array[TraitList.Trait] = []
+
+@export var enum_key: TraitList.Trait
 
 enum Preference {
 	HIGH,
@@ -19,3 +21,6 @@ enum Preference {
 var appear_after_day: int = 0
 
 ## constructed by trait_list class
+
+func _to_string() -> String:
+	return "(Guest Trait) " + name;

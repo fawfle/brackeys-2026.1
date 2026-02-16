@@ -22,7 +22,7 @@ enum {
 static var GUESTS_DATA: Dictionary[String, Dictionary] = {
 	"four_eyes": {
 		SCENE: preload("res://scenes/characters/four_eyes.tscn"),
-		DEFAULT_TRAITS: [TraitList.Trait.NEAT],
+		DEFAULT_TRAITS: [TraitList.Trait.CLEAN],
 		GREETING: "Hello",
 		GOODBYE: "Goodbye",
 		HAPPY_GOODBYE: "I was so happy. Goodbye.",
@@ -33,6 +33,7 @@ static var GUESTS_DATA: Dictionary[String, Dictionary] = {
 static var GUESTS: Array[Guest] = []
 static var SPECIAL_GUESTS: Dictionary[String, Guest]
 
+## static loader function to load GUESTS from GUESTS_DATA
 static func LOAD_GUESTS():
 	GUESTS.clear()
 	

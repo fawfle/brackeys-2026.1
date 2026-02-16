@@ -13,30 +13,46 @@ enum {
 	BLACKLIST
 }
 
+## trait name for comparisons between traits. KEY to make traits more easily viewable in editor
 enum Trait {
-	NEAT,
-	SLOB
+	CLEAN,
+	MESSY,
+	CLASSY,
+	CHEAP,
 }
 
 ## dictionary of data for traits
 static var TRAIT_DATA: Dictionary[Trait, Dictionary] = {
-	Trait.NEAT: {
-		NAME: "Neat",
+	Trait.CLEAN: {
+		NAME: "Clean",
 		CONDITION: func(room: Room): return room.sanitation == Room.Sanitation.CLEAN,
 		PREFERENCE: GuestTrait.Preference.HIGH,
-		BLACKLIST: [Trait.SLOB]
+		BLACKLIST: [Trait.MESSY]
 	},
-	Trait.SLOB: {
-		NAME: "Slob",
+	Trait.MESSY: {
+		NAME: "Messy",
 		CONDITION: func(room: Room): return room.sanitation == Room.Sanitation.MESSY,
 		PREFERENCE: GuestTrait.Preference.MEDIUM,
 		ON_LEAVE: func(room: Room): room.sanitation = Room.Sanitation.MESSY,
-		BLACKLIST: [Trait.NEAT]
+		BLACKLIST: [Trait.CLEAN]
+	},
+	Trait.CLASSY: {
+		NAME: "Classy",
+		CONDITION: func(room: Room): return room.quality == Room.Quality.CLASSY,
+		PREFERENCE: GuestTrait.Preference.HIGH,
+		BLACKLIST: [Trait.CHEAP]
+	},
+	Trait.CHEAP: {
+		NAME: "Cheap",
+		CONDITION: func(room: Room): return room.qguality == Room.Quality.DUMP,
+		PREFERENCE: GuestTrait.Preference.HIGH,
+		BLACKLIST: [Trait.CLASSY]
 	}
 }
 
 static var TRAITS: Dictionary[Trait, GuestTrait]
 
+## static loader function to load traits from TRAIT_DATA
 static func LOAD_TRAITS():
 	TRAITS.clear()
 	for key in TRAIT_DATA.keys():
@@ -49,4 +65,32 @@ static func LOAD_TRAITS():
 		if data.has(ON_LEAVE): guest_trait.on_leave = data.get(ON_LEAVE)
 		if data.has(BLACKLIST): guest_trait.blacklisted_traits.assign(data.get(BLACKLIST))
 		
+		guest_trait.enum_key = key
+		
 		TRAITS.set(key, guest_trait);
+
+static func set_guest_traits(guest: Guest, trait_count: int):
+	# sets default traits. Possibly better to preload? I don't think it should affect performance though, just dictionary lookup.
+	guest.traits.clear()
+	for t: Trait in guest.default_traits:
+		guest.traits.push_back(TRAITS.get(t))
+	
+	for i in range(trait_count):
+		var guest_trait: GuestTrait = get_valid_trait(guest)
+		guest.traits.push_back(guest_trait)
+
+## Maximum recursive depth for get_valid_trait.
+const MAX_DEPTH: int = 100
+
+## returns a valid trait according to guest's current trait_list
+static func get_valid_trait(guest: Guest, depth: int = 0) -> GuestTrait:
+	if depth >= MAX_DEPTH: return null
+	
+	var random_trait: Trait = TRAITS.keys().pick_random()
+	
+	# check trait conflicts
+	for t: GuestTrait in guest.traits:
+		if t.enum_key == random_trait or t.blacklisted_traits.has(random_trait):
+			return get_valid_trait(guest, depth + 1)
+	
+	return TRAITS.get(random_trait)

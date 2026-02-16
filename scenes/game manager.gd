@@ -9,6 +9,8 @@ var hotel: Hotel = Hotel.new()
 var guest_queue: Array[Guest] = []
 @export var current_guest: Guest = null
 
+var random_trait_count: int = 1
+
 func _ready() -> void:
 	# load guests and traits. The lists act as global constants
 	TraitList.LOAD_TRAITS()
@@ -19,10 +21,11 @@ func _ready() -> void:
 func begin_day() -> void:
 	guest_queue = GuestList.create_guest_queue(1, day)
 	manage_next_guest()
+	Globals.set_text.emit(current_guest.get_lines())
 
 func manage_next_guest() -> void:
-	# TODO!!!!!! Need to add some fields PROPRETY_USED_STORAGE to resources for copying
 	current_guest = guest_queue[0].duplicate_deep()
+	TraitList.set_guest_traits(current_guest, random_trait_count)
 	guest_queue.pop_front()
 	
 	# clean children
@@ -33,3 +36,6 @@ func manage_next_guest() -> void:
 		guest_parent.add_child(guest_scene.instantiate())
 	else:
 		push_error("No guest scene for guest")
+	
+	if Globals.DEBUG:
+		print("LOADING GUEST: " + str(current_guest))

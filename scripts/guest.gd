@@ -1,30 +1,37 @@
 class_name Guest extends Resource
 
-var name: String = ""
-var scene: PackedScene
+@export var name: String = ""
+@export var scene: PackedScene
 
 ## traits assigned to guest by default. Used for "template" guests.
-var default_traits: Array[TraitList.Trait] = []
-var traits: Array[GuestTrait] = []
+@export var default_traits: Array[TraitList.Trait] = []
+@export var traits: Array[GuestTrait] = []
 
 ## Max money guest can give
-var money: int = 0
+@export var money: int = 0
 
 ## message on greeting
-var greeting: String = ""
+@export var greeting: String = ""
 ## message on leaving
-var goodybye: String = ""
+@export var goodybye: String = ""
 ## message on angry leaving
-var angry_goodbye: String = ""
+@export var angry_goodbye: String = ""
 
 ## initial rating given by guest. Can be lower than 5 for picky or snobbish guests.
-var initial_rating: float = 5
+@export var initial_rating: float = 5
 
 ## Guest won't appear until day has passed
-var appear_after_day: int = 0
+@export var appear_after_day: int = 0
 
-## Todo
+##
+func get_lines() -> Array[String]:
+	return [greeting, generate_request()]
+
+## Todo, will return **random** dynamic request based on traits
 func generate_request() -> String:
 	return "placeholder request"
 
 # constructed by guest_list class
+
+func _to_string() -> String:	
+	return "(Guest) " + name + "Traits: " + str(traits);
