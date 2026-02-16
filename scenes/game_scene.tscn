@@ -1,3 +1,13 @@
 [gd_scene format=3 uid="uid://d10v8ay10dsu6"]
 
+[ext_resource type="Script" uid="uid://fehsvnq2kohw" path="res://scenes/game manager.gd" id="1_w5aja"]
+[ext_resource type="Texture2D" uid="uid://b71bqndcej6nv" path="res://icon.svg" id="2_onqr8"]
+
 [node name="GameScene" type="Node2D" unique_id=1746918585]
+script = ExtResource("1_w5aja")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=2131477491]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=569171118]
+position = Vector2(-420, -152)
+texture = ExtResource("2_onqr8")
