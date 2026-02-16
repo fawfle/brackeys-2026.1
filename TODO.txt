@@ -1,0 +1,11 @@
+Day Mechanics:
+	guest system
+	scripted guests
+
+Hotel Mechanics:
+	upgrades
+	assignment
+
+
+Code:
+	make APPEAR_AFTER and EVENT types work for guests and traits.

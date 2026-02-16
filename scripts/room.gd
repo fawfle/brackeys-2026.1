@@ -11,16 +11,6 @@ var height: Height
 
 var guest: Guest = null
 
-
-# enum gameplay
-enum Properties {
-	SANITATION,
-	QUALITY,
-	SIZE,
-	LOCATION,
-	HEIGHT,
-}
-
 enum Sanitation {
 	CLEAN,
 	MESSY,

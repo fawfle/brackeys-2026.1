@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://cgjol7fet0bui"]
+
+[ext_resource type="Texture2D" uid="uid://wugsl7xevnu8" path="res://sprites/characters/four-eyes.png" id="1_2seyp"]
+
+[node name="FourEyes" type="Sprite2D" unique_id=811499514]
+texture = ExtResource("1_2seyp")

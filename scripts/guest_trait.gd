@@ -1,8 +1,12 @@
 class_name GuestTrait
 
-var property: Room.Properties
-var value
+var name: String
+var condition: Callable
 var preference: Preference
+var on_leave: Callable
+
+## traits that are mutually exclusive with this one
+var blacklisted_traits: Array[TraitList.Trait]
 
 enum Preference {
 	HIGH,
@@ -11,7 +15,7 @@ enum Preference {
 	DEALBREAKER
 }
 
-func _init(_property: Room.Properties, _value, _preference: Preference) -> void:
-	property = _property
-	value = _value
-	preference = _preference
+## Guest won't appear until day has passed
+var appear_after_day: int = 0
+
+## constructed by trait_list class
