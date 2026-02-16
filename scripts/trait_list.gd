@@ -1,10 +1,15 @@
 class_name TraitList
 
 enum {
+	## name of trait, for internal reference
 	NAME,
+	## Function that must be true for condition to be met.
 	CONDITION,
+	## Function applied after guest leaves. EX making room very messy.
 	ON_LEAVE,
+	## How much guest cares. Determines point deduction for failing.
 	PREFERENCE,
+	## Traits that are mutually exclusive.
 	BLACKLIST
 }
 
@@ -42,6 +47,6 @@ static func LOAD_TRAITS():
 		if data.has(CONDITION): guest_trait.condition = data.get(CONDITION)
 		if data.has(PREFERENCE): guest_trait.preference = data.get(PREFERENCE)
 		if data.has(ON_LEAVE): guest_trait.on_leave = data.get(ON_LEAVE)
-		if data.has(BLACKLIST): guest_trait.blacklisted_traits = data.get(BLACKLIST)
+		if data.has(BLACKLIST): guest_trait.blacklisted_traits.assign(data.get(BLACKLIST))
 		
 		TRAITS.set(key, guest_trait);

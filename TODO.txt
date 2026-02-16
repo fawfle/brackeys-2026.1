@@ -9,3 +9,4 @@ Hotel Mechanics:
 
 Code:
 	make APPEAR_AFTER and EVENT types work for guests and traits.
+	Make duplicates rare/impossible (have a queue of recent guests?)

@@ -1,4 +1,4 @@
-class_name GuestTrait
+class_name GuestTrait extends Resource
 
 var name: String
 var condition: Callable
@@ -6,7 +6,7 @@ var preference: Preference
 var on_leave: Callable
 
 ## traits that are mutually exclusive with this one
-var blacklisted_traits: Array[TraitList.Trait]
+var blacklisted_traits: Array[TraitList.Trait] = []
 
 enum Preference {
 	HIGH,

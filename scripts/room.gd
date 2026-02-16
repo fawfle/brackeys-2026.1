@@ -1,15 +1,16 @@
-class_name Room
+class_name Room extends Control
 
-var sanitation: Sanitation = Sanitation.CLEAN
-var quality: Quality = Quality.DUMP
-var size: Size = Size.SMALL
+@export var sanitation: Sanitation = Sanitation.CLEAN
+@export var quality: Quality = Quality.DUMP
+@export var room_size: RoomSize = RoomSize.SMALL
 
-# always dynamic, location properties
-var location: Location
-var height: Height
-
+# "fixed", location properties
+@export var location: Location
+@export var height: Height
 
 var guest: Guest = null
+
+
 
 enum Sanitation {
 	CLEAN,
@@ -23,7 +24,7 @@ enum Quality {
 	DUMP
 }
 
-enum Size {
+enum RoomSize {
 	LARGE,
 	MEDIUM,
 	SMALL
@@ -31,14 +32,14 @@ enum Size {
 
 ## invariant, based on physical room location
 enum Location {
+	CENTER,
 	LEFT,
 	RIGHT,
-	CENTER
 }
 
 ## invariant, based on physical room location
 enum Height {
-	HIGH,
-	MIDDLE,
 	GROUND,
+	MIDDLE,
+	HIGH,
 }
