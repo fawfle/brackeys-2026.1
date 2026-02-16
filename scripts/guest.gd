@@ -1,6 +1,7 @@
 class_name Guest extends Resource
 
 @export var name: String = ""
+## scene loaded, possibly change to just texture
 @export var scene: PackedScene
 
 ## traits assigned to guest by default. Used for "template" guests.
@@ -9,6 +10,9 @@ class_name Guest extends Resource
 
 ## Max money guest can give
 @export var money: int = 0
+
+## Stay duration
+@export var staya_duration: int = 1
 
 ## message on greeting
 @export var greeting: Array[String] = []
@@ -25,8 +29,8 @@ class_name Guest extends Resource
 ## Guest won't appear until day has passed
 @export var appear_after_day: int = 0
 
-##
-func get_lines() -> Array[String]:
+## return array of greeting and request
+func get_intro_lines() -> Array[String]:
 	var arr: Array[String] = greeting.duplicate();
 	arr.append(generate_request())
 	return arr
@@ -37,5 +41,12 @@ func generate_request() -> String:
 
 # constructed by guest_list class
 
+func instantiate_scene() -> Node2D:
+	if scene == null:
+		push_error("No guest scene for guest")
+		return null
+	
+	return scene.instantiate()
+
 func _to_string() -> String:	
-	return "(Guest) " + name + "Traits: " + str(traits);
+	return "(Guest) " + name + " Traits: " + str(traits);

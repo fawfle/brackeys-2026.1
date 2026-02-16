@@ -24,6 +24,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 color = Color(0.42710263, 0.42710263, 0.42710263, 1)
 
 [node name="Label" type="Label" parent="TextureButton" unique_id=1754139443]
@@ -32,3 +33,5 @@ offset_right = 40.0
 offset_bottom = 23.0
 theme_override_font_sizes/font_size = 8
 text = "room"
+
+[connection signal="button_down" from="TextureButton" to="." method="_on_texture_button_button_down"]

@@ -42,6 +42,8 @@ static func LOAD_GUESTS():
 		
 		var guest = Guest.new();
 		
+		guest.name = key
+		
 		if data.has(SCENE): guest.scene = data.get(SCENE)
 		if data.has(DEFAULT_TRAITS): guest.default_traits.assign(data.get(DEFAULT_TRAITS))
 		

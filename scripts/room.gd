@@ -10,6 +10,19 @@ class_name Room extends Control
 
 var guest: Guest = null
 
+var occupied: bool:
+	get: return guest != null
+
+func add_guest(_guest: Guest):
+	if occupied:
+		push_error("Attempting to assign guest to occupied room")
+		
+	if Globals.DEBUG: print("ASSIGNING GUEST " + str(_guest) + " TO ROOM " + str(self))
+	
+	guest = _guest
+
+func _on_texture_button_button_down() -> void:
+	Globals.select_room.emit(self)
 
 
 enum Sanitation {

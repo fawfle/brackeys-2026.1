@@ -26,6 +26,12 @@ grow_vertical = 0
 color = Color(0, 0, 0, 1)
 script = ExtResource("2_ycayy")
 
+[node name="AdvanceText" type="TextureButton" parent="CanvasLayer/TextBar" unique_id=313393300]
+layout_mode = 0
+offset_top = -4.0
+offset_right = 262.0
+offset_bottom = 57.0
+
 [node name="TextBox" type="Label" parent="CanvasLayer/TextBar" unique_id=787348684]
 layout_mode = 1
 anchors_preset = 15
@@ -112,3 +118,5 @@ offset_top = 140.0
 offset_right = 428.0
 offset_bottom = 165.0
 location = 2
+
+[connection signal="button_down" from="CanvasLayer/TextBar/AdvanceText" to="CanvasLayer/TextBar" method="_on_advance_text_button_down"]

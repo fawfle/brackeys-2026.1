@@ -23,4 +23,4 @@ var appear_after_day: int = 0
 ## constructed by trait_list class
 
 func _to_string() -> String:
-	return "(Guest Trait) " + name;
+	return "(GuestTrait) " + name;
