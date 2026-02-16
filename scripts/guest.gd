@@ -11,11 +11,13 @@ class_name Guest extends Resource
 @export var money: int = 0
 
 ## message on greeting
-@export var greeting: String = ""
+@export var greeting: Array[String] = []
 ## message on leaving
-@export var goodybye: String = ""
+@export var goodbye: Array[String] = []
 ## message on angry leaving
-@export var angry_goodbye: String = ""
+@export var angry_goodbye: Array[String] = []
+## message on happy leaving
+@export var happy_goodbye: Array[String] = []
 
 ## initial rating given by guest. Can be lower than 5 for picky or snobbish guests.
 @export var initial_rating: float = 5
@@ -25,7 +27,9 @@ class_name Guest extends Resource
 
 ##
 func get_lines() -> Array[String]:
-	return [greeting, generate_request()]
+	var arr: Array[String] = greeting.duplicate();
+	arr.append(generate_request())
+	return arr
 
 ## Todo, will return **random** dynamic request based on traits
 func generate_request() -> String:

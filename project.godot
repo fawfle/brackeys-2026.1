@@ -24,6 +24,7 @@ Globals="*uid://b5kcglpia8qw8"
 window/size/viewport_width=440
 window/size/viewport_height=247
 window/stretch/mode="viewport"
+window/stretch/scale_mode="integer"
 
 [physics]
 

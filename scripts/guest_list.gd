@@ -23,7 +23,7 @@ static var GUESTS_DATA: Dictionary[String, Dictionary] = {
 	"four_eyes": {
 		SCENE: preload("res://scenes/characters/four_eyes.tscn"),
 		DEFAULT_TRAITS: [TraitList.Trait.CLEAN],
-		GREETING: "Hello",
+		GREETING: ["Hello, this is my first line of greeting.", "glorbo glub shclaoindsf sadfo. This is my second line!"],
 		GOODBYE: "Goodbye",
 		HAPPY_GOODBYE: "I was so happy. Goodbye.",
 		ANGRY_GOODBYE: "I am angry and goodbying",
@@ -44,9 +44,12 @@ static func LOAD_GUESTS():
 		
 		if data.has(SCENE): guest.scene = data.get(SCENE)
 		if data.has(DEFAULT_TRAITS): guest.default_traits.assign(data.get(DEFAULT_TRAITS))
-		if data.has(GREETING): guest.greeting = data.get(GREETING)
-		if data.has(GOODBYE): guest.goodybye = data.get(GOODBYE)
-		if data.has(ANGRY_GOODBYE): guest.angry_goodbye = data.get(ANGRY_GOODBYE)
+		
+		if data.has(GREETING): guest.greeting.assign(get_as_array(data, GREETING))
+		if data.has(GOODBYE): guest.goodbye.assign(get_as_array(data, GOODBYE))
+		if data.has(ANGRY_GOODBYE): guest.angry_goodbye.assign(get_as_array(data, ANGRY_GOODBYE))
+		if data.has(HAPPY_GOODBYE): guest.happy_goodbye.assign(get_as_array(data, HAPPY_GOODBYE))
+		
 		if data.has(APPEAR_AFTER): guest.appear_after_day = data.get(APPEAR_AFTER)
 		
 		## special guests
@@ -73,3 +76,13 @@ static func create_guest_queue(length: int, current_day: int) -> Array[Guest]:
 	push_error("create_guest_queue exceeded max iterations and did not meet length:  " + str(length))
 	
 	return guest_queue;
+
+static func get_as_array(data: Dictionary, key) -> Array[String]:
+	var ret: Array[String] = []
+	
+	if data.get(key) is Array:
+		ret.assign(data.get(key))
+		return ret
+
+	ret.push_back(data.get(key))
+	return ret;
