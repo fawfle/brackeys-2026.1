@@ -2,7 +2,7 @@ extends Control
 
 var line_queue: Array[String] = []
 
-@onready var text_box: Label = $TextBox
+@onready var text_box: RichTextLabel = $TextBox
 @onready var advance_text_button: TextureButton = $AdvanceText
 
 var text_tween: Tween

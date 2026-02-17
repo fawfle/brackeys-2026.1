@@ -19,7 +19,7 @@ offset_top = -4.0
 offset_right = 262.0
 offset_bottom = 57.0
 
-[node name="TextBox" type="Label" parent="." unique_id=1242861637]
+[node name="TextBox" type="RichTextLabel" parent="." unique_id=1186750473]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -32,12 +32,12 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 0
 size_flags_vertical = 8
-theme_override_constants/line_spacing = -3
-theme_override_fonts/font = ExtResource("2_3ccs0")
-theme_override_font_sizes/font_size = 16
-text = "this is sample text. Imagine something really interesting was here. I have preferences and they matter. This text box is also three lines long."
-autowrap_mode = 3
-clip_text = true
+mouse_filter = 2
+theme_override_fonts/normal_font = ExtResource("2_3ccs0")
+bbcode_enabled = true
+text = "this is [color=red]sample text[/color]. Imagine something really interesting was here. I have preferences and they matter. This text box is also three lines long."
+scroll_active = false
+shortcut_keys_enabled = false
 
 [node name="Separator" type="ColorRect" parent="." unique_id=298917311]
 layout_mode = 1
