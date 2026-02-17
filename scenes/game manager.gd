@@ -54,7 +54,7 @@ func begin_checkout_phase() -> void:
 			guest_checkout_queue.push_back(guest)
 	
 	guest_checkout_queue.shuffle()
-	begin_checkout_next_guest()
+	checkout_next_guest()
 
 ## Handle the end of the day
 func end_day() -> void:
@@ -91,7 +91,7 @@ func create_next_guest() -> Guest:
 	TraitList.set_guest_traits(guest, random_trait_count)
 	return guest
 
-func begin_checkout_next_guest() -> void:
+func checkout_next_guest() -> void:
 	if guest_checkout_queue.size() <= 0:
 		begin_assigning_phase()
 		return
@@ -142,8 +142,13 @@ func manage_room(room: Room):
 	pass
 
 func on_text_finish():
-	if phase == Phase.CHECKOUT:
-		checkout_guest()
+	if phase == Phase.CHECKOUT and current_guest != null:
+		Globals.set_text.emit()
+		var guest_node: Node2D = current_guest.node
+		current_guest = null
+		await play_guest_exit_animation(guest_node)
+		await get_tree().create_timer(0.8).timeout
+		checkout_next_guest()
 
 func play_guest_enter_animation(guest_node: Node2D):
 	var duration: float = 0.8
