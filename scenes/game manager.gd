@@ -4,6 +4,8 @@ extends Node2D
 
 var day: int = 0
 
+var money: int = 0
+
 var guest_queue: Array[Guest] = []
 @export var current_guest: Guest = null
 @export var current_guest_node: Node2D = null
