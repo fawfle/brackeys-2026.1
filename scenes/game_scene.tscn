@@ -119,4 +119,6 @@ offset_right = 428.0
 offset_bottom = 165.0
 location = 2
 
+[node name="GuestTimer" type="Timer" parent="." unique_id=1307805656]
+
 [connection signal="button_down" from="CanvasLayer/TextBar/AdvanceText" to="CanvasLayer/TextBar" method="_on_advance_text_button_down"]

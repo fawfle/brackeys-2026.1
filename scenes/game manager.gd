@@ -4,13 +4,20 @@ extends Node2D
 
 var day: int = 0
 
-var hotel: Hotel = Hotel.new()
-
 var guest_queue: Array[Guest] = []
 @export var current_guest: Guest = null
 @export var current_guest_node: Node2D = null
 
 var random_trait_count: int = 1
+
+## phase of gameplay. Either assigning (getting guests) or managing (upgrading)
+enum Phase {
+	CHECKOUT,
+	ASSIGNING,
+	MANAGING
+}
+
+var phase: Phase = Phase.ASSIGNING
 
 func _ready() -> void:
 	# load guests and traits. The lists act as global constants
@@ -22,12 +29,21 @@ func _ready() -> void:
 	begin_day()
 
 func begin_day() -> void:
+	phase = Phase.ASSIGNING
 	guest_queue = GuestList.create_guest_queue(1, day)
 	manage_next_guest()
 	Globals.set_text.emit(current_guest.get_intro_lines())
 
+## Handle the end of the day. Enter upgrade mode
+func end_day() -> void:
+	pass
+
 func manage_next_guest() -> void:
-	if guest_queue.size() <= 0: return
+	if guest_queue.size() <= 0:
+		end_day()
+		
+		begin_day()
+		return
 	
 	current_guest = guest_queue[0].duplicate_deep()
 	TraitList.set_guest_traits(current_guest, random_trait_count)
@@ -46,6 +62,13 @@ func manage_next_guest() -> void:
 
 ## hook for room selection for assigning guest
 func on_room_select(room: Room):
+	if phase == Phase.ASSIGNING:
+		assign_current_guest(room)
+	elif phase == Phase.MANAGING:
+		manage_room(room)
+		
+
+func assign_current_guest(room: Room):
 	if room.guest != null or current_guest == null: return
 	
 	Globals.set_text.emit([] as Array[String])
@@ -57,6 +80,9 @@ func on_room_select(room: Room):
 	await get_tree().create_timer(0.8).timeout
 	
 	manage_next_guest()
+
+func manage_room(room: Room):
+	pass
 
 func play_guest_enter_animation(guest_node: Node2D):
 	var duration: float = 0.8
