@@ -2,6 +2,10 @@ Day Mechanics:
 	guest system
 	scripted guests
 
+UI Mechanics:
+	add finish dialouge indicator to guest text
+	add text enter animation
+
 Hotel Mechanics:
 	upgrades
 	assignment

@@ -29,6 +29,15 @@ func get_happiness_rating() -> float:
 	# TODO
 	return rating
 	
+func checkout_guest() -> Guest:
+	for guest_trait: GuestTrait in guest.traits:
+		if guest_trait.on_leave.is_valid(): guest_trait.on_leave.call(self)
+	
+	var g: Guest = guest;
+	guest = null
+	return g
+
+
 enum Sanitation {
 	CLEAN,
 	MESSY,

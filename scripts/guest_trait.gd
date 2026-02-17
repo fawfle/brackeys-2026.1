@@ -10,6 +10,7 @@ class_name GuestTrait extends Resource
 
 @export var enum_key: TraitList.Trait
 
+## How much the guest cares. May change to pure number value. Might be easier as presets but could be more complicated?
 enum Preference {
 	HIGH,
 	MEDIUM,
@@ -17,10 +18,20 @@ enum Preference {
 	DEALBREAKER
 }
 
+const PreferenceScore: Dictionary[Preference, float] = {
+	Preference.HIGH: 3,
+	Preference.MEDIUM: 2,
+	Preference.LOW: 1,
+	Preference.DEALBREAKER: 5,
+}
+
 ## Guest won't appear until day has passed
 var appear_after_day: int = 0
 
-## constructed by trait_list class
+func get_preference_score():
+	return PreferenceScore.get(preference)
 
 func _to_string() -> String:
 	return "(GuestTrait) " + name;
+
+## constructed by trait_list class
