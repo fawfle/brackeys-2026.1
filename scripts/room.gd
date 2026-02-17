@@ -4,9 +4,8 @@ class_name Room extends Control
 @export var quality: Quality = Quality.DUMP
 @export var room_size: RoomSize = RoomSize.SMALL
 
-# "fixed", location properties
-@export var location: Location
-@export var height: Height
+## location of room in hotel. Starts at 0,0 from bottom left. Floor is location.y
+@export var location: Vector2 = Vector2.ZERO
 
 var guest: Guest = null
 
@@ -37,6 +36,18 @@ func checkout_guest() -> Guest:
 	guest = null
 	return g
 
+## functions to get location properties
+func in_center() -> bool:
+	return location.x == 1
+
+func on_left() -> bool:
+	return location.x == 0
+
+func on_right() -> bool:
+	return location.x  == 2
+
+func on_ground_floor() -> bool:
+	return location.y == 0
 
 enum Sanitation {
 	CLEAN,
@@ -54,18 +65,4 @@ enum RoomSize {
 	LARGE,
 	MEDIUM,
 	SMALL
-}
-
-## invariant, based on physical room location
-enum Location {
-	CENTER,
-	LEFT,
-	RIGHT,
-}
-
-## invariant, based on physical room location
-enum Height {
-	GROUND,
-	MIDDLE,
-	HIGH,
 }
