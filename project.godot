@@ -26,6 +26,10 @@ window/size/viewport_height=247
 window/stretch/mode="viewport"
 window/stretch/scale_mode="integer"
 
+[global_group]
+
+room=""
+
 [physics]
 
 3d/physics_engine="Jolt Physics"
