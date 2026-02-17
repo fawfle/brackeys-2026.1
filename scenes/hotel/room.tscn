@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bfjv0sjmcksyh" path="res://scripts/room.gd" id="1_4oh1f"]
 
-[node name="Room" type="Control" unique_id=963365455]
+[node name="Room" type="Control" unique_id=963365455 groups=["room"]]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 78.0

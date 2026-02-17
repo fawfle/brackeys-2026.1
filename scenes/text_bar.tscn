@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://buyxfh2m4xbm5"]
+
+[ext_resource type="Script" uid="uid://dkdr85sse58ak" path="res://scenes/text_bar.gd" id="1_0shnj"]
+[ext_resource type="FontFile" uid="uid://bnw2vf51g52tq" path="res://fonts/fs-pixel-sans-unicode-regular.ttf" id="2_3ccs0"]
+
+[node name="TextBar" type="ColorRect" unique_id=733882566]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -57.0
+offset_right = 262.0
+grow_vertical = 0
+color = Color(0, 0, 0, 1)
+script = ExtResource("1_0shnj")
+
+[node name="AdvanceText" type="TextureButton" parent="." unique_id=1299756936]
+layout_mode = 0
+offset_top = -4.0
+offset_right = 262.0
+offset_bottom = 57.0
+
+[node name="TextBox" type="Label" parent="." unique_id=1242861637]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = 3.0
+offset_right = -4.0
+offset_bottom = -5.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+theme_override_constants/line_spacing = -3
+theme_override_fonts/font = ExtResource("2_3ccs0")
+theme_override_font_sizes/font_size = 16
+text = "this is sample text. Imagine something really interesting was here. I have preferences and they matter. This text box is also three lines long."
+autowrap_mode = 3
+clip_text = true
+
+[node name="Separator" type="ColorRect" parent="." unique_id=298917311]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = -4.0
+offset_right = -1.0
+grow_horizontal = 2
+color = Color(0.1, 0.1, 0.1, 1)
+
+[connection signal="button_down" from="AdvanceText" to="." method="_on_advance_text_button_down"]
