@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://buyxfh2m4xbm5" path="res://scenes/text_bar.tscn" id="2_ycayy"]
 [ext_resource type="Script" uid="uid://cfpiqvmer5qe" path="res://scenes/day_label.gd" id="3_y3j0m"]
 [ext_resource type="PackedScene" uid="uid://buyxfh2m4xbm5" path="res://scenes/text_bar.tscn" id="2_ycayy"]
+[ext_resource type="Script" uid="uid://cfpiqvmer5qe" path="res://scenes/day_label.gd" id="3_y3j0m"]
 [ext_resource type="PackedScene" uid="uid://4gii0y616804" path="res://scenes/hotel/room.tscn" id="3_ycayy"]
 
 [sub_resource type="GDScript" id="GDScript_y3j0m"]
