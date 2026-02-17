@@ -1,8 +1,7 @@
 [gd_scene format=3 uid="uid://d10v8ay10dsu6"]
 
 [ext_resource type="Script" uid="uid://fehsvnq2kohw" path="res://scenes/game manager.gd" id="1_w5aja"]
-[ext_resource type="Script" uid="uid://dkdr85sse58ak" path="res://scenes/text_bar.gd" id="2_ycayy"]
-[ext_resource type="FontFile" uid="uid://bnw2vf51g52tq" path="res://fonts/fs-pixel-sans-unicode-regular.ttf" id="3_bw6k5"]
+[ext_resource type="PackedScene" uid="uid://buyxfh2m4xbm5" path="res://scenes/text_bar.tscn" id="2_ycayy"]
 [ext_resource type="PackedScene" uid="uid://4gii0y616804" path="res://scenes/hotel/room.tscn" id="3_ycayy"]
 
 [node name="GameScene" type="Node2D" unique_id=1746918585]
@@ -16,50 +15,7 @@ position = Vector2(132, 130)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1013869446]
 
-[node name="TextBar" type="ColorRect" parent="CanvasLayer" unique_id=2033105175]
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_top = -57.0
-offset_right = 262.0
-grow_vertical = 0
-color = Color(0, 0, 0, 1)
-script = ExtResource("2_ycayy")
-
-[node name="AdvanceText" type="TextureButton" parent="CanvasLayer/TextBar" unique_id=313393300]
-layout_mode = 0
-offset_top = -4.0
-offset_right = 262.0
-offset_bottom = 57.0
-
-[node name="TextBox" type="Label" parent="CanvasLayer/TextBar" unique_id=787348684]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 4.0
-offset_top = 3.0
-offset_right = -4.0
-offset_bottom = -5.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 0
-size_flags_vertical = 8
-theme_override_constants/line_spacing = -3
-theme_override_fonts/font = ExtResource("3_bw6k5")
-theme_override_font_sizes/font_size = 16
-text = "this is sample text. Imagine something really interesting was here. I have preferences and they matter. This text box is also three lines long."
-autowrap_mode = 3
-clip_text = true
-
-[node name="Separator" type="ColorRect" parent="CanvasLayer/TextBar" unique_id=1087483858]
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_top = -4.0
-offset_right = -1.0
-grow_horizontal = 2
-color = Color(0.1, 0.1, 0.1, 1)
+[node name="TextBar" parent="CanvasLayer" unique_id=733882566 instance=ExtResource("2_ycayy")]
 
 [node name="Separator" type="ColorRect" parent="CanvasLayer" unique_id=1946174638]
 anchors_preset = 10
@@ -120,5 +76,3 @@ offset_bottom = 165.0
 location = 2
 
 [node name="GuestTimer" type="Timer" parent="." unique_id=1307805656]
-
-[connection signal="button_down" from="CanvasLayer/TextBar/AdvanceText" to="CanvasLayer/TextBar" method="_on_advance_text_button_down"]

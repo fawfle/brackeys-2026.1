@@ -69,6 +69,7 @@ static func LOAD_TRAITS():
 		
 		TRAITS.set(key, guest_trait);
 
+## set guest traits of a guest
 static func set_guest_traits(guest: Guest, trait_count: int):
 	# sets default traits. Possibly better to preload? I don't think it should affect performance though, just dictionary lookup.
 	guest.traits.clear()
