@@ -2,6 +2,7 @@ class_name GuestTrait extends Resource
 
 @export var name: String
 @export var condition: Callable
+@export var request: String
 @export var preference: Preference
 @export var on_leave: Callable
 

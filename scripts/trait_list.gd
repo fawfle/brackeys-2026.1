@@ -5,6 +5,8 @@ enum {
 	NAME,
 	## Function that must be true for condition to be met.
 	CONDITION,
+	## Text to hit at request
+	REQUEST,
 	## Function applied after guest leaves. EX making room very messy.
 	ON_LEAVE,
 	## How much guest cares. Determines point deduction for failing.
@@ -25,12 +27,14 @@ enum Trait {
 static var TRAIT_DATA: Dictionary[Trait, Dictionary] = {
 	Trait.CLEAN: {
 		NAME: "Clean",
+		REQUEST: "I prefer rooms that are [color=red]Clean[/color].",
 		CONDITION: func(room: Room): return room.sanitation == Room.Sanitation.CLEAN,
 		PREFERENCE: GuestTrait.Preference.HIGH,
 		BLACKLIST: [Trait.MESSY]
 	},
 	Trait.MESSY: {
 		NAME: "Messy",
+		REQUEST: "I hope you're not a [color=red]neat freak[/color].",
 		CONDITION: func(room: Room): return room.sanitation == Room.Sanitation.MESSY,
 		PREFERENCE: GuestTrait.Preference.MEDIUM,
 		ON_LEAVE: func(room: Room): room.sanitation = Room.Sanitation.MESSY,
@@ -38,12 +42,14 @@ static var TRAIT_DATA: Dictionary[Trait, Dictionary] = {
 	},
 	Trait.CLASSY: {
 		NAME: "Classy",
+		REQUEST: "Put me in one of your [color=red]finest quarters[/color].",
 		CONDITION: func(room: Room): return room.quality == Room.Quality.CLASSY,
 		PREFERENCE: GuestTrait.Preference.HIGH,
 		BLACKLIST: [Trait.CHEAP]
 	},
 	Trait.CHEAP: {
 		NAME: "Cheap",
+		REQUEST: "Don't [color=red]charge me[/color] too much.",
 		CONDITION: func(room: Room): return room.qguality == Room.Quality.DUMP,
 		PREFERENCE: GuestTrait.Preference.HIGH,
 		BLACKLIST: [Trait.CLASSY]
@@ -61,6 +67,7 @@ static func LOAD_TRAITS():
 		var guest_trait: GuestTrait = GuestTrait.new();
 		if data.has(NAME): guest_trait.name = data.get(NAME)
 		if data.has(CONDITION): guest_trait.condition = data.get(CONDITION)
+		if data.has(REQUEST): guest_trait.request = data.get(REQUEST)
 		if data.has(PREFERENCE): guest_trait.preference = data.get(PREFERENCE)
 		if data.has(ON_LEAVE): guest_trait.on_leave = data.get(ON_LEAVE)
 		if data.has(BLACKLIST): guest_trait.blacklisted_traits.assign(data.get(BLACKLIST))

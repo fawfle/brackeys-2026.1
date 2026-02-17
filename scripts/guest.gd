@@ -35,12 +35,19 @@ var node: Node2D = null
 ## return array of greeting and request
 func get_intro_lines() -> Array[String]:
 	var arr: Array[String] = greeting.duplicate();
-	arr.append(generate_request())
+	arr.append_array(generate_request())
 	return arr
 
 ## Todo, will return **random** dynamic request based on traits
-func generate_request() -> String:
-	return "placeholder request"
+func generate_request() -> Array[String]:
+	var arr: Array[String] = []
+	var pickable_traits: Array[GuestTrait] = traits.duplicate()
+	
+	for i in range(3):
+		if i >= traits.size(): break
+		var t: GuestTrait = pickable_traits.pop_at(randi_range(0, pickable_traits.size() - 1))
+		if (t.request != ""): arr.push_back(t.request)
+	return arr
 
 func get_exit_lines(happiness: float = 3) -> Array[String]:
 	if happiness <= 2.0:
