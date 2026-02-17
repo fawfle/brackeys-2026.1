@@ -1,7 +1,9 @@
 [gd_scene format=3 uid="uid://d10v8ay10dsu6"]
 
 [ext_resource type="Script" uid="uid://fehsvnq2kohw" path="res://scenes/game manager.gd" id="1_w5aja"]
+[ext_resource type="FontFile" uid="uid://qo71mx2v8dp" path="res://fonts/edit-undo.brk.ttf" id="2_bw6k5"]
 [ext_resource type="PackedScene" uid="uid://buyxfh2m4xbm5" path="res://scenes/text_bar.tscn" id="2_ycayy"]
+[ext_resource type="Script" uid="uid://cfpiqvmer5qe" path="res://scenes/day_label.gd" id="3_y3j0m"]
 [ext_resource type="PackedScene" uid="uid://4gii0y616804" path="res://scenes/hotel/room.tscn" id="3_ycayy"]
 
 [node name="GameScene" type="Node2D" unique_id=1746918585]
@@ -14,6 +16,18 @@ anchor_mode = 0
 position = Vector2(132, 130)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1013869446]
+
+[node name="DayLabel" type="Label" parent="CanvasLayer" unique_id=1702534556]
+offset_left = 5.0
+offset_top = 3.0
+offset_right = 58.0
+offset_bottom = 26.0
+theme_override_fonts/font = ExtResource("2_bw6k5")
+theme_override_font_sizes/font_size = 15
+text = "day 0"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("3_y3j0m")
 
 [node name="TextBar" parent="CanvasLayer" unique_id=733882566 instance=ExtResource("2_ycayy")]
 
