@@ -1,22 +1,14 @@
 class_name GuestList
 
 enum {
-	## Scene to load for guest. Consists of sprite, possibly more.
-	SCENE,
-	## Default traits always given to a guest.
-	DEFAULT_TRAITS,
-	## Message sent on greeting before request.
-	GREETING,
-	## Message sent when leaving
-	GOODBYE,
-	## Message sent when leaving very happy
-	HAPPY_GOODBYE,
-	## Message sent when leaving angry
-	ANGRY_GOODBYE,
-	## Threshold to not appear before a certain day. For gating guests after unlocks.
-	APPEAR_AFTER,
-	## Mark a guest as an "event" type. They won't be added to any normal guest queues.
-	EVENT,
+	SCENE, ## Scene to load for guest. Consists of sprite, possibly more.
+	DEFAULT_TRAITS,	## Default traits always given to a guest.
+	GREETING, ## Message sent on greeting before request.
+	GOODBYE, ## Message sent when leaving
+	HAPPY_GOODBYE, ## Message sent when leaving very happy
+	ANGRY_GOODBYE, ## Message sent when leaving angry
+	APPEAR_AFTER, ## Threshold to not appear before a certain day. For gating guests after unlocks.
+	EVENT, ## Mark a guest as an "event" type. They won't be added to any normal guest queues.
 }
 
 static var GUESTS_DATA: Dictionary[String, Dictionary] = {
@@ -27,6 +19,28 @@ static var GUESTS_DATA: Dictionary[String, Dictionary] = {
 		GOODBYE: "Goodbye",
 		HAPPY_GOODBYE: "I was so happy. Goodbye.",
 		ANGRY_GOODBYE: "I am angry and goodbying",
+	},
+	"hazmat": {
+		SCENE: preload("res://scenes/characters/hazmat.tscn"),
+		DEFAULT_TRAITS: [TraitList.Trait.RADIOACTIVE],
+		GREETING: ["Hazmat!!!", "You look silly!"],
+		GOODBYE: "Hazmat out!",
+		HAPPY_GOODBYE: "I was so happy. Goodbye.",
+		ANGRY_GOODBYE: "I am angry and goodbying",
+	},
+	"mono": {
+		SCENE: preload("res://scenes/characters/mono.tscn"),
+		DEFAULT_TRAITS: [TraitList.Trait.GENEROUS],
+		GREETING: ["_ _  _ __ __  _ _  _ __ _ _  _ __ _ _  __  _ __  __ _ __  _  __ _ __ __  __ __ __  _ _ __  __ _ _ _  _  __ _ __ _  __ __ __  __ __  _  _ __", "_ _ _  _ __ __ _  _ __  __ _ __ _  _  __ _ _ _  _ __  __ _ _ _  __ _ __ __  _ __ _ __ _ __"], # "i will make you become a space baby" in morse code
+		GOODBYE: "_ _ __ _  _ __  _ __ _  _  __ __  _  _ __ _ _  _ __ _ _  _ __ _ __ _ __", # farewell.
+		HAPPY_GOODBYE: "_ _  _ __  __ __  _ __ __ _  _ __ _ _  _  _ __  _ _ _  _  __ _ _  _ __ _ __ _ __", # I am pleased.
+		ANGRY_GOODBYE: "_ _  _ _ _ _  _ __  _-  _  __ _ __ __  __ __ __  _ _ __  _ __ _ __ _ __" # I hate you.
+	},
+	"newt": {
+		SCENE: preload("res://scenes/characters/newt.tscn"),
+		DEFAULT_TRAITS: [TraitList.Trait.MESSY]
+		
+		
 	}
 }
 

@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://dp37symfnf4ua"]
+
+[ext_resource type="Texture2D" uid="uid://c1x65s55dtn2s" path="res://sprites/characters/hazmat.png" id="1_v2q4n"]
+
+[node name="Hazmat" type="Sprite2D" unique_id=689265356]
+texture = ExtResource("1_v2q4n")

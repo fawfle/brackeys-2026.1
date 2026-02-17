@@ -102,6 +102,8 @@ func begin_checkout_next_guest() -> void:
 	
 	await play_guest_enter_animation(current_guest.node)
 	
+	current_guest.update_happiness_rating()
+	
 	Globals.set_text.emit(current_guest.get_exit_lines())
 
 ## checkout guest
@@ -129,6 +131,7 @@ func assign_current_guest(room: Room):
 	
 	Globals.set_text.emit()
 	room.add_guest(current_guest)
+	current_guest.room = room
 	
 	var guest_node: Node2D = current_guest.node
 	current_guest = null
@@ -142,7 +145,7 @@ func manage_room(room: Room):
 	pass
 
 func on_text_finish():
-	if phase == Phase.CHECKOUT:
+	if phase == Phase.CHECKOUT and current_guest != null:
 		checkout_guest()
 
 func play_guest_enter_animation(guest_node: Node2D):

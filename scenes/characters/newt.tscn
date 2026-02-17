@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://bbsumtt2er7na"]
+
+[ext_resource type="Texture2D" uid="uid://b18v26ttupgmj" path="res://sprites/characters/newt.png" id="1_yewja"]
+
+[node name="Newt" type="Sprite2D" unique_id=1772552209]
+texture = ExtResource("1_yewja")
