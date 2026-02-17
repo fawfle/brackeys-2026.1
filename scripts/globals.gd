@@ -14,3 +14,7 @@ signal text_finished()
 ## used by rooms to signal a click.
 @warning_ignore("unused_signal")
 signal select_room(room: Room)
+
+
+@warning_ignore(("unused_signal"))
+signal begin_day(day: int)
