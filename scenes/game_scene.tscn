@@ -13,6 +13,11 @@
 [sub_resource type="GDScript" id="GDScript_y3j0m"]
 script/source = "extends Node
 "
+[ext_resource type="PackedScene" path="res://scenes/text_bar.tscn" id="2_ycayy"]
+[ext_resource type="Script" path="res://scenes/day_label.gd" id="3_y3j0m"]
+[ext_resource type="Script" path="res://scenes/money_label.gd" id="4_rurhu"]
+[ext_resource type="PackedScene" path="res://scenes/ui/radial_bar.tscn" id="6_kk2rg"]
+[ext_resource type="PackedScene" uid="uid://bntofo8m6s6ra" path="res://scenes/hotel_window.tscn" id="7_kk2rg"]
 
 [node name="GameScene" type="Node2D" unique_id=1746918585]
 script = ExtResource("1_w5aja")
@@ -101,86 +106,7 @@ offset_top = 19.0
 offset_right = 38.0
 offset_bottom = 44.0
 
-[node name="HotelWindow" type="Control" parent="CanvasLayer" unique_id=520531249]
-layout_mode = 3
-anchor_left = 0.6045455
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -1.0
-grow_horizontal = 2
-grow_vertical = 2
-script = SubResource("GDScript_y3j0m")
-
-[node name="HotelBar" type="ColorRect" parent="CanvasLayer/HotelWindow" unique_id=1541475074]
-layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -56.0
-grow_horizontal = 2
-grow_vertical = 0
-color = Color(0, 0, 0, 1)
-
-[node name="Separator" type="ColorRect" parent="CanvasLayer/HotelWindow/HotelBar" unique_id=1952670912]
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_top = -4.0
-grow_horizontal = 2
-color = Color(0.1, 0.1, 0.1, 1)
-
-[node name="Rooms" type="Control" parent="CanvasLayer/HotelWindow" unique_id=1048854769]
-layout_mode = 1
-anchor_right = 1.0
-anchor_bottom = 0.75303644
-grow_horizontal = 2
-grow_vertical = 2
-metadata/_edit_use_anchors_ = true
-
-[node name="Room" parent="CanvasLayer/HotelWindow/Rooms" unique_id=378997809 instance=ExtResource("3_ycayy")]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -74.5
-offset_top = -47.0
-offset_right = -26.5
-offset_bottom = -22.0
-grow_horizontal = 2
-grow_vertical = 0
-
-[node name="Room2" parent="CanvasLayer/HotelWindow/Rooms" unique_id=2130832592 instance=ExtResource("3_ycayy")]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -23.5
-offset_top = -47.0
-offset_right = 24.5
-offset_bottom = -22.0
-grow_horizontal = 2
-grow_vertical = 0
-location = Vector2(1, 0)
-
-[node name="Room3" parent="CanvasLayer/HotelWindow/Rooms" unique_id=1707477686 instance=ExtResource("3_ycayy")]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = 27.5
-offset_top = -47.0
-offset_right = 75.5
-offset_bottom = -22.0
-grow_horizontal = 2
-grow_vertical = 0
-location = Vector2(1, 0)
+[node name="HotelWindow" parent="CanvasLayer" unique_id=1529008732 instance=ExtResource("7_kk2rg")]
 
 [node name="GuestLeaveTimer" type="Timer" parent="." unique_id=1307805656]
 one_shot = true

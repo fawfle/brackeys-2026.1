@@ -1,5 +1,7 @@
 class_name GameManager extends Node2D
 
+static var inst: GameManager = null
+
 const assign_guest_leave_time: float = 30
 
 const floating_text_scene: PackedScene = preload("res://scenes/ui/floating_text.tscn")
@@ -42,6 +44,7 @@ enum Phase {
 var phase: Phase = Phase.ASSIGNING
 
 func _ready() -> void:
+	inst = self
 	# load guests and traits. The lists act as global constants
 	TraitList.LOAD_TRAITS()
 	GuestList.LOAD_GUESTS()
