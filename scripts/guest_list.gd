@@ -49,7 +49,7 @@ static var GUESTS_DATA: Dictionary[String, Dictionary] = {
 	}
 }
 
-static var GUESTS: Array[Guest] = []
+static var GUESTS: Dictionary[String, Guest]
 static var SPECIAL_GUESTS: Dictionary[String, Guest]
 
 ## static loader function to load GUESTS from GUESTS_DATA
@@ -79,14 +79,14 @@ static func LOAD_GUESTS():
 		if data.has(EVENT):
 			SPECIAL_GUESTS.set(key, guest)
 		else:
-			GUESTS.push_back(guest)
+			GUESTS.set(key, guest)
 
 # TODO: Add feature to stop duplicate guests, probably a recent_guest list
 static func create_guest_queue(length: int, current_day: int) -> Array[Guest]:
 	var guest_queue: Array[Guest] = [];
 	
 	for _i in range(100):
-		var guest = GUESTS.pick_random()
+		var guest = GUESTS.values().pick_random()
 		
 		if guest.appear_after_day > current_day: continue
 		if guest_queue.has(guest): continue
