@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://wcrb7drjpuly"]
+
+[ext_resource type="Texture2D" uid="uid://byrdx7lbsqc1w" path="res://sprites/characters/sheeple.png" id="1_gf83a"]
+
+[node name="sheeple" type="Sprite2D" unique_id=1486424104]
+texture = ExtResource("1_gf83a")
