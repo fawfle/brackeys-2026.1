@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://cv2oiqhjqdy6a"]
+
+[ext_resource type="Theme" uid="uid://bqm4ull505em5" path="res://themes/theme.tres" id="1_e8e1h"]
+[ext_resource type="Script" uid="uid://i75im4x6l8i" path="res://scenes/ui/room_info_menu.gd" id="1_wxk2m"]
+
+[node name="RoomInfoMenu" type="Control" unique_id=1346516254]
+layout_mode = 3
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 48.0
+grow_horizontal = 2
+script = ExtResource("1_wxk2m")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=252871795]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.23529412)
+
+[node name="Guest" type="Label" parent="." unique_id=624130536]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 6.0
+offset_right = 46.0
+offset_bottom = 29.0
+theme = ExtResource("1_e8e1h")
+text = "Guest:"

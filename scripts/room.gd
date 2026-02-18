@@ -28,6 +28,13 @@ func get_happiness_rating() -> float:
 	# TODO
 	return rating
 	
+func _on_texture_button_mouse_entered() -> void:
+	Globals.hover_room.emit(self)
+
+func _on_texture_button_mouse_exited() -> void:
+	Globals.exit_hover_room.emit(self)
+
+
 func checkout_guest() -> Guest:
 	for guest_trait: GuestTrait in guest.traits:
 		if guest_trait.on_leave.is_valid(): guest_trait.on_leave.call(self)

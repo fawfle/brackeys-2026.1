@@ -45,3 +45,5 @@ theme_override_font_sizes/font_size = 8
 text = "room"
 
 [connection signal="button_down" from="TextureButton" to="." method="_on_texture_button_button_down"]
+[connection signal="mouse_entered" from="TextureButton" to="." method="_on_texture_button_mouse_entered"]
+[connection signal="mouse_exited" from="TextureButton" to="." method="_on_texture_button_mouse_exited"]
