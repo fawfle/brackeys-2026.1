@@ -14,6 +14,7 @@ const floating_text_scene: PackedScene = preload("res://scenes/ui/floating_text.
 #TODO: placeholder, replace with actual stars
 @onready var star_rating: Label = $"CanvasLayer/GuestWindow/StarRating"
 @onready var radial_bar: TextureProgressBar = $CanvasLayer/GuestWindow/GuestTimerRadialBar
+@onready var assign_button: Button = $CanvasLayer/GuestWindow/AssignButton
 
 var day: int = 0
 
@@ -52,6 +53,7 @@ func _ready() -> void:
 	radial_bar.visible = false
 	
 	Globals.select_room.connect(on_room_select)
+	assign_button.button_down.connect(_on_assign_button_button_down)
 	
 	begin_assigning_phase()
 
@@ -76,7 +78,9 @@ func begin_assigning_phase() -> void:
 
 func begin_upgrading_phase() -> void:
 	phase = Phase.UPGRADING
-	## michael TODO
+	
+	await Globals.text_finished
+	
 	begin_next_phase()
 
 func begin_checkout_phase() -> void:
@@ -130,7 +134,7 @@ func leave_guest() -> void:
 	Globals.set_text.emit(current_guest.goodbye)
 	await Globals.text_finished
 	await play_guest_exit_animation(current_guest.node)
-	guest_parent.remove_child(current_guest.node)
+	current_guest.node.queue_free()
 	manage_next_guest()
 
 ## currently duplicate guests and set traits here. Maybe change in the future if it's confusing.
@@ -151,7 +155,7 @@ func begin_checkout_next_guest() -> void:
 	
 	if Globals.DEBUG: print("CHECKING OUT: " + str(current_guest))
 	
-	guest_parent.add_child(current_guest.node)
+	current_guest.node.reparent(guest_parent)
 	await play_guest_enter_animation(current_guest.node)
 	
 	current_guest.update_happiness_rating()
@@ -178,17 +182,18 @@ func checkout_guest() -> void:
 	
 	current_guest = null
 	await play_guest_exit_animation(guest_node)
-	guest_parent.remove_child(guest_node)
+	guest_node.queue_free()
 	await get_tree().create_timer(0.8).timeout
 	begin_checkout_next_guest()
 
 ## hook for room selection for assigning guest
 func on_room_select(room: Room):
 	if phase == Phase.ASSIGNING:
-		assign_current_guest(room)
-	elif phase == Phase.UPGRADING:
-		manage_room(room)
-		
+		assign_button.disabled = room == null
+
+func _on_assign_button_button_down() -> void:
+	if Hotel.inst.selected_room != null: assign_current_guest(Hotel.inst.selected_room)
+
 
 func assign_current_guest(room: Room):
 	if room.guest != null or current_guest == null or playing_animation: return
@@ -203,14 +208,11 @@ func assign_current_guest(room: Room):
 	guest_leave_timer.timeout.emit() # need to call manually :)
 	
 	await play_guest_exit_animation(guest_node)
-	guest_parent.remove_child(guest_node)
+	guest_node.reparent(room)
 	await get_tree().create_timer(0.8).timeout
 	
 	manage_next_guest()
 
-func manage_room(room: Room):
-	## TODO: remove, michael will deal with
-	pass
 
 func start_assign_guest_leave_timer(guest: Guest):
 	guest_leave_timer.start(assign_guest_leave_time)

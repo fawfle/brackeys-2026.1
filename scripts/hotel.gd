@@ -1,17 +1,57 @@
 class_name Hotel extends Node
 
-@onready var upgrade_menu = $UpgradeMenu
-var selected_room: Room = null
+static var inst: Hotel = null
 
+## "button" that deselects selected room. For "clicking off"
+@onready var room_deselect: TextureButton = $RoomDeselect
+
+@onready var room_upgrade_menu: Control = $RoomUpgradeMenu
+@onready var room_info_menu: RoomInfoMenu = $RoomInfoMenu
+
+var selected_room: Room = null:
+	get: return selected_room
+	set(value):
+		selected_room = value
+		update_room_info_menu()
+var hovered_room: Room = null:
+	get: return hovered_room
+	set(value):
+		hovered_room = value
+		update_room_info_menu()
 
 # TODO: manage rooms, assign positions, hold hotel upgrades and allow building of new rooms/floors
 func _ready() -> void:
-	Globals.select_room.connect(on_select_room)
-	upgrade_menu.visible = false
+	inst = self
+	
+	Globals.select_room.connect(_on_select_room)
+	Globals.hover_room.connect(_on_hover_room)
+	Globals.exit_hover_room.connect(_on_exit_hover_room)
+	room_deselect.button_down.connect(func(): Globals.select_room.emit(null))
+	
+	room_upgrade_menu.visible = false
+	room_info_menu.visible = false
 
-func on_select_room(room: Room):
-	upgrade_menu.visible = true
+func _on_select_room(room: Room):
 	selected_room = room
+	room_upgrade_menu.visible = room != null
+
+func _on_hover_room(room: Room):
+	hovered_room = room
+	
+func _on_exit_hover_room(room: Room):
+	print(hovered_room == room)
+	if hovered_room == room:
+		hovered_room = null
+
+func update_room_info_menu():
+	var room: Room = hovered_room
+	if room == null: room = selected_room
+	if room == null:
+		room_info_menu.visible = false
+		return
+	
+	room_info_menu.visible = true
+	room_info_menu.update_viewed_room(room)
 	
 
 func _on_clean_pressed() -> void:

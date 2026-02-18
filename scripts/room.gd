@@ -23,6 +23,13 @@ func add_guest(_guest: Guest):
 func _on_texture_button_button_down() -> void:
 	Globals.select_room.emit(self)
 
+func _on_texture_button_mouse_entered() -> void:
+	Globals.hover_room.emit(self)
+
+func _on_texture_button_mouse_exited() -> void:
+	Globals.exit_hover_room.emit(self)
+
+
 func checkout_guest() -> Guest:
 	for guest_trait: GuestTrait in guest.traits:
 		if guest_trait.on_leave.is_valid(): guest_trait.on_leave.call(self)

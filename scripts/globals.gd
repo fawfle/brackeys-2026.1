@@ -5,6 +5,7 @@ extends Node
 var DEBUG: bool = true
 
 ## signals phase changes
+@warning_ignore("unused_signal")
 signal phase_changed(phase: GameManager.Phase)
 
 ## used to signal textbox to display a mesage. Message is given as an array and clicking through will cycle until final message.
@@ -22,9 +23,10 @@ signal set_money(money: int)
 ## used by rooms to signal a click.
 signal select_room(room: Room)
 
-## used by rooms to signal a hover.
+## used by rooms to signal a hover/exit hover.
 @warning_ignore("unused_signal")
 signal hover_room(room: Room)
+signal exit_hover_room(room: Room)
 
 @warning_ignore(("unused_signal"))
 signal begin_day(day: int)
