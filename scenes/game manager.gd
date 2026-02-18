@@ -56,15 +56,16 @@ func _ready() -> void:
 	begin_assigning_phase()
 
 func begin_next_phase() -> void:
+	# use call_deferred to keep call stack in check
 	match(phase):
 		Phase.CHECKOUT:
-			begin_assigning_phase()
+			begin_assigning_phase.call_deferred()
 		Phase.ASSIGNING:
-			begin_upgrading_phase()
+			begin_upgrading_phase.call_deferred()
 		Phase.UPGRADING:
-			end_day()
+			end_day.call_deferred()
 		Phase.END_DAY:
-			begin_checkout_phase()
+			begin_checkout_phase.call_deferred()
 	
 	Globals.phase_changed.emit(phase)
 
@@ -111,7 +112,7 @@ func manage_next_guest() -> void:
 	current_guest = create_next_guest()
 	
 	# clean children
-	for child in guest_parent.get_children(): child.queue_free()
+	for child in guest_parent.get_children(): guest_parent.remove_child(child)
 	
 	current_guest.instantiate_scene()
 	guest_parent.add_child(current_guest.node)
@@ -128,6 +129,8 @@ func manage_next_guest() -> void:
 func leave_guest() -> void:
 	Globals.set_text.emit(current_guest.goodbye)
 	await Globals.text_finished
+	await play_guest_exit_animation(current_guest.node)
+	guest_parent.remove_child(current_guest.node)
 	manage_next_guest()
 
 ## currently duplicate guests and set traits here. Maybe change in the future if it's confusing.
@@ -144,9 +147,11 @@ func begin_checkout_next_guest() -> void:
 		return
 	
 	current_guest = guest_checkout_queue.pop_front()
+	print(guest_checkout_queue)
 	
 	if Globals.DEBUG: print("CHECKING OUT: " + str(current_guest))
 	
+	guest_parent.add_child(current_guest.node)
 	await play_guest_enter_animation(current_guest.node)
 	
 	current_guest.update_happiness_rating()
@@ -170,8 +175,10 @@ func checkout_guest() -> void:
 	
 	Globals.set_text.emit()
 	var guest_node: Node2D = current_guest.node
+	
 	current_guest = null
 	await play_guest_exit_animation(guest_node)
+	guest_parent.remove_child(guest_node)
 	await get_tree().create_timer(0.8).timeout
 	begin_checkout_next_guest()
 
@@ -196,6 +203,7 @@ func assign_current_guest(room: Room):
 	guest_leave_timer.timeout.emit() # need to call manually :)
 	
 	await play_guest_exit_animation(guest_node)
+	guest_parent.remove_child(guest_node)
 	await get_tree().create_timer(0.8).timeout
 	
 	manage_next_guest()
@@ -225,11 +233,20 @@ func play_guest_enter_animation(guest_node: Node2D):
 	playing_animation = true
 	var duration: float = 0.9
 	
-	var end_color: Color = Color("ffffffff")
+	# var end_color: Color = Color("ffffffff")
+	
+	var timer: SceneTreeTimer = get_tree().create_timer(duration)
+	
+	while timer.time_left != 0:
+		var t: float = (duration - timer.time_left) / duration
+		# t = 1 - (1 - t) * (1 - t) # ease out
+		guest_node.modulate = lerp(Color("#ffffff00"), Color("ffffffff"), t)
+		await get_tree().process_frame
 
-	guest_node.modulate = Color("#ffffff00")
-	get_tree().create_tween().tween_property(guest_node, "modulate", end_color, duration)
-	await get_tree().create_timer(duration).timeout
+
+	# guest_node.modulate = Color("#ffffff00")
+	# get_tree().create_tween().tween_property(guest_node, "modulate", end_color, duration)
+	# await get_tree().create_timer(duration).timeout
 	
 	playing_animation = false
 
@@ -251,5 +268,5 @@ func get_rooms():
 func create_floating_text(text: String):
 	var floating_text: FloatingText = floating_text_scene.instantiate() as FloatingText
 	guest_window.add_child(floating_text)
-	floating_text.position += Vector2(randf_range(-15, 15), randf_range(-15, 15))
+	floating_text.position += Vector2(randi_range(-5, 5), randi_range(-25, -15))
 	floating_text.play_animation(text, 1.3)

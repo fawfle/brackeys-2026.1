@@ -9,7 +9,7 @@ layout_mode = 3
 anchor_left = 0.6045455
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -1.0
+offset_right = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_3n61i")
@@ -93,8 +93,9 @@ offset_bottom = 40.0
 
 [node name="Clean" type="TextureButton" parent="UpgradeMenu" unique_id=175579154]
 layout_mode = 0
-offset_top = 187.0
-offset_right = 175.0
+offset_left = 2.0
+offset_top = 193.0
+offset_right = 86.0
 offset_bottom = 207.0
 metadata/_edit_group_ = true
 
@@ -125,9 +126,10 @@ text = "Clean"
 
 [node name="Quality" type="TextureButton" parent="UpgradeMenu" unique_id=1929904523]
 layout_mode = 0
-offset_top = 207.0
-offset_right = 175.0
-offset_bottom = 227.0
+offset_left = 2.0
+offset_top = 211.0
+offset_right = 86.0
+offset_bottom = 226.0
 metadata/_edit_group_ = true
 
 [node name="ColorRect" type="ColorRect" parent="UpgradeMenu/Quality" unique_id=1987510585]
@@ -157,9 +159,10 @@ text = "Quality"
 
 [node name="Size" type="TextureButton" parent="UpgradeMenu" unique_id=1143641771]
 layout_mode = 0
-offset_top = 227.0
-offset_right = 175.0
-offset_bottom = 248.0
+offset_left = 2.0
+offset_top = 230.0
+offset_right = 86.0
+offset_bottom = 245.0
 metadata/_edit_group_ = true
 
 [node name="ColorRect" type="ColorRect" parent="UpgradeMenu/Size" unique_id=1980022766]
