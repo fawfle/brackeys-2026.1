@@ -68,7 +68,16 @@ static var GUESTS_DATA: Dictionary[String, Dictionary] = {
 		HAPPY_GOODBYE: "I am pleasantly surprised, confrère. Perhaps we're not so different, you and I.",
 		ANGRY_GOODBYE: "Hideous, as I expected. Adieu, brainlet.",
 		MONEY: 10,
-	}
+	},
+	"sheeple": {
+		SCENE: preload("res://scenes/characters/sheeple.tscn"),
+		DEFAULT_TRAITS: [TraitList.Trait.MESSY],
+		GREETING: ["H-hey. Looking for a p-p-place to lay low for a-a while.", "Think you can hook m-me up?"],
+		GOODBYE: "T-t-t-thanks, c-comrade. See you l-later... or not...",
+		HAPPY_GOODBYE: "Perfectly secure. You must be one of us. Long live the Brotherhood, and never forget that they're out there...",
+		ANGRY_GOODBYE: "S-s-s-s-so m-many ey-eyes watchimg m-me. I n-need to go.",
+		MONEY: 10,
+	},
 }
 
 static var GUESTS: Dictionary[String, Guest]
