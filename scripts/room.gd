@@ -22,7 +22,6 @@ func add_guest(_guest: Guest):
 
 func _on_texture_button_button_down() -> void:
 	Globals.select_room.emit(self)
-	$Upgrade_Scene.visible = true
 
 func checkout_guest() -> Guest:
 	for guest_trait: GuestTrait in guest.traits:
@@ -44,6 +43,26 @@ func on_right() -> bool:
 
 func on_ground_floor() -> bool:
 	return location.y == 0
+
+func upgrade_sanitation(): 
+	if sanitation == Sanitation.CLEAN:
+		return
+	else:
+		sanitation -= 1
+		# TODO: some visual/menu indicator
+		
+func upgrade_quality(): 
+	if quality == Quality.CLASSY:
+		return
+	else:
+		quality -= 1
+		
+func upgrade_room_size(): 
+	if room_size == RoomSize.LARGE:
+		return
+	else:
+		room_size -= 1
+
 
 enum Sanitation {
 	CLEAN,

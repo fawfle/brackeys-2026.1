@@ -18,10 +18,13 @@ signal text_finished()
 @warning_ignore("unused_signal")
 signal set_money(money: int)
 
-## used by rooms to signal a click.
 @warning_ignore("unused_signal")
+## used by rooms to signal a click.
 signal select_room(room: Room)
 
+## used by rooms to signal a hover.
+@warning_ignore("unused_signal")
+signal hover_room(room: Room)
 
 @warning_ignore(("unused_signal"))
 signal begin_day(day: int)

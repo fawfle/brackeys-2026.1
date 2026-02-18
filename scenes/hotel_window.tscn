@@ -1,0 +1,188 @@
+[gd_scene format=3 uid="uid://bntofo8m6s6ra"]
+
+[ext_resource type="Script" uid="uid://dby1dcjvrtap5" path="res://scripts/hotel.gd" id="1_3n61i"]
+[ext_resource type="PackedScene" uid="uid://4gii0y616804" path="res://scenes/hotel/room.tscn" id="1_6fsk1"]
+[ext_resource type="FontFile" uid="uid://bnw2vf51g52tq" path="res://fonts/fs-pixel-sans-unicode-regular.ttf" id="3_43vyb"]
+
+[node name="HotelWindow" type="Control" unique_id=1529008732]
+layout_mode = 3
+anchor_left = 0.6045455
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_3n61i")
+
+[node name="HotelBar" type="ColorRect" parent="." unique_id=1135708921]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -56.0
+grow_horizontal = 2
+grow_vertical = 0
+color = Color(0, 0, 0, 1)
+metadata/_edit_lock_ = true
+
+[node name="Separator" type="ColorRect" parent="HotelBar" unique_id=1802680670]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = -4.0
+grow_horizontal = 2
+color = Color(0.1, 0.1, 0.1, 1)
+
+[node name="Rooms" type="Control" parent="." unique_id=956017151]
+layout_mode = 1
+anchor_right = 1.0
+anchor_bottom = 0.75303644
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Room" parent="Rooms" unique_id=963365455 instance=ExtResource("1_6fsk1")]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -74.5
+offset_top = -47.0
+offset_right = -26.5
+offset_bottom = -22.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Room2" parent="Rooms" unique_id=2033255440 instance=ExtResource("1_6fsk1")]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -23.5
+offset_top = -47.0
+offset_right = 24.5
+offset_bottom = -22.0
+grow_horizontal = 2
+grow_vertical = 0
+location = Vector2(1, 0)
+
+[node name="Room3" parent="Rooms" unique_id=1552856911 instance=ExtResource("1_6fsk1")]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 27.5
+offset_top = -47.0
+offset_right = 75.5
+offset_bottom = -22.0
+grow_horizontal = 2
+grow_vertical = 0
+location = Vector2(1, 0)
+
+[node name="UpgradeMenu" type="Control" parent="." unique_id=774352026]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Clean" type="TextureButton" parent="UpgradeMenu" unique_id=175579154]
+layout_mode = 0
+offset_top = 187.0
+offset_right = 175.0
+offset_bottom = 207.0
+metadata/_edit_group_ = true
+
+[node name="ColorRect" type="ColorRect" parent="UpgradeMenu/Clean" unique_id=134448038]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.27935672, 0.27935672, 0.27935672, 1)
+
+[node name="Label" type="Label" parent="UpgradeMenu/Clean" unique_id=1987835308]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -8.0
+offset_right = 20.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_43vyb")
+text = "Clean"
+
+[node name="Quality" type="TextureButton" parent="UpgradeMenu" unique_id=1929904523]
+layout_mode = 0
+offset_top = 207.0
+offset_right = 175.0
+offset_bottom = 227.0
+metadata/_edit_group_ = true
+
+[node name="ColorRect" type="ColorRect" parent="UpgradeMenu/Quality" unique_id=1987510585]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.27935672, 0.27935672, 0.27935672, 1)
+
+[node name="Label" type="Label" parent="UpgradeMenu/Quality" unique_id=801570999]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -8.0
+offset_right = 20.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_43vyb")
+text = "Quality"
+
+[node name="Size" type="TextureButton" parent="UpgradeMenu" unique_id=1143641771]
+layout_mode = 0
+offset_top = 227.0
+offset_right = 175.0
+offset_bottom = 248.0
+metadata/_edit_group_ = true
+
+[node name="ColorRect" type="ColorRect" parent="UpgradeMenu/Size" unique_id=1980022766]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.27935672, 0.27935672, 0.27935672, 1)
+
+[node name="Label" type="Label" parent="UpgradeMenu/Size" unique_id=1321065765]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -8.0
+offset_right = 20.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_43vyb")
+text = "Size"
