@@ -23,6 +23,9 @@ class_name GuestTrait extends Resource
 ## Guest won't appear until day has passed
 @export var appear_after_day: int = 0
 
+## money value having trait is worth
+@export var value: int = 0
+
 func _to_string() -> String:
 	return "(GuestTrait) " + name;
 

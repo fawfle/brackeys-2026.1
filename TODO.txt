@@ -5,11 +5,16 @@ Day Mechanics:
 UI Mechanics:
 	add finish dialouge indicator to guest text
 	add text enter animation
+	5 star visual
 
 Hotel Mechanics:
 	upgrades
 	assignment
+	guest timer for assigning
+	Bills?
 
+Guest Mechanics:
+	pronouns (I, we, etc.)
 
 Code:
 	make APPEAR_AFTER and EVENT types work for guests and traits.

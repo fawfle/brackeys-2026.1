@@ -7,6 +7,7 @@ enum {
 	GOODBYE, ## Message sent when leaving
 	HAPPY_GOODBYE, ## Message sent when leaving very happy
 	ANGRY_GOODBYE, ## Message sent when leaving angry
+	MONEY, ## how much money they initially have
 	APPEAR_AFTER, ## Threshold to not appear before a certain day. For gating guests after unlocks.
 	EVENT, ## Mark a guest as an "event" type. They won't be added to any normal guest queues.
 }
@@ -19,6 +20,7 @@ static var GUESTS_DATA: Dictionary[String, Dictionary] = {
 		GOODBYE: "Goodbye",
 		HAPPY_GOODBYE: "I was so happy. Goodbye.",
 		ANGRY_GOODBYE: "I am angry and goodbying",
+		MONEY: 10,
 	},
 	"hazmat": {
 		SCENE: preload("res://scenes/characters/hazmat.tscn"),
@@ -27,6 +29,7 @@ static var GUESTS_DATA: Dictionary[String, Dictionary] = {
 		GOODBYE: "Hazmat out!",
 		HAPPY_GOODBYE: "I was so happy. Goodbye.",
 		ANGRY_GOODBYE: "I am angry and goodbying",
+		MONEY: 10,
 	},
 	"mono": {
 		SCENE: preload("res://scenes/characters/mono.tscn"),
@@ -34,11 +37,13 @@ static var GUESTS_DATA: Dictionary[String, Dictionary] = {
 		GREETING: ["_ _  _ __ __  _ _  _ __ _ _  _ __ _ _  __  _ __  __ _ __  _  __ _ __ __  __ __ __  _ _ __  __ _ _ _  _  __ _ __ _  __ __ __  __ __  _  _ __", "_ _ _  _ __ __ _  _ __  __ _ __ _  _  __ _ _ _  _ __  __ _ _ _  __ _ __ __  _ __ _ __ _ __"], # "i will make you become a space baby" in morse code
 		GOODBYE: "_ _ __ _  _ __  _ __ _  _  __ __  _  _ __ _ _  _ __ _ _  _ __ _ __ _ __", # farewell.
 		HAPPY_GOODBYE: "_ _  _ __  __ __  _ __ __ _  _ __ _ _  _  _ __  _ _ _  _  __ _ _  _ __ _ __ _ __", # I am pleased.
-		ANGRY_GOODBYE: "_ _  _ _ _ _  _ __  _-  _  __ _ __ __  __ __ __  _ _ __  _ __ _ __ _ __" # I hate you.
+		ANGRY_GOODBYE: "_ _  _ _ _ _  _ __  _-  _  __ _ __ __  __ __ __  _ _ __  _ __ _ __ _ __", # I hate you.
+		MONEY: 10,
 	},
 	"newt": {
 		SCENE: preload("res://scenes/characters/newt.tscn"),
-		DEFAULT_TRAITS: [TraitList.Trait.MESSY]
+		DEFAULT_TRAITS: [TraitList.Trait.MESSY],
+		MONEY: 10,
 		
 		
 	}
@@ -65,6 +70,8 @@ static func LOAD_GUESTS():
 		if data.has(GOODBYE): guest.goodbye.assign(get_as_array(data, GOODBYE))
 		if data.has(ANGRY_GOODBYE): guest.angry_goodbye.assign(get_as_array(data, ANGRY_GOODBYE))
 		if data.has(HAPPY_GOODBYE): guest.happy_goodbye.assign(get_as_array(data, HAPPY_GOODBYE))
+		
+		if data.has(MONEY): guest.money = data.get(MONEY)
 		
 		if data.has(APPEAR_AFTER): guest.appear_after_day = data.get(APPEAR_AFTER)
 		

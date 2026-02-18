@@ -10,7 +10,8 @@ enum {
 	PREFERENCE, ## How much guest cares. Determines point deduction for failing.
 	BLACKLIST, ## Traits that are mutually exclusive.
 	SPECIAL, ## don't assign randomly
-	APPEAR_AFTER
+	VALUE, ## money value to add to guest total money
+	APPEAR_AFTER ## day to wait to appear after
 }
 
 ## trait name for comparisons between traits. KEY to make traits more easily viewable in editor
@@ -32,6 +33,7 @@ static var TRAIT_DATA: Dictionary[Trait, Dictionary] = {
 		FAIL_FEEDBACK: "The room you gave me was so [color=red]messy[/color]",
 		CONDITION: func(room: Room): return room.sanitation == Room.Sanitation.CLEAN,
 		PREFERENCE: 3,
+		VALUE: 5,
 		BLACKLIST: [Trait.MESSY]
 	},
 	Trait.MESSY: {
@@ -41,6 +43,7 @@ static var TRAIT_DATA: Dictionary[Trait, Dictionary] = {
 		CONDITION: func(room: Room): return room.sanitation == Room.Sanitation.MESSY,
 		ON_LEAVE: func(room: Room): room.sanitation = Room.Sanitation.MESSY,
 		PREFERENCE: 2,
+		VALUE: 3,
 		BLACKLIST: [Trait.CLEAN]
 	},
 	Trait.CLASSY: {
@@ -49,6 +52,7 @@ static var TRAIT_DATA: Dictionary[Trait, Dictionary] = {
 		FAIL_FEEDBACK: "Do you take me for a [color=red]peon[/color]?",
 		CONDITION: func(room: Room): return room.quality == Room.Quality.CLASSY,
 		PREFERENCE: 3,
+		VALUE: 10,
 		BLACKLIST: [Trait.CHEAP]
 	},
 	Trait.CHEAP: {
@@ -56,17 +60,20 @@ static var TRAIT_DATA: Dictionary[Trait, Dictionary] = {
 		REQUEST: "Don't [color=red]charge me[/color] too much.",
 		CONDITION: func(room: Room): return room.quality == Room.Quality.DUMP,
 		PREFERENCE: 3,
+		VALUE: 2,
 		BLACKLIST: [Trait.CLASSY]
 	},
-	Trait.RADIOACTIVE: { ## TODO, make neighboring guests radioactive
+	Trait.RADIOACTIVE: { ## TODO, make neighboring guests radioactive decreasing happiness by 1
 		NAME: "Radioactive",
 		REQUEST: "",
 		ON_ENTER: func(room: Room): return,
+		VALUE: 10,
 		SPECIAL: true
 	},
 	Trait.GENEROUS: { ## TODO, gives extra money, makes some neighbors give extra money
 		NAME: "Generous",
-		SPECIAL: true
+		SPECIAL: true,
+		VALUE: 10,
 	}
 }
 
@@ -86,6 +93,7 @@ static func LOAD_TRAITS():
 		if data.has(PREFERENCE): guest_trait.preference = data.get(PREFERENCE)
 		if data.has(ON_ENTER): guest_trait.on_enter = data.get(ON_ENTER)
 		if data.has(ON_LEAVE): guest_trait.on_leave = data.get(ON_LEAVE)
+		if data.has(VALUE): guest_trait.value = data.get(VALUE)
 		if data.has(BLACKLIST): guest_trait.blacklisted_traits.assign(data.get(BLACKLIST))
 		
 		if data.has(SPECIAL): guest_trait.special = true
