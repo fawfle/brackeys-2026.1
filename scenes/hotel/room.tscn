@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://4gii0y616804"]
 
 [ext_resource type="Script" uid="uid://bfjv0sjmcksyh" path="res://scripts/room.gd" id="1_4oh1f"]
-[ext_resource type="PackedScene" uid="uid://djeljjv5j0mnr" path="res://scenes/ui/upgrade_scene.tscn" id="2_3qhai"]
+[ext_resource type="Texture2D" uid="uid://e6tsdfk0sac0" path="res://sprites/ui/Window-Sheet.png" id="2_3qhai"]
 
 [node name="Room" type="Control" unique_id=963365455]
 layout_mode = 3
@@ -12,31 +12,20 @@ script = ExtResource("1_4oh1f")
 
 [node name="TextureButton" type="TextureButton" parent="." unique_id=692431399]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = -1
+anchor_left = -0.10300001
+anchor_top = -0.69600004
+anchor_right = 0.10300001
+anchor_bottom = 0.69600004
+offset_left = 0.034000397
+offset_top = 0.0080013275
+offset_right = -0.034000397
+offset_bottom = -0.0080013275
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ColorRect" type="ColorRect" parent="TextureButton" unique_id=256581676]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-color = Color(0.42710263, 0.42710263, 0.42710263, 1)
-
-[node name="Label" type="Label" parent="TextureButton" unique_id=1754139443]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
-theme_override_font_sizes/font_size = 8
-text = "room"
-
-[node name="Upgrade_Scene" parent="." unique_id=1419164681 instance=ExtResource("2_3qhai")]
-visible = false
-layout_mode = 0
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=994675520]
+texture = ExtResource("2_3qhai")
+hframes = 2
 
 [connection signal="button_down" from="TextureButton" to="." method="_on_texture_button_button_down"]
