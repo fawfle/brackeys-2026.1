@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://caooc5hj5ecec"]
+
+[ext_resource type="Texture2D" uid="uid://djltllvv06so1" path="res://sprites/characters/octovee.png" id="1_7pmx7"]
+
+[node name="octovee" type="Sprite2D" unique_id=279340760]
+texture = ExtResource("1_7pmx7")
