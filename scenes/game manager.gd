@@ -151,7 +151,6 @@ func begin_checkout_next_guest() -> void:
 		return
 	
 	current_guest = guest_checkout_queue.pop_front()
-	print(guest_checkout_queue)
 	
 	if Globals.DEBUG: print("CHECKING OUT: " + str(current_guest))
 	
@@ -189,7 +188,7 @@ func checkout_guest() -> void:
 ## hook for room selection for assigning guest
 func on_room_select(room: Room):
 	if phase == Phase.ASSIGNING:
-		assign_button.disabled = room == null
+		assign_button.disabled = room == null or room.guest != null
 
 func _on_assign_button_button_down() -> void:
 	if Hotel.inst.selected_room != null: assign_current_guest(Hotel.inst.selected_room)

@@ -45,6 +45,7 @@ theme_override_font_sizes/font_size = 16
 text = "this is sample text. Imagine something really interesting was here. I have preferences and they matter. This text box is also three lines long."
 autowrap_mode = 3
 clip_text = true
+visible_characters_behavior = 1
 
 [node name="Separator" type="ColorRect" parent="." unique_id=298917311]
 layout_mode = 1
