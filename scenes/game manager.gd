@@ -1,11 +1,22 @@
 extends Node2D
 
+const floating_text_scene: PackedScene = preload("res://scenes/ui/floating_text.tscn")
+
 @onready var guest_parent: Node2D = $GuestParent
 @onready var guest_timer: Timer = $GuestTimer
 
+@onready var guest_window: Control = $CanvasLayer/GuestWindow
+
+#TODO: placeholder, replace with actual stars
+@onready var star_rating: Label = $"CanvasLayer/GuestWindow/Star Rating"
+
 var day: int = 0
 
-var money: int = 0
+var money: int = 0:
+	get: return money
+	set(value):
+		Globals.set_money.emit(value)
+		money = value
 
 var guest_assign_queue: Array[Guest] = []
 var guest_checkout_queue: Array[Guest] = []
@@ -14,11 +25,15 @@ var guest_checkout_queue: Array[Guest] = []
 var random_trait_count: int = 1
 var stay_length_max: int = 1
 
+## bool for if currently playing an animation. forces functions to wait
+var playing_animation: bool = false
+
 ## phase of gameplay. Either assigning (getting guests),  managing (upgrading), or checkout (guests leaving and paying). ASSIGN -> UPGRADE -> CHECKOUT
 enum Phase {
 	CHECKOUT,
 	ASSIGNING,
-	UPGRADING
+	UPGRADING,
+	END_DAY,
 }
 
 var phase: Phase = Phase.ASSIGNING
@@ -33,6 +48,17 @@ func _ready() -> void:
 	
 	begin_assigning_phase()
 
+func begin_next_phase() -> void:
+	match(phase):
+		Phase.CHECKOUT:
+			begin_assigning_phase()
+		Phase.ASSIGNING:
+			begin_upgrading_phase()
+		Phase.UPGRADING:
+			end_day()
+		Phase.END_DAY:
+			begin_checkout_phase()
+
 func begin_assigning_phase() -> void:
 	phase = Phase.ASSIGNING
 	guest_assign_queue = GuestList.create_guest_queue(1, day)
@@ -41,7 +67,7 @@ func begin_assigning_phase() -> void:
 func begin_upgrading_phase() -> void:
 	phase = Phase.UPGRADING
 	## michael TODO
-	end_day()
+	begin_next_phase()
 
 func begin_checkout_phase() -> void:
 	if Globals.DEBUG: print("BEGINNING CHECKOUT PHASE")
@@ -58,17 +84,19 @@ func begin_checkout_phase() -> void:
 
 ## Handle the end of the day
 func end_day() -> void:
+	phase = Phase.END_DAY
 	day += 1
 	for room: Room in get_rooms():
 		if room.guest != null: room.guest.stay_duration -= 1
 	
 	Globals.begin_day.emit(day)
 	
-	begin_checkout_phase()
+	begin_next_phase()
 
 func manage_next_guest() -> void:
+	if phase != Phase.ASSIGNING: return
 	if guest_assign_queue.size() <= 0:
-		begin_upgrading_phase()
+		begin_next_phase()
 		return
 	
 	current_guest = create_next_guest()
@@ -83,7 +111,7 @@ func manage_next_guest() -> void:
 	
 	await play_guest_enter_animation(current_guest.node)
 	
-	Globals.set_text.emit(current_guest.get_intro_lines())
+	if current_guest != null: Globals.set_text.emit(current_guest.get_intro_lines())
 
 ## currently duplicate guests and set traits here. Maybe change in the future if it's confusing.
 func create_next_guest() -> Guest:
@@ -92,6 +120,8 @@ func create_next_guest() -> Guest:
 	return guest
 
 func begin_checkout_next_guest() -> void:
+	if phase != Phase.CHECKOUT: return
+	
 	if guest_checkout_queue.size() <= 0:
 		begin_assigning_phase()
 		return
@@ -110,7 +140,13 @@ func begin_checkout_next_guest() -> void:
 func checkout_guest() -> void:
 	if current_guest == null:
 		return
-		
+	
+	var profit: int = current_guest.get_money()
+	money += profit
+	create_floating_text("+$" + str(profit))
+	
+	star_rating.text = str(current_guest.happiness_rating) + " Stars"
+	
 	Globals.set_text.emit()
 	var guest_node: Node2D = current_guest.node
 	current_guest = null
@@ -127,7 +163,7 @@ func on_room_select(room: Room):
 		
 
 func assign_current_guest(room: Room):
-	if room.guest != null or current_guest == null: return
+	if room.guest != null or current_guest == null or playing_animation: return
 	
 	Globals.set_text.emit()
 	room.add_guest(current_guest)
@@ -145,32 +181,37 @@ func manage_room(room: Room):
 	pass
 
 func on_text_finish():
-	if phase == Phase.CHECKOUT and current_guest != null:
+	if phase == Phase.CHECKOUT and current_guest != null and not playing_animation:
 		checkout_guest()
 
 func play_guest_enter_animation(guest_node: Node2D):
-	var duration: float = 0.8
+	playing_animation = true
+	var duration: float = 0.9
 	
-	var start_color: Color = Color("00000000")
 	var end_color: Color = Color("ffffffff")
+
+	get_tree().create_tween().tween_property(guest_node, "modulate", end_color, duration)
+	await get_tree().create_timer(duration).timeout
 	
-	var timer: SceneTreeTimer = get_tree().create_timer(duration)
-	
-	while timer.time_left != 0:
-		guest_node.modulate = end_color.lerp(start_color, timer.time_left / duration)
-		await get_tree().process_frame
+	playing_animation = false
 
 func play_guest_exit_animation(guest_node: Node2D):
-	var duration: float = 0.4
+	playing_animation = true
+	var duration: float = 0.6
 	
-	var start_color: Color = Color("ffffffff")
-	var end_color: Color = Color("00000000")
+	var end_color: Color = Color("ffffff00")
 	
-	var timer: SceneTreeTimer = get_tree().create_timer(duration)
+	get_tree().create_tween().tween_property(guest_node, "modulate", end_color, duration)
 	
-	while timer.time_left != 0:
-		guest_node.modulate = end_color.lerp(start_color, timer.time_left / duration)
-		await get_tree().process_frame
+	await get_tree().create_timer(duration).timeout
+	
+	playing_animation = false
 
 func get_rooms():
 	return get_tree().get_nodes_in_group("room")
+
+func create_floating_text(text: String):
+	var floating_text: FloatingText = floating_text_scene.instantiate() as FloatingText
+	guest_window.add_child(floating_text)
+	floating_text.position += Vector2(randf_range(-15, 15), randf_range(-15, 15))
+	floating_text.play_animation(text, 1.3)

@@ -48,6 +48,18 @@ func get_intro_lines() -> Array[String]:
 
 const MAX_REQUEST_DEPTH: int = 100
 
+func get_money() -> int:
+	if happiness_rating <= -1:
+		push_error("Attempted to get money before setting happiness_rating. Did you mean to call update_happiness_rating?")
+		return -1
+	
+	var effective_money = money
+	
+	for t: GuestTrait in traits:
+		effective_money += t.value
+	
+	return round(effective_money * (happiness_rating/5.0))
+
 ## TODO:ish, will return **random** dynamic request based on traits
 func generate_request() -> Array[String]:
 	var arr: Array[String] = []

@@ -11,6 +11,10 @@ signal set_text(lines: Array[String])
 @warning_ignore("unused_signal")
 signal text_finished()
 
+## used to signal money updated
+@warning_ignore("unused_signal")
+signal set_money(money: int)
+
 ## used by rooms to signal a click.
 @warning_ignore("unused_signal")
 signal select_room(room: Room)
