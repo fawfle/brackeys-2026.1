@@ -39,7 +39,6 @@ func _on_hover_room(room: Room):
 	hovered_room = room
 	
 func _on_exit_hover_room(room: Room):
-	print(hovered_room == room)
 	if hovered_room == room:
 		hovered_room = null
 
