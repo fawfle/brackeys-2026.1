@@ -25,6 +25,12 @@ position = Vector2(86, 139)
 texture = ExtResource("1_43vyb")
 script = ExtResource("1_3n61i")
 
+[node name="Hotel" type="Node2D" parent="." unique_id=492556883]
+
+[node name="Sprite2D" type="Sprite2D" parent="Hotel" unique_id=427016909]
+position = Vector2(86, 139)
+texture = ExtResource("1_43vyb")
+
 [node name="HotelBar" type="ColorRect" parent="." unique_id=1135708921]
 layout_mode = 1
 anchors_preset = 12
@@ -62,6 +68,9 @@ metadata/_edit_use_anchors_ = true
 
 [node name="Room" parent="Rooms" unique_id=963365455 groups=["room"] instance=ExtResource("1_6fsk1")]
 [node name="Room" parent="Rooms" unique_id=963365455 instance=ExtResource("1_6fsk1")]
+metadata/_edit_use_anchors_ = true
+
+[node name="Room" parent="Rooms" unique_id=963365455 groups=["room"] instance=ExtResource("1_6fsk1")]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -84,6 +93,14 @@ grow_horizontal = 2
 grow_vertical = 0
 
 [node name="Room2" parent="Rooms" unique_id=2033255440 instance=ExtResource("1_6fsk1")]
+offset_left = -31.5
+offset_top = -45.0
+offset_right = -31.5
+offset_bottom = -45.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Room2" parent="Rooms" unique_id=2033255440 groups=["room"] instance=ExtResource("1_6fsk1")]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -107,6 +124,14 @@ grow_vertical = 0
 location = Vector2(1, 0)
 
 [node name="Room3" parent="Rooms" unique_id=1552856911 instance=ExtResource("1_6fsk1")]
+offset_left = -1.5
+offset_top = -45.0
+offset_right = -1.5
+offset_bottom = -45.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Room3" parent="Rooms" unique_id=1552856911 groups=["room"] instance=ExtResource("1_6fsk1")]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -147,6 +172,14 @@ grow_vertical = 0
 location = Vector2(1, 0)
 
 [node name="RoomUpgradeMenu" type="Control" parent="." unique_id=774352026]
+offset_left = 33.5
+offset_top = -45.0
+offset_right = 33.5π
+offset_bottom = -45.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="UpgradeMenu" type="Control" parent="." unique_id=774352026]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -167,12 +200,14 @@ offset_top = 193.0
 offset_right = 86.0
 offset_bottom = 207.0
 [node name="Clean" type="TextureButton" parent="RoomUpgradeMenu" unique_id=175579154]
+[node name="Clean" type="TextureButton" parent="UpgradeMenu" unique_id=175579154]
 layout_mode = 1
 offset_right = 175.0
 offset_bottom = 20.0
 metadata/_edit_group_ = true
 
 [node name="ColorRect" type="ColorRect" parent="RoomUpgradeMenu/Clean" unique_id=134448038]
+[node name="ColorRect" type="ColorRect" parent="UpgradeMenu/Clean" unique_id=134448038]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -183,6 +218,7 @@ mouse_filter = 2
 color = Color(0.27935672, 0.27935672, 0.27935672, 1)
 
 [node name="Label" type="Label" parent="RoomUpgradeMenu/Clean" unique_id=1987835308]
+[node name="Label" type="Label" parent="UpgradeMenu/Clean" unique_id=1987835308]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -199,6 +235,7 @@ theme_override_fonts/font = ExtResource("3_43vyb")
 text = "Clean"
 
 [node name="Quality" type="TextureButton" parent="RoomUpgradeMenu" unique_id=1929904523]
+[node name="Quality" type="TextureButton" parent="UpgradeMenu" unique_id=1929904523]
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
@@ -215,6 +252,7 @@ offset_bottom = 226.0
 metadata/_edit_group_ = true
 
 [node name="ColorRect" type="ColorRect" parent="RoomUpgradeMenu/Quality" unique_id=1987510585]
+[node name="ColorRect" type="ColorRect" parent="UpgradeMenu/Quality" unique_id=1987510585]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -225,6 +263,7 @@ mouse_filter = 2
 color = Color(0.27935672, 0.27935672, 0.27935672, 1)
 
 [node name="Label" type="Label" parent="RoomUpgradeMenu/Quality" unique_id=801570999]
+[node name="Label" type="Label" parent="UpgradeMenu/Quality" unique_id=801570999]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -241,6 +280,7 @@ theme_override_fonts/font = ExtResource("3_43vyb")
 text = "Quality"
 
 [node name="Size" type="TextureButton" parent="RoomUpgradeMenu" unique_id=1143641771]
+[node name="Size" type="TextureButton" parent="UpgradeMenu" unique_id=1143641771]
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
@@ -256,6 +296,7 @@ offset_bottom = 245.0
 metadata/_edit_group_ = true
 
 [node name="ColorRect" type="ColorRect" parent="RoomUpgradeMenu/Size" unique_id=1980022766]
+[node name="ColorRect" type="ColorRect" parent="UpgradeMenu/Size" unique_id=1980022766]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -266,6 +307,7 @@ mouse_filter = 2
 color = Color(0.27935672, 0.27935672, 0.27935672, 1)
 
 [node name="Label" type="Label" parent="RoomUpgradeMenu/Size" unique_id=1321065765]
+[node name="Label" type="Label" parent="UpgradeMenu/Size" unique_id=1321065765]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -287,3 +329,6 @@ layout_mode = 1
 [connection signal="pressed" from="RoomUpgradeMenu/Clean" to="." method="_on_clean_pressed"]
 [connection signal="pressed" from="RoomUpgradeMenu/Quality" to="." method="_on_quality_pressed"]
 [connection signal="pressed" from="RoomUpgradeMenu/Size" to="." method="_on_size_pressed"]
+[connection signal="pressed" from="UpgradeMenu/Clean" to="." method="_on_clean_pressed"]
+[connection signal="pressed" from="UpgradeMenu/Quality" to="." method="_on_quality_pressed"]
+[connection signal="pressed" from="UpgradeMenu/Size" to="." method="_on_size_pressed"]
