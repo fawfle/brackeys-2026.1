@@ -23,6 +23,7 @@ anchor_bottom = 1.0
 offset_top = -56.0
 grow_horizontal = 2
 grow_vertical = 0
+mouse_filter = 2
 color = Color(0, 0, 0, 1)
 metadata/_edit_lock_ = true
 
@@ -87,15 +88,23 @@ grow_vertical = 0
 location = Vector2(1, 0)
 
 [node name="UpgradeMenu" type="Control" parent="." unique_id=774352026]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -87.5
+offset_top = -56.0
+offset_right = 87.5
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
 
 [node name="Clean" type="TextureButton" parent="UpgradeMenu" unique_id=175579154]
-layout_mode = 0
-offset_top = 187.0
+layout_mode = 1
 offset_right = 175.0
-offset_bottom = 207.0
+offset_bottom = 20.0
 metadata/_edit_group_ = true
 
 [node name="ColorRect" type="ColorRect" parent="UpgradeMenu/Clean" unique_id=134448038]
@@ -105,6 +114,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 color = Color(0.27935672, 0.27935672, 0.27935672, 1)
 
 [node name="Label" type="Label" parent="UpgradeMenu/Clean" unique_id=1987835308]
@@ -124,10 +134,14 @@ theme_override_fonts/font = ExtResource("3_43vyb")
 text = "Clean"
 
 [node name="Quality" type="TextureButton" parent="UpgradeMenu" unique_id=1929904523]
-layout_mode = 0
-offset_top = 207.0
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -10.0
 offset_right = 175.0
-offset_bottom = 227.0
+offset_bottom = 10.0
+grow_vertical = 2
 metadata/_edit_group_ = true
 
 [node name="ColorRect" type="ColorRect" parent="UpgradeMenu/Quality" unique_id=1987510585]
@@ -137,6 +151,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 color = Color(0.27935672, 0.27935672, 0.27935672, 1)
 
 [node name="Label" type="Label" parent="UpgradeMenu/Quality" unique_id=801570999]
@@ -156,10 +171,13 @@ theme_override_fonts/font = ExtResource("3_43vyb")
 text = "Quality"
 
 [node name="Size" type="TextureButton" parent="UpgradeMenu" unique_id=1143641771]
-layout_mode = 0
-offset_top = 227.0
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -21.0
 offset_right = 175.0
-offset_bottom = 248.0
+grow_vertical = 0
 metadata/_edit_group_ = true
 
 [node name="ColorRect" type="ColorRect" parent="UpgradeMenu/Size" unique_id=1980022766]
@@ -169,6 +187,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 color = Color(0.27935672, 0.27935672, 0.27935672, 1)
 
 [node name="Label" type="Label" parent="UpgradeMenu/Size" unique_id=1321065765]
@@ -186,3 +205,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("3_43vyb")
 text = "Size"
+
+[connection signal="pressed" from="UpgradeMenu/Clean" to="." method="_on_clean_pressed"]
+[connection signal="pressed" from="UpgradeMenu/Quality" to="." method="_on_quality_pressed"]
+[connection signal="pressed" from="UpgradeMenu/Size" to="." method="_on_size_pressed"]
