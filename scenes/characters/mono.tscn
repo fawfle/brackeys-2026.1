@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://dwy8cjcy02i2s"]
+
+[ext_resource type="Texture2D" uid="uid://vq52c0ah1l4q" path="res://sprites/characters/mono.png" id="1_kjd3u"]
+
+[node name="Mono" type="Sprite2D" unique_id=539382612]
+texture = ExtResource("1_kjd3u")

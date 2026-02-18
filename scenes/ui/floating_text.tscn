@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://d02olit6pfa8p"]
+
+[ext_resource type="FontFile" uid="uid://qo71mx2v8dp" path="res://fonts/edit-undo.brk.ttf" id="1_0qskq"]
+[ext_resource type="Script" uid="uid://gdoghj1yvb8c" path="res://scenes/ui/floating_text.gd" id="2_x405i"]
+
+[node name="FloatingText" type="Label" unique_id=1582022190]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -66.0
+offset_top = -11.5
+offset_right = 66.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("1_0qskq")
+text = "floating text"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("2_x405i")

@@ -1,58 +1,79 @@
 class_name TraitList
 
 enum {
-	## name of trait, for internal reference
-	NAME,
-	## Function that must be true for condition to be met.
-	CONDITION,
-	## Text to hit at request
-	REQUEST,
-	## Function applied after guest leaves. EX making room very messy.
-	ON_LEAVE,
-	## How much guest cares. Determines point deduction for failing.
-	PREFERENCE,
-	## Traits that are mutually exclusive.
-	BLACKLIST
+	NAME, ## name of trait, for internal reference
+	CONDITION, ## Function that must be true for condition to be met.
+	REQUEST, ## Text to hit at request
+	FAIL_FEEDBACK, ## response given of fail
+	ON_ENTER, ## Function applied after guest is assigned. EX making neighbors RADIOACTIVE
+	ON_LEAVE, ## Function applied after guest leaves. EX making room very messy.
+	PREFERENCE, ## How much guest cares. Determines point deduction for failing.
+	BLACKLIST, ## Traits that are mutually exclusive.
+	SPECIAL, ## don't assign randomly
+	VALUE, ## money value to add to guest total money
+	APPEAR_AFTER ## day to wait to appear after
 }
 
 ## trait name for comparisons between traits. KEY to make traits more easily viewable in editor
 enum Trait {
-	CLEAN,
-	MESSY,
-	CLASSY,
-	CHEAP,
+	CLEAN, # likes clean
+	MESSY, # likes messy
+	CLASSY, # likes classy
+	CHEAP, # likes cheap
+	
+	RADIOACTIVE, # makes surrounding guests/rooms less happy TODO
+	GENEROUS, # gives more money. Has a chance to make surrounding guests also give more money
 }
 
 ## dictionary of data for traits
 static var TRAIT_DATA: Dictionary[Trait, Dictionary] = {
 	Trait.CLEAN: {
 		NAME: "Clean",
-		REQUEST: "I prefer rooms that are [color=red]Clean[/color].",
+		REQUEST: "I prefer rooms that are [color=red]clean[/color].",
+		FAIL_FEEDBACK: "The room you gave me was so [color=red]messy[/color]",
 		CONDITION: func(room: Room): return room.sanitation == Room.Sanitation.CLEAN,
-		PREFERENCE: GuestTrait.Preference.HIGH,
+		PREFERENCE: 3,
+		VALUE: 5,
 		BLACKLIST: [Trait.MESSY]
 	},
 	Trait.MESSY: {
 		NAME: "Messy",
 		REQUEST: "I hope you're not a [color=red]neat freak[/color].",
+		FAIL_FEEDBACK: "You're so [color=red]uptight[/color]!",
 		CONDITION: func(room: Room): return room.sanitation == Room.Sanitation.MESSY,
-		PREFERENCE: GuestTrait.Preference.MEDIUM,
 		ON_LEAVE: func(room: Room): room.sanitation = Room.Sanitation.MESSY,
+		PREFERENCE: 2,
+		VALUE: 3,
 		BLACKLIST: [Trait.CLEAN]
 	},
 	Trait.CLASSY: {
 		NAME: "Classy",
 		REQUEST: "Put me in one of your [color=red]finest quarters[/color].",
+		FAIL_FEEDBACK: "Do you take me for a [color=red]peon[/color]?",
 		CONDITION: func(room: Room): return room.quality == Room.Quality.CLASSY,
-		PREFERENCE: GuestTrait.Preference.HIGH,
+		PREFERENCE: 3,
+		VALUE: 10,
 		BLACKLIST: [Trait.CHEAP]
 	},
 	Trait.CHEAP: {
 		NAME: "Cheap",
 		REQUEST: "Don't [color=red]charge me[/color] too much.",
-		CONDITION: func(room: Room): return room.qguality == Room.Quality.DUMP,
-		PREFERENCE: GuestTrait.Preference.HIGH,
+		CONDITION: func(room: Room): return room.quality == Room.Quality.DUMP,
+		PREFERENCE: 3,
+		VALUE: 2,
 		BLACKLIST: [Trait.CLASSY]
+	},
+	Trait.RADIOACTIVE: { ## TODO, make neighboring guests radioactive decreasing happiness by 1
+		NAME: "Radioactive",
+		REQUEST: "",
+		ON_ENTER: func(room: Room): return,
+		VALUE: 10,
+		SPECIAL: true
+	},
+	Trait.GENEROUS: { ## TODO, gives extra money, makes some neighbors give extra money
+		NAME: "Generous",
+		SPECIAL: true,
+		VALUE: 10,
 	}
 }
 
@@ -68,9 +89,14 @@ static func LOAD_TRAITS():
 		if data.has(NAME): guest_trait.name = data.get(NAME)
 		if data.has(CONDITION): guest_trait.condition = data.get(CONDITION)
 		if data.has(REQUEST): guest_trait.request = data.get(REQUEST)
+		if data.has(FAIL_FEEDBACK): guest_trait.fail_feedback = data.get(FAIL_FEEDBACK)
 		if data.has(PREFERENCE): guest_trait.preference = data.get(PREFERENCE)
+		if data.has(ON_ENTER): guest_trait.on_enter = data.get(ON_ENTER)
 		if data.has(ON_LEAVE): guest_trait.on_leave = data.get(ON_LEAVE)
+		if data.has(VALUE): guest_trait.value = data.get(VALUE)
 		if data.has(BLACKLIST): guest_trait.blacklisted_traits.assign(data.get(BLACKLIST))
+		
+		if data.has(SPECIAL): guest_trait.special = true
 		
 		guest_trait.enum_key = key
 		
@@ -98,7 +124,7 @@ static func get_valid_trait(guest: Guest, depth: int = 0) -> GuestTrait:
 	
 	# check trait conflicts
 	for t: GuestTrait in guest.traits:
-		if t.enum_key == random_trait or t.blacklisted_traits.has(random_trait):
+		if TRAITS.get(random_trait).special or t.enum_key == random_trait or t.blacklisted_traits.has(random_trait):
 			return get_valid_trait(guest, depth + 1)
 	
 	return TRAITS.get(random_trait)
