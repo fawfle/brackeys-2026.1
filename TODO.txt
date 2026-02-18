@@ -14,6 +14,7 @@ Hotel Mechanics:
 	Bills?
 
 Guest Mechanics:
+	rejection
 	pronouns (I, we, etc.)
 
 Code:

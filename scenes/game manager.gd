@@ -1,14 +1,17 @@
-extends Node2D
+class_name GameManager extends Node2D
+
+const assign_guest_leave_time: float = 30
 
 const floating_text_scene: PackedScene = preload("res://scenes/ui/floating_text.tscn")
 
 @onready var guest_parent: Node2D = $GuestParent
-@onready var guest_timer: Timer = $GuestTimer
+@onready var guest_leave_timer: Timer = $GuestLeaveTimer
 
 @onready var guest_window: Control = $CanvasLayer/GuestWindow
 
 #TODO: placeholder, replace with actual stars
-@onready var star_rating: Label = $"CanvasLayer/GuestWindow/Star Rating"
+@onready var star_rating: Label = $"CanvasLayer/GuestWindow/StarRating"
+@onready var radial_bar: TextureProgressBar = $CanvasLayer/GuestWindow/GuestTimerRadialBar
 
 var day: int = 0
 
@@ -43,8 +46,9 @@ func _ready() -> void:
 	TraitList.LOAD_TRAITS()
 	GuestList.LOAD_GUESTS()
 	
+	radial_bar.visible = false
+	
 	Globals.select_room.connect(on_room_select)
-	Globals.text_finished.connect(on_text_finish)
 	
 	begin_assigning_phase()
 
@@ -58,6 +62,8 @@ func begin_next_phase() -> void:
 			end_day()
 		Phase.END_DAY:
 			begin_checkout_phase()
+	
+	Globals.phase_changed.emit(phase)
 
 func begin_assigning_phase() -> void:
 	phase = Phase.ASSIGNING
@@ -111,7 +117,15 @@ func manage_next_guest() -> void:
 	
 	await play_guest_enter_animation(current_guest.node)
 	
+	start_assign_guest_leave_timer(current_guest)
+	
 	if current_guest != null: Globals.set_text.emit(current_guest.get_intro_lines())
+
+## have guest leave
+func leave_guest() -> void:
+	Globals.set_text.emit(current_guest.goodbye)
+	await Globals.text_finished
+	manage_next_guest()
 
 ## currently duplicate guests and set traits here. Maybe change in the future if it's confusing.
 func create_next_guest() -> Guest:
@@ -135,6 +149,10 @@ func begin_checkout_next_guest() -> void:
 	current_guest.update_happiness_rating()
 	
 	Globals.set_text.emit(current_guest.get_exit_lines())
+	
+	await Globals.text_finished
+	
+	checkout_guest()
 
 ## checkout guest
 func checkout_guest() -> void:
@@ -171,6 +189,9 @@ func assign_current_guest(room: Room):
 	
 	var guest_node: Node2D = current_guest.node
 	current_guest = null
+	guest_leave_timer.stop()
+	guest_leave_timer.timeout.emit() # need to call manually :)
+	
 	await play_guest_exit_animation(guest_node)
 	await get_tree().create_timer(0.8).timeout
 	
@@ -180,9 +201,22 @@ func manage_room(room: Room):
 	## TODO: remove, michael will deal with
 	pass
 
-func on_text_finish():
-	if phase == Phase.CHECKOUT and current_guest != null and not playing_animation:
-		checkout_guest()
+func start_assign_guest_leave_timer(guest: Guest):
+	guest_leave_timer.start(assign_guest_leave_time)
+	radial_bar.visible = true
+	radial_bar.modulate = Color("#ffffff00")
+	radial_bar.create_tween().tween_property(radial_bar, "modulate", Color("ffffffff"), 0.2)
+	radial_bar.value = 100
+	var tween: Tween =  get_tree().create_tween()
+	tween.tween_property(radial_bar, "value", 5, assign_guest_leave_time)
+	
+	await guest_leave_timer.timeout
+	
+	tween.stop()
+	radial_bar.create_tween().tween_property(radial_bar, "modulate", Color("ffffff00"), 0.2)
+	if current_guest != guest: return
+	
+	leave_guest()
 
 func play_guest_enter_animation(guest_node: Node2D):
 	playing_animation = true
@@ -190,6 +224,7 @@ func play_guest_enter_animation(guest_node: Node2D):
 	
 	var end_color: Color = Color("ffffffff")
 
+	guest_node.modulate = Color("#ffffff00")
 	get_tree().create_tween().tween_property(guest_node, "modulate", end_color, duration)
 	await get_tree().create_timer(duration).timeout
 	

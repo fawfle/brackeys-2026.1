@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://cfjqr6pfo71kp"]
+
+[sub_resource type="Gradient" id="Gradient_gutvb"]
+offsets = PackedFloat32Array(0, 0.3488145, 0.35232332, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0.95985013, 1, 1, 1, 0, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_a3ci3"]
+gradient = SubResource("Gradient_gutvb")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+metadata/_snap_enabled = true
+
+[sub_resource type="Gradient" id="Gradient_a3ci3"]
+offsets = PackedFloat32Array(0.23813362, 0.2559275, 0.36927688, 0.37472746, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0.73, 0.73, 0.73, 0, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_srujq"]
+gradient = SubResource("Gradient_a3ci3")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+metadata/_snap_enabled = true
+
+[node name="TextureProgressBar" type="TextureProgressBar" unique_id=632993768]
+offset_right = 12.0
+offset_bottom = 12.0
+value = 100.0
+fill_mode = 5
+nine_patch_stretch = true
+texture_under = SubResource("GradientTexture2D_a3ci3")
+texture_progress = SubResource("GradientTexture2D_srujq")
+tint_under = Color(0.18245596, 0.18245596, 0.18245593, 1)
+tint_progress = Color(0.90991354, 0.26044077, 0.3646821, 1)
