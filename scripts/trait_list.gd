@@ -19,6 +19,7 @@ enum Trait {
 	CLEAN, # likes clean
 	MESSY, # likes messy
 	CLASSY, # likes classy
+	SIMPLE, # likes normal
 	CHEAP, # likes cheap
 	
 	RADIOACTIVE, # makes surrounding guests/rooms less happy TODO
@@ -30,7 +31,7 @@ static var TRAIT_DATA: Dictionary[Trait, Dictionary] = {
 	Trait.CLEAN: {
 		NAME: "Clean",
 		REQUEST: "I prefer rooms that are [color=red]clean[/color].",
-		FAIL_FEEDBACK: "The room you gave me was so [color=red]messy[/color]",
+		FAIL_FEEDBACK: "The room you gave me was so [color=red]messy[/color].",
 		CONDITION: func(room: Room): return room.sanitation == Room.Sanitation.CLEAN,
 		PREFERENCE: 3,
 		VALUE: 5,
@@ -55,9 +56,19 @@ static var TRAIT_DATA: Dictionary[Trait, Dictionary] = {
 		VALUE: 10,
 		BLACKLIST: [Trait.CHEAP]
 	},
+	Trait.SIMPLE: {
+		NAME: "Simple",
+		REQUEST: "I'm looking for something [color=red]simple[/color].",
+		FAIL_FEEDBACK: "This place is [color=red]too fancy[/color]. I wanted something that felt like home.",
+		CONDITION: func(room: Room): return room.quality == Room.Quality.DUMP,
+		PREFERENCE: 3,
+		VALUE: 2,
+		BLACKLIST: [Trait.CLASSY]
+	},
 	Trait.CHEAP: {
 		NAME: "Cheap",
 		REQUEST: "Don't [color=red]charge me[/color] too much.",
+		FAIL_FEEDBACK: "You charged me [color=red]way too much[/color] for that room! How will I pay my space depts now?",
 		CONDITION: func(room: Room): return room.quality == Room.Quality.DUMP,
 		PREFERENCE: 3,
 		VALUE: 2,

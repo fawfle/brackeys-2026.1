@@ -44,7 +44,7 @@ offset_bottom = 187.0
 [node name="Rooms" type="Control" parent="." unique_id=956017151]
 layout_mode = 1
 anchor_right = 1.0
-anchor_bottom = 0.75303644
+anchor_bottom = 0.77327937
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
