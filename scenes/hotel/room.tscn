@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://4gii0y616804"]
 
 [ext_resource type="Script" uid="uid://bfjv0sjmcksyh" path="res://scripts/room.gd" id="1_4oh1f"]
+[ext_resource type="PackedScene" uid="uid://djeljjv5j0mnr" path="res://scenes/ui/upgrade_scene.tscn" id="2_3qhai"]
 
 [node name="Room" type="Control" unique_id=963365455]
 layout_mode = 3
@@ -33,5 +34,9 @@ offset_right = 40.0
 offset_bottom = 23.0
 theme_override_font_sizes/font_size = 8
 text = "room"
+
+[node name="Upgrade_Scene" parent="." unique_id=1419164681 instance=ExtResource("2_3qhai")]
+visible = false
+layout_mode = 0
 
 [connection signal="button_down" from="TextureButton" to="." method="_on_texture_button_button_down"]

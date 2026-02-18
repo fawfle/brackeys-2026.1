@@ -23,12 +23,13 @@ func add_guest(_guest: Guest):
 
 func _on_texture_button_button_down() -> void:
 	Globals.select_room.emit(self)
+	$Upgrade_Scene.visible = true
 
 func get_happiness_rating() -> float:
 	var rating: float = guest.initial_rating
 	# TODO
 	return rating
-
+	
 enum Sanitation {
 	CLEAN,
 	MESSY,
