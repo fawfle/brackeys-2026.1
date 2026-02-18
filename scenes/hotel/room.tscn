@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://4gii0y616804"]
 
 [ext_resource type="Script" uid="uid://bfjv0sjmcksyh" path="res://scripts/room.gd" id="1_4oh1f"]
+[ext_resource type="Texture2D" uid="uid://ebhf3blxk1xd" path="res://sprites/ui/Window.png" id="2_3qhai"]
 
 [node name="Room" type="Control" unique_id=963365455 groups=["room"]]
 layout_mode = 3
@@ -11,28 +12,21 @@ script = ExtResource("1_4oh1f")
 
 [node name="TextureButton" type="TextureButton" parent="." unique_id=692431399]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = -1
+anchor_left = -0.101
+anchor_top = -0.68700004
+anchor_right = 0.1
+anchor_bottom = 0.693
+offset_left = -0.12199974
+offset_top = -0.1989994
+offset_right = 0.19999981
+offset_bottom = 0.06099987
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ColorRect" type="ColorRect" parent="TextureButton" unique_id=256581676]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-color = Color(0.42710263, 0.42710263, 0.42710263, 1)
-
-[node name="Label" type="Label" parent="TextureButton" unique_id=1754139443]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
-theme_override_font_sizes/font_size = 8
-text = "room"
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1355824653]
+texture = ExtResource("2_3qhai")
+hframes = 2
 
 [connection signal="button_down" from="TextureButton" to="." method="_on_texture_button_button_down"]
 [connection signal="mouse_entered" from="TextureButton" to="." method="_on_texture_button_mouse_entered"]

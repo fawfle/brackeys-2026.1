@@ -1,9 +1,10 @@
-[gd_scene format=3 uid="uid://bntofo8m6s6ra"]
+[gd_scene format=3 uid="uid://ceqg5c0cug0tq"]
 
-[ext_resource type="Script" uid="uid://dby1dcjvrtap5" path="res://scripts/hotel.gd" id="1_3n61i"]
+[ext_resource type="Script" path="res://scripts/hotel.gd" id="1_3n61i"]
 [ext_resource type="PackedScene" uid="uid://4gii0y616804" path="res://scenes/hotel/room.tscn" id="1_6fsk1"]
 [ext_resource type="FontFile" uid="uid://bnw2vf51g52tq" path="res://fonts/fs-pixel-sans-unicode-regular.ttf" id="3_43vyb"]
 [ext_resource type="PackedScene" uid="uid://cv2oiqhjqdy6a" path="res://scenes/ui/room_info_menu.tscn" id="4_16lx5"]
+[ext_resource type="PackedScene" uid="uid://77p6p1b14sjc" path="res://scenes/hotel/hotel.tscn" id="5_0w18b"]
 
 [node name="HotelWindow" type="Control" unique_id=1529008732]
 layout_mode = 3
@@ -14,6 +15,11 @@ offset_left = -1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_3n61i")
+
+[node name="HotelView" type="Node2D" parent="." unique_id=2022723896]
+
+[node name="Hotel" parent="HotelView" unique_id=1354698565 instance=ExtResource("5_0w18b")]
+position = Vector2(87, 139)
 
 [node name="HotelBar" type="ColorRect" parent="." unique_id=1135708921]
 layout_mode = 1
@@ -57,10 +63,10 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -74.5
+offset_left = -33.5
 offset_top = -47.0
-offset_right = -26.5
-offset_bottom = -22.0
+offset_right = -33.5
+offset_bottom = -47.0
 grow_horizontal = 2
 grow_vertical = 0
 
@@ -71,10 +77,10 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -23.5
+offset_left = -1.5
 offset_top = -47.0
-offset_right = 24.5
-offset_bottom = -22.0
+offset_right = -1.5
+offset_bottom = -47.0
 grow_horizontal = 2
 grow_vertical = 0
 location = Vector2(1, 0)
@@ -86,10 +92,10 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = 27.5
+offset_left = 29.5
 offset_top = -47.0
-offset_right = 75.5
-offset_bottom = -22.0
+offset_right = 29.5
+offset_bottom = -47.0
 grow_horizontal = 2
 grow_vertical = 0
 location = Vector2(1, 0)
