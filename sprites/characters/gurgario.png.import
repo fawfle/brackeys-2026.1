@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b4lk3p6meb3jj"
-path="res://.godot/imported/grumbo.png-9821a422b7b8f9f1eb60d03eb1c1595c.ctex"
+path="res://.godot/imported/gurgario.png-488bf33668b6666fb564d9c299fcdfac.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/characters/grumbo.png"
-dest_files=["res://.godot/imported/grumbo.png-9821a422b7b8f9f1eb60d03eb1c1595c.ctex"]
+source_file="res://sprites/characters/gurgario.png"
+dest_files=["res://.godot/imported/gurgario.png-488bf33668b6666fb564d9c299fcdfac.ctex"]
 
 [params]
 
