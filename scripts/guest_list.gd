@@ -25,10 +25,10 @@ static var GUESTS_DATA: Dictionary[String, Dictionary] = {
 	"hazmat": {
 		SCENE: preload("res://scenes/characters/hazmat.tscn"),
 		DEFAULT_TRAITS: [TraitList.Trait.RADIOACTIVE],
-		GREETING: ["Hazmat!!!", "You look silly!"],
-		GOODBYE: "Hazmat out!",
-		HAPPY_GOODBYE: "I was so happy. Goodbye.",
-		ANGRY_GOODBYE: "I am angry and goodbying",
+		GREETING: ["My name are hazmat!!!", "You looking silly!"],
+		GOODBYE: "Me go, you stay!",
+		HAPPY_GOODBYE: "Me like bathtub! It is so green now!",
+		ANGRY_GOODBYE: "Bed was too soft! Get rid of bed!!!",
 		MONEY: 10,
 	},
 	"mono": {
@@ -43,9 +43,31 @@ static var GUESTS_DATA: Dictionary[String, Dictionary] = {
 	"newt": {
 		SCENE: preload("res://scenes/characters/newt.tscn"),
 		DEFAULT_TRAITS: [TraitList.Trait.MESSY],
+		GREETING: ["Hello fellow extraterrestrial! I require one lodgement please!", "I urge you to check there are no pesky, killable humans hiding inside."],
+		GOODBYE: "Adequate service! Thank you, and don't forget: Kill all humans!",
+		HAPPY_GOODBYE: "Exquisite service! May the space-gods smile upon you! Enjoy some space-credits!",
+		ANGRY_GOODBYE: "Reprehensible service! Take me to your leader- I mean, manager!",
 		MONEY: 10,
 		
 		
+	},
+	"norman": {
+		SCENE: preload("res://scenes/characters/norman.tscn"),
+		DEFAULT_TRAITS: [TraitList.Trait.GENEROUS],
+		GREETING: ["'Wassup, homie?' That's how they greet each other on Earth, brah.", "I'd preesh if you could lend me a crib, dawg."],
+		GOODBYE: "Peace out, girl scout.",
+		HAPPY_GOODBYE: "Best digs I've seen since Roswell. Don't be a stranger, ranger.",
+		ANGRY_GOODBYE: "That pad killed my vibes, dude. I'm outtie five thou...",
+		MONEY: 10,
+	},
+	"brainiac": {
+		SCENE: preload("res://scenes/characters/brainiac.tscn"),
+		DEFAULT_TRAITS: [TraitList.Trait.CLASSY],
+		GREETING: ["Greetings, inferior. I'd like to book one room for personal use.", "Do not ask me what the room is for and we will have zero issues."],
+		GOODBYE: "Au revoir, hotel person.",
+		HAPPY_GOODBYE: "I am pleasantly surprised, confrère. Perhaps we're not so different, you and I.",
+		ANGRY_GOODBYE: "Hideous, as I expected. Adieu, brainlet.",
+		MONEY: 10,
 	}
 }
 

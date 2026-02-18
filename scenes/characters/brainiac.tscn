@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://bhocxl7frwmfx"]
+
+[ext_resource type="Texture2D" uid="uid://c8eig350uu2di" path="res://sprites/characters/brainiac.png" id="1_f53dg"]
+
+[node name="brainiac" type="Sprite2D" unique_id=971685422]
+texture = ExtResource("1_f53dg")
