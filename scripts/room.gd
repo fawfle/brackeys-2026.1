@@ -51,22 +51,28 @@ func on_ground_floor() -> bool:
 
 func upgrade_sanitation(): 
 	if sanitation == Sanitation.CLEAN:
+		print("Good already")
 		return
 	else:
 		sanitation -= 1
+		print("Upgrade")
 		# TODO: some visual/menu indicator
 		
 func upgrade_quality(): 
 	if quality == Quality.CLASSY:
+		print("Good already")
 		return
 	else:
 		quality -= 1
+		print("Upgrade")
 		
 func upgrade_room_size(): 
 	if room_size == RoomSize.LARGE:
+		print("Good already")
 		return
 	else:
 		room_size -= 1
+		print("Upgrade")
 
 
 enum Sanitation {
