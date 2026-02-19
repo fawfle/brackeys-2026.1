@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://ceqg5c0cug0tq"]
+[gd_scene format=3 uid="uid://bntofo8m6s6ra"]
 
 [ext_resource type="Script" uid="uid://dby1dcjvrtap5" path="res://scripts/hotel.gd" id="1_3n61i"]
 [ext_resource type="PackedScene" uid="uid://4gii0y616804" path="res://scenes/hotel/room.tscn" id="1_6fsk1"]
@@ -22,7 +22,7 @@ script = ExtResource("1_3n61i")
 [node name="HotelView" type="Node2D" parent="." unique_id=2022723896]
 
 [node name="Hotel" parent="HotelView" unique_id=1354698565 instance=ExtResource("5_0w18b")]
-position = Vector2(86, 141)
+position = Vector2(86, 104)
 
 [node name="HotelBar" type="ColorRect" parent="." unique_id=1135708921]
 layout_mode = 1
