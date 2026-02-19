@@ -9,23 +9,10 @@ static var inst: Hotel = null
 @onready var room_upgrade_menu: Control = $RoomUpgradeMenu
 @onready var room_info_menu: RoomInfoMenu = $RoomInfoMenu
 
+var floors: int = 1
+
 var upgrades: Dictionary = {
 	
-}
-
-## Sanitation upgrade costs. Dictionary goes from current level to next upgrade cost b/c of implementation easiness
-const SANITATION_UPGRADE_COSTS: Dictionary[Room.Sanitation, int] = {
-	Room.Sanitation.DIRTY: 5,
-	Room.Sanitation.MESSY: 10,
-}
-## Quality upgrade costs. Takes current room prop
-const QUALITY_UPGRADE_COSTS: Dictionary[Room.Quality, int] = {
-	Room.Quality.DUMP: 20,
-	Room.Quality.NORMAL: 100,
-}
-const ROOM_SIZE_UPGRADE_COSTS: Dictionary[Room.RoomSize, int] = {
-	Room.RoomSize.SMALL: 25,
-	Room.RoomSize.MEDIUM: 100,
 }
 
 var selected_room: Room = null:
@@ -80,17 +67,17 @@ func update_room_info_menu():
 
 func _on_clean_pressed() -> void:
 	if selected_room == null or selected_room.sanitation == Room.Sanitation.CLEAN: return
-	if GameManager.inst.purchase_upgrade(SANITATION_UPGRADE_COSTS[selected_room.sanitation]): selected_room.upgrade_sanitation()
+	if GameManager.inst.purchase_upgrade(UpgradeCosts.SANITATION[selected_room.sanitation]): selected_room.upgrade_sanitation()
 
 
 func _on_quality_pressed() -> void:
 	if selected_room == null or selected_room.quality == Room.Quality.CLASSY: return
-	if GameManager.inst.purchase_upgrade(QUALITY_UPGRADE_COSTS[selected_room.quality]): selected_room.upgrade_quality()
+	if GameManager.inst.purchase_upgrade(UpgradeCosts.QUALITY[selected_room.quality]): selected_room.upgrade_quality()
 
 
 func _on_size_pressed() -> void:
 	if selected_room == null or selected_room.room_size == Room.RoomSize.LARGE: return
-	if GameManager.inst.purchase_upgrade(QUALITY_UPGRADE_COSTS[selected_room.quality]): selected_room.upgrade_room_size()
+	if GameManager.inst.purchase_upgrade(UpgradeCosts.ROOM_SIZE[selected_room.room_size]): selected_room.upgrade_room_size()
 
 func _on_room_upgrade_button_pressed() -> void:
 	pass

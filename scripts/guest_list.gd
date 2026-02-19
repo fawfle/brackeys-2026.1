@@ -48,8 +48,6 @@ static var GUESTS_DATA: Dictionary[String, Dictionary] = {
 		HAPPY_GOODBYE: "Exquisite service! May the space-gods smile upon you! Enjoy some space-credits!",
 		ANGRY_GOODBYE: "Reprehensible service! Take me to your leader- I mean, manager!",
 		MONEY: 10,
-		
-		
 	},
 	"Norman": {
 		SCENE: preload("res://scenes/characters/norman.tscn"),
