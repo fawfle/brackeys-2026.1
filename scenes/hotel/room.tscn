@@ -2,8 +2,10 @@
 
 [ext_resource type="Script" uid="uid://bfjv0sjmcksyh" path="res://scripts/room.gd" id="1_4oh1f"]
 [ext_resource type="Texture2D" uid="uid://c4sqydxoo0nlf" path="res://sprites/ui/room.png" id="2_3qhai"]
+[ext_resource type="Texture2D" uid="uid://ctj8sgrdkpxe5" path="res://sprites/ui/room_hovered.png" id="3_u8qe1"]
 [ext_resource type="Texture2D" uid="uid://cvk01ed1din40" path="res://sprites/ui/guest-icon.png" id="3_xw5ef"]
 [ext_resource type="Script" uid="uid://b8p8qqudnkfqb" path="res://scenes/hotel/guest_indicator.gd" id="4_bn68h"]
+[ext_resource type="Texture2D" uid="uid://ch6fvqd1ffg6" path="res://sprites/ui/room_selected.png" id="4_m5k2i"]
 
 [node name="Room" type="Control" unique_id=963365455 groups=["room"]]
 layout_mode = 3
@@ -26,10 +28,14 @@ offset_right = 22.0
 offset_bottom = 12.0
 grow_horizontal = 2
 grow_vertical = 2
+texture_hover = ExtResource("3_u8qe1")
 
 [node name="GuestIndicator" type="Sprite2D" parent="." unique_id=1629362180]
 texture = ExtResource("3_xw5ef")
 script = ExtResource("4_bn68h")
+
+[node name="FocusOutline" type="Sprite2D" parent="." unique_id=278915414]
+texture = ExtResource("4_m5k2i")
 
 [connection signal="button_down" from="TextureButton" to="." method="_on_texture_button_button_down"]
 [connection signal="mouse_entered" from="TextureButton" to="." method="_on_texture_button_mouse_entered"]

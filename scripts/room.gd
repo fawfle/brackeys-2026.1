@@ -4,6 +4,8 @@ class_name Room extends Control
 @export var quality: Quality = Quality.DUMP
 @export var room_size: RoomSize = RoomSize.SMALL
 
+@onready var focus_outline: Sprite2D = $FocusOutline
+
 ## location of room in hotel. Starts at 0,0 from bottom left. Floor is location.y
 @export var location: Vector2 = Vector2.ZERO
 
@@ -17,6 +19,9 @@ var guest: Guest = null:
 
 func _ready() -> void:
 	guest_indicator.visible = false
+	focus_outline.visible = false
+	
+	Globals.select_room.connect(_on_room_select)
 
 var occupied: bool:
 	get: return guest != null
@@ -28,6 +33,9 @@ func add_guest(_guest: Guest):
 	if Globals.DEBUG: print("ASSIGNING GUEST " + str(_guest) + " TO ROOM " + str(self))
 	
 	guest = _guest
+
+func _on_room_select(room: Room):
+	focus_outline.visible = room == self
 
 func _on_texture_button_button_down() -> void:
 	Globals.select_room.emit(self)
