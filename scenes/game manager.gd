@@ -42,17 +42,23 @@ enum Phase {
 	END_DAY,
 }
 
-var phase: Phase = Phase.ASSIGNING
+var phase: Phase = Phase.ASSIGNING:
+	get: return phase
+	set(value):
+		phase = value
+		Globals.phase_changed.emit(phase)
+
+func _init():
+	inst = self
 
 func _ready() -> void:
-	inst = self
 	# load guests and traits. The lists act as global constants
 	TraitList.LOAD_TRAITS()
 	GuestList.LOAD_GUESTS()
 	
 	radial_bar.visible = false
+	star_rating.visible = false
 	
-	Globals.select_room.connect(on_room_select)
 	assign_button.button_down.connect(_on_assign_button_button_down)
 	
 	begin_assigning_phase()
@@ -68,8 +74,6 @@ func begin_next_phase() -> void:
 			end_day.call_deferred()
 		Phase.END_DAY:
 			begin_checkout_phase.call_deferred()
-	
-	Globals.phase_changed.emit(phase)
 
 func begin_assigning_phase() -> void:
 	phase = Phase.ASSIGNING
@@ -78,6 +82,8 @@ func begin_assigning_phase() -> void:
 
 func begin_upgrading_phase() -> void:
 	phase = Phase.UPGRADING
+	
+	if Globals.DEBUG: print("BEGINNING UPGRADING PHASE")
 	
 	await Globals.text_finished
 	
@@ -174,9 +180,10 @@ func checkout_guest() -> void:
 	money += profit
 	create_floating_text("+$" + str(profit))
 	
-	star_rating.text = str(current_guest.happiness_rating) + " Stars"
+	play_star_rating_animation(current_guest.happiness_rating)
 	
 	Globals.set_text.emit()
+	Globals.guest_checked_out.emit(current_guest)
 	var guest_node: Node2D = current_guest.node
 	
 	current_guest = null
@@ -184,11 +191,6 @@ func checkout_guest() -> void:
 	guest_node.queue_free()
 	await get_tree().create_timer(0.8).timeout
 	begin_checkout_next_guest()
-
-## hook for room selection for assigning guest
-func on_room_select(room: Room):
-	if phase == Phase.ASSIGNING:
-		assign_button.disabled = room == null or room.guest != null
 
 func _on_assign_button_button_down() -> void:
 	if Hotel.inst.selected_room != null: assign_current_guest(Hotel.inst.selected_room)
@@ -200,6 +202,8 @@ func assign_current_guest(room: Room):
 	Globals.set_text.emit()
 	room.add_guest(current_guest)
 	current_guest.room = room
+	
+	Globals.guest_assigned.emit(current_guest)
 	
 	var guest_node: Node2D = current_guest.node
 	current_guest = null
@@ -271,3 +275,13 @@ func create_floating_text(text: String):
 	guest_window.add_child(floating_text)
 	floating_text.position += Vector2(randi_range(-5, 5), randi_range(-25, -15))
 	floating_text.play_animation(text, 1.3)
+
+func play_star_rating_animation(stars: float):
+	star_rating.text = str(stars) + " Stars"
+	star_rating.visible = true
+	star_rating.modulate = Color("#ffffff")
+	await get_tree().create_timer(2.0).timeout
+	
+	await get_tree().create_tween().tween_property(star_rating, "modulate", Color("#ffffff00"), 1.0).finished
+	
+	star_rating.visible = false

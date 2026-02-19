@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://4gii0y616804" path="res://scenes/hotel/room.tscn" id="1_6fsk1"]
 [ext_resource type="FontFile" uid="uid://bnw2vf51g52tq" path="res://fonts/fs-pixel-sans-unicode-regular.ttf" id="3_43vyb"]
 [ext_resource type="PackedScene" uid="uid://cv2oiqhjqdy6a" path="res://scenes/ui/room_info_menu.tscn" id="4_16lx5"]
+[ext_resource type="PackedScene" uid="uid://b4ulvxwq52jbn" path="res://scenes/ui/block_manage.tscn" id="5_0w18b"]
 
 [node name="HotelWindow" type="Control" unique_id=1529008732]
 layout_mode = 3
@@ -110,7 +111,9 @@ mouse_filter = 2
 
 [node name="Clean" type="TextureButton" parent="RoomUpgradeMenu" unique_id=175579154]
 layout_mode = 1
-offset_right = 175.0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 58.0
 offset_bottom = 20.0
 metadata/_edit_group_ = true
 
@@ -145,8 +148,9 @@ layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_top = -10.0
-offset_right = 175.0
+offset_left = 2.0
+offset_top = -6.0
+offset_right = 58.0
 offset_bottom = 10.0
 grow_vertical = 2
 metadata/_edit_group_ = true
@@ -182,8 +186,10 @@ layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_top = -21.0
-offset_right = 175.0
+offset_left = 2.0
+offset_top = -16.0
+offset_right = 58.0
+offset_bottom = -2.0
 grow_vertical = 0
 metadata/_edit_group_ = true
 
@@ -215,6 +221,18 @@ text = "Size"
 
 [node name="RoomInfoMenu" parent="." unique_id=1346516254 instance=ExtResource("4_16lx5")]
 layout_mode = 1
+
+[node name="BlockManageWindow" parent="." unique_id=1043540934 instance=ExtResource("5_0w18b")]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -56.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 0
 
 [connection signal="pressed" from="RoomUpgradeMenu/Clean" to="." method="_on_clean_pressed"]
 [connection signal="pressed" from="RoomUpgradeMenu/Quality" to="." method="_on_quality_pressed"]

@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://b4ulvxwq52jbn"]
+
+[ext_resource type="Theme" uid="uid://bqm4ull505em5" path="res://themes/theme.tres" id="1_kpvl8"]
+[ext_resource type="Script" uid="uid://gj250r3go5gy" path="res://scenes/ui/block_manage.gd" id="1_xv81d"]
+
+[node name="BlockManageWindow" type="ColorRect" unique_id=1043540934]
+offset_top = 191.0
+offset_right = 175.0
+offset_bottom = 247.0
+color = Color(0, 0, 0, 0.64705884)
+script = ExtResource("1_xv81d")
+
+[node name="BlockedText" type="Label" parent="." unique_id=1811484707]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -41.0
+offset_top = -11.5
+offset_right = 41.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_kpvl8")
+text = "management locked"
+horizontal_alignment = 1

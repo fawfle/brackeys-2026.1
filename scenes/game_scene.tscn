@@ -2,12 +2,12 @@
 
 [ext_resource type="Script" uid="uid://fehsvnq2kohw" path="res://scenes/game manager.gd" id="1_w5aja"]
 [ext_resource type="FontFile" uid="uid://qo71mx2v8dp" path="res://fonts/edit-undo.brk.ttf" id="2_bw6k5"]
-[ext_resource type="PackedScene" path="res://scenes/text_bar.tscn" id="2_ycayy"]
-[ext_resource type="Script" path="res://scenes/day_label.gd" id="3_y3j0m"]
-[ext_resource type="Script" path="res://scenes/money_label.gd" id="4_rurhu"]
-[ext_resource type="Theme" uid="uid://bqm4ull505em5" path="res://themes/theme.tres" id="6_b5spy"]
+[ext_resource type="PackedScene" uid="uid://buyxfh2m4xbm5" path="res://scenes/text_bar.tscn" id="2_ycayy"]
+[ext_resource type="Script" uid="uid://cfpiqvmer5qe" path="res://scenes/day_label.gd" id="3_y3j0m"]
+[ext_resource type="Script" uid="uid://donsdw52b18or" path="res://scenes/money_label.gd" id="4_rurhu"]
+[ext_resource type="PackedScene" uid="uid://bn2xjq1hns1w4" path="res://scenes/ui/assign_button.tscn" id="6_b5spy"]
 [ext_resource type="PackedScene" uid="uid://cfjqr6pfo71kp" path="res://scenes/ui/radial_bar.tscn" id="6_kk2rg"]
-[ext_resource type="PackedScene" path="res://scenes/hotel_window.tscn" id="7_kk2rg"]
+[ext_resource type="PackedScene" uid="uid://bntofo8m6s6ra" path="res://scenes/hotel_window.tscn" id="7_kk2rg"]
 
 [node name="GameScene" type="Node2D" unique_id=1746918585]
 script = ExtResource("1_w5aja")
@@ -55,15 +55,15 @@ layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -61.0
+offset_left = -25.0
 offset_top = 3.0
-offset_right = -7.0
+offset_right = -9.0
 offset_bottom = 26.0
 grow_horizontal = 0
 theme_override_fonts/font = ExtResource("2_bw6k5")
 theme_override_font_sizes/font_size = 15
 text = "$0"
-horizontal_alignment = 1
+horizontal_alignment = 2
 vertical_alignment = 1
 script = ExtResource("4_rurhu")
 
@@ -77,15 +77,12 @@ offset_right = 263.0
 offset_bottom = 247.0
 grow_vertical = 1
 
-[node name="AssignButton" type="Button" parent="CanvasLayer/GuestWindow" unique_id=688169922]
+[node name="AssignButton" parent="CanvasLayer/GuestWindow" unique_id=648658885 instance=ExtResource("6_b5spy")]
 layout_mode = 0
-offset_left = 211.0
-offset_top = 157.0
-offset_right = 253.0
-offset_bottom = 181.0
-theme = ExtResource("6_b5spy")
-disabled = true
-text = "ASSIGN"
+offset_left = 202.0
+offset_top = 145.0
+offset_right = 244.0
+offset_bottom = 169.0
 
 [node name="GuestTimerRadialBar" parent="CanvasLayer/GuestWindow" unique_id=1939724707 instance=ExtResource("6_kk2rg")]
 layout_mode = 0

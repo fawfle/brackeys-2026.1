@@ -51,46 +51,67 @@ func on_right() -> bool:
 func on_ground_floor() -> bool:
 	return location.y == 0
 
+# TODO: some visual/menu indicator
 func upgrade_sanitation(): 
-	if sanitation == Sanitation.CLEAN:
-		print("Good already")
-		return
-	else:
-		sanitation -= 1
-		print("Upgrade")
-		# TODO: some visual/menu indicator
-		
+	if sanitation == Sanitation.CLEAN: return
+	
+	sanitation = (sanitation + 1) as Sanitation
+	Globals.room_upgraded.emit(self)
+	
 func upgrade_quality(): 
-	if quality == Quality.CLASSY:
-		print("Good already")
-		return
-	else:
-		quality -= 1
-		print("Upgrade")
+	if quality == Quality.CLASSY: return
+	
+	quality = (quality + 1) as Quality
+	Globals.room_upgraded.emit(self)
 		
 func upgrade_room_size(): 
-	if room_size == RoomSize.LARGE:
-		print("Good already")
-		return
-	else:
-		room_size -= 1
-		print("Upgrade")
+	if room_size == RoomSize.LARGE: return
+	
+	room_size = (room_size + 1) as RoomSize
+	Globals.room_upgraded.emit(self)
 
 
 enum Sanitation {
-	CLEAN,
-	MESSY,
 	DIRTY,
+	MESSY,
+	CLEAN,
 }
 
 enum Quality {
-	CLASSY,
+	DUMP,
 	NORMAL,
-	DUMP
+	CLASSY,
 }
 
 enum RoomSize {
-	LARGE,
+	SMALL,
 	MEDIUM,
-	SMALL
+	LARGE,
 }
+
+# helper functions, enum -> string
+static func sanitation_string(prop: Sanitation) -> String:
+	match(prop):
+		Sanitation.CLEAN: return "Clean"
+		Sanitation.MESSY: return "Messy"
+		Sanitation.DIRTY: return "Dirty"
+
+	return "Prop not found."
+
+## quality string
+static func quality_string(prop: Quality) -> String:
+	match(prop):
+		Quality.CLASSY: return "Classy"
+		Quality.NORMAL: return "Normal"
+		Quality.DUMP: return "Dump"
+
+	return "Prop not found."
+
+## quality string
+static func room_size_string(prop: RoomSize) -> String:
+	match(prop):
+		RoomSize.SMALL: return "Small"
+		RoomSize.MEDIUM: return "Medium"
+		RoomSize.LARGE: return "Large"
+
+	return "Prop not found."

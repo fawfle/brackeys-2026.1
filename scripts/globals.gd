@@ -22,11 +22,19 @@ signal set_money(money: int)
 @warning_ignore("unused_signal")
 ## used by rooms to signal a click.
 signal select_room(room: Room)
-
 ## used by rooms to signal a hover/exit hover.
 @warning_ignore("unused_signal")
 signal hover_room(room: Room)
+@warning_ignore(("unused_signal"))
 signal exit_hover_room(room: Room)
+
+@warning_ignore("unused_signal")
+signal room_upgraded(room: Room)
 
 @warning_ignore(("unused_signal"))
 signal begin_day(day: int)
+
+@warning_ignore(("unused_signal"))
+signal guest_assigned(guest: Guest)
+@warning_ignore(("unused_signal"))
+signal guest_checked_out(guest: Guest)

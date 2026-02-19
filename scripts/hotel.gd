@@ -19,14 +19,19 @@ var hovered_room: Room = null:
 		hovered_room = value
 		update_room_info_menu()
 
+func _init():
+	inst = self
+
 # TODO: manage rooms, assign positions, hold hotel upgrades and allow building of new rooms/floors
 func _ready() -> void:
-	inst = self
-	
 	Globals.select_room.connect(_on_select_room)
 	Globals.hover_room.connect(_on_hover_room)
 	Globals.exit_hover_room.connect(_on_exit_hover_room)
 	room_deselect.button_down.connect(func(): Globals.select_room.emit(null))
+	
+	Globals.guest_assigned.connect(func(_guest: Guest): update_room_info_menu())
+	Globals.guest_checked_out.connect(func(_guest: Guest): update_room_info_menu())
+	Globals.room_upgraded.connect(func(_room: Room): update_room_info_menu())
 	
 	room_upgrade_menu.visible = false
 	room_info_menu.visible = false

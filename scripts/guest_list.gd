@@ -13,7 +13,7 @@ enum {
 }
 
 static var GUESTS_DATA: Dictionary[String, Dictionary] = {
-	"four_eyes": {
+	"Four Eyes": {
 		SCENE: preload("res://scenes/characters/four_eyes.tscn"),
 		DEFAULT_TRAITS: [TraitList.Trait.CLEAN],
 		GREETING: ["Hello, this is my first line of greeting.", "glorbo glub shclaoindsf sadfo. This is my second line!"],
@@ -22,7 +22,7 @@ static var GUESTS_DATA: Dictionary[String, Dictionary] = {
 		ANGRY_GOODBYE: "I am angry and goodbying",
 		MONEY: 10,
 	},
-	"hazmat": {
+	"Hazmat": {
 		SCENE: preload("res://scenes/characters/hazmat.tscn"),
 		DEFAULT_TRAITS: [TraitList.Trait.RADIOACTIVE],
 		GREETING: ["My name are hazmat!!!", "You looking silly!"],
@@ -31,7 +31,7 @@ static var GUESTS_DATA: Dictionary[String, Dictionary] = {
 		ANGRY_GOODBYE: "Bed was too soft! Get rid of bed!!!",
 		MONEY: 10,
 	},
-	"mono": {
+	"Mono": {
 		SCENE: preload("res://scenes/characters/mono.tscn"),
 		DEFAULT_TRAITS: [TraitList.Trait.GENEROUS],
 		GREETING: ["_ _  _ __ __  _ _  _ __ _ _  _ __ _ _  __  _ __  __ _ __  _  __ _ __ __  __ __ __  _ _ __  __ _ _ _  _  __ _ __ _  __ __ __  __ __  _  _ __", "_ _ _  _ __ __ _  _ __  __ _ __ _  _  __ _ _ _  _ __  __ _ _ _  __ _ __ __  _ __ _ __ _ __"], # "i will make you become a space baby" in morse code
@@ -40,7 +40,7 @@ static var GUESTS_DATA: Dictionary[String, Dictionary] = {
 		ANGRY_GOODBYE: "_ _  _ _ _ _  _ __  _-  _  __ _ __ __  __ __ __  _ _ __  _ __ _ __ _ __", # I hate you.
 		MONEY: 10,
 	},
-	"newt": {
+	"Newt": {
 		SCENE: preload("res://scenes/characters/newt.tscn"),
 		DEFAULT_TRAITS: [TraitList.Trait.MESSY],
 		GREETING: ["Hello fellow extraterrestrial! I require one lodgement please!", "I urge you to check there are no pesky, killable humans hiding inside."],
@@ -51,7 +51,7 @@ static var GUESTS_DATA: Dictionary[String, Dictionary] = {
 		
 		
 	},
-	"norman": {
+	"Norman": {
 		SCENE: preload("res://scenes/characters/norman.tscn"),
 		DEFAULT_TRAITS: [TraitList.Trait.GENEROUS],
 		GREETING: ["'Wassup, homie?' That's how they greet each other on Earth, brah.", "I'd preesh if you could lend me a crib, dawg."],
@@ -60,7 +60,7 @@ static var GUESTS_DATA: Dictionary[String, Dictionary] = {
 		ANGRY_GOODBYE: "That pad killed my vibes, dude. I'm outtie five thou...",
 		MONEY: 10,
 	},
-	"brainiac": {
+	"Brainiac": {
 		SCENE: preload("res://scenes/characters/brainiac.tscn"),
 		DEFAULT_TRAITS: [TraitList.Trait.CLASSY],
 		GREETING: ["Greetings, inferior. I'd like to book one room for personal use.", "Do not ask me what the room is for and we will have zero issues."],
@@ -69,7 +69,7 @@ static var GUESTS_DATA: Dictionary[String, Dictionary] = {
 		ANGRY_GOODBYE: "Hideous, as I expected. Adieu, brainlet.",
 		MONEY: 10,
 	},
-	"sheeple": {
+	"Sheeple": {
 		SCENE: preload("res://scenes/characters/sheeple.tscn"),
 		DEFAULT_TRAITS: [TraitList.Trait.MESSY],
 		GREETING: ["H-hey. Looking for a p-p-place to lay low for a-a while.", "Think you can hook m-me up?"],
@@ -78,7 +78,7 @@ static var GUESTS_DATA: Dictionary[String, Dictionary] = {
 		ANGRY_GOODBYE: "S-s-s-s-so m-many ey-eyes watchimg m-me. I n-need to go.",
 		MONEY: 10,
 	},
-	"octovee": {
+	"Octovee": {
 		SCENE: preload("res://scenes/characters/octovee.tscn"),
 		DEFAULT_TRAITS: [TraitList.Trait.CHEAP],
 		GREETING: ["wsg. lookin for a 1337 room for small $$$", "u seem cool lul, gimme somethin gud :)"],

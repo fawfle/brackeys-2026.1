@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://bn2xjq1hns1w4"]
+
+[ext_resource type="Theme" uid="uid://bqm4ull505em5" path="res://themes/theme.tres" id="1_vwvsy"]
+[ext_resource type="Script" uid="uid://b5g34yi0rc1sf" path="res://scenes/ui/assign_button.gd" id="2_sr0x7"]
+
+[node name="AssignButton" type="Button" unique_id=648658885]
+offset_left = 211.0
+offset_top = 157.0
+offset_right = 253.0
+offset_bottom = 181.0
+theme = ExtResource("1_vwvsy")
+disabled = true
+text = "ASSIGN"
+script = ExtResource("2_sr0x7")
