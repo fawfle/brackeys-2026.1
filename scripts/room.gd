@@ -7,7 +7,17 @@ class_name Room extends Control
 @onready var focus_outline: Sprite2D = $FocusOutline
 
 ## location of room in hotel. Starts at 0,0 from bottom left. Floor is location.y
-@export var location: Vector2 = Vector2.ZERO
+@export var location: Vector2i = Vector2i.ZERO
+
+@export var built: bool = false:
+	get: return built
+	set(value):
+		built = value
+		update_room_sprite()
+
+@onready var room_sprite:Sprite2D = $RoomSprite
+@export var room_construction_texture: Texture
+@export var room_dump_texture: Texture
 
 var guest: Guest = null:
 	get: return guest
@@ -22,6 +32,8 @@ func _ready() -> void:
 	focus_outline.visible = false
 	
 	Globals.select_room.connect(_on_room_select)
+	
+	update_room_sprite()
 
 var occupied: bool:
 	get: return guest != null
@@ -54,6 +66,13 @@ func checkout_guest() -> Guest:
 	var g: Guest = guest;
 	guest = null
 	return g
+
+func update_room_sprite():
+	if not built:
+		room_sprite.texture = room_construction_texture
+		return
+	
+	room_sprite.texture = room_dump_texture
 
 ## makes room messier, mostly for when guests leave
 func decrease_sanitation():

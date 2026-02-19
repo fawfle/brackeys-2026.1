@@ -44,6 +44,9 @@ func _ready() -> void:
 	
 	room_upgrade_menu.visible = false
 	room_info_menu.visible = false
+	
+	## give player 1 room to start
+	get_room(Vector2i(0, 0)).built = true
 
 func _on_select_room(room: Room):
 	selected_room = room
@@ -86,3 +89,12 @@ func _on_room_upgrade_button_pressed() -> void:
 	if GameManager.inst.purchase_upgrade(UpgradeCosts.FLOOR[floors]):
 		floors += 1
 		hotel_menu.add_floor(floors)
+
+func get_room(location: Vector2i) -> Room:
+	var rooms: Array[Node] = get_tree().get_nodes_in_group("room")
+	
+	for room: Room in rooms:
+		if room.location == location:
+			return room
+	
+	return null

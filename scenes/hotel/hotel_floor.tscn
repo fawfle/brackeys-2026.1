@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://c8k3aq1jiy6n4"]
 
+[ext_resource type="Script" uid="uid://c8d3pdjmnfpbd" path="res://scenes/hotel/hotel_floor.gd" id="1_gjdv0"]
 [ext_resource type="Texture2D" uid="uid://uis5ivvjdk41" path="res://sprites/ui/hotel_floor.png" id="1_gwgvw"]
 [ext_resource type="PackedScene" uid="uid://4gii0y616804" path="res://scenes/hotel/room.tscn" id="2_m85jg"]
 
@@ -9,6 +10,7 @@ anchors_preset = 0
 offset_right = 150.0
 offset_bottom = 22.0
 mouse_filter = 2
+script = ExtResource("1_gjdv0")
 
 [node name="Sprite2D" type="TextureRect" parent="." unique_id=1718914511]
 layout_mode = 1

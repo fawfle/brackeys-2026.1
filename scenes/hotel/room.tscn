@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bfjv0sjmcksyh" path="res://scripts/room.gd" id="1_4oh1f"]
 [ext_resource type="Texture2D" uid="uid://c4sqydxoo0nlf" path="res://sprites/ui/room.png" id="2_3qhai"]
+[ext_resource type="Texture2D" uid="uid://bas8r7ai7030r" path="res://sprites/ui/room_construction.png" id="2_m5k2i"]
 [ext_resource type="Texture2D" uid="uid://ctj8sgrdkpxe5" path="res://sprites/ui/room_hovered.png" id="3_u8qe1"]
 [ext_resource type="Texture2D" uid="uid://cvk01ed1din40" path="res://sprites/ui/guest-icon.png" id="3_xw5ef"]
 [ext_resource type="Script" uid="uid://b8p8qqudnkfqb" path="res://scenes/hotel/guest_indicator.gd" id="4_bn68h"]
@@ -11,6 +12,8 @@
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_4oh1f")
+room_construction_texture = ExtResource("2_m5k2i")
+room_dump_texture = ExtResource("2_3qhai")
 
 [node name="RoomSprite" type="Sprite2D" parent="." unique_id=1364284177]
 texture = ExtResource("2_3qhai")
@@ -22,13 +25,15 @@ anchor_left = -0.101
 anchor_top = -0.68700004
 anchor_right = 0.1
 anchor_bottom = 0.693
-offset_left = -22.0
-offset_top = -12.0
-offset_right = 22.0
-offset_bottom = 12.0
+offset_left = -19.0
+offset_top = -9.0
+offset_right = 19.0
+offset_bottom = 9.0
 grow_horizontal = 2
 grow_vertical = 2
 texture_hover = ExtResource("3_u8qe1")
+ignore_texture_size = true
+stretch_mode = 3
 
 [node name="GuestIndicator" type="Sprite2D" parent="." unique_id=1629362180]
 texture = ExtResource("3_xw5ef")

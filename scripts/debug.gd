@@ -7,6 +7,10 @@ var input_num: String = ""
 
 var debug_mode: bool = false
 
+func _ready() -> void:
+	if Engine.is_editor_hint:
+		debug_mode = true
+
 func _input(event: InputEvent) -> void:
 	if event is not InputEventKey: return;
 	event = event as InputEventKey;
@@ -42,7 +46,7 @@ func handle_command(command: String):
 			print("DEBUG: ADDING GUEST " + guest.name + " TO QUEUE.")
 			GameManager.inst.guest_assign_queue.push_back(guest)
 		else:
-			push_error("Guest name \'" + guest.name + "\' entered in command was not found")
+			push_error("Guest name \'" + input_command.substr(1) + "\' entered in command was not found")
 	elif input_command[0] == "m":
 		print("DEBUG: ADDING MONEY")
 		GameManager.inst.money += int(input_num)
