@@ -5,11 +5,27 @@ static var inst: Hotel = null
 ## "button" that deselects selected room. For "clicking off"
 @onready var room_deselect: TextureButton = $RoomDeselect
 
+@onready var hotel_upgrade_menu: Control = $HotelUpgradeMenu
 @onready var room_upgrade_menu: Control = $RoomUpgradeMenu
 @onready var room_info_menu: RoomInfoMenu = $RoomInfoMenu
 
 var upgrades: Dictionary = {
 	
+}
+
+## Sanitation upgrade costs. Dictionary goes from current level to next upgrade cost b/c of implementation easiness
+const SANITATION_UPGRADE_COSTS: Dictionary[Room.Sanitation, int] = {
+	Room.Sanitation.DIRTY: 5,
+	Room.Sanitation.MESSY: 10,
+}
+## Quality upgrade costs. Takes current room prop
+const QUALITY_UPGRADE_COSTS: Dictionary[Room.Quality, int] = {
+	Room.Quality.DUMP: 20,
+	Room.Quality.NORMAL: 100,
+}
+const ROOM_SIZE_UPGRADE_COSTS: Dictionary[Room.RoomSize, int] = {
+	Room.RoomSize.SMALL: 25,
+	Room.RoomSize.MEDIUM: 100,
 }
 
 var selected_room: Room = null:
@@ -43,6 +59,7 @@ func _ready() -> void:
 func _on_select_room(room: Room):
 	selected_room = room
 	room_upgrade_menu.visible = room != null
+	hotel_upgrade_menu.visible = room == null
 
 func _on_hover_room(room: Room):
 	hovered_room = room
@@ -60,18 +77,20 @@ func update_room_info_menu():
 	
 	room_info_menu.visible = true
 	room_info_menu.update_viewed_room(room)
-	
 
 func _on_clean_pressed() -> void:
-	if selected_room == null: return
-	selected_room.upgrade_sanitation()
+	if selected_room == null or selected_room.sanitation == Room.Sanitation.CLEAN: return
+	if GameManager.inst.purchase_upgrade(SANITATION_UPGRADE_COSTS[selected_room.sanitation]): selected_room.upgrade_sanitation()
 
 
 func _on_quality_pressed() -> void:
-	if selected_room == null: return
-	selected_room.upgrade_quality()
+	if selected_room == null or selected_room.quality == Room.Quality.CLASSY: return
+	if GameManager.inst.purchase_upgrade(QUALITY_UPGRADE_COSTS[selected_room.quality]): selected_room.upgrade_quality()
 
 
 func _on_size_pressed() -> void:
-	if selected_room == null: return
-	selected_room.upgrade_room_size()
+	if selected_room == null or selected_room.room_size == Room.RoomSize.LARGE: return
+	if GameManager.inst.purchase_upgrade(QUALITY_UPGRADE_COSTS[selected_room.quality]): selected_room.upgrade_room_size()
+
+func _on_room_upgrade_button_pressed() -> void:
+	pass

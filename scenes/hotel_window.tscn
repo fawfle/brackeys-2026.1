@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dajdo2sedm1xu" path="res://sprites/ui/space-background.png" id="2_5tjn0"]
 [ext_resource type="FontFile" uid="uid://bnw2vf51g52tq" path="res://fonts/fs-pixel-sans-unicode-regular.ttf" id="3_43vyb"]
 [ext_resource type="PackedScene" uid="uid://cv2oiqhjqdy6a" path="res://scenes/ui/room_info_menu.tscn" id="4_16lx5"]
+[ext_resource type="Theme" uid="uid://bqm4ull505em5" path="res://themes/theme.tres" id="4_46gxr"]
 [ext_resource type="PackedScene" uid="uid://77p6p1b14sjc" path="res://scenes/hotel/hotel.tscn" id="5_0w18b"]
 [ext_resource type="PackedScene" uid="uid://b4ulvxwq52jbn" path="res://scenes/ui/block_manage.tscn" id="6_5tjn0"]
 
@@ -60,7 +61,31 @@ offset_top = -4.0
 grow_horizontal = 2
 color = Color(0.1, 0.1, 0.1, 1)
 
+[node name="HotelUpgradeMenu" type="Control" parent="." unique_id=451252464]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -87.5
+offset_top = -56.0
+offset_right = 87.5
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+
+[node name="RoomUpgradeButton" type="Button" parent="HotelUpgradeMenu" unique_id=284673617]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 12.0
+offset_right = 70.0
+offset_bottom = 36.0
+theme = ExtResource("4_46gxr")
+text = "build floor"
+
 [node name="RoomUpgradeMenu" type="Control" parent="." unique_id=774352026]
+visible = false
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -188,6 +213,7 @@ text = "Size"
 layout_mode = 1
 
 [node name="BlockManageWindow" parent="." unique_id=1043540934 instance=ExtResource("6_5tjn0")]
+visible = false
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
@@ -199,6 +225,7 @@ offset_bottom = 0.0
 grow_horizontal = 2
 grow_vertical = 0
 
+[connection signal="pressed" from="HotelUpgradeMenu/RoomUpgradeButton" to="." method="_on_room_upgrade_button_pressed"]
 [connection signal="pressed" from="RoomUpgradeMenu/Clean" to="." method="_on_clean_pressed"]
 [connection signal="pressed" from="RoomUpgradeMenu/Quality" to="." method="_on_quality_pressed"]
 [connection signal="pressed" from="RoomUpgradeMenu/Size" to="." method="_on_size_pressed"]

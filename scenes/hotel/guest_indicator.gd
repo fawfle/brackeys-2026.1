@@ -13,7 +13,6 @@ func _on_visibility_changed():
 		position = get_random_position()
 		
 		await get_tree().create_timer(1.5).timeout
-		print('wal')
 		walk_in_random_direction()
 
 func walk_in_random_direction():

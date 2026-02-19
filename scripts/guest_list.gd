@@ -63,7 +63,7 @@ static var GUESTS_DATA: Dictionary[String, Dictionary] = {
 	"Brainiac": {
 		SCENE: preload("res://scenes/characters/brainiac.tscn"),
 		DEFAULT_TRAITS: [TraitList.Trait.CLASSY],
-		GREETING: ["Greetings, inferior. I'd like to book one room for personal use.", "Do not ask me what the room is for and we will have zero issues."],
+		GREETING: ["Greetings, inferior. I'd like to book one room for personal use.", "I don't want any of that room service crap. Don't mess with me and we won't have issues."],
 		GOODBYE: "Au revoir, hotel person.",
 		HAPPY_GOODBYE: "I am pleasantly surprised, confrère. Perhaps we're not so different, you and I.",
 		ANGRY_GOODBYE: "Hideous, as I expected. Adieu, brainlet.",

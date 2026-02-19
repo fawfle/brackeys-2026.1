@@ -238,6 +238,13 @@ func start_assign_guest_leave_timer(guest: Guest):
 	
 	leave_guest()
 
+
+func purchase_upgrade(cost: int) -> bool:
+	if money < cost: return false
+	money -= cost
+	return true
+
+
 func play_guest_enter_animation(guest_node: Node2D):
 	playing_animation = true
 	var duration: float = 0.9
