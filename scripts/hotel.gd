@@ -8,6 +8,10 @@ static var inst: Hotel = null
 @onready var room_upgrade_menu: Control = $RoomUpgradeMenu
 @onready var room_info_menu: RoomInfoMenu = $RoomInfoMenu
 
+var upgrades: Dictionary = {
+	
+}
+
 var selected_room: Room = null:
 	get: return selected_room
 	set(value):

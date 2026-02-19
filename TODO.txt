@@ -20,3 +20,11 @@ Guest Mechanics:
 Code:
 	make APPEAR_AFTER and EVENT types work for guests and traits.
 	Make duplicates rare/impossible (have a queue of recent guests?)
+
+Scenario:
+	rebel assasination
+		rebel ("put me above the politician")
+		alien politician comes ("make sure my floor is clear of rebel scum")
+	Convict Escape
+		convict ("broke out of prison") - orange jumpsuit, cuffs, etc
+		cop ("put me in an adjacent room") - catches convict

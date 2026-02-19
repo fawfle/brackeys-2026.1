@@ -89,6 +89,11 @@ enum RoomSize {
 	LARGE,
 }
 
+## TODO, one or the other type upgrades
+enum Perks {
+	
+}
+
 # helper functions, enum -> string
 static func sanitation_string(prop: Sanitation) -> String:
 	match(prop):

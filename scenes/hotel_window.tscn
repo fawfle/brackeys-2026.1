@@ -16,6 +16,8 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_3n61i")
 
+[node name="Upgrades" type="Node" parent="." unique_id=507449261]
+
 [node name="HotelBar" type="ColorRect" parent="." unique_id=1135708921]
 layout_mode = 1
 anchors_preset = 12
