@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://77p6p1b14sjc"]
+
+[ext_resource type="Texture2D" uid="uid://crjlh5bomrb3d" path="res://sprites/ui/Hotel.png" id="1_urtm0"]
+
+[node name="Hotel" type="Node2D" unique_id=1354698565]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=613553792]
+texture = ExtResource("1_urtm0")
