@@ -9,6 +9,8 @@ static var inst: Hotel = null
 @onready var room_upgrade_menu: Control = $RoomUpgradeMenu
 @onready var room_info_menu: RoomInfoMenu = $RoomInfoMenu
 
+@onready var hotel_menu: HotelMenu = $Hotel
+
 var floors: int = 1
 
 var upgrades: Dictionary = {
@@ -80,4 +82,7 @@ func _on_size_pressed() -> void:
 	if GameManager.inst.purchase_upgrade(UpgradeCosts.ROOM_SIZE[selected_room.room_size]): selected_room.upgrade_room_size()
 
 func _on_room_upgrade_button_pressed() -> void:
-	pass
+	if floors == 5: return
+	if GameManager.inst.purchase_upgrade(UpgradeCosts.FLOOR[floors]):
+		floors += 1
+		hotel_menu.add_floor(floors)

@@ -239,6 +239,7 @@ func start_assign_guest_leave_timer(guest: Guest):
 	leave_guest()
 
 
+## Purchase an upgrade. Returns true if upgrade is successful. should be called with an if purchase_upgrade(): add_upgrade()
 func purchase_upgrade(cost: int) -> bool:
 	if money < cost: return false
 	money -= cost

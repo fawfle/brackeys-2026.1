@@ -34,12 +34,15 @@ func handle_command(command: String):
 		debug_mode = true
 		return;
 	
-	if not debug_mode: return
+	if not debug_mode or len(input_command) <= 0: return
 	
-	if len(input_command) > 0 and input_command[0] == "g":
+	if input_command[0] == "g":
 		var guest: Guest = GuestList.GUESTS.get(input_command.substr(1))
 		if guest != null:
-			print("ADDING GUEST " + guest.name + " TO QUEUE.")
+			print("DEBUG: ADDING GUEST " + guest.name + " TO QUEUE.")
 			GameManager.inst.guest_assign_queue.push_back(guest)
 		else:
 			push_error("Guest name \'" + guest.name + "\' entered in command was not found")
+	elif input_command[0] == "m":
+		print("DEBUG: ADDING MONEY")
+		GameManager.inst.money += int(input_num)

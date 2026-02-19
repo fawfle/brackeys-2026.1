@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://77p6p1b14sjc"]
 
+[ext_resource type="Script" uid="uid://fgw77iw3pcy6" path="res://scenes/hotel/hotel_menu.gd" id="1_m2rr6"]
 [ext_resource type="Texture2D" uid="uid://b2fhanyi1dg6h" path="res://sprites/ui/hotel_base.png" id="1_urtm0"]
 [ext_resource type="PackedScene" uid="uid://c8k3aq1jiy6n4" path="res://scenes/hotel/hotel_floor.tscn" id="2_5paw8"]
 [ext_resource type="Texture2D" uid="uid://b3sni7qyif7xb" path="res://sprites/ui/hotel_roof.png" id="3_hv5qa"]
@@ -8,7 +9,7 @@
 layout_mode = 3
 anchors_preset = 0
 mouse_filter = 2
-metadata/_edit_group_ = true
+script = ExtResource("1_m2rr6")
 
 [node name="Base" type="Sprite2D" parent="." unique_id=613553792]
 position = Vector2(1, -43)

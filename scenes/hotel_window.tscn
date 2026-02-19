@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bntofo8m6s6ra"]
 
-[ext_resource type="Script" uid="uid://dby1dcjvrtap5" path="res://scripts/hotel.gd" id="1_3n61i"]
+[ext_resource type="Script" uid="uid://dby1dcjvrtap5" path="res://scripts/hotel_manager.gd" id="1_3n61i"]
 [ext_resource type="Texture2D" uid="uid://dajdo2sedm1xu" path="res://sprites/ui/space-background.png" id="2_5tjn0"]
 [ext_resource type="FontFile" uid="uid://bnw2vf51g52tq" path="res://fonts/fs-pixel-sans-unicode-regular.ttf" id="3_43vyb"]
 [ext_resource type="PackedScene" uid="uid://cv2oiqhjqdy6a" path="res://scenes/ui/room_info_menu.tscn" id="4_16lx5"]
