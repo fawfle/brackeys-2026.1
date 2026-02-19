@@ -15,7 +15,7 @@ func update_visibility(room: Room):
 func _on_phase_changed(phase: GameManager.Phase):
 	if phase != GameManager.Phase.UPGRADING:
 		visible = true
-		blocked_text.text = "management locked"
+		blocked_text.text = ""
 		return
 	
 	update_visibility(Hotel.inst.selected_room)

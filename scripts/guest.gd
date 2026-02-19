@@ -44,8 +44,7 @@ var happiness_rating: float = -1
 func get_intro_lines() -> Array[String]:
 	var arr: Array[String] = greeting.duplicate();
 	arr.append_array(generate_request())
-	
-	return add_name_to_lines(arr)
+	return arr
 
 const MAX_REQUEST_DEPTH: int = 100
 
@@ -128,7 +127,3 @@ func _to_string() -> String:
 	return "(Guest) " + name + " Traits: " + str(traits);
 
 # constructed by guest_list class
-
-func add_name_to_lines(arr: Array[String]) -> Array[String]:
-	arr.assign(arr.map(func(x): return name + ":   " + x))
-	return arr

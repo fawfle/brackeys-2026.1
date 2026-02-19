@@ -22,6 +22,8 @@ enum Trait {
 	SIMPLE, # likes normal
 	CHEAP, # likes cheap
 	
+	SHY,
+	
 	RADIOACTIVE, # makes surrounding guests/rooms less happy TODO
 	GENEROUS, # gives more money. Has a chance to make surrounding guests also give more money
 }
@@ -73,6 +75,9 @@ static var TRAIT_DATA: Dictionary[Trait, Dictionary] = {
 		PREFERENCE: 3,
 		VALUE: 2,
 		BLACKLIST: [Trait.CLASSY]
+	},
+	Trait.SHY: {
+		# TODO: avoids other people, doesn't want a floor neighbor
 	},
 	Trait.RADIOACTIVE: { ## TODO, make neighboring guests radioactive decreasing happiness by 1
 		NAME: "Radioactive",

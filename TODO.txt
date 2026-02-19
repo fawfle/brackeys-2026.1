@@ -21,6 +21,11 @@ Code:
 	make APPEAR_AFTER and EVENT types work for guests and traits.
 	Make duplicates rare/impossible (have a queue of recent guests?)
 
+Hotel Upgrades:
+	25% chance to negate a trait on a guest OR ALL guests give +0.25 stars
+	????
+	high roller: bonus for getting 4.5 or above BUT penatly for getting below / reduced penalties BUT 25% lower overall gain
+
 Scenario:
 	rebel assasination
 		rebel ("put me above the politician")
@@ -28,3 +33,9 @@ Scenario:
 	Convict Escape
 		convict ("broke out of prison") - orange jumpsuit, cuffs, etc
 		cop ("put me in an adjacent room") - catches convict
+
+Art:
+	icons
+	namebox - plaque
+	hotel desk view
+	moving little guys (sillouette)

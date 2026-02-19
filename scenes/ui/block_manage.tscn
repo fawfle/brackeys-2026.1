@@ -24,5 +24,5 @@ offset_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_kpvl8")
-text = "management locked"
+text = "text"
 horizontal_alignment = 1

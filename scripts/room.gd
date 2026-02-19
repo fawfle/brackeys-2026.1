@@ -7,7 +7,16 @@ class_name Room extends Control
 ## location of room in hotel. Starts at 0,0 from bottom left. Floor is location.y
 @export var location: Vector2 = Vector2.ZERO
 
-var guest: Guest = null
+var guest: Guest = null:
+	get: return guest
+	set(value):
+		guest = value
+		guest_indicator.visible = guest != null
+
+@onready var guest_indicator: Sprite2D = $GuestIndicator
+
+func _ready() -> void:
+	guest_indicator.visible = false
 
 var occupied: bool:
 	get: return guest != null
@@ -37,6 +46,11 @@ func checkout_guest() -> Guest:
 	var g: Guest = guest;
 	guest = null
 	return g
+
+## makes room messier, mostly for when guests leave
+func decrease_sanitation():
+	if sanitation == Sanitation.DIRTY: return
+	sanitation = (sanitation - 1) as Sanitation
 
 ## functions to get location properties
 func in_center() -> bool:
@@ -69,7 +83,6 @@ func upgrade_room_size():
 	
 	room_size = (room_size + 1) as RoomSize
 	Globals.room_upgraded.emit(self)
-
 
 enum Sanitation {
 	DIRTY,
@@ -120,3 +133,7 @@ static func room_size_string(prop: RoomSize) -> String:
 		RoomSize.LARGE: return "Large"
 
 	return "Prop not found."
+
+
+func _on_guest_indicator_visibility_changed() -> void:
+	pass # Replace with function body.

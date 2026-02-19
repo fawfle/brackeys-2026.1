@@ -1,8 +1,26 @@
 [gd_scene format=3 uid="uid://77p6p1b14sjc"]
 
-[ext_resource type="Texture2D" uid="uid://cfpmgonpxqar" path="res://sprites/ui/hotel-mockup-001.png" id="1_urtm0"]
+[ext_resource type="Texture2D" uid="uid://b2fhanyi1dg6h" path="res://sprites/ui/hotel_base.png" id="1_urtm0"]
+[ext_resource type="PackedScene" uid="uid://c8k3aq1jiy6n4" path="res://scenes/hotel/hotel_floor.tscn" id="2_5paw8"]
+[ext_resource type="Texture2D" uid="uid://b3sni7qyif7xb" path="res://sprites/ui/hotel_roof.png" id="3_hv5qa"]
 
-[node name="Hotel" type="Node2D" unique_id=1354698565]
+[node name="Hotel" type="Control" unique_id=1031228958]
+layout_mode = 3
+anchors_preset = 0
+mouse_filter = 2
+metadata/_edit_group_ = true
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=613553792]
+[node name="Base" type="Sprite2D" parent="." unique_id=613553792]
+position = Vector2(1, -43)
 texture = ExtResource("1_urtm0")
+
+[node name="HotelFloor" parent="." unique_id=1104610644 instance=ExtResource("2_5paw8")]
+layout_mode = 0
+offset_left = -75.0
+offset_top = -22.0
+offset_right = 75.0
+offset_bottom = 0.0
+
+[node name="Roof" type="Sprite2D" parent="." unique_id=71944369]
+position = Vector2(0, -43)
+texture = ExtResource("3_hv5qa")

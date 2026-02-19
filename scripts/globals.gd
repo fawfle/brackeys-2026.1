@@ -38,3 +38,6 @@ signal begin_day(day: int)
 signal guest_assigned(guest: Guest)
 @warning_ignore(("unused_signal"))
 signal guest_checked_out(guest: Guest)
+
+@warning_ignore(("unused_signal"))
+signal current_guest_changed(guest: Guest)

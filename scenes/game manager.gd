@@ -26,7 +26,11 @@ var money: int = 0:
 
 var guest_assign_queue: Array[Guest] = []
 var guest_checkout_queue: Array[Guest] = []
-@export var current_guest: Guest = null
+@export var current_guest: Guest = null:
+	get: return current_guest
+	set(value):
+		current_guest = value
+		Globals.current_guest_changed.emit(current_guest)
 
 var random_trait_count: int = 1
 var stay_length_max: int = 1

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://crjlh5bomrb3d"
-path="res://.godot/imported/Hotel.png-a8aa6220100d29ceb672cfa81f09b1f5.ctex"
+uid="uid://uis5ivvjdk41"
+path="res://.godot/imported/hotel_floor.png-dbf1a3485e20e628c60144d8f994e388.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/ui/Hotel.png"
-dest_files=["res://.godot/imported/Hotel.png-a8aa6220100d29ceb672cfa81f09b1f5.ctex"]
+source_file="res://sprites/ui/hotel_floor.png"
+dest_files=["res://.godot/imported/hotel_floor.png-dbf1a3485e20e628c60144d8f994e388.ctex"]
 
 [params]
 

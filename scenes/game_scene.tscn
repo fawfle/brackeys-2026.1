@@ -3,10 +3,12 @@
 [ext_resource type="Script" uid="uid://fehsvnq2kohw" path="res://scenes/game manager.gd" id="1_w5aja"]
 [ext_resource type="FontFile" uid="uid://qo71mx2v8dp" path="res://fonts/edit-undo.brk.ttf" id="2_bw6k5"]
 [ext_resource type="PackedScene" uid="uid://buyxfh2m4xbm5" path="res://scenes/text_bar.tscn" id="2_ycayy"]
-[ext_resource type="Script" uid="uid://cfpiqvmer5qe" path="res://scenes/day_label.gd" id="3_y3j0m"]
-[ext_resource type="Script" uid="uid://donsdw52b18or" path="res://scenes/money_label.gd" id="4_rurhu"]
+[ext_resource type="Script" uid="uid://cfpiqvmer5qe" path="res://scripts/ui/day_label.gd" id="3_y3j0m"]
+[ext_resource type="Script" uid="uid://donsdw52b18or" path="res://scripts/ui/money_label.gd" id="4_rurhu"]
+[ext_resource type="Theme" uid="uid://bqm4ull505em5" path="res://themes/theme.tres" id="5_utbpp"]
 [ext_resource type="PackedScene" uid="uid://bn2xjq1hns1w4" path="res://scenes/ui/assign_button.tscn" id="6_b5spy"]
 [ext_resource type="PackedScene" uid="uid://cfjqr6pfo71kp" path="res://scenes/ui/radial_bar.tscn" id="6_kk2rg"]
+[ext_resource type="Script" uid="uid://kmp8buyv62l" path="res://scripts/ui/guest_name_label.gd" id="6_mw25s"]
 [ext_resource type="PackedScene" uid="uid://bntofo8m6s6ra" path="res://scenes/hotel_window.tscn" id="7_kk2rg"]
 
 [node name="GameScene" type="Node2D" unique_id=1746918585]
@@ -25,6 +27,7 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 263.0
 offset_bottom = 247.0
+metadata/_edit_lock_ = true
 
 [node name="StarRating" type="Label" parent="CanvasLayer/GuestWindow" unique_id=38881109]
 layout_mode = 0
@@ -66,6 +69,20 @@ text = "$0"
 horizontal_alignment = 2
 vertical_alignment = 1
 script = ExtResource("4_rurhu")
+
+[node name="GuestNameLabel" type="Label" parent="CanvasLayer/GuestWindow" unique_id=774963388]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.757
+anchor_bottom = 0.757
+offset_left = 3.0
+offset_top = -15.979004
+offset_right = 62.0
+offset_bottom = 0.020996094
+grow_horizontal = 0
+theme = ExtResource("5_utbpp")
+text = "name"
+script = ExtResource("6_mw25s")
 
 [node name="TextBar" parent="CanvasLayer/GuestWindow" unique_id=733882566 instance=ExtResource("2_ycayy")]
 layout_mode = 0
