@@ -1,5 +1,8 @@
 class_name Room extends Control
 
+## name of room group
+const GROUP_NAME: String = "room"
+
 @export var sanitation: Sanitation = Sanitation.CLEAN
 @export var quality: Quality = Quality.DUMP
 @export var room_size: RoomSize = RoomSize.SMALL
@@ -38,13 +41,19 @@ func _ready() -> void:
 var occupied: bool:
 	get: return guest != null
 
-func add_guest(_guest: Guest):
-	if occupied:
-		push_error("Attempting to assign guest to occupied room")
+## returns if adding was successful
+func add_guest(_guest: Guest) -> bool:
+	if not can_assign_guest():
+		push_error("Attempting to assign guest to occupied or unbuilt room")
+		return false
 		
 	if Globals.DEBUG: print("ASSIGNING GUEST " + str(_guest) + " TO ROOM " + str(self))
 	
 	guest = _guest
+	return true
+
+func can_assign_guest() -> bool:
+	return not occupied and built
 
 func _on_room_select(room: Room):
 	focus_outline.visible = room == self
@@ -91,6 +100,29 @@ func on_right() -> bool:
 
 func on_ground_floor() -> bool:
 	return location.y == 0
+
+## return rooms on left/right
+func get_floor_neighbors() -> Array[Room]:
+	return get_neighbors_with(func(room: Room): return abs(location.x - room.location.x) < 1)
+
+## return neighbors above and below
+func get_vertical_neighbors() -> Array[Room]:
+	return get_neighbors_with(func(room: Room): return abs(location.y - room.location.y) < 1)
+
+## return left, right, top, bottom
+func get_all_neighbors() -> Array[Room]:
+	return get_neighbors_with(func(room: Room): return abs(location.x - room.location.x) < 1 or abs(location.y - room.location.y) < 1)
+
+## helper
+func get_neighbors_with(callable: Callable) -> Array[Room]:
+	var neighbors: Array[Room] = []
+	var rooms = get_tree().get_nodes_in_group(GROUP_NAME)
+	
+	for room: Room in rooms:
+		if callable.call(room):
+			neighbors.push_back(room)
+	
+	return neighbors
 
 # TODO: some visual/menu indicator
 func upgrade_sanitation(): 

@@ -9,7 +9,7 @@ func _ready() -> void:
 ## hook for room selection for assigning guest
 func update_disabled(room: Room):
 	if GameManager.inst.phase == GameManager.Phase.ASSIGNING:
-		disabled = room == null or room.guest != null
+		disabled = room == null or not room.can_assign_guest()
 
 func _on_phase_changed(phase: GameManager.Phase):
 	if phase != GameManager.Phase.ASSIGNING:

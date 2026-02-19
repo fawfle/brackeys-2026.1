@@ -20,6 +20,7 @@ Guest Mechanics:
 Code:
 	make APPEAR_AFTER and EVENT types work for guests and traits.
 	Make duplicates rare/impossible (have a queue of recent guests?)
+	TODO: **UPGRADE_BUTTON** class to handle disabling and all that jazz
 
 Hotel Upgrades:
 	25% chance to negate a trait on a guest OR ALL guests give +0.25 stars
