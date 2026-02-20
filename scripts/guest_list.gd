@@ -81,6 +81,7 @@ static var GUESTS_DATA: Dictionary[String, Dictionary] = {
 		GOODBYE: "T-t-t-thanks, c-comrade. See you l-later... or not...",
 		HAPPY_GOODBYE: "Perfectly secure. You must be one of us. Long live the Brotherhood, and never forget that they're out there...",
 		ANGRY_GOODBYE: "S-s-s-s-so m-many ey-eyes watchimg m-me. I n-need to go.",
+		REJECTED_GOODBYE: "Y-you must be o-one of them...",
 		MONEY: 10,
 	},
 	"Octovee": {
