@@ -44,13 +44,12 @@ const past_guest_queue_limit: int = 3
 
 ## phase of gameplay. Either assigning (getting guests),  managing (upgrading), or checkout (guests leaving and paying). ASSIGN -> UPGRADE -> CHECKOUT
 enum Phase {
-	CHECKOUT,
-	ASSIGNING,
-	UPGRADING,
-	END_DAY,
+	CHECKOUT, ## checking out guests, beginning of day
+	MANAGEMENT, ## managing guests and hotel
+	NIGHT, ## rest, possibly just a menu
 }
 
-var phase: Phase = Phase.ASSIGNING:
+var phase: Phase = Phase.MANAGEMENT:
 	get: return phase
 	set(value):
 		phase = value
@@ -69,35 +68,26 @@ func _ready() -> void:
 	
 	assign_button.button_down.connect(_on_assign_button_button_down)
 	
-	begin_assigning_phase()
+	begin_management_phase()
 
 func begin_next_phase() -> void:
 	# use call_deferred to keep call stack in check
 	match(phase):
 		Phase.CHECKOUT:
-			begin_assigning_phase.call_deferred()
-		Phase.ASSIGNING:
-			begin_upgrading_phase.call_deferred()
-		Phase.UPGRADING:
+			begin_management_phase.call_deferred()
+		Phase.MANAGEMENT:
 			end_day.call_deferred()
-		Phase.END_DAY:
+		Phase.NIGHT:
 			begin_checkout_phase.call_deferred()
 
-func begin_assigning_phase() -> void:
-	phase = Phase.ASSIGNING
+func begin_management_phase() -> void:
+	phase = Phase.MANAGEMENT
+	
 	guest_assign_queue = GuestList.create_guest_queue(1, day, past_guest_queue)
 	past_guest_queue.append_array(guest_assign_queue)
 	past_guest_queue = past_guest_queue.slice(past_guest_queue.size() - past_guest_queue_limit, past_guest_queue.size())
+	
 	manage_next_guest()
-
-func begin_upgrading_phase() -> void:
-	phase = Phase.UPGRADING
-	
-	if Globals.DEBUG: print("BEGINNING UPGRADING PHASE")
-	
-	await Globals.text_finished
-	
-	begin_next_phase()
 
 func begin_checkout_phase() -> void:
 	if Globals.DEBUG: print("BEGINNING CHECKOUT PHASE")
@@ -114,17 +104,19 @@ func begin_checkout_phase() -> void:
 
 ## Handle the end of the day
 func end_day() -> void:
-	phase = Phase.END_DAY
-	day += 1
+	phase = Phase.NIGHT
 	for room: Room in get_rooms():
 		if room.guest != null: room.guest.stay_duration -= 1
 	
+	await get_tree().create_timer(2).timeout
+	
+	day += 1
 	Globals.begin_day.emit(day)
 	
 	begin_next_phase()
 
 func manage_next_guest() -> void:
-	if phase != Phase.ASSIGNING: return
+	if phase != Phase.MANAGEMENT: return
 	if guest_assign_queue.size() <= 0:
 		begin_next_phase()
 		return
@@ -147,10 +139,12 @@ func manage_next_guest() -> void:
 
 ## have guest leave
 func leave_guest() -> void:
+	var node: Node2D = current_guest.node
 	Globals.set_text.emit(current_guest.goodbye)
+	current_guest = null
 	await Globals.text_finished
-	await play_guest_exit_animation(current_guest.node)
-	current_guest.node.queue_free()
+	await play_guest_exit_animation(node)
+	node.queue_free()
 	manage_next_guest()
 
 ## currently duplicate guests and set traits here. Maybe change in the future if it's confusing.
@@ -162,8 +156,8 @@ func create_next_guest() -> Guest:
 func begin_checkout_next_guest() -> void:
 	if phase != Phase.CHECKOUT: return
 	
-	if guest_checkout_queue.size() <= 0:
-		begin_assigning_phase()
+	if guest_checkout_queue.size() == 0:
+		begin_management_phase()
 		return
 	
 	current_guest = guest_checkout_queue.pop_front()
@@ -210,21 +204,18 @@ func assign_current_guest(room: Room):
 	if room.guest != null or current_guest == null or playing_animation: return
 	
 	Globals.set_text.emit()
-	room.add_guest(current_guest)
-	current_guest.room = room
 	
-	Globals.guest_assigned.emit(current_guest)
-	
-	var guest_node: Node2D = current_guest.node
-	current_guest = null
-	guest_leave_timer.stop()
-	guest_leave_timer.timeout.emit() # need to call manually :)
-	
-	await play_guest_exit_animation(guest_node)
-	guest_node.reparent(room)
+	await play_guest_exit_animation(current_guest.node)
+	current_guest.node.reparent(room)
 	await get_tree().create_timer(0.8).timeout
 	
-	manage_next_guest()
+	Globals.guest_assigned.emit(current_guest)
+	room.add_guest(current_guest)
+	current_guest.room = room
+	current_guest = null
+	
+	guest_leave_timer.stop()
+	guest_leave_timer.timeout.emit() # need to call manually :)
 
 
 func start_assign_guest_leave_timer(guest: Guest):

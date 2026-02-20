@@ -143,6 +143,11 @@ func upgrade_room_size():
 	room_size = (room_size + 1) as RoomSize
 	Globals.room_upgraded.emit(self)
 
+func build():
+	if built: return
+	built = true
+	Globals.room_upgraded.emit(self)
+
 enum Sanitation {
 	DIRTY,
 	MESSY,
@@ -192,7 +197,3 @@ static func room_size_string(prop: RoomSize) -> String:
 		RoomSize.LARGE: return "Large"
 
 	return "Prop not found."
-
-
-func _on_guest_indicator_visibility_changed() -> void:
-	pass # Replace with function body.

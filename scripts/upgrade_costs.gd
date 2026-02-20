@@ -3,11 +3,8 @@ class_name UpgradeCosts
 # ALL upgrade costs are framed in terms of current state. This is to make accessing them easier.
 # ex cost to upgrade from DIRTY to MESSY is SANITATION[Room.Sanitation.Dirty]
 
-## Sanitation upgrade costs.
-const SANITATION: Dictionary[Room.Sanitation, int] = {
-	Room.Sanitation.DIRTY: 5,
-	Room.Sanitation.MESSY: 10,
-}
+const BUILD_ROOM: int = 25
+
 ## Quality upgrade costs. Takes current room prop
 const QUALITY: Dictionary[Room.Quality, int] = {
 	Room.Quality.DUMP: 20,

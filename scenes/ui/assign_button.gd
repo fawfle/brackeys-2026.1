@@ -2,17 +2,17 @@ extends Button
 
 func _ready() -> void:
 	Globals.select_room.connect(update_disabled)
-	Globals.phase_changed.connect(_on_phase_changed)
+	Globals.current_guest_changed.connect(_on_current_guest_changed)
 	
 	pressed.connect(func(): disabled = true)
 
 ## hook for room selection for assigning guest
 func update_disabled(room: Room):
-	if GameManager.inst.phase == GameManager.Phase.ASSIGNING:
+	if GameManager.inst.phase == GameManager.Phase.MANAGEMENT:
 		disabled = room == null or not room.can_assign_guest()
 
-func _on_phase_changed(phase: GameManager.Phase):
-	if phase != GameManager.Phase.ASSIGNING:
+func _on_current_guest_changed(guest: Guest):
+	if GameManager.inst.phase != GameManager.Phase.MANAGEMENT or guest == null:
 		visible = false
 		disabled  = true
 	else:

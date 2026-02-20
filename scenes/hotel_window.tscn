@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://cv2oiqhjqdy6a" path="res://scenes/ui/room_info_menu.tscn" id="4_16lx5"]
 [ext_resource type="Theme" uid="uid://bqm4ull505em5" path="res://themes/theme.tres" id="4_46gxr"]
 [ext_resource type="PackedScene" uid="uid://77p6p1b14sjc" path="res://scenes/hotel/hotel.tscn" id="5_0w18b"]
-[ext_resource type="PackedScene" uid="uid://dcral81s8l3e1" path="res://scenes/ui/upgrade_button.tscn" id="5_k0vif"]
+[ext_resource type="PackedScene" uid="uid://bj50tgerq1y6t" path="res://scenes/ui/room_upgrade_menu.tscn" id="5_k0vif"]
 [ext_resource type="PackedScene" uid="uid://b4ulvxwq52jbn" path="res://scenes/ui/block_manage.tscn" id="6_5tjn0"]
 [ext_resource type="PackedScene" uid="uid://8glmdx6xa26o" path="res://scenes/ui/upgrade_description.tscn" id="9_irplg"]
 
@@ -85,46 +85,8 @@ offset_bottom = 36.0
 theme = ExtResource("4_46gxr")
 text = "build floor"
 
-[node name="RoomUpgradeMenu" type="Control" parent="." unique_id=774352026]
+[node name="RoomUpgradeMenu" parent="." unique_id=558005973 instance=ExtResource("5_k0vif")]
 layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -87.5
-offset_top = -56.0
-offset_right = 87.5
-grow_horizontal = 2
-grow_vertical = 0
-mouse_filter = 2
-
-[node name="Clean" parent="RoomUpgradeMenu" unique_id=1171972501 instance=ExtResource("5_k0vif")]
-layout_mode = 0
-offset_left = 0.0
-offset_top = 0.0
-offset_right = 56.0
-offset_bottom = 18.0
-label_text = "Clean"
-description = "cleans the room"
-
-[node name="Quality" parent="RoomUpgradeMenu" unique_id=58903142 instance=ExtResource("5_k0vif")]
-layout_mode = 0
-offset_left = 0.0
-offset_top = 19.0
-offset_right = 56.0
-offset_bottom = 37.0
-label_text = "Quality"
-description = "upgrade room quality"
-
-[node name="Size" parent="RoomUpgradeMenu" unique_id=1187929101 instance=ExtResource("5_k0vif")]
-layout_mode = 0
-offset_left = 0.0
-offset_top = 38.0
-offset_right = 56.0
-offset_bottom = 56.0
-label_text = "Size"
-description = "upgrade size of room"
 
 [node name="RoomInfoMenu" parent="." unique_id=1346516254 instance=ExtResource("4_16lx5")]
 layout_mode = 1
@@ -149,6 +111,3 @@ grow_horizontal = 1
 grow_vertical = 1
 
 [connection signal="pressed" from="HotelUpgradeMenu/RoomUpgradeButton" to="." method="_on_room_upgrade_button_pressed"]
-[connection signal="pressed" from="RoomUpgradeMenu/Clean" to="." method="_on_clean_pressed"]
-[connection signal="pressed" from="RoomUpgradeMenu/Quality" to="." method="_on_quality_pressed"]
-[connection signal="pressed" from="RoomUpgradeMenu/Size" to="." method="_on_quality_pressed"]

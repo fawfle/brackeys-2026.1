@@ -1,0 +1,61 @@
+[gd_scene format=3 uid="uid://bj50tgerq1y6t"]
+
+[ext_resource type="Script" uid="uid://b0owjs4kdcyrr" path="res://scenes/ui/room_upgrade_menu.gd" id="1_3gw02"]
+[ext_resource type="PackedScene" uid="uid://dcral81s8l3e1" path="res://scenes/ui/upgrade_button.tscn" id="1_6n75r"]
+
+[node name="RoomUpgradeMenu" type="Control" unique_id=558005973]
+layout_mode = 3
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -87.5
+offset_top = -56.0
+offset_right = 87.5
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+script = ExtResource("1_3gw02")
+
+[node name="Manage" type="Control" parent="." unique_id=1208560532]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+
+[node name="Quality" parent="Manage" unique_id=1171972501 instance=ExtResource("1_6n75r")]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 14.0
+offset_right = 62.0
+offset_bottom = 32.0
+label_text = "Quality"
+description = "upgrade room quality"
+
+[node name="Size" parent="Manage" unique_id=707239954 instance=ExtResource("1_6n75r")]
+layout_mode = 0
+offset_left = 67.0
+offset_top = 14.0
+offset_right = 123.0
+offset_bottom = 32.0
+label_text = "Size"
+description = "upgrade size of room"
+
+[node name="Build" type="Control" parent="." unique_id=1823050550]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Build" parent="Build" unique_id=1337059701 instance=ExtResource("1_6n75r")]
+layout_mode = 0
+offset_left = 67.0
+offset_top = 14.0
+offset_right = 123.0
+offset_bottom = 32.0
+label_text = "Build"
+description = "build the room!"
+
+[connection signal="pressed" from="Manage/Quality" to="." method="_on_quality_pressed"]
+[connection signal="pressed" from="Manage/Size" to="." method="_on_size_pressed"]
+[connection signal="pressed" from="Build/Build" to="." method="_on_build_pressed"]

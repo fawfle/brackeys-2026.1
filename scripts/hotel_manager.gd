@@ -6,7 +6,6 @@ static var inst: Hotel = null
 @onready var room_deselect: TextureButton = $RoomDeselect
 
 @onready var hotel_upgrade_menu: Control = $HotelUpgradeMenu
-@onready var room_upgrade_menu: Control = $RoomUpgradeMenu
 @onready var room_info_menu: RoomInfoMenu = $RoomInfoMenu
 
 @onready var hotel_menu: HotelMenu = $Hotel
@@ -42,7 +41,6 @@ func _ready() -> void:
 	Globals.guest_checked_out.connect(func(_guest: Guest): update_room_info_menu())
 	Globals.room_upgraded.connect(func(_room: Room): update_room_info_menu())
 	
-	room_upgrade_menu.visible = false
 	room_info_menu.visible = false
 	
 	## give player 1 room to start
@@ -50,7 +48,6 @@ func _ready() -> void:
 
 func _on_select_room(room: Room):
 	selected_room = room
-	room_upgrade_menu.visible = room != null
 	hotel_upgrade_menu.visible = room == null
 
 func _on_hover_room(room: Room):
@@ -69,20 +66,6 @@ func update_room_info_menu():
 	
 	room_info_menu.visible = true
 	room_info_menu.update_viewed_room(room)
-
-func _on_clean_pressed() -> void:
-	if selected_room == null or selected_room.sanitation == Room.Sanitation.CLEAN: return
-	if GameManager.inst.purchase_upgrade(UpgradeCosts.SANITATION[selected_room.sanitation]): selected_room.upgrade_sanitation()
-
-
-func _on_quality_pressed() -> void:
-	if selected_room == null or selected_room.quality == Room.Quality.CLASSY: return
-	if GameManager.inst.purchase_upgrade(UpgradeCosts.QUALITY[selected_room.quality]): selected_room.upgrade_quality()
-
-
-func _on_size_pressed() -> void:
-	if selected_room == null or selected_room.room_size == Room.RoomSize.LARGE: return
-	if GameManager.inst.purchase_upgrade(UpgradeCosts.ROOM_SIZE[selected_room.room_size]): selected_room.upgrade_room_size()
 
 func _on_room_upgrade_button_pressed() -> void:
 	if floors == 5: return
