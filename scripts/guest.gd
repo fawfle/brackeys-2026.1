@@ -26,12 +26,17 @@ var days_stayed: int = 0
 @export var angry_goodbye: Array[String] = []
 ## message on happy leaving
 @export var happy_goodbye: Array[String] = []
+## message on ignored or rejected
+@export var rejected_goodbye: Array[String] = []
 
 ## initial rating given by guest. Can be lower than 5 for picky or snobbish guests.
 @export var initial_rating: float = 5
 
 ## Guest won't appear until day has passed
 @export var appear_after_day: int = 0
+
+## basically reserved for event types
+@export var appear_on_day: int = -1
 
 ## reference to current node loaded in scene tree
 var node: Node2D = null
@@ -102,7 +107,9 @@ func update_happiness_rating() -> float:
 	if room == null:
 		push_error("attempted to get happiness rating of guest without a roomm")
 		return -1
-		
+	
+	# if a trait has this flag, ignore sanitation
+	var ignore_sanitation: float = false
 	var rating: float = initial_rating
 	fail_feedback.clear()
 	
@@ -112,6 +119,9 @@ func update_happiness_rating() -> float:
 		if not condition_met:
 			rating -= guest_trait.preference
 			if guest_trait.fail_feedback != "": fail_feedback.push_back(guest_trait.fail_feedback)
+	
+	
+	
 	
 	happiness_rating = max(0, rating)
 	return happiness_rating

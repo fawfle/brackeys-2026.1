@@ -92,3 +92,9 @@ func _on_build_floor_button_pressed() -> void:
 		floors += 1
 		hotel_menu.add_floor(floors)
 		build_floor_button.cost = UpgradeCosts.FLOOR[floors]
+
+func is_full() -> bool:
+	return not get_rooms().any(func(r: Room): return r.built and r.guest == null)
+
+func get_rooms():
+	return get_tree().get_nodes_in_group("room")

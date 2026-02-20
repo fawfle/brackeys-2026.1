@@ -49,6 +49,7 @@ offset_top = -5.0
 offset_right = 6.0
 offset_bottom = 7.0
 max_value = 1.0
+fill_mode = 4
 
 [connection signal="button_down" from="TextureButton" to="." method="_on_texture_button_button_down"]
 [connection signal="button_up" from="TextureButton" to="." method="_on_texture_button_button_up"]

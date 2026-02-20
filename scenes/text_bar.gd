@@ -20,6 +20,9 @@ func load_line_from_queue():
 	var line: String = line_queue.pop_front()
 	text_box.text = line
 	
+	# if line is empty, skip
+	if line == "": load_line_from_queue()
+	
 	if text_tween: text_tween.stop()
 	text_tween = get_tree().create_tween()
 	text_tween.tween_property(text_box, "visible_ratio", 1, line.length() * 0.02)
@@ -30,6 +33,7 @@ func load_line_from_queue():
 
 func on_set_text(lines: Array[String] = [""]) -> void:
 	line_queue = lines
+	if line_queue.size() == 0: line_queue = [""] # strat to get "consistent behavior" on empty lines
 	load_line_from_queue()
 
 func _on_advance_text_button_down() -> void:

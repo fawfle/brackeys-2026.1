@@ -10,7 +10,8 @@ enum {
 	REJECTED_GOODBYE, ## Message sent when leaving b/c ignored or turned away
 	MONEY, ## how much money they initially have
 	APPEAR_AFTER, ## Threshold to not appear before a certain day. For gating guests after unlocks.
-	EVENT, ## Mark a guest as an "event" type. They won't be added to any normal guest queues.
+	EVENT, ## Mark a guest as an "event" type.
+	APPEAR_ON_DAY, ## appear on specific day. Only for event types
 }
 
 static var GUESTS_DATA: Dictionary[String, Dictionary] = {
@@ -36,7 +37,7 @@ static var GUESTS_DATA: Dictionary[String, Dictionary] = {
 	},
 	"Mono": {
 		SCENE: preload("res://scenes/characters/mono.tscn"),
-		DEFAULT_TRAITS: [TraitList.Trait.GENEROUS],
+		DEFAULT_TRAITS: [],
 		GREETING: ["_ _  _ __ __  _ _  _ __ _ _  _ __ _ _  __  _ __  __ _ __  _  __ _ __ __  __ __ __  _ _ __  __ _ _ _  _  __ _ __ _  __ __ __  __ __  _  _ __", "_ _ _  _ __ __ _  _ __  __ _ __ _  _  __ _ _ _  _ __  __ _ _ _  __ _ __ __  _ __ _ __ _ __"], # "i will make you become a space baby" in morse code
 		GOODBYE: "_ _ __ _  _ __  _ __ _  _  __ __  _  _ __ _ _  _ __ _ _  _ __ _ __ _ __", # farewell.
 		HAPPY_GOODBYE: "_ _  _ __  __ __  _ __ __ _  _ __ _ _  _  _ __  _ _ _  _  __ _ _  _ __ _ __ _ __", # I am pleased.
@@ -56,7 +57,7 @@ static var GUESTS_DATA: Dictionary[String, Dictionary] = {
 	},
 	"Norman": {
 		SCENE: preload("res://scenes/characters/norman.tscn"),
-		DEFAULT_TRAITS: [TraitList.Trait.GENEROUS],
+		DEFAULT_TRAITS: [],
 		GREETING: ["'Wassup, homie?' That's how they greet each other on Earth, brah.", "I'd preesh if you could lend me a crib, dawg."],
 		GOODBYE: "Peace out, girl scout.",
 		HAPPY_GOODBYE: "Best digs I've seen since Roswell. Don't be a stranger, ranger.",
@@ -96,7 +97,7 @@ static var GUESTS_DATA: Dictionary[String, Dictionary] = {
 }
 
 static var GUESTS: Dictionary[String, Guest]
-static var SPECIAL_GUESTS: Dictionary[String, Guest]
+static var EVENT_GUESTS: Dictionary[String, Guest]
 
 ## static loader function to load GUESTS from GUESTS_DATA
 static func LOAD_GUESTS():
@@ -116,20 +117,29 @@ static func LOAD_GUESTS():
 		if data.has(GOODBYE): guest.goodbye.assign(get_as_array(data, GOODBYE))
 		if data.has(ANGRY_GOODBYE): guest.angry_goodbye.assign(get_as_array(data, ANGRY_GOODBYE))
 		if data.has(HAPPY_GOODBYE): guest.happy_goodbye.assign(get_as_array(data, HAPPY_GOODBYE))
+		if data.has(REJECTED_GOODBYE): guest.rejected_goodbye.assign(get_as_array(data, REJECTED_GOODBYE))
 		
 		if data.has(MONEY): guest.money = data.get(MONEY)
 		
 		if data.has(APPEAR_AFTER): guest.appear_after_day = data.get(APPEAR_AFTER)
 		
-		## special guests
+		## event guests
 		if data.has(EVENT):
-			SPECIAL_GUESTS.set(key, guest)
+			if data.has(APPEAR_ON_DAY): guest.appear_on_day = data.get(APPEAR_ON_DAY)
+			EVENT_GUESTS.set(key, guest)
 		else:
 			GUESTS.set(key, guest)
 
 # TODO: Add feature to stop duplicate guests, probably a recent_guest list
 static func create_guest_queue(length: int, current_day: int, guest_blacklist: Array[Guest] = []) -> Array[Guest]:
 	var guest_queue: Array[Guest] = [];
+	
+	# add event guests
+	for g: Guest in EVENT_GUESTS.values():
+		if g.appear_on_day == current_day:
+			guest_queue.push_back(g)
+	
+	if guest_queue.size() >= length: return guest_queue
 	
 	for _i in range(100):
 		var guest = GUESTS.values().pick_random()

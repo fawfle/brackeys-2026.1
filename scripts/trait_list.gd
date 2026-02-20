@@ -9,6 +9,7 @@ enum {
 	ON_LEAVE, ## Function applied after guest leaves. EX making room very messy.
 	PREFERENCE, ## How much guest cares. Determines point deduction for failing.
 	BLACKLIST, ## Traits that are mutually exclusive.
+	TAGS, ## Tags
 	SPECIAL, ## don't assign randomly
 	VALUE, ## money value to add to guest total money
 	APPEAR_AFTER ## day to wait to appear after
@@ -16,16 +17,22 @@ enum {
 
 ## trait name for comparisons between traits. KEY to make traits more easily viewable in editor
 enum Trait {
-	CLEAN, # likes clean
-	MESSY, # likes messy
-	CLASSY, # likes classy
-	SIMPLE, # likes normal
-	CHEAP, # likes cheap
+	CLEAN, ## likes clean
+	MESSY, ## likes messy
+	CLASSY, ## likes classy
+	SIMPLE, ## likes normal
+	CHEAP, ## likes cheap
+	
+	ACROPHOBIA, ## afraid of heights, wants floor 0
+	VIEW_SEEKER, ## wants top floor
 	
 	SHY,
 	
 	RADIOACTIVE, # makes surrounding guests/rooms less happy TODO
-	GENEROUS, # gives more money. Has a chance to make surrounding guests also give more money
+}
+
+enum Tag {
+	IGNORE_DEFAULT_SANITATION ## don't apply normal sanitation happiness
 }
 
 ## dictionary of data for traits
@@ -37,6 +44,7 @@ static var TRAIT_DATA: Dictionary[Trait, Dictionary] = {
 		CONDITION: func(room: Room): return room.sanitation == Room.Sanitation.CLEAN,
 		PREFERENCE: 3,
 		VALUE: 5,
+		TAGS: [Tag.IGNORE_DEFAULT_SANITATION],
 		BLACKLIST: [Trait.MESSY]
 	},
 	Trait.MESSY: {
@@ -47,6 +55,7 @@ static var TRAIT_DATA: Dictionary[Trait, Dictionary] = {
 		ON_LEAVE: func(room: Room): room.sanitation = Room.Sanitation.MESSY,
 		PREFERENCE: 2,
 		VALUE: 3,
+		TAGS: [Tag.IGNORE_DEFAULT_SANITATION],
 		BLACKLIST: [Trait.CLEAN]
 	},
 	Trait.CLASSY: {
@@ -76,6 +85,26 @@ static var TRAIT_DATA: Dictionary[Trait, Dictionary] = {
 		VALUE: 2,
 		BLACKLIST: [Trait.CLASSY]
 	},
+	
+	Trait.ACROPHOBIA: {
+		NAME: "Acrophobia",
+		REQUEST: "I'm a little afraid of [color=red]heights[/color].",
+		FAIL_FEEDBACK: "I was [color=red]so high[/color]! Were you trying to kill me?",
+		CONDITION: func(room: Room): return room.on_ground_floor(),
+		PREFERENCE: 3,
+		VALUE: 4,
+		BLACKLIST: [Trait.CLASSY]
+	},
+	Trait.VIEW_SEEKER: {
+		NAME: "View Seeker",
+		REQUEST: "give me your [color=red]highest[/color] room.",
+		FAIL_FEEDBACK: "I couldn't see anything. The stars were so [color=red]far away[/color].",
+		CONDITION: func(room: Room): return room.on_top_floor(),
+		PREFERENCE: 3,
+		VALUE: 4,
+		BLACKLIST: [Trait.CLASSY]
+	},
+	
 	Trait.SHY: {
 		# TODO: avoids other people, doesn't want a floor neighbor
 	},
@@ -86,11 +115,6 @@ static var TRAIT_DATA: Dictionary[Trait, Dictionary] = {
 		VALUE: 10,
 		SPECIAL: true
 	},
-	Trait.GENEROUS: { ## TODO, gives extra money, makes some neighbors give extra money
-		NAME: "Generous",
-		SPECIAL: true,
-		VALUE: 10,
-	}
 }
 
 static var TRAITS: Dictionary[Trait, GuestTrait]

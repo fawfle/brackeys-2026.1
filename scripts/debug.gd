@@ -2,7 +2,7 @@ extends Node
 
 var input_command: String = "":
 	get: return input_command
-	set(value): input_command = value.to_lower()
+	set(value): input_command = value #.to_lower()
 var input_num: String = ""
 
 var debug_mode: bool = false
@@ -44,7 +44,7 @@ func handle_command(command: String):
 		var guest: Guest = GuestList.GUESTS.get(input_command.substr(1))
 		if guest != null:
 			print("DEBUG: ADDING GUEST " + guest.name + " TO QUEUE.")
-			GameManager.inst.guest_assign_queue.push_back(guest)
+			GameManager.inst.guest_assign_queue.push_front(guest)
 		else:
 			push_error("Guest name \'" + input_command.substr(1) + "\' entered in command was not found")
 	elif input_command[0] == "m":

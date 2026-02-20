@@ -1,6 +1,9 @@
 ## this is a class for global variables and signals
 extends Node
 
+## is the game paused
+var paused: bool = false
+
 ## if in debug mode, for conditional logging
 var DEBUG: bool = true
 

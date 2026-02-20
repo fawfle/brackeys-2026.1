@@ -11,6 +11,7 @@
 [ext_resource type="Script" uid="uid://kmp8buyv62l" path="res://scripts/ui/guest_name_label.gd" id="6_mw25s"]
 [ext_resource type="PackedScene" uid="uid://bntofo8m6s6ra" path="res://scenes/hotel_window.tscn" id="7_kk2rg"]
 [ext_resource type="PackedScene" uid="uid://bkdg1tw4v3tck" path="res://scenes/clock.tscn" id="11_tcjrq"]
+[ext_resource type="Script" uid="uid://cg3dfhj3j6yn4" path="res://scenes/ui/end_day_button.gd" id="12_rvs2r"]
 
 [node name="GameScene" type="Node2D" unique_id=1746918585]
 script = ExtResource("1_tcjrq")
@@ -98,6 +99,16 @@ offset_top = 191.0
 offset_right = 263.0
 offset_bottom = 247.0
 grow_vertical = 1
+
+[node name="EndDayButton" type="Button" parent="CanvasLayer/GuestWindow" unique_id=85262834]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 146.0
+offset_right = 56.0
+offset_bottom = 170.0
+theme = ExtResource("5_utbpp")
+text = "end day"
+script = ExtResource("12_rvs2r")
 
 [node name="AssignButton" parent="CanvasLayer/GuestWindow" unique_id=648658885 instance=ExtResource("6_b5spy")]
 layout_mode = 0
