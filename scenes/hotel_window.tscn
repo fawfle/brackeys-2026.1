@@ -3,10 +3,10 @@
 [ext_resource type="Script" uid="uid://dby1dcjvrtap5" path="res://scripts/hotel_manager.gd" id="1_3n61i"]
 [ext_resource type="Texture2D" uid="uid://dajdo2sedm1xu" path="res://sprites/ui/space-background.png" id="2_5tjn0"]
 [ext_resource type="PackedScene" uid="uid://cv2oiqhjqdy6a" path="res://scenes/ui/room_info_menu.tscn" id="4_16lx5"]
-[ext_resource type="Theme" uid="uid://bqm4ull505em5" path="res://themes/theme.tres" id="4_46gxr"]
-[ext_resource type="PackedScene" uid="uid://77p6p1b14sjc" path="res://scenes/hotel/hotel.tscn" id="5_0w18b"]
+[ext_resource type="PackedScene" uid="uid://dcral81s8l3e1" path="res://scenes/ui/upgrade_button.tscn" id="4_k0vif"]
+[ext_resource type="PackedScene" path="res://scenes/hotel/hotel.tscn" id="5_0w18b"]
 [ext_resource type="PackedScene" uid="uid://bj50tgerq1y6t" path="res://scenes/ui/room_upgrade_menu.tscn" id="5_k0vif"]
-[ext_resource type="PackedScene" uid="uid://b4ulvxwq52jbn" path="res://scenes/ui/block_manage.tscn" id="6_5tjn0"]
+[ext_resource type="PackedScene" path="res://scenes/ui/block_manage.tscn" id="6_5tjn0"]
 [ext_resource type="PackedScene" uid="uid://8glmdx6xa26o" path="res://scenes/ui/upgrade_description.tscn" id="9_irplg"]
 
 [node name="HotelWindow" type="Control" unique_id=1529008732]
@@ -76,16 +76,17 @@ grow_horizontal = 2
 grow_vertical = 0
 mouse_filter = 2
 
-[node name="RoomUpgradeButton" type="Button" parent="HotelUpgradeMenu" unique_id=284673617]
+[node name="BuildFloorButton" parent="HotelUpgradeMenu" unique_id=1171972501 instance=ExtResource("4_k0vif")]
 layout_mode = 0
-offset_left = 11.0
-offset_top = 12.0
-offset_right = 70.0
-offset_bottom = 36.0
-theme = ExtResource("4_46gxr")
-text = "build floor"
+offset_left = 9.0
+offset_top = 7.0
+offset_right = 65.0
+offset_bottom = 21.0
+label_text = "Floor"
+description = "build a new floor"
 
 [node name="RoomUpgradeMenu" parent="." unique_id=558005973 instance=ExtResource("5_k0vif")]
+visible = false
 layout_mode = 1
 
 [node name="RoomInfoMenu" parent="." unique_id=1346516254 instance=ExtResource("4_16lx5")]
@@ -110,4 +111,4 @@ anchor_top = 0.68016195
 grow_horizontal = 1
 grow_vertical = 1
 
-[connection signal="pressed" from="HotelUpgradeMenu/RoomUpgradeButton" to="." method="_on_room_upgrade_button_pressed"]
+[connection signal="pressed" from="HotelUpgradeMenu/BuildFloorButton" to="." method="_on_build_floor_button_pressed"]

@@ -9,6 +9,8 @@ static var inst: Hotel = null
 @onready var room_upgrade_menu: RoomUpgradeMenu = $RoomUpgradeMenu
 @onready var room_info_menu: RoomInfoMenu = $RoomInfoMenu
 
+@onready var build_floor_button: UpgradeButton = $HotelUpgradeMenu/BuildFloorButton
+
 @onready var hotel_menu: HotelMenu = $Hotel
 
 var floors: int = 1
@@ -46,6 +48,8 @@ func _ready() -> void:
 	hotel_upgrade_menu.visible = true
 	room_upgrade_menu.visible = false
 	
+	build_floor_button.cost = UpgradeCosts.FLOOR[floors]
+	
 	## give player 1 room to start
 	get_room(Vector2i(0, 0)).built = true
 
@@ -71,12 +75,6 @@ func update_room_info_menu():
 	room_info_menu.visible = true
 	room_info_menu.update_viewed_room(room)
 
-func _on_room_upgrade_button_pressed() -> void:
-	if floors == 5: return
-	if GameManager.inst.purchase_upgrade(UpgradeCosts.FLOOR[floors]):
-		floors += 1
-		hotel_menu.add_floor(floors)
-
 func get_room(location: Vector2i) -> Room:
 	var rooms: Array[Node] = get_tree().get_nodes_in_group("room")
 	
@@ -85,3 +83,11 @@ func get_room(location: Vector2i) -> Room:
 			return room
 	
 	return null
+
+
+func _on_build_floor_button_pressed() -> void:
+	if floors == 5: return
+	if GameManager.inst.purchase_upgrade(UpgradeCosts.FLOOR[floors]):
+		floors += 1
+		hotel_menu.add_floor(floors)
+		build_floor_button.cost = UpgradeCosts.FLOOR[floors]
