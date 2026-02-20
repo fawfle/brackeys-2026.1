@@ -173,6 +173,8 @@ func manage_next_guest() -> void:
 	
 	await play_guest_enter_animation(current_guest.node)
 	
+	if phase != Phase.MANAGEMENT: return
+	
 	start_assign_guest_leave_timer(current_guest)
 	
 	if current_guest != null: Globals.set_text.emit(current_guest.get_intro_lines())
@@ -183,14 +185,16 @@ func leave_guest() -> void:
 	if current_guest == null or playing_exit_animation or assigning_guest: return
 	
 	var node: Node2D = current_guest.node
-	Globals.set_text.emit(current_guest.leave)
+	Globals.set_text.emit(current_guest.rejected_goodbye)
 	current_guest = null
 	await Globals.text_displayed
 	await get_tree().create_timer(1.0).timeout
 	await play_guest_exit_animation(node)
-	Globals.set_text.emit()
+	
 	node.queue_free()
-	manage_next_guest()
+	if current_guest != null: return
+	
+	Globals.set_text.emit()
 
 ## currently duplicate guests and set traits here. Maybe change in the future if it's confusing.
 func create_next_guest() -> Guest:

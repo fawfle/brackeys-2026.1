@@ -62,6 +62,8 @@ func _process(delta: float) -> void:
 	
 	if held:
 		clean_timer += delta
+	elif clean_timer > 0:
+		clean_timer -= delta
 	
 	if clean_timer > time_to_clean:
 		upgrade_sanitation()
@@ -69,7 +71,7 @@ func _process(delta: float) -> void:
 		clean_timer = 0
 		return
 	
-	clean_progress.visible = held
+	clean_progress.visible = held or clean_timer > 0
 	clean_progress.value = clean_timer
 
 var occupied: bool:
@@ -142,6 +144,9 @@ func on_right() -> bool:
 
 func on_ground_floor() -> bool:
 	return location.y == 0
+
+func on_top_floor() -> bool:
+	return location.y == Hotel.inst.floors - 1
 
 ## return rooms on left/right
 func get_floor_neighbors() -> Array[Room]:
