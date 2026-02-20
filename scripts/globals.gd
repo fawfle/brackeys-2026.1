@@ -15,6 +15,10 @@ signal set_text(lines: Array[String])
 @warning_ignore("unused_signal")
 signal text_finished()
 
+## emited when text is fully displayed
+@warning_ignore("unused_signal")
+signal text_displayed()
+
 ## used to signal money updated
 @warning_ignore("unused_signal")
 signal set_money(money: int)

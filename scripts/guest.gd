@@ -16,6 +16,7 @@ class_name Guest extends Resource
 
 ## Stay duration
 @export var stay_duration: int = 1
+var days_stayed: int = 0
 
 ## message on greeting
 @export var greeting: Array[String] = []

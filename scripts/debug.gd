@@ -50,3 +50,9 @@ func handle_command(command: String):
 	elif input_command[0] == "m":
 		print("DEBUG: ADDING MONEY")
 		GameManager.inst.money += int(input_num)
+	elif input_command[0] == "e":
+		print("ENDING DAY")
+		GameManager.inst.time = GameManager.inst.daytime_length
+	elif input_command[0] == "d":
+		print("STARTING NEXT DAY")
+		GameManager.inst.time = GameManager.inst.total_day_length

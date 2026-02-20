@@ -20,8 +20,13 @@ func load_line_from_queue():
 	var line: String = line_queue.pop_front()
 	text_box.text = line
 	
+	if text_tween: text_tween.stop()
 	text_tween = get_tree().create_tween()
 	text_tween.tween_property(text_box, "visible_ratio", 1, line.length() * 0.02)
+	
+	await text_tween.finished
+	
+	Globals.text_displayed.emit()
 
 func on_set_text(lines: Array[String] = [""]) -> void:
 	line_queue = lines

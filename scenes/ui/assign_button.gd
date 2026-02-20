@@ -3,6 +3,7 @@ extends Button
 func _ready() -> void:
 	Globals.select_room.connect(update_disabled)
 	Globals.current_guest_changed.connect(_on_current_guest_changed)
+	Globals.room_upgraded.connect(update_disabled)
 	
 	pressed.connect(func(): disabled = true)
 

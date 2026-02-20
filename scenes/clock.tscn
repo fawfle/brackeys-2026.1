@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://bkdg1tw4v3tck"]
+
+[ext_resource type="Texture2D" uid="uid://cgb2cooqd8ndm" path="res://sprites/ui/clock.png" id="1_eptq3"]
+[ext_resource type="Texture2D" uid="uid://bv8foa0gb00o8" path="res://sprites/ui/clock_hand.png" id="2_7dv1d"]
+[ext_resource type="Script" uid="uid://cqbmsailgvp2h" path="res://scenes/clock.gd" id="2_er1xc"]
+[ext_resource type="Texture2D" uid="uid://dik815x7th4ll" path="res://sprites/ui/clock_hand_small.png" id="3_er1xc"]
+
+[node name="Clock" type="Sprite2D" unique_id=670707523]
+texture = ExtResource("1_eptq3")
+script = ExtResource("2_er1xc")
+
+[node name="HandPivot" type="Node2D" parent="." unique_id=1764247178]
+
+[node name="Hand" type="Sprite2D" parent="HandPivot" unique_id=2130056162]
+texture = ExtResource("2_7dv1d")
+
+[node name="SmallHandPivot" type="Node2D" parent="." unique_id=606859368]
+
+[node name="SmallHand" type="Sprite2D" parent="SmallHandPivot" unique_id=2046860634]
+texture = ExtResource("3_er1xc")

@@ -6,6 +6,7 @@ static var inst: Hotel = null
 @onready var room_deselect: TextureButton = $RoomDeselect
 
 @onready var hotel_upgrade_menu: Control = $HotelUpgradeMenu
+@onready var room_upgrade_menu: RoomUpgradeMenu = $RoomUpgradeMenu
 @onready var room_info_menu: RoomInfoMenu = $RoomInfoMenu
 
 @onready var hotel_menu: HotelMenu = $Hotel
@@ -37,11 +38,13 @@ func _ready() -> void:
 	Globals.exit_hover_room.connect(_on_exit_hover_room)
 	room_deselect.button_down.connect(func(): Globals.select_room.emit(null))
 	
-	Globals.guest_assigned.connect(func(_guest: Guest): update_room_info_menu())
+	Globals.guest_assigned.connect(func(_guest: Guest):  update_room_info_menu())
 	Globals.guest_checked_out.connect(func(_guest: Guest): update_room_info_menu())
 	Globals.room_upgraded.connect(func(_room: Room): update_room_info_menu())
 	
 	room_info_menu.visible = false
+	hotel_upgrade_menu.visible = true
+	room_upgrade_menu.visible = false
 	
 	## give player 1 room to start
 	get_room(Vector2i(0, 0)).built = true
@@ -49,6 +52,7 @@ func _ready() -> void:
 func _on_select_room(room: Room):
 	selected_room = room
 	hotel_upgrade_menu.visible = room == null
+	room_upgrade_menu.visible = room != null
 
 func _on_hover_room(room: Room):
 	hovered_room = room

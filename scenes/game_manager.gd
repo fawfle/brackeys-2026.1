@@ -3,6 +3,7 @@ class_name GameManager extends Node2D
 static var inst: GameManager = null
 
 const assign_guest_leave_time: float = 30
+var guests_per_day: int = 2
 
 const floating_text_scene: PackedScene = preload("res://scenes/ui/floating_text.tscn")
 
@@ -13,10 +14,22 @@ const floating_text_scene: PackedScene = preload("res://scenes/ui/floating_text.
 
 #TODO: placeholder, replace with actual stars
 @onready var star_rating: Label = $"CanvasLayer/GuestWindow/StarRating"
-@onready var radial_bar: TextureProgressBar = $CanvasLayer/GuestWindow/GuestTimerRadialBar
 @onready var assign_button: Button = $CanvasLayer/GuestWindow/AssignButton
 
 var day: int = 0
+
+## total length of day in seconds
+var daytime_length: float = 60
+var night_length: float = 10
+
+var total_day_length:
+	get: return daytime_length + night_length
+
+var time_ratio:
+	get: return time / total_day_length
+
+## current time of day. Represents a fraction of total_day_length
+var time: float = 0
 
 var money: int = 0:
 	get: return money
@@ -35,8 +48,13 @@ var guest_checkout_queue: Array[Guest] = []
 var random_trait_count: int = 1
 var stay_length_max: int = 1
 
+## Boolean heaven!!
 ## bool for if currently playing an animation. forces functions to wait
-var playing_animation: bool = false
+var playing_animation: bool:
+	get: return playing_exit_animation or playing_enter_animation
+var playing_enter_animation: bool = false ## is playing enter animation
+var playing_exit_animation: bool = false ## is currently playing exit animation
+var assigning_guest: bool = false ## is playing assign guest animation
 
 ## stores list of last n guests and "blacklists" them
 var past_guest_queue: Array[Guest] = []
@@ -48,6 +66,9 @@ enum Phase {
 	MANAGEMENT, ## managing guests and hotel
 	NIGHT, ## rest, possibly just a menu
 }
+
+var is_daytime_phase: bool:
+	get: return phase == Phase.CHECKOUT or phase == Phase.MANAGEMENT
 
 var phase: Phase = Phase.MANAGEMENT:
 	get: return phase
@@ -63,27 +84,29 @@ func _ready() -> void:
 	TraitList.LOAD_TRAITS()
 	GuestList.LOAD_GUESTS()
 	
-	radial_bar.visible = false
 	star_rating.visible = false
 	
 	assign_button.button_down.connect(_on_assign_button_button_down)
 	
 	begin_management_phase()
 
-func begin_next_phase() -> void:
-	# use call_deferred to keep call stack in check
-	match(phase):
-		Phase.CHECKOUT:
-			begin_management_phase.call_deferred()
-		Phase.MANAGEMENT:
-			end_day.call_deferred()
-		Phase.NIGHT:
-			begin_checkout_phase.call_deferred()
+func _process(delta: float) -> void:
+	time += delta
+	if is_daytime_phase and time > daytime_length:
+		end_day()
+		return
+	
+	if phase == Phase.MANAGEMENT:
+		if guest_assign_queue.size() > 0:
+			manage_next_guest()
+	
+	if phase == Phase.NIGHT and time > total_day_length:
+		begin_day()
 
 func begin_management_phase() -> void:
 	phase = Phase.MANAGEMENT
 	
-	guest_assign_queue = GuestList.create_guest_queue(1, day, past_guest_queue)
+	guest_assign_queue = GuestList.create_guest_queue(guests_per_day, day, past_guest_queue)
 	past_guest_queue.append_array(guest_assign_queue)
 	past_guest_queue = past_guest_queue.slice(past_guest_queue.size() - past_guest_queue_limit, past_guest_queue.size())
 
@@ -95,31 +118,33 @@ func begin_checkout_phase() -> void:
 	phase = Phase.CHECKOUT
 	guest_checkout_queue.clear()
 	for room: Room in get_rooms():
-		if room.guest != null and room.guest.stay_duration <= 0:
+		if room.guest != null and room.guest.stay_duration <= room.guest.days_stayed:
 			var guest: Guest = room.checkout_guest()
 			guest_checkout_queue.push_back(guest)
 	
 	guest_checkout_queue.shuffle()
 	begin_checkout_next_guest()
 
+func begin_day() -> void:
+	day += 1
+	time = 0
+	Globals.begin_day.emit(day)
+	begin_checkout_phase()
+
 ## Handle the end of the day
 func end_day() -> void:
 	phase = Phase.NIGHT
 	for room: Room in get_rooms():
-		if room.guest != null: room.guest.stay_duration -= 1
+		if room.guest != null: room.guest.days_stayed += 1
+	
+	if current_guest != null:
+		leave_guest()
 	
 	await get_tree().create_timer(2).timeout
-	
-	day += 1
-	Globals.begin_day.emit(day)
-	
-	begin_next_phase()
 
 func manage_next_guest() -> void:
 	if phase != Phase.MANAGEMENT: return
-	if guest_assign_queue.size() <= 0:
-		begin_next_phase()
-		return
+	if guest_assign_queue.size() <= 0: return
 	
 	current_guest = create_next_guest()
 	
@@ -139,11 +164,15 @@ func manage_next_guest() -> void:
 
 ## have guest leave
 func leave_guest() -> void:
+	if current_guest == null or playing_exit_animation or assigning_guest: return
+	
 	var node: Node2D = current_guest.node
 	Globals.set_text.emit(current_guest.goodbye)
 	current_guest = null
-	await Globals.text_finished
+	await Globals.text_displayed
+	await get_tree().create_timer(1.0).timeout
 	await play_guest_exit_animation(node)
+	Globals.set_text.emit()
 	node.queue_free()
 	manage_next_guest()
 
@@ -197,11 +226,12 @@ func checkout_guest() -> void:
 	begin_checkout_next_guest()
 
 func _on_assign_button_button_down() -> void:
-	if Hotel.inst.selected_room != null: assign_current_guest(Hotel.inst.selected_room)
+	if Hotel.inst.selected_room != null: assign_guest(Hotel.inst.selected_room)
 
 
-func assign_current_guest(room: Room):
+func assign_guest(room: Room):
 	if room.guest != null or current_guest == null or playing_animation: return
+	assigning_guest = true
 	
 	Globals.set_text.emit()
 	
@@ -209,29 +239,23 @@ func assign_current_guest(room: Room):
 	current_guest.node.reparent(room)
 	await get_tree().create_timer(0.8).timeout
 	
-	Globals.guest_assigned.emit(current_guest)
 	room.add_guest(current_guest)
 	current_guest.room = room
+	Globals.guest_assigned.emit(current_guest)
 	current_guest = null
 	
 	guest_leave_timer.stop()
 	guest_leave_timer.timeout.emit() # need to call manually :)
+	
+	assigning_guest = false
 
 
 func start_assign_guest_leave_timer(guest: Guest):
 	guest_leave_timer.start(assign_guest_leave_time)
-	radial_bar.visible = true
-	radial_bar.modulate = Color("#ffffff00")
-	radial_bar.create_tween().tween_property(radial_bar, "modulate", Color("ffffffff"), 0.2)
-	radial_bar.value = 100
-	var tween: Tween =  get_tree().create_tween()
-	tween.tween_property(radial_bar, "value", 5, assign_guest_leave_time)
 	
 	await guest_leave_timer.timeout
 	
-	tween.stop()
-	radial_bar.create_tween().tween_property(radial_bar, "modulate", Color("ffffff00"), 0.2)
-	if current_guest != guest: return
+	if current_guest != guest or current_guest == null: return
 	
 	leave_guest()
 
@@ -244,7 +268,7 @@ func purchase_upgrade(cost: int) -> bool:
 
 
 func play_guest_enter_animation(guest_node: Node2D):
-	playing_animation = true
+	playing_enter_animation = true
 	var duration: float = 0.9
 	
 	# var end_color: Color = Color("ffffffff")
@@ -262,10 +286,10 @@ func play_guest_enter_animation(guest_node: Node2D):
 	# get_tree().create_tween().tween_property(guest_node, "modulate", end_color, duration)
 	# await get_tree().create_timer(duration).timeout
 	
-	playing_animation = false
+	playing_enter_animation = false
 
 func play_guest_exit_animation(guest_node: Node2D):
-	playing_animation = true
+	playing_exit_animation = true
 	var duration: float = 0.6
 	
 	var end_color: Color = Color("ffffff00")
@@ -274,7 +298,7 @@ func play_guest_exit_animation(guest_node: Node2D):
 	
 	await get_tree().create_timer(duration).timeout
 	
-	playing_animation = false
+	playing_exit_animation = false
 
 func get_rooms():
 	return get_tree().get_nodes_in_group("room")
