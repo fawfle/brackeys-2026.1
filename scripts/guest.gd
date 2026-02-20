@@ -121,10 +121,8 @@ func update_happiness_rating() -> float:
 			rating -= guest_trait.preference
 			if guest_trait.fail_feedback != "": fail_feedback.push_back(guest_trait.fail_feedback)
 	
-	# deduct 1 star for each sanitation issue
-	if not ignore_sanitation:
-		if room.sanitation == Room.Sanitation.DIRTY: happiness_rating -= 2
-		elif room.sanitation == Room.Sanitation.MESSY: happiness_rating -= 1
+	
+	
 	
 	happiness_rating = max(0, rating)
 	return happiness_rating

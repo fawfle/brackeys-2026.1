@@ -23,8 +23,7 @@ func load_line_from_queue():
 	# if line is empty, skip
 	if line == "": load_line_from_queue()
 	
-	if text_tween != null and text_tween.is_valid(): text_tween.stop()
-	
+	if text_tween: text_tween.stop()
 	text_tween = get_tree().create_tween()
 	text_tween.tween_property(text_box, "visible_ratio", 1, line.length() * 0.02)
 	

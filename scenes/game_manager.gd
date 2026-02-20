@@ -195,12 +195,9 @@ func leave_guest() -> void:
 	await play_guest_exit_animation(node)
 	
 	node.queue_free()
+	if current_guest != null: return
 	
-	if current_guest == null: Globals.set_text.emit() # just in case overlaps with something else
-	
-	await get_tree().create_timer(0.9).timeout # time padding
-	
-	leaving_guest = false
+	Globals.set_text.emit()
 
 ## currently duplicate guests and set traits here. Maybe change in the future if it's confusing.
 func create_next_guest() -> Guest:
