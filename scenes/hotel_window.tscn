@@ -111,9 +111,3 @@ grow_horizontal = 1
 grow_vertical = 1
 
 [connection signal="pressed" from="HotelUpgradeMenu/RoomUpgradeButton" to="." method="_on_room_upgrade_button_pressed"]
-<<<<<<< HEAD
-=======
-[connection signal="pressed" from="RoomUpgradeMenu/Clean" to="." method="_on_clean_pressed"]
-[connection signal="pressed" from="RoomUpgradeMenu/Quality" to="." method="_on_quality_pressed"]
-[connection signal="pressed" from="RoomUpgradeMenu/Size" to="." method="_on_quality_pressed"]
->>>>>>> main

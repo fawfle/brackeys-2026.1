@@ -17,4 +17,4 @@ func _on_current_guest_changed(guest: Guest):
 		disabled  = true
 	else:
 		visible = true
-		update_disabled(Hotel.inst.selected_room)
+		update_disabled(null if Hotel.inst == null else Hotel.inst.selected_room)
