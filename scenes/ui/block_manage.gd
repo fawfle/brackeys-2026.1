@@ -8,6 +8,5 @@ func _ready() -> void:
 	Globals.current_guest_changed.connect(func(_guest: Guest): update_visibility(Hotel.inst.selected_room))
 
 func update_visibility(room: Room):
-	if GameManager.inst.phase != GameManager.Phase.MANAGEMENT: return
 	visible = room != null and room.guest != null
 	blocked_text.text = "room occupied"

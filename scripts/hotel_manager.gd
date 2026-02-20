@@ -41,8 +41,9 @@ func _ready() -> void:
 	room_deselect.button_down.connect(func(): Globals.select_room.emit(null))
 	
 	Globals.guest_assigned.connect(func(_guest: Guest):  update_room_info_menu())
-	Globals.guest_checked_out.connect(func(_guest: Guest): update_room_info_menu())
-	Globals.room_upgraded.connect(func(_room: Room): update_room_info_menu())
+	Globals.current_guest_changed.connect(func(_guest: Guest):  update_room_info_menu())
+	# Globals.guest_checked_out.connect(func(_guest: Guest): update_room_info_menu())
+	Globals.room_updated.connect(func(_room: Room): update_room_info_menu())
 	
 	room_info_menu.visible = false
 	hotel_upgrade_menu.visible = true

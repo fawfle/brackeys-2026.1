@@ -2,6 +2,7 @@
 
 [ext_resource type="Theme" uid="uid://bqm4ull505em5" path="res://themes/theme.tres" id="1_e8e1h"]
 [ext_resource type="Script" uid="uid://i75im4x6l8i" path="res://scenes/ui/room_info_menu.gd" id="1_wxk2m"]
+[ext_resource type="Texture2D" uid="uid://b18v26ttupgmj" path="res://sprites/characters/newt.png" id="2_o4yic"]
 
 [node name="RoomInfoMenu" type="Control" unique_id=1346516254]
 layout_mode = 3
@@ -12,6 +13,14 @@ grow_horizontal = 2
 mouse_filter = 2
 script = ExtResource("1_wxk2m")
 
+[node name="GuestTextureRect" type="TextureRect" parent="." unique_id=832225423]
+layout_mode = 0
+offset_right = 53.0
+offset_bottom = 48.0
+texture = ExtResource("2_o4yic")
+expand_mode = 1
+stretch_mode = 6
+
 [node name="ColorRect" type="ColorRect" parent="." unique_id=252871795]
 layout_mode = 1
 anchors_preset = 15
@@ -21,24 +30,6 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 0.23529412)
-
-[node name="Guest" type="Label" parent="." unique_id=624130536]
-layout_mode = 0
-offset_left = 6.0
-offset_top = 6.0
-offset_right = 46.0
-offset_bottom = 29.0
-theme = ExtResource("1_e8e1h")
-text = "Guest:"
-
-[node name="Quality" type="Label" parent="." unique_id=1923322253]
-layout_mode = 0
-offset_left = 6.0
-offset_top = 23.0
-offset_right = 46.0
-offset_bottom = 46.0
-theme = ExtResource("1_e8e1h")
-text = "Quality:"
 
 [node name="Sanitation" type="Label" parent="." unique_id=1803080640]
 layout_mode = 0

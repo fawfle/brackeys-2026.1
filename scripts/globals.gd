@@ -33,7 +33,7 @@ signal hover_room(room: Room)
 signal exit_hover_room(room: Room)
 
 @warning_ignore("unused_signal")
-signal room_upgraded(room: Room)
+signal room_updated(room: Room)
 
 @warning_ignore(("unused_signal"))
 signal begin_day(day: int)
