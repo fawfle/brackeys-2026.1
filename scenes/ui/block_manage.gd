@@ -5,6 +5,7 @@ class_name BlockManageWindow extends ColorRect
 
 func _ready() -> void:
 	Globals.select_room.connect(update_visibility)
+	#Globals.current_guest_changed.connect(func(guest: Guest): update_visibility(Hotel.inst.selected_room))
 
 func update_visibility(room: Room):
 	if GameManager.inst.phase != GameManager.Phase.MANAGEMENT: return
