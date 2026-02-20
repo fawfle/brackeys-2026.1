@@ -16,7 +16,7 @@ class_name UpgradeButton extends TextureButton
 	set(value):
 		cost = value
 		if Engine.is_editor_hint(): return
-		cost_label.text = "$" + str(value)
+		cost_label.text = "$" + str(value) if cost >= 0 else "MAX"
 		update_button(GameManager.inst.money)
 
 const disabled_color: Color = Color("#ffffff22")
@@ -29,9 +29,10 @@ func _ready() -> void:
 	Globals.set_money.connect(update_button)
 	
 	label.text = label_text
+	update_button(0)
 
 func update_button(money: int) -> void:
-	if money < cost:
+	if cost < 0 or money < cost:
 		modulate = disabled_color
 		return
 	
