@@ -6,6 +6,7 @@ UI Mechanics:
 	add finish dialouge indicator to guest text
 	add text enter animation
 	5 star visual
+	annoyed guest animation
 
 Hotel Mechanics:
 	upgrades

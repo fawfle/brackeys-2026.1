@@ -47,6 +47,15 @@ var guest_checkout_queue: Array[Guest] = []
 
 var random_trait_count: int = 1
 var stay_length_max: int = 1
+var guest_assign_start_time: float = 0
+var time_since_guest: float:
+	get: return time - guest_assign_start_time
+
+## time given to player to assign each guest. Next guest can't appear before timer runs out FROM initial guest assigning time
+var assign_time_per_guest: float = 0
+
+## builtin time to give player to manage day easier
+var guest_assign_time_bias: float = 10
 
 ## Boolean heaven!!
 ## bool for if currently playing an animation. forces functions to wait
@@ -96,7 +105,7 @@ func _process(delta: float) -> void:
 		end_day()
 		return
 	
-	if phase == Phase.MANAGEMENT:
+	if phase == Phase.MANAGEMENT and current_guest == null and time_since_guest >= assign_time_per_guest:
 		if guest_assign_queue.size() > 0:
 			manage_next_guest()
 	
@@ -109,6 +118,8 @@ func begin_management_phase() -> void:
 	guest_assign_queue = GuestList.create_guest_queue(guests_per_day, day, past_guest_queue)
 	past_guest_queue.append_array(guest_assign_queue)
 	past_guest_queue = past_guest_queue.slice(past_guest_queue.size() - past_guest_queue_limit, past_guest_queue.size())
+	
+	assign_time_per_guest = (daytime_length - guest_assign_time_bias) / guest_assign_queue.size()
 
 	manage_next_guest()
 
@@ -147,6 +158,7 @@ func manage_next_guest() -> void:
 	if guest_assign_queue.size() <= 0: return
 	
 	current_guest = create_next_guest()
+	guest_assign_start_time = time
 	
 	# clean children
 	for child in guest_parent.get_children(): guest_parent.remove_child(child)
