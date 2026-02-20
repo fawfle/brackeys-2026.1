@@ -173,6 +173,7 @@ func manage_next_guest() -> void:
 	start_assign_guest_leave_timer(current_guest)
 	
 	if current_guest != null: Globals.set_text.emit(current_guest.get_intro_lines())
+	Globals.managing_guest.emit(current_guest)
 
 ## have guest leave
 func leave_guest() -> void:

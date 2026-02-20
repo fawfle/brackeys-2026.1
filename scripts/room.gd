@@ -12,6 +12,9 @@ const GROUP_NAME: String = "room"
 ## location of room in hotel. Starts at 0,0 from bottom left. Floor is location.y
 @export var location: Vector2i = Vector2i.ZERO
 
+var hotel_floor: int:
+	get: return location.y
+
 @export var built: bool = false:
 	get: return built
 	set(value):
@@ -20,7 +23,12 @@ const GROUP_NAME: String = "room"
 
 @onready var room_sprite:Sprite2D = $RoomSprite
 @export var room_construction_texture: Texture
-@export var room_dump_texture: Texture
+
+const QUALITY_TEXTURES: Dictionary[Quality, Texture] = {
+	Quality.DUMP: preload("res://sprites/ui/room.png"),
+	Quality.NORMAL: preload("res://sprites/ui/room_normal.png"),
+	Quality.CLASSY: preload("res://sprites/ui/room_classy.png")
+}
 
 var guest: Guest = null:
 	get: return guest
@@ -29,6 +37,11 @@ var guest: Guest = null:
 		guest_indicator.visible = guest != null
 
 @onready var guest_indicator: Sprite2D = $GuestIndicator
+
+## time it takes to clean room
+var clean_time: float = 5
+## time spent cleaning
+var clean_timer: float = 0
 
 func _ready() -> void:
 	guest_indicator.visible = false
@@ -81,7 +94,7 @@ func update_room_sprite():
 		room_sprite.texture = room_construction_texture
 		return
 	
-	room_sprite.texture = room_dump_texture
+	room_sprite.texture = QUALITY_TEXTURES.get(quality)
 
 ## makes room messier, mostly for when guests leave
 func decrease_sanitation():
@@ -135,6 +148,7 @@ func upgrade_quality():
 	if quality == Quality.CLASSY: return
 	
 	quality = (quality + 1) as Quality
+	update_room_sprite()
 	Globals.room_upgraded.emit(self)
 		
 func upgrade_room_size(): 

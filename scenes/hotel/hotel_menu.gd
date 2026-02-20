@@ -17,8 +17,9 @@ func add_floor(floor_to_add: int):
 	if floor_to_add > 5: return
 	roof.position.y = ROOF_INITIAL_POSITION + ((floor_to_add - 1) * -FLOOR_SIZE)
 
+	print(floor_to_add)
 	var hotel_floor: HotelFloor = floor_scene.instantiate()
-	hotel_floor.set_floor(floor_to_add)
 	add_child(hotel_floor)
+	hotel_floor.set_floor(floor_to_add)
 	
 	hotel_floor.position = FLOOR_INITIAL_POSITION + FLOOR_OFFSET * (floor_to_add - 1)

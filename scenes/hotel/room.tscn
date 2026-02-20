@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://c4sqydxoo0nlf" path="res://sprites/ui/room.png" id="2_3qhai"]
 [ext_resource type="Texture2D" uid="uid://bas8r7ai7030r" path="res://sprites/ui/room_construction.png" id="2_m5k2i"]
 [ext_resource type="Texture2D" uid="uid://cvk01ed1din40" path="res://sprites/ui/guest-icon.png" id="3_xw5ef"]
-[ext_resource type="Script" uid="uid://b8p8qqudnkfqb" path="res://scenes/hotel/guest_indicator.gd" id="4_bn68h"]
+[ext_resource type="Script" path="res://scenes/hotel/guest_indicator.gd" id="4_bn68h"]
 [ext_resource type="Texture2D" uid="uid://ch6fvqd1ffg6" path="res://sprites/ui/room_selected.png" id="4_m5k2i"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_u8qe1"]
@@ -15,7 +15,6 @@ layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_4oh1f")
 room_construction_texture = ExtResource("2_m5k2i")
-room_dump_texture = ExtResource("2_3qhai")
 
 [node name="RoomSprite" type="Sprite2D" parent="." unique_id=1364284177]
 texture = ExtResource("2_3qhai")
