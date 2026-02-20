@@ -11,7 +11,7 @@ class_name RoomUpgradeMenu extends Control
 
 func _ready() -> void:
 	Globals.select_room.connect(update_menu)
-	Globals.room_upgraded.connect(update_menu)
+	Globals.room_updated.connect(update_menu)
 
 func update_menu(room: Room) -> void:
 	if room == null:

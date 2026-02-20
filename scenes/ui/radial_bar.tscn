@@ -23,7 +23,7 @@ metadata/_snap_enabled = true
 [node name="TextureProgressBar" type="TextureProgressBar" unique_id=632993768]
 offset_right = 12.0
 offset_bottom = 12.0
-value = 100.0
+value = 1.0
 fill_mode = 5
 nine_patch_stretch = true
 texture_under = SubResource("GradientTexture2D_a3ci3")

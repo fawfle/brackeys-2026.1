@@ -7,6 +7,7 @@ enum {
 	GOODBYE, ## Message sent when leaving
 	HAPPY_GOODBYE, ## Message sent when leaving very happy
 	ANGRY_GOODBYE, ## Message sent when leaving angry
+	REJECTED_GOODBYE, ## Message sent when leaving b/c ignored or turned away
 	MONEY, ## how much money they initially have
 	APPEAR_AFTER, ## Threshold to not appear before a certain day. For gating guests after unlocks.
 	EVENT, ## Mark a guest as an "event" type. They won't be added to any normal guest queues.
@@ -20,15 +21,17 @@ static var GUESTS_DATA: Dictionary[String, Dictionary] = {
 		GOODBYE: "Goodbye",
 		HAPPY_GOODBYE: "I was so happy. Goodbye.",
 		ANGRY_GOODBYE: "I am angry and goodbying",
+		REJECTED_GOODBYE: "I didn't want to stay here anyway.",
 		MONEY: 10,
 	},
 	"Hazmat": {
 		SCENE: preload("res://scenes/characters/hazmat.tscn"),
 		DEFAULT_TRAITS: [TraitList.Trait.RADIOACTIVE],
-		GREETING: ["My name are hazmat!!!", "You looking silly!"],
+		GREETING: ["My name are Hazmat!!!", "You looking silly!"],
 		GOODBYE: "Me go, you stay!",
 		HAPPY_GOODBYE: "Me like bathtub! It is so green now!",
 		ANGRY_GOODBYE: "Bed was too soft! Get rid of bed!!!",
+		REJECTED_GOODBYE: "you can't see me!!",
 		MONEY: 10,
 	},
 	"Mono": {
@@ -38,6 +41,7 @@ static var GUESTS_DATA: Dictionary[String, Dictionary] = {
 		GOODBYE: "_ _ __ _  _ __  _ __ _  _  __ __  _  _ __ _ _  _ __ _ _  _ __ _ __ _ __", # farewell.
 		HAPPY_GOODBYE: "_ _  _ __  __ __  _ __ __ _  _ __ _ _  _  _ __  _ _ _  _  __ _ _  _ __ _ __ _ __", # I am pleased.
 		ANGRY_GOODBYE: "_ _  _ _ _ _  _ __  _-  _  __ _ __ __  __ __ __  _ _ __  _ __ _ __ _ __", # I hate you.
+		REJECTED_GOODBYE: "_ __ _ __ _ __ _ __ _ __ _ __ _ __ _ __ _ __", # ...
 		MONEY: 10,
 	},
 	"Newt": {
@@ -47,6 +51,7 @@ static var GUESTS_DATA: Dictionary[String, Dictionary] = {
 		GOODBYE: "Adequate service! Thank you, and don't forget: Kill all humans!",
 		HAPPY_GOODBYE: "Exquisite service! May the space-gods smile upon you! Enjoy some space-credits!",
 		ANGRY_GOODBYE: "Reprehensible service! Take me to your leader- I mean, manager!",
+		REJECTED_GOODBYE: "You must be hiding humans! I'm getting the mothership.",
 		MONEY: 10,
 	},
 	"Norman": {
@@ -56,6 +61,7 @@ static var GUESTS_DATA: Dictionary[String, Dictionary] = {
 		GOODBYE: "Peace out, girl scout.",
 		HAPPY_GOODBYE: "Best digs I've seen since Roswell. Don't be a stranger, ranger.",
 		ANGRY_GOODBYE: "That pad killed my vibes, dude. I'm outtie five thou...",
+		REJECTED_GOODBYE: "Not cool man. The service here is out of this world.",
 		MONEY: 10,
 	},
 	"Brainiac": {
@@ -65,6 +71,7 @@ static var GUESTS_DATA: Dictionary[String, Dictionary] = {
 		GOODBYE: "Au revoir, hotel person.",
 		HAPPY_GOODBYE: "I am pleasantly surprised, confrère. Perhaps we're not so different, you and I.",
 		ANGRY_GOODBYE: "Hideous, as I expected. Adieu, brainlet.",
+		REJECTED_GOODBYE: "Think you're better than me, chump? I'm taking my money somewhere else.",
 		MONEY: 10,
 	},
 	"Sheeple": {

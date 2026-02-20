@@ -37,6 +37,9 @@ var money: int = 0:
 		Globals.set_money.emit(value)
 		money = value
 
+## moeny to be deducted at end of day. TODO: concrete penatly for debt
+var expenses: int = 0
+
 var guest_assign_queue: Array[Guest] = []
 var guest_checkout_queue: Array[Guest] = []
 @export var current_guest: Guest = null:
@@ -180,7 +183,7 @@ func leave_guest() -> void:
 	if current_guest == null or playing_exit_animation or assigning_guest: return
 	
 	var node: Node2D = current_guest.node
-	Globals.set_text.emit(current_guest.goodbye)
+	Globals.set_text.emit(current_guest.leave)
 	current_guest = null
 	await Globals.text_displayed
 	await get_tree().create_timer(1.0).timeout

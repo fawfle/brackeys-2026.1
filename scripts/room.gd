@@ -9,6 +9,8 @@ const GROUP_NAME: String = "room"
 
 @onready var focus_outline: Sprite2D = $FocusOutline
 
+@onready var clean_progress: TextureProgressBar = $TextureProgressBar
+
 ## location of room in hotel. Starts at 0,0 from bottom left. Floor is location.y
 @export var location: Vector2i = Vector2i.ZERO
 
@@ -22,7 +24,7 @@ var hotel_floor: int:
 		update_room_sprite()
 
 @onready var room_sprite:Sprite2D = $RoomSprite
-@export var room_construction_texture: Texture
+const ROOM_CONSTRUCTION_TEXTURE: Texture = preload("res://sprites/ui/room_construction.png")
 
 const QUALITY_TEXTURES: Dictionary[Quality, Texture] = {
 	Quality.DUMP: preload("res://sprites/ui/room.png"),
@@ -39,17 +41,36 @@ var guest: Guest = null:
 @onready var guest_indicator: Sprite2D = $GuestIndicator
 
 ## time it takes to clean room
-var clean_time: float = 5
+var time_to_clean: float = 5
 ## time spent cleaning
 var clean_timer: float = 0
+
+var held: bool = false
 
 func _ready() -> void:
 	guest_indicator.visible = false
 	focus_outline.visible = false
+	clean_progress.visible = false
 	
 	Globals.select_room.connect(_on_room_select)
 	
 	update_room_sprite()
+	clean_progress.max_value = time_to_clean
+
+func _process(delta: float) -> void:
+	if sanitation == Sanitation.CLEAN: return
+	
+	if held:
+		clean_timer += delta
+	
+	if clean_timer > time_to_clean:
+		upgrade_sanitation()
+		clean_progress.visible = sanitation != Sanitation.CLEAN
+		clean_timer = 0
+		return
+	
+	clean_progress.visible = held
+	clean_progress.value = clean_timer
 
 var occupied: bool:
 	get: return guest != null
@@ -72,7 +93,11 @@ func _on_room_select(room: Room):
 	focus_outline.visible = room == self
 
 func _on_texture_button_button_down() -> void:
+	held = true
 	Globals.select_room.emit(self)
+
+func _on_texture_button_button_up() -> void:
+	held = false
 
 func _on_texture_button_mouse_entered() -> void:
 	Globals.hover_room.emit(self)
@@ -87,11 +112,14 @@ func checkout_guest() -> Guest:
 	
 	var g: Guest = guest;
 	guest = null
+	
+	decrease_sanitation()
+	
 	return g
 
 func update_room_sprite():
 	if not built:
-		room_sprite.texture = room_construction_texture
+		room_sprite.texture = ROOM_CONSTRUCTION_TEXTURE
 		return
 	
 	room_sprite.texture = QUALITY_TEXTURES.get(quality)
@@ -100,6 +128,7 @@ func update_room_sprite():
 func decrease_sanitation():
 	if sanitation == Sanitation.DIRTY: return
 	sanitation = (sanitation - 1) as Sanitation
+	Globals.room_updated.emit(self)
 
 ## functions to get location properties
 func in_center() -> bool:
@@ -142,25 +171,25 @@ func upgrade_sanitation():
 	if sanitation == Sanitation.CLEAN: return
 	
 	sanitation = (sanitation + 1) as Sanitation
-	Globals.room_upgraded.emit(self)
+	Globals.room_updated.emit(self)
 	
 func upgrade_quality(): 
 	if quality == Quality.CLASSY: return
 	
 	quality = (quality + 1) as Quality
 	update_room_sprite()
-	Globals.room_upgraded.emit(self)
+	Globals.room_updated.emit(self)
 		
 func upgrade_room_size(): 
 	if room_size == RoomSize.LARGE: return
 	
 	room_size = (room_size + 1) as RoomSize
-	Globals.room_upgraded.emit(self)
+	Globals.room_updated.emit(self)
 
 func build():
 	if built: return
 	built = true
-	Globals.room_upgraded.emit(self)
+	Globals.room_updated.emit(self)
 
 enum Sanitation {
 	DIRTY,
