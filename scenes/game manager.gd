@@ -86,7 +86,7 @@ func begin_management_phase() -> void:
 	guest_assign_queue = GuestList.create_guest_queue(1, day, past_guest_queue)
 	past_guest_queue.append_array(guest_assign_queue)
 	past_guest_queue = past_guest_queue.slice(past_guest_queue.size() - past_guest_queue_limit, past_guest_queue.size())
-	
+
 	manage_next_guest()
 
 func begin_checkout_phase() -> void:

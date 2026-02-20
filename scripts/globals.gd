@@ -42,9 +42,6 @@ signal guest_checked_out(guest: Guest)
 @warning_ignore(("unused_signal"))
 signal current_guest_changed(guest: Guest)
 
-@warning_ignore("unused_signal")
-signal guest_leaving()
-
 ## used in upgrade_button to set the text of the upgrade description field
 @warning_ignore(("unused_signal"))
 signal update_upgrade_text(text: String)
