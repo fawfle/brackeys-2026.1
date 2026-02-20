@@ -8,7 +8,7 @@ var input_num: String = ""
 var debug_mode: bool = false
 
 func _ready() -> void:
-	if Engine.is_editor_hint:
+	if OS.has_feature("editor"):
 		debug_mode = true
 
 func _input(event: InputEvent) -> void:

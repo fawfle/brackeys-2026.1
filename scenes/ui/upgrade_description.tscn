@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://8glmdx6xa26o"]
+
+[ext_resource type="Theme" uid="uid://bqm4ull505em5" path="res://themes/theme.tres" id="1_7xax1"]
+[ext_resource type="Script" uid="uid://bxrkwwhuxn4uh" path="res://scenes/ui/upgrade_description.gd" id="1_p5d0k"]
+
+[node name="UpgradeDescription" type="ColorRect" unique_id=615874670]
+anchors_preset = -1
+anchor_top = 0.7004049
+anchor_right = 1.0
+anchor_bottom = 0.757085
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.17, 0.17, 0.17, 0.8627451)
+script = ExtResource("1_p5d0k")
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="." unique_id=900184541]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 3.0
+offset_top = -9.0
+offset_right = 59.0
+offset_bottom = 7.0
+grow_vertical = 2
+theme = ExtResource("1_7xax1")
+text = "description text"

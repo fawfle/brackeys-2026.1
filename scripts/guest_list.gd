@@ -120,7 +120,7 @@ static func LOAD_GUESTS():
 			GUESTS.set(key, guest)
 
 # TODO: Add feature to stop duplicate guests, probably a recent_guest list
-static func create_guest_queue(length: int, current_day: int) -> Array[Guest]:
+static func create_guest_queue(length: int, current_day: int, guest_blacklist: Array[Guest] = []) -> Array[Guest]:
 	var guest_queue: Array[Guest] = [];
 	
 	for _i in range(100):
@@ -128,6 +128,7 @@ static func create_guest_queue(length: int, current_day: int) -> Array[Guest]:
 		
 		if guest.appear_after_day > current_day: continue
 		if guest_queue.has(guest): continue
+		if guest_blacklist.any(func(g: Guest): return g.name == guest): continue
 		
 		guest_queue.push_back(guest)
 		

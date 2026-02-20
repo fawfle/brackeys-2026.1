@@ -38,6 +38,10 @@ var stay_length_max: int = 1
 ## bool for if currently playing an animation. forces functions to wait
 var playing_animation: bool = false
 
+## stores list of last n guests and "blacklists" them
+var past_guest_queue: Array[Guest] = []
+const past_guest_queue_limit: int = 3
+
 ## phase of gameplay. Either assigning (getting guests),  managing (upgrading), or checkout (guests leaving and paying). ASSIGN -> UPGRADE -> CHECKOUT
 enum Phase {
 	CHECKOUT,
@@ -81,7 +85,9 @@ func begin_next_phase() -> void:
 
 func begin_assigning_phase() -> void:
 	phase = Phase.ASSIGNING
-	guest_assign_queue = GuestList.create_guest_queue(1, day)
+	guest_assign_queue = GuestList.create_guest_queue(1, day, past_guest_queue)
+	past_guest_queue.append_array(guest_assign_queue)
+	past_guest_queue = past_guest_queue.slice(past_guest_queue.size() - past_guest_queue_limit, past_guest_queue.size())
 	manage_next_guest()
 
 func begin_upgrading_phase() -> void:
