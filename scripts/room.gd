@@ -9,7 +9,8 @@ const GROUP_NAME: String = "room"
 
 @onready var focus_outline: Sprite2D = $FocusOutline
 
-@onready var clean_progress: TextureProgressBar = $TextureProgressBar
+@onready var clean_progress: TextureProgressBar = $CleanProgressBar
+@onready var build_progress: TextureProgressBar = $BuildProgressBar
 
 @onready var dim_overlay: ColorRect = $DimOverlay
 
@@ -25,7 +26,7 @@ var hotel_floor: int:
 		built = value
 		update_room_sprite()
 
-@onready var room_background: Sprite2D = $RoomBody
+@onready var room_background: Sprite2D = $RoomBackground
 @onready var room_body: Sprite2D = $RoomBody
 
 const ROOM_CONSTRUCTION_TEXTURE: Texture = preload("res://sprites/ui/room_construction.png")
@@ -60,22 +61,30 @@ var held: bool = false
 var upgrading: bool = false
 var upgrade_time: float = 0
 
+## time to complete an upgrade. Set to be day_length
+var time_to_upgrade: float = 120
+
 func _ready() -> void:
 	guest_indicator.visible = false
 	focus_outline.visible = false
 	clean_progress.visible = false
+	build_progress.visible = false
 	dim_overlay.visible = false
 	
 	Globals.select_room.connect(_on_room_select)
 	
+	time_to_upgrade = GameManager.inst.total_day_length
+	
 	update_room_sprite()
 	clean_progress.max_value = time_to_clean
+	build_progress.max_value = time_to_upgrade
 
 func _process(delta: float) -> void:
 	if upgrading:
 		upgrade_time += delta
-		if upgrade_time >= GameManager.inst.total_day_length:
-			stop_upgrading()
+		build_progress.value = time_to_upgrade - upgrade_time
+		if upgrade_time >= time_to_upgrade:
+			finish_upgrading()
 		return
 	
 	if sanitation == Sanitation.CLEAN: return
@@ -140,13 +149,16 @@ func checkout_guest() -> Guest:
 	return g
 
 func update_room_sprite():
-	if not built or upgrading:
+	if is_inactive():
 		room_body.texture = ROOM_CONSTRUCTION_TEXTURE
 	else:
 		room_body.texture = QUALITY_BODY_TEXTURES.get(quality)
 	
 	room_background.texture = QUALITY_BACKGROUND_TEXTURES.get(quality)
-	dim_overlay.visible = upgrading
+	dim_overlay.visible = is_inactive()
+
+func is_inactive() -> bool:
+	return not built or upgrading
 
 ## makes room messier, mostly for when guests leave
 func decrease_sanitation():
@@ -204,7 +216,7 @@ func upgrade_quality():
 	if quality == Quality.CLASSY: return
 	
 	quality = (quality + 1) as Quality
-	set_upgrading()
+	start_upgrading()
 	update_room_sprite()
 	Globals.room_updated.emit(self)
 		
@@ -212,7 +224,7 @@ func upgrade_room_size():
 	if room_size == RoomSize.LARGE: return
 	
 	room_size = (room_size + 1) as RoomSize
-	set_upgrading()
+	start_upgrading()
 	Globals.room_updated.emit(self)
 
 func build():
@@ -220,14 +232,20 @@ func build():
 	built = true
 	Globals.room_updated.emit(self)
 
-func set_upgrading():
+func start_upgrading():
 	upgrading = true
 	upgrade_time = 0
 	dim_overlay.visible = true
+	build_progress.visible = true
+	Globals.room_updated.emit(self)
 
-func stop_upgrading():
+func finish_upgrading():
+	if not upgrading: return
 	upgrading = false
-	dim_overlay.visible = true
+	dim_overlay.visible = false
+	build_progress.visible = false
+	update_room_sprite()
+	Globals.room_updated.emit(self)
 
 enum Sanitation {
 	DIRTY,
