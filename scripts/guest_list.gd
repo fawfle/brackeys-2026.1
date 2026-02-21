@@ -92,16 +92,17 @@ static var GUESTS_DATA: Dictionary[String, Dictionary] = {
 		GOODBYE: "Thanks for the room, friend.",
 		HAPPY_GOODBYE: "Fancy stuff, friend. I'll keep this place in mind...",
 		ANGRY_GOODBYE: "Not a fan, friend. I expect better from this fine establishment.",
+		REJECTED_GOODBYE: "Alright. Keep your rooms. I didn't want them anyway.",
 		MONEY: 10,
 	},
 	"Gobby": {
 		SCENE: preload("res://scenes/characters/gobby.tscn"),
 		DEFAULT_TRAITS: [TraitList.Trait.SHY],
 		GREETING: ["H-hullo. Can I get a room?", "I'm not looking for anything fancy... or too big..."],
-		GOODBYE: ["Many thankses. G-goodbye."],
-		HAPPY_GOODBYE: ["Thank you so much for the room! I'm just chuffed to bits!"],
-		ANGRY_GOODBYE: ["T-thank you for t-the room, but... I didn't... like it..."],
-		REJECTED_GOODBYE: ["T-that's fine. I wouldn't w-want me in a room either..."],
+		GOODBYE: "Many thankses. G-goodbye.",
+		HAPPY_GOODBYE: "Thank you so much for the room! I'm just chuffed to bits!",
+		ANGRY_GOODBYE: "T-thank you for t-the room, but... I didn't... like it...",
+		REJECTED_GOODBYE: "T-that's fine. I wouldn't w-want me in a room either...",
 		MONEY: 10,
 	},
 	"Bumpling": {
@@ -113,8 +114,13 @@ static var GUESTS_DATA: Dictionary[String, Dictionary] = {
 		ANGRY_GOODBYE: ["You've made me feel so small, jerk..."],
 		REJECTED_GOODBYE: ["Not enough room for my awesomeness?? Understandable."],
 		MONEY: 10,
-	
-}
+	},
+	"Flibi": {
+		SCENE: preload("res://scenes/characters/flibi.tscn"),
+		DEFAULT_TRAITS: [TraitList.Trait.CLEAN],
+		GREETING: [""],
+	},
+
 }
 
 static var GUESTS: Dictionary[String, Guest]
