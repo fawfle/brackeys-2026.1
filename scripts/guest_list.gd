@@ -145,6 +145,27 @@ static var GUESTS_DATA: Dictionary[String, Dictionary] = {
 		REJECTED_GOODBYE: "I guess you'd prefer if I LEEEEFTTTT!!!!",
 		MONEY: 10,
 	},
+	"Oney": {
+		SCENE: preload("res://scenes/characters/oney.tscn"),
+		DEFAULT_TRAITS: [TraitList.Trait.CLAUSTROPHOBIC],
+		GREETING: ["Greetings. I am the leader of a great clan of space ogres.", "But they never tell you how annoying clans are. I seriously need a break."],
+		GOODBYE: "The shelter is much appreciated. Have a good day.",
+		HAPPY_GOODBYE: "I haven't slept that good in years. I should do this more often.",
+		ANGRY_GOODBYE: "I never knew solitude could be worse than a crowd. This is a learning experience.",
+		REJECTED_GOODBYE: "So be it. Jerk.",
+		MONEY: 10,
+	},
+	"Pedro": {
+		SCENE: preload("res://scenes/characters/pedro.tscn"),
+		DEFAULT_TRAITS: [TraitList.Trait.AGORAPHOBIA],
+		GREETING: ["Hey-lo! I'm in town for an important business appointment and I need to hotel."],
+		GOODBYE: "Off to my busyness check-in! Wish me fortune!",
+		HAPPY_GOODBYE: "Ah yes, good hoteling! I will give you five gas giants as a reward.",
+		ANGRY_GOODBYE: "This hostel is a bad habitat. My real mustache has never been more frightened!",
+		REJECTED_GOODBYE: "My appointment is in 20 minutes anyway...",
+		MONEY: 10,
+	},
+	
 
 	"Manny": {
 		SCENE: preload("res://scenes/characters/manny.tscn"),
