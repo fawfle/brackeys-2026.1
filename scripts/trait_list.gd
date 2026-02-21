@@ -28,11 +28,16 @@ enum Trait {
 	
 	LIAR, ## Lies about having lots of money
 	
-	SHY,
-	SOCIAL,
+	SHY, ## doesn't want neighbors
+	SOCIAL, ## wants neighbors
 	
-	CLAUSTROPHOBIC,
-	AGORAPHOBIA,
+	CLAUSTROPHOBIC, ## wants big
+	AGORAPHOBIA, ## wants small
+	
+	LEFT_HANDED, ## wants a room on the left
+	RIGHT_HANDED, ## wants a room on the right
+	
+	CENTRIST, ## wants a center room
 	
 	RADIOACTIVE, # makes surrounding guests/rooms less happy TODO
 }
@@ -111,7 +116,7 @@ static var TRAIT_DATA: Dictionary[Trait, Dictionary] = {
 	},
 	Trait.SHY: {
 		NAME: "Shy",
-		REQUEST: "I prefer [color=red]highest[/color].",
+		REQUEST: "I  [color=red][/color].",
 		FAIL_FEEDBACK: "There were too many people, I couldn't focus.",
 		CONDITION: func(room: Room): return not room.get_floor_neighbors().any(func(r: Room): return r.guest != null),
 		PREFERENCE: 3,
@@ -138,6 +143,15 @@ static var TRAIT_DATA: Dictionary[Trait, Dictionary] = {
 	},
 	Trait.AGORAPHOBIA: {
 		NAME: "Agoraphobia",
+		REQUEST: "I want a really [color=red]small room[/color].",
+		FAIL_FEEDBACK: "It was too big, I almost had a panic attack!",
+		CONDITION: func(room: Room): return room.room_size == Room.RoomSize.SMALL,
+		PREFERENCE: 3,
+		VALUE: 4,
+		BLACKLIST: [Trait.CLAUSTROPHOBIC]
+	},
+	Trait.LEFT_HANDED: {
+		NAME: "LeftHanded",
 		REQUEST: "I want a really [color=red]small room[/color].",
 		FAIL_FEEDBACK: "It was too big, I almost had a panic attack!",
 		CONDITION: func(room: Room): return room.room_size == Room.RoomSize.SMALL,
