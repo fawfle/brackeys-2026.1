@@ -1,4 +1,4 @@
-extends Button
+extends TextureButton
 
 func _ready() -> void:
 	Globals.select_room.connect(update_disabled)
@@ -14,10 +14,11 @@ func update_disabled(room: Room):
 		disabled = room == null or not room.can_assign_guest()
 
 func _on_current_guest_changed(_guest: Guest):
-	visible = false
 	disabled  = true
 
 func _on_manage_guest(guest: Guest):
-	if guest == null: return
-	visible = true
+	if guest == null:
+		disabled = true
+		return
+	
 	update_disabled(null if Hotel.inst == null else Hotel.inst.selected_room)

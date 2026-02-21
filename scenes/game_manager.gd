@@ -128,6 +128,7 @@ func begin_management_phase() -> void:
 		past_guest_queue.reverse()
 		past_guest_queue.resize(past_guest_queue_limit)
 		past_guest_queue.reverse()
+		
 	
 	assign_time_per_guest = (daytime_length - guest_assign_time_bias) / guest_assign_queue.size()
 

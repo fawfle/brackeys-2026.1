@@ -1,6 +1,14 @@
-[gd_scene format=3 uid="uid://cw85bdwlt1rgj"]
+[gd_scene format=3 uid="uid://oty6yvt0afwd"]
 
 [ext_resource type="Texture2D" uid="uid://dohbsfho6yjww" path="res://sprites/characters/gobby.png" id="1_8vsbc"]
+[ext_resource type="Script" uid="uid://cuba1v2c3urst" path="res://scripts/guest_sprite.gd" id="2_g2x4k"]
+[ext_resource type="Texture2D" uid="uid://di7x6nmfrf6aa" path="res://sprites/characters/angry_icon.png" id="3_e5jfv"]
 
 [node name="gobby" type="Sprite2D" unique_id=655370400]
 texture = ExtResource("1_8vsbc")
+script = ExtResource("2_g2x4k")
+
+[node name="AngrySprite" type="Sprite2D" parent="." unique_id=189524797]
+visible = false
+position = Vector2(0, 5)
+texture = ExtResource("3_e5jfv")

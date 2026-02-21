@@ -10,6 +10,7 @@ func play_angry_animation():
 	
 	angry_sprite.visible = true
 	
+	if not is_inside_tree(): return
 	await get_tree().create_timer(duration).timeout
 	
 	angry_sprite.visible = false

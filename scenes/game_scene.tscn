@@ -9,7 +9,11 @@
 [ext_resource type="Theme" uid="uid://bqm4ull505em5" path="res://themes/theme.tres" id="5_utbpp"]
 [ext_resource type="Script" uid="uid://kmp8buyv62l" path="res://scripts/ui/guest_name_label.gd" id="6_mw25s"]
 [ext_resource type="PackedScene" uid="uid://bntofo8m6s6ra" path="res://scenes/hotel_window.tscn" id="7_kk2rg"]
+[ext_resource type="Texture2D" uid="uid://brem4dech30km" path="res://sprites/ui/name_plaque.png" id="7_s76x2"]
 [ext_resource type="Texture2D" uid="uid://4apbhwgiq3od" path="res://sprites/ui/bell.png" id="9_5ay1a"]
+[ext_resource type="Script" uid="uid://b5g34yi0rc1sf" path="res://scenes/ui/assign_button.gd" id="10_ldkr4"]
+[ext_resource type="Texture2D" uid="uid://dtdf03xaf6c5c" path="res://sprites/ui/bell_disabled.png" id="10_liy57"]
+[ext_resource type="Texture2D" uid="uid://dsgk5dkj4d3jn" path="res://sprites/ui/bell_outlined.png" id="10_mwyo0"]
 [ext_resource type="PackedScene" uid="uid://bkdg1tw4v3tck" path="res://scenes/clock.tscn" id="11_tcjrq"]
 [ext_resource type="Texture2D" uid="uid://bl2se4ygj4r7q" path="res://sprites/characters/reject.png" id="11_tqxxy"]
 [ext_resource type="Script" uid="uid://bqgpmjcsom83f" path="res://scenes/ui/reject_button.gd" id="12_5ay1a"]
@@ -78,20 +82,6 @@ horizontal_alignment = 2
 vertical_alignment = 1
 script = ExtResource("4_rurhu")
 
-[node name="GuestNameLabel" type="Label" parent="CanvasLayer/GuestWindow" unique_id=774963388]
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.757
-anchor_bottom = 0.757
-offset_left = 3.0
-offset_top = -15.979004
-offset_right = 62.0
-offset_bottom = 0.020996094
-grow_horizontal = 0
-theme = ExtResource("5_utbpp")
-text = "name"
-script = ExtResource("6_mw25s")
-
 [node name="TextBar" parent="CanvasLayer/GuestWindow" unique_id=733882566 instance=ExtResource("2_ycayy")]
 layout_mode = 0
 anchors_preset = 0
@@ -102,6 +92,28 @@ offset_right = 260.0
 offset_bottom = 247.0
 grow_vertical = 1
 
+[node name="NamePlaque" type="TextureRect" parent="CanvasLayer/GuestWindow" unique_id=1318722781]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 178.0
+offset_right = 66.0
+offset_bottom = 194.0
+texture = ExtResource("7_s76x2")
+
+[node name="GuestNameLabel" type="Label" parent="CanvasLayer/GuestWindow" unique_id=774963388]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.757
+anchor_bottom = 0.757
+offset_left = 12.0
+offset_top = -9.979004
+offset_right = 71.0
+offset_bottom = 6.020996
+grow_horizontal = 0
+theme = ExtResource("5_utbpp")
+text = "Name"
+script = ExtResource("6_mw25s")
+
 [node name="AssignButton" type="TextureButton" parent="CanvasLayer/GuestWindow" unique_id=183816250]
 layout_mode = 0
 offset_left = 216.0
@@ -109,6 +121,9 @@ offset_top = 173.0
 offset_right = 250.0
 offset_bottom = 192.0
 texture_normal = ExtResource("9_5ay1a")
+texture_hover = ExtResource("10_mwyo0")
+texture_disabled = ExtResource("10_liy57")
+script = ExtResource("10_ldkr4")
 
 [node name="EndDayButton" type="Button" parent="CanvasLayer/GuestWindow" unique_id=85262834]
 layout_mode = 0
