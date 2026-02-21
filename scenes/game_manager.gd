@@ -290,6 +290,7 @@ const AGITATED_THRESHOLD: float = 10
 const ANGRY_THRESHOLD: float = 4
 
 func start_assign_guest_leave_timer(guest: Guest):
+	if guest == null: return
 	guest_leave_timer.start(assign_guest_leave_time - AGITATED_THRESHOLD - ANGRY_THRESHOLD)
 	
 	var node: GuestSprite = guest.node
@@ -320,6 +321,7 @@ func purchase_upgrade(cost: int) -> bool:
 func play_guest_enter_animation(guest_node: Node2D):
 	playing_enter_animation = true
 	var duration: float = 0.9
+	guest_node.position = Vector2.ZERO
 	
 	# var end_color: Color = Color("ffffffff")
 	

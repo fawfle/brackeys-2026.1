@@ -56,3 +56,7 @@ func handle_command(command: String):
 	elif input_command[0] == "d":
 		print("STARTING NEXT DAY")
 		GameManager.inst.time = GameManager.inst.total_day_length
+	elif input_command[0] == "u":
+		print("FINISHING ALL UPGRADES")
+		for room: Room in GameManager.inst.get_rooms():
+			room.finish_upgrading()
