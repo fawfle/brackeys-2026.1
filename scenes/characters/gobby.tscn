@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://cw85bdwlt1rgj"]
+
+[ext_resource type="Texture2D" uid="uid://dohbsfho6yjww" path="res://sprites/characters/gobby.png" id="1_8vsbc"]
+
+[node name="gobby" type="Sprite2D" unique_id=655370400]
+texture = ExtResource("1_8vsbc")

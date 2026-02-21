@@ -93,7 +93,16 @@ static var GUESTS_DATA: Dictionary[String, Dictionary] = {
 		HAPPY_GOODBYE: "10/10. room wuz awsumsauce btw. cul8r :p",
 		ANGRY_GOODBYE: "WTF dewd. u think im a n00b or somethn? kys >:(",
 		MONEY: 10,
-	}
+	},
+	"Gobby": {
+		SCENE: preload("res://scenes/characters/gobby.tscn"),
+		DEFAULT_TRAITS: [TraitList.Trait.SHY],
+		GREETING: ["H-hullo. Can I get a room?", "I'm not looking for anything fancy... or too big..."],
+		GOODBYE: ["Many thankses. G-goodbye."],
+		HAPPY_GOODBYE: ["Thank you so much for the room! I'm just chuffed to bits!"],
+		ANGRY_GOODBYE: ["T-thank you for t-the room, but... I didn't... like it..."],
+		MONEY: 10,
+	},
 }
 
 static var GUESTS: Dictionary[String, Guest]
