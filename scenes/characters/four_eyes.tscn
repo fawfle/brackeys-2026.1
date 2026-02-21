@@ -2,9 +2,11 @@
 
 [ext_resource type="Texture2D" uid="uid://wugsl7xevnu8" path="res://sprites/characters/four-eyes.png" id="1_2seyp"]
 [ext_resource type="Texture2D" uid="uid://di7x6nmfrf6aa" path="res://sprites/characters/angry_icon.png" id="2_fpyvh"]
+[ext_resource type="Script" uid="uid://cuba1v2c3urst" path="res://scripts/guest_sprite.gd" id="2_lnrm4"]
 
 [node name="FourEyes" type="Sprite2D" unique_id=811499514]
 texture = ExtResource("1_2seyp")
+script = ExtResource("2_lnrm4")
 
 [node name="AngrySprite" type="Sprite2D" parent="." unique_id=1691290966]
 position = Vector2(4, -76)
