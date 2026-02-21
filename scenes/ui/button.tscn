@@ -1,15 +1,19 @@
 [gd_scene format=3 uid="uid://dxf6brto682l0"]
 
+[ext_resource type="Theme" uid="uid://bqm4ull505em5" path="res://themes/theme.tres" id="1_3xo2w"]
 [ext_resource type="Texture2D" uid="uid://wiflccfvsvrm" path="res://sprites/ui/button.png" id="1_di1ux"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3xo2w"]
 texture = ExtResource("1_di1ux")
-texture_margin_left = 16.0
-texture_margin_top = 16.0
-texture_margin_right = 16.0
-texture_margin_bottom = 16.0
+texture_margin_left = 4.0
+texture_margin_top = 4.0
+texture_margin_right = 4.0
+texture_margin_bottom = 4.0
 
 [node name="Button" type="Button" unique_id=1375042128]
-offset_right = 32.0
-offset_bottom = 32.0
+offset_right = 38.0
+offset_bottom = 24.0
+theme = ExtResource("1_3xo2w")
 theme_override_styles/normal = SubResource("StyleBoxTexture_3xo2w")
+text = "stuff"
+clip_text = true

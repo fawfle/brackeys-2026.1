@@ -8,12 +8,10 @@ func _ready() -> void:
 
 
 func _on_current_guest_changed(_guest: Guest):
-	visible = false
 	disabled  = true
 
 func _on_manage_guest(guest: Guest):
 	if guest == null:
-		visible = false
 		disabled = true
 		return
 	
