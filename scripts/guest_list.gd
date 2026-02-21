@@ -125,6 +125,26 @@ static var GUESTS_DATA: Dictionary[String, Dictionary] = {
 		REJECTED_GOODBYE: "Didn't know pest control was so important here...", 
 		MONEY: 10,
 	},
+	"Gurgario": {
+		SCENE: preload("res://scenes/characters/gurgario.tscn"),
+		DEFAULT_TRAITS: [TraitList.Trait.CENTRIST],
+		GREETING: ["What's looking, good cooking. Got a room for lil ol me?", "Need a place to sleep and the alley dumpsters were full."],
+		GOODBYE: "So long, and thanks for all the room.",
+		HAPPY_GOODBYE: "Good stuff. Good bed. Generally good overall.", 
+		ANGRY_GOODBYE: "Someone left scratch marks all over the room. Wasn't me.", 
+		REJECTED_GOODBYE: "Maybe those dumpsters have some room after all...",
+		MONEY: 10,
+	},
+	"Lewis": {
+		SCENE: preload("res://scenes/characters/lewis.tscn"),
+		DEFAULT_TRAITS: [TraitList.Trait.LEFT_HANDED],
+		GREETING: ["LEEEEFT!!!!!!", "LET'S GOOOO LEFT!!!!!"],
+		GOODBYE: "My time is up, so I LEEEEEEFT!!!!", 
+		HAPPY_GOODBYE: "Great room! I LEEEEEFTTT it in great condition!",
+		ANGRY_GOODBYE: "That room was terrible... There's nothing LEEEEFTTT here for me...",
+		REJECTED_GOODBYE: "I guess you'd prefer if I LEEEEFTTTT!!!!",
+		MONEY: 10,
+	}
 
 }
 
