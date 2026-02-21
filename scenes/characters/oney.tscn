@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://4c3md5phh7qw"]
+
+[ext_resource type="Texture2D" uid="uid://cnfd05qq000l5" path="res://sprites/characters/oney.png" id="1_pybry"]
+[ext_resource type="Texture2D" uid="uid://di7x6nmfrf6aa" path="res://sprites/characters/angry_icon.png" id="2_elmo1"]
+
+[node name="oney" type="Sprite2D" unique_id=793695030]
+texture = ExtResource("1_pybry")
+
+[node name="AngrySprite" type="Sprite2D" parent="." unique_id=1417941777]
+visible = false
+position = Vector2(-18, -55)
+texture = ExtResource("2_elmo1")

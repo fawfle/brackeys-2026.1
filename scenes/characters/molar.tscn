@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://caiedeyk66p6d"]
+
+[ext_resource type="Texture2D" uid="uid://bq003alce62pl" path="res://sprites/characters/molar.png" id="1_xcrdv"]
+[ext_resource type="Texture2D" uid="uid://di7x6nmfrf6aa" path="res://sprites/characters/angry_icon.png" id="2_p6lj1"]
+
+[node name="molar" type="Sprite2D" unique_id=243294869]
+texture = ExtResource("1_xcrdv")
+
+[node name="AngrySprite" type="Sprite2D" parent="." unique_id=1020519854]
+visible = false
+position = Vector2(-41, -42)
+texture = ExtResource("2_p6lj1")

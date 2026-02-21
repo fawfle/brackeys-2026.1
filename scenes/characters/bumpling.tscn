@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://dfgmqfkdfkxs6"]
+
+[ext_resource type="Texture2D" uid="uid://di7x6nmfrf6aa" path="res://sprites/characters/angry_icon.png" id="1_016l7"]
+[ext_resource type="Texture2D" uid="uid://ckmixl1u4bha4" path="res://sprites/characters/bumpling.png" id="1_r7ltp"]
+
+[node name="bumpling" type="Sprite2D" unique_id=672100663]
+texture = ExtResource("1_r7ltp")
+
+[node name="AngrySprite" type="Sprite2D" parent="." unique_id=356124397]
+visible = false
+position = Vector2(-32, -18)
+texture = ExtResource("1_016l7")

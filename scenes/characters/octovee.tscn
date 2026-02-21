@@ -10,5 +10,5 @@ script = ExtResource("2_1rrvi")
 
 [node name="AngrySprite" type="Sprite2D" parent="." unique_id=1409781881]
 visible = false
-position = Vector2(0, -59)
+position = Vector2(-28, -25)
 texture = ExtResource("3_2gw5e")

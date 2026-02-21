@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://c8gefknp5yk8c"]
+
+[ext_resource type="Texture2D" uid="uid://b4lk3p6meb3jj" path="res://sprites/characters/gurgario.png" id="1_bhgg4"]
+[ext_resource type="Texture2D" uid="uid://di7x6nmfrf6aa" path="res://sprites/characters/angry_icon.png" id="2_1tetf"]
+
+[node name="gurgario" type="Sprite2D" unique_id=1346257784]
+texture = ExtResource("1_bhgg4")
+
+[node name="AngrySprite" type="Sprite2D" parent="." unique_id=1600096322]
+visible = false
+position = Vector2(-32, -18)
+texture = ExtResource("2_1tetf")
