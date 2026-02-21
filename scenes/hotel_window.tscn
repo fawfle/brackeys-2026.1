@@ -79,9 +79,8 @@ mouse_filter = 2
 [node name="BuildFloorButton" parent="HotelUpgradeMenu" unique_id=1171972501 instance=ExtResource("4_k0vif")]
 layout_mode = 0
 offset_left = 9.0
-offset_top = 7.0
-offset_right = 65.0
-offset_bottom = 21.0
+offset_right = 39.0
+offset_bottom = 50.0
 label_text = "Floor"
 description = "build a new floor"
 

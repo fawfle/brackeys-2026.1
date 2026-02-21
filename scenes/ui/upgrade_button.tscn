@@ -2,57 +2,64 @@
 
 [ext_resource type="Script" uid="uid://dujeqmma1o7i7" path="res://scenes/ui/upgrade_button.gd" id="1_3io4o"]
 [ext_resource type="FontFile" uid="uid://bnw2vf51g52tq" path="res://fonts/fs-pixel-sans-unicode-regular.ttf" id="1_tii4b"]
+[ext_resource type="Texture2D" uid="uid://crfyqtxy6ddss" path="res://sprites/ui/build_icon.png" id="2_8hka2"]
 [ext_resource type="FontFile" uid="uid://cfcnwmuwy7hoa" path="res://fonts/m5x7.ttf" id="3_kt1ch"]
 
 [node name="UpgradeButton" type="TextureButton" unique_id=1171972501]
-offset_left = 2.0
-offset_top = 6.0
-offset_right = 58.0
-offset_bottom = 20.0
+offset_left = 7.0
+offset_top = 7.0
+offset_right = 31.0
+offset_bottom = 53.0
 script = ExtResource("1_3io4o")
 
-[node name="ColorRect" type="ColorRect" parent="." unique_id=1785779779]
+[node name="Icon" type="TextureRect" parent="." unique_id=2140366965]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-color = Color(0.27935672, 0.27935672, 0.27935672, 1)
+anchors_preset = -1
+anchor_left = 0.50028574
+anchor_top = 0.26004004
+anchor_right = 0.50028574
+anchor_bottom = 0.26004004
+offset_left = -12.016001
+offset_top = -12.002003
+offset_right = 11.983999
+offset_bottom = 11.997997
+texture = ExtResource("2_8hka2")
+metadata/_edit_use_anchors_ = true
 
 [node name="Label" type="Label" parent="." unique_id=1961633605]
 layout_mode = 1
-anchors_preset = 8
+anchors_preset = -1
 anchor_left = 0.5
-anchor_top = 0.5
+anchor_top = 0.661
 anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -26.0
-offset_top = -9.0
-offset_right = 14.0
-offset_bottom = 7.0
+anchor_bottom = 0.661
+offset_left = -19.5
+offset_top = -10.906
+offset_right = 20.5
+offset_bottom = 5.094
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("1_tii4b")
 text = "Name"
+horizontal_alignment = 1
 
 [node name="Cost" type="Label" parent="." unique_id=988113982]
 layout_mode = 1
-anchors_preset = 8
+anchors_preset = -1
 anchor_left = 0.5
-anchor_top = 0.5
+anchor_top = 0.89100003
 anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 3.0
-offset_top = -7.0
-offset_right = 27.0
-offset_bottom = 9.0
+anchor_bottom = 0.89100003
+offset_left = -12.0
+offset_top = -7.986
+offset_right = 12.0
+offset_bottom = 8.014
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("3_kt1ch")
 text = "$0"
-horizontal_alignment = 2
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
