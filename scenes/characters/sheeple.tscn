@@ -1,6 +1,14 @@
 [gd_scene format=3 uid="uid://wcrb7drjpuly"]
 
 [ext_resource type="Texture2D" uid="uid://byrdx7lbsqc1w" path="res://sprites/characters/sheeple.png" id="1_gf83a"]
+[ext_resource type="Script" uid="uid://cuba1v2c3urst" path="res://scripts/guest_sprite.gd" id="2_ooyoh"]
+[ext_resource type="Texture2D" uid="uid://di7x6nmfrf6aa" path="res://sprites/characters/angry_icon.png" id="3_0k4uu"]
 
 [node name="sheeple" type="Sprite2D" unique_id=1486424104]
 texture = ExtResource("1_gf83a")
+script = ExtResource("2_ooyoh")
+
+[node name="AngrySprite" type="Sprite2D" parent="." unique_id=1426960914]
+visible = false
+position = Vector2(-4, -69)
+texture = ExtResource("3_0k4uu")

@@ -1,6 +1,13 @@
 [gd_scene format=3 uid="uid://bhocxl7frwmfx"]
 
 [ext_resource type="Texture2D" uid="uid://c8eig350uu2di" path="res://sprites/characters/brainiac.png" id="1_f53dg"]
+[ext_resource type="Script" uid="uid://cuba1v2c3urst" path="res://scripts/guest_sprite.gd" id="2_rlpkq"]
+[ext_resource type="Texture2D" uid="uid://di7x6nmfrf6aa" path="res://sprites/characters/angry_icon.png" id="3_vofls"]
 
 [node name="brainiac" type="Sprite2D" unique_id=971685422]
 texture = ExtResource("1_f53dg")
+script = ExtResource("2_rlpkq")
+
+[node name="AngrySprite" type="Sprite2D" parent="." unique_id=1551023688]
+position = Vector2(2, -79)
+texture = ExtResource("3_vofls")
