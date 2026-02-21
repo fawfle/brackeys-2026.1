@@ -14,9 +14,9 @@
 [ext_resource type="Script" uid="uid://b5g34yi0rc1sf" path="res://scenes/ui/assign_button.gd" id="10_ldkr4"]
 [ext_resource type="Texture2D" uid="uid://dtdf03xaf6c5c" path="res://sprites/ui/bell_disabled.png" id="10_liy57"]
 [ext_resource type="Texture2D" uid="uid://dsgk5dkj4d3jn" path="res://sprites/ui/bell_outlined.png" id="10_mwyo0"]
-[ext_resource type="PackedScene" uid="uid://bkdg1tw4v3tck" path="res://scenes/clock.tscn" id="11_tcjrq"]
+[ext_resource type="PackedScene" path="res://scenes/clock.tscn" id="11_tcjrq"]
 [ext_resource type="Texture2D" uid="uid://bl2se4ygj4r7q" path="res://sprites/characters/reject.png" id="11_tqxxy"]
-[ext_resource type="Script" uid="uid://bqgpmjcsom83f" path="res://scenes/ui/reject_button.gd" id="12_5ay1a"]
+[ext_resource type="Script" path="res://scenes/ui/reject_button.gd" id="12_5ay1a"]
 [ext_resource type="Script" uid="uid://cg3dfhj3j6yn4" path="res://scenes/ui/end_day_button.gd" id="12_rvs2r"]
 
 [node name="GameScene" type="Node2D" unique_id=1746918585]
