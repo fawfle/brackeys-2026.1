@@ -1,6 +1,14 @@
 [gd_scene format=3 uid="uid://caooc5hj5ecec"]
 
 [ext_resource type="Texture2D" uid="uid://djltllvv06so1" path="res://sprites/characters/octovee.png" id="1_7pmx7"]
+[ext_resource type="Script" uid="uid://cuba1v2c3urst" path="res://scripts/guest_sprite.gd" id="2_1rrvi"]
+[ext_resource type="Texture2D" uid="uid://di7x6nmfrf6aa" path="res://sprites/characters/angry_icon.png" id="3_2gw5e"]
 
 [node name="octovee" type="Sprite2D" unique_id=279340760]
 texture = ExtResource("1_7pmx7")
+script = ExtResource("2_1rrvi")
+
+[node name="AngrySprite" type="Sprite2D" parent="." unique_id=1409781881]
+visible = false
+position = Vector2(0, -59)
+texture = ExtResource("3_2gw5e")

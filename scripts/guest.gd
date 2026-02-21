@@ -73,7 +73,7 @@ func generate_request() -> Array[String]:
 	
 	var request_depth: int = 0
 	
-	while arr.size() < 3 and pickable_traits.size() > 0 and request_depth < MAX_REQUEST_DEPTH:
+	while pickable_traits.size() > 0 and request_depth < MAX_REQUEST_DEPTH:
 		if arr.size() >= traits.size(): break
 		request_depth += 1
 		var t: GuestTrait = pickable_traits.pop_at(randi_range(0, pickable_traits.size() - 1))
@@ -115,13 +115,16 @@ func update_happiness_rating() -> float:
 	
 	for guest_trait: GuestTrait in traits:
 		if not guest_trait.condition.is_valid(): continue
+		if guest_trait.tags.has(TraitList.Tag.IGNORE_DEFAULT_SANITATION): ignore_sanitation = true
 		var condition_met: bool = guest_trait.condition.call(room)
 		if not condition_met:
 			rating -= guest_trait.preference
 			if guest_trait.fail_feedback != "": fail_feedback.push_back(guest_trait.fail_feedback)
 	
-	
-	
+	# deduct 1 star for each sanitation issue
+	if not ignore_sanitation:
+		if room.sanitation == Room.Sanitation.DIRTY: happiness_rating -= 2
+		elif room.sanitation == Room.Sanitation.MESSY: happiness_rating -= 1
 	
 	happiness_rating = max(0, rating)
 	return happiness_rating

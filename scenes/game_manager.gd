@@ -281,7 +281,7 @@ const ANGRY_THRESHOLD: float = 4
 func start_assign_guest_leave_timer(guest: Guest):
 	guest_leave_timer.start(assign_guest_leave_time - AGITATED_THRESHOLD - ANGRY_THRESHOLD)
 	
-	var node: Node2D = guest.node
+	var node: GuestSprite = guest.node
 	await guest_leave_timer.timeout
 	
 	if phase != Phase.MANAGEMENT or node == null: return
@@ -290,7 +290,7 @@ func start_assign_guest_leave_timer(guest: Guest):
 	await get_tree().create_timer(AGITATED_THRESHOLD - ANGRY_THRESHOLD).timeout
 	
 	if phase != Phase.MANAGEMENT or node == null: return
-	
+	node.play_angry_animation()
 	
 	await get_tree().create_timer(ANGRY_THRESHOLD).timeout
 	
