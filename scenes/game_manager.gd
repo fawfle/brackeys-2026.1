@@ -14,7 +14,9 @@ const floating_text_scene: PackedScene = preload("res://scenes/ui/floating_text.
 
 #TODO: placeholder, replace with actual stars
 @onready var star_rating: Label = $"CanvasLayer/GuestWindow/StarRating"
-@onready var assign_button: Button = $CanvasLayer/GuestWindow/AssignButton
+@onready var assign_button: TextureButton = $CanvasLayer/GuestWindow/AssignButton
+
+@onready var reject_button: TextureButton = $CanvasLayer/GuestWindow/RejectButton
 
 var day: int = 0
 
@@ -71,7 +73,7 @@ var leaving_guest: bool = false ## is currently leaving guest
 
 ## stores list of last n guests and "blacklists" them
 var past_guest_queue: Array[Guest] = []
-const past_guest_queue_limit: int = 3
+const past_guest_queue_limit: int = 5
 
 ## phase of gameplay. Either assigning (getting guests),  managing (upgrading), or checkout (guests leaving and paying). ASSIGN -> UPGRADE -> CHECKOUT
 enum Phase {
@@ -100,6 +102,7 @@ func _ready() -> void:
 	star_rating.visible = false
 	
 	assign_button.button_down.connect(_on_assign_button_button_down)
+	reject_button.button_down.connect(_on_reject_button_down)
 	
 	begin_management_phase()
 
@@ -121,7 +124,10 @@ func begin_management_phase() -> void:
 	
 	guest_assign_queue = GuestList.create_guest_queue(guests_per_day, day, past_guest_queue)
 	past_guest_queue.append_array(guest_assign_queue)
-	past_guest_queue = past_guest_queue.slice(past_guest_queue.size() - past_guest_queue_limit, past_guest_queue.size())
+	if past_guest_queue.size() > past_guest_queue_limit:
+		past_guest_queue.reverse()
+		past_guest_queue.resize(past_guest_queue_limit)
+		past_guest_queue.reverse()
 	
 	assign_time_per_guest = (daytime_length - guest_assign_time_bias) / guest_assign_queue.size()
 
@@ -254,6 +260,9 @@ func checkout_guest() -> void:
 func _on_assign_button_button_down() -> void:
 	if Hotel.inst.selected_room != null: assign_guest(Hotel.inst.selected_room)
 
+func _on_reject_button_down() -> void:
+	print('hi')
+	if phase == Phase.MANAGEMENT: leave_guest()
 
 func assign_guest(room: Room):
 	if room.guest != null or current_guest == null or playing_animation: return

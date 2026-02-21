@@ -146,7 +146,7 @@ static func create_guest_queue(length: int, current_day: int, guest_blacklist: A
 		
 		if guest.appear_after_day > current_day: continue
 		if guest_queue.has(guest): continue
-		if guest_blacklist.any(func(g: Guest): return g.name == guest.name): continue
+		if guest_blacklist.has(guest): continue
 		
 		guest_queue.push_back(guest)
 		

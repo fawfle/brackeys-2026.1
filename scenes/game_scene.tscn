@@ -7,10 +7,12 @@
 [ext_resource type="Script" uid="uid://cfpiqvmer5qe" path="res://scripts/ui/day_label.gd" id="3_y3j0m"]
 [ext_resource type="Script" uid="uid://donsdw52b18or" path="res://scripts/ui/money_label.gd" id="4_rurhu"]
 [ext_resource type="Theme" uid="uid://bqm4ull505em5" path="res://themes/theme.tres" id="5_utbpp"]
-[ext_resource type="PackedScene" path="res://scenes/ui/assign_button.tscn" id="6_b5spy"]
 [ext_resource type="Script" uid="uid://kmp8buyv62l" path="res://scripts/ui/guest_name_label.gd" id="6_mw25s"]
 [ext_resource type="PackedScene" uid="uid://bntofo8m6s6ra" path="res://scenes/hotel_window.tscn" id="7_kk2rg"]
+[ext_resource type="Texture2D" uid="uid://4apbhwgiq3od" path="res://sprites/ui/bell.png" id="9_5ay1a"]
 [ext_resource type="PackedScene" uid="uid://bkdg1tw4v3tck" path="res://scenes/clock.tscn" id="11_tcjrq"]
+[ext_resource type="Texture2D" uid="uid://bl2se4ygj4r7q" path="res://sprites/characters/reject.png" id="11_tqxxy"]
+[ext_resource type="Script" uid="uid://bqgpmjcsom83f" path="res://scenes/ui/reject_button.gd" id="12_5ay1a"]
 [ext_resource type="Script" uid="uid://cg3dfhj3j6yn4" path="res://scenes/ui/end_day_button.gd" id="12_rvs2r"]
 
 [node name="GameScene" type="Node2D" unique_id=1746918585]
@@ -96,9 +98,17 @@ anchors_preset = 0
 anchor_top = 0.0
 anchor_bottom = 0.0
 offset_top = 191.0
-offset_right = 263.0
+offset_right = 260.0
 offset_bottom = 247.0
 grow_vertical = 1
+
+[node name="AssignButton" type="TextureButton" parent="CanvasLayer/GuestWindow" unique_id=183816250]
+layout_mode = 0
+offset_left = 216.0
+offset_top = 173.0
+offset_right = 250.0
+offset_bottom = 192.0
+texture_normal = ExtResource("9_5ay1a")
 
 [node name="EndDayButton" type="Button" parent="CanvasLayer/GuestWindow" unique_id=85262834]
 layout_mode = 0
@@ -110,12 +120,14 @@ theme = ExtResource("5_utbpp")
 text = "end day"
 script = ExtResource("12_rvs2r")
 
-[node name="AssignButton" parent="CanvasLayer/GuestWindow" unique_id=648658885 instance=ExtResource("6_b5spy")]
+[node name="RejectButton" type="TextureButton" parent="CanvasLayer/GuestWindow" unique_id=1983670719]
 layout_mode = 0
-offset_left = 202.0
-offset_top = 145.0
-offset_right = 244.0
-offset_bottom = 169.0
+offset_left = 230.0
+offset_top = 141.0
+offset_right = 246.0
+offset_bottom = 157.0
+texture_normal = ExtResource("11_tqxxy")
+script = ExtResource("12_5ay1a")
 
 [node name="DayEndMenu" type="ColorRect" parent="CanvasLayer/GuestWindow" unique_id=648593923]
 visible = false

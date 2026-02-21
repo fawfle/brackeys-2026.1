@@ -26,6 +26,8 @@ enum Trait {
 	ACROPHOBIA, ## afraid of heights, wants floor 0
 	VIEW_SEEKER, ## wants top floor
 	
+	LIAR, ## Lies about having lots of money
+	
 	SHY,
 	
 	RADIOACTIVE, # makes surrounding guests/rooms less happy TODO
@@ -85,7 +87,6 @@ static var TRAIT_DATA: Dictionary[Trait, Dictionary] = {
 		VALUE: 2,
 		BLACKLIST: [Trait.CLASSY]
 	},
-	
 	Trait.ACROPHOBIA: {
 		NAME: "Acrophobia",
 		REQUEST: "I'm a little afraid of [color=red]heights[/color].",

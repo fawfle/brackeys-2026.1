@@ -7,11 +7,11 @@ class_name UpgradeCosts
 
 ## room build costs. Increase by floor
 const BUILD_ROOM: Dictionary[int, int] = {
-	0: 25,
-	1: 40,
-	2: 50,
-	3: 100,
-	4: 200,
+	0: 15,
+	1: 25,
+	2: 40,
+	3: 80,
+	4: 120,
 	5: -1
 }
 
