@@ -26,6 +26,8 @@ class_name GuestTrait extends Resource
 ## money value having trait is worth
 @export var value: int = 0
 
+@export var tags: Array[TraitList.Tag] = []
+
 func _to_string() -> String:
 	return "(GuestTrait) " + name;
 

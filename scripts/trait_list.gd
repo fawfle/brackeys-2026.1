@@ -136,6 +136,8 @@ static func LOAD_TRAITS():
 		if data.has(VALUE): guest_trait.value = data.get(VALUE)
 		if data.has(BLACKLIST): guest_trait.blacklisted_traits.assign(data.get(BLACKLIST))
 		
+		if data.has(TAGS): guest_trait.tags.assign(data.get(TAGS))
+		
 		if data.has(SPECIAL): guest_trait.special = true
 		
 		guest_trait.enum_key = key

@@ -1,6 +1,14 @@
 [gd_scene format=3 uid="uid://bbsumtt2er7na"]
 
 [ext_resource type="Texture2D" uid="uid://b18v26ttupgmj" path="res://sprites/characters/newt.png" id="1_yewja"]
+[ext_resource type="Script" uid="uid://cuba1v2c3urst" path="res://scripts/guest_sprite.gd" id="2_qpd78"]
+[ext_resource type="Texture2D" uid="uid://di7x6nmfrf6aa" path="res://sprites/characters/angry_icon.png" id="3_krnwp"]
 
 [node name="Newt" type="Sprite2D" unique_id=1772552209]
 texture = ExtResource("1_yewja")
+script = ExtResource("2_qpd78")
+
+[node name="AngrySprite" type="Sprite2D" parent="." unique_id=1668487850]
+visible = false
+position = Vector2(1, -39)
+texture = ExtResource("3_krnwp")
