@@ -29,6 +29,10 @@ enum Trait {
 	LIAR, ## Lies about having lots of money
 	
 	SHY,
+	SOCIAL,
+	
+	CLAUSTROPHOBIC,
+	AGORAPHOBIA,
 	
 	RADIOACTIVE, # makes surrounding guests/rooms less happy TODO
 }
@@ -98,16 +102,48 @@ static var TRAIT_DATA: Dictionary[Trait, Dictionary] = {
 	},
 	Trait.VIEW_SEEKER: {
 		NAME: "View Seeker",
-		REQUEST: "give me your [color=red]highest[/color] room.",
+		REQUEST: "Give me your [color=red]highest[/color] room.",
 		FAIL_FEEDBACK: "I couldn't see anything. The stars were so [color=red]far away[/color].",
 		CONDITION: func(room: Room): return room.on_top_floor(),
 		PREFERENCE: 3,
 		VALUE: 4,
 		BLACKLIST: [Trait.CLASSY]
 	},
-	
 	Trait.SHY: {
-		# TODO: avoids other people, doesn't want a floor neighbor
+		NAME: "Shy",
+		REQUEST: "I prefer [color=red]highest[/color].",
+		FAIL_FEEDBACK: "There were too many people, I couldn't focus.",
+		CONDITION: func(room: Room): return not room.get_floor_neighbors().any(func(r: Room): return r.guest != null),
+		PREFERENCE: 3,
+		VALUE: 4,
+		BLACKLIST: [Trait.SOCIAL]
+	},
+	Trait.SOCIAL: {
+		NAME: "Social",
+		REQUEST: "I want to be [color=red]around others[/color].",
+		FAIL_FEEDBACK: "No one was around. It was sooooo boring!",
+		CONDITION: func(room: Room): return room.get_floor_neighbors().all(func(r: Room): return r.guest != null),
+		PREFERENCE: 3,
+		VALUE: 4,
+		BLACKLIST: [Trait.SHY]
+	},
+	Trait.CLAUSTROPHOBIC: {
+		NAME: "Claustrophobic",
+		REQUEST: "I want a really [color=red]large room[/color].",
+		FAIL_FEEDBACK: "It was too small, I almost had a panic attack!",
+		CONDITION: func(room: Room): return room.room_size == Room.RoomSize.LARGE,
+		PREFERENCE: 3,
+		VALUE: 4,
+		BLACKLIST: [Trait.AGORAPHOBIA]
+	},
+	Trait.AGORAPHOBIA: {
+		NAME: "Agoraphobia",
+		REQUEST: "I want a really [color=red]small room[/color].",
+		FAIL_FEEDBACK: "It was too big, I almost had a panic attack!",
+		CONDITION: func(room: Room): return room.room_size == Room.RoomSize.SMALL,
+		PREFERENCE: 3,
+		VALUE: 4,
+		BLACKLIST: [Trait.CLAUSTROPHOBIC]
 	},
 	Trait.RADIOACTIVE: { ## TODO, make neighboring guests radioactive decreasing happiness by 1
 		NAME: "Radioactive",

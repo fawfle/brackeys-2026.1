@@ -45,9 +45,9 @@ texture = ExtResource("4_m5k2i")
 [node name="TextureProgressBar" parent="." unique_id=632993768 instance=ExtResource("6_u8qe1")]
 layout_mode = 0
 offset_left = -6.0
-offset_top = -5.0
+offset_top = -6.0
 offset_right = 6.0
-offset_bottom = 7.0
+offset_bottom = 6.0
 max_value = 1.0
 fill_mode = 4
 
