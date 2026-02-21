@@ -325,12 +325,15 @@ func play_guest_enter_animation(guest_node: Node2D):
 	
 	var timer: SceneTreeTimer = get_tree().create_timer(duration)
 	
+	var end_color: Color = Color("ffffffff")
+	
 	while timer.time_left != 0:
 		var t: float = (duration - timer.time_left) / duration
 		# t = 1 - (1 - t) * (1 - t) # ease out
-		guest_node.modulate = lerp(Color("#ffffff00"), Color("ffffffff"), t)
+		guest_node.modulate = lerp(Color("#ffffff00"), end_color, t)
 		await get_tree().process_frame
-
+	
+	guest_node.modulate = end_color
 
 	# guest_node.modulate = Color("#ffffff00")
 	# get_tree().create_tween().tween_property(guest_node, "modulate", end_color, duration)
@@ -347,6 +350,7 @@ func play_guest_exit_animation(guest_node: Node2D):
 	get_tree().create_tween().tween_property(guest_node, "modulate", end_color, duration)
 	
 	await get_tree().create_timer(duration).timeout
+	guest_node.modulate = end_color
 	
 	playing_exit_animation = false
 

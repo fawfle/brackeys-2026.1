@@ -104,6 +104,17 @@ static var GUESTS_DATA: Dictionary[String, Dictionary] = {
 		REJECTED_GOODBYE: ["T-that's fine. I wouldn't w-want me in a room either..."],
 		MONEY: 10,
 	},
+	"Bumpling": {
+		SCENE: preload("res://scenes/characters/bumpling.tscn"),
+		DEFAULT_TRAITS: [TraitList.Trait.CLAUSTROPHOBIC],
+		GREETING: ["Heyo... Can I get a ruh-ruh-rooooom?", "Looking for something good, I know you won't lemme down here."],
+		GOODBYE: ["Big thanks, big fella"],
+		HAPPY_GOODBYE: ["You've got a big heart, big fella. Grande service here."],
+		ANGRY_GOODBYE: ["You've made me feel so small, jerk..."],
+		REJECTED_GOODBYE: ["Not enough room for my awesomeness?? Understandable."],
+		MONEY: 10,
+	
+}
 }
 
 static var GUESTS: Dictionary[String, Guest]

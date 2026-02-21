@@ -2,9 +2,11 @@
 
 [ext_resource type="Texture2D" uid="uid://di7x6nmfrf6aa" path="res://sprites/characters/angry_icon.png" id="1_016l7"]
 [ext_resource type="Texture2D" uid="uid://ckmixl1u4bha4" path="res://sprites/characters/bumpling.png" id="1_r7ltp"]
+[ext_resource type="Script" uid="uid://cuba1v2c3urst" path="res://scripts/guest_sprite.gd" id="2_5echy"]
 
 [node name="bumpling" type="Sprite2D" unique_id=672100663]
 texture = ExtResource("1_r7ltp")
+script = ExtResource("2_5echy")
 
 [node name="AngrySprite" type="Sprite2D" parent="." unique_id=356124397]
 visible = false
