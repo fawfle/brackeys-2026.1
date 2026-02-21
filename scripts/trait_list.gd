@@ -118,7 +118,7 @@ static var TRAIT_DATA: Dictionary[Trait, Dictionary] = {
 	Trait.SHY: {
 		NAME: "Shy",
 		REQUEST: " [color=red][/color].",
-		FAIL_FEEDBACK: "There were too many people, I couldn't focus.",
+		FAIL_FEEDBACK: "There were [color=red]too many people[/color], I couldn't focus.",
 		CONDITION: func(room: Room): return not room.get_floor_neighbors().any(func(r: Room): return r.guest != null),
 		APPLY_TYPE: GuestTrait.ApplyType.ALWAYS,
 		PREFERENCE: 3,
@@ -128,7 +128,7 @@ static var TRAIT_DATA: Dictionary[Trait, Dictionary] = {
 	Trait.SOCIAL: {
 		NAME: "Social",
 		REQUEST: "I want to be [color=red]around others[/color].",
-		FAIL_FEEDBACK: "No one was around. It was sooooo boring!",
+		FAIL_FEEDBACK: "[color=red]No one[/color] was around. It was sooooo boring!",
 		CONDITION: func(room: Room): return room.get_floor_neighbors().all(func(r: Room): return r.guest != null),
 		APPLY_TYPE: GuestTrait.ApplyType.ALWAYS,
 		PREFERENCE: 3,
@@ -138,7 +138,7 @@ static var TRAIT_DATA: Dictionary[Trait, Dictionary] = {
 	Trait.CLAUSTROPHOBIC: {
 		NAME: "Claustrophobic",
 		REQUEST: "I want a really [color=red]large room[/color].",
-		FAIL_FEEDBACK: "It was too small, I almost had a panic attack!",
+		FAIL_FEEDBACK: "It was [color=red]too small[/color], I couldn't move around at all!",
 		CONDITION: func(room: Room): return room.room_size == Room.RoomSize.LARGE,
 		PREFERENCE: 3,
 		VALUE: 4,
@@ -147,7 +147,7 @@ static var TRAIT_DATA: Dictionary[Trait, Dictionary] = {
 	Trait.AGORAPHOBIA: {
 		NAME: "Agoraphobia",
 		REQUEST: "I want a really [color=red]small room[/color].",
-		FAIL_FEEDBACK: "It was too big, I almost had a panic attack!",
+		FAIL_FEEDBACK: "It was [color=red]too big[/color], what would I need that space for?",
 		CONDITION: func(room: Room): return room.room_size == Room.RoomSize.SMALL,
 		PREFERENCE: 3,
 		VALUE: 4,
