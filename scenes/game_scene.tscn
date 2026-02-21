@@ -93,6 +93,9 @@ offset_bottom = 247.0
 grow_vertical = 1
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> f5da2f6 (updated player ui)
 [node name="NamePlaque" type="TextureRect" parent="CanvasLayer/GuestWindow" unique_id=1318722781]
 layout_mode = 0
 offset_left = 2.0
@@ -115,8 +118,11 @@ theme = ExtResource("5_utbpp")
 text = "Name"
 script = ExtResource("6_mw25s")
 
+<<<<<<< HEAD
 =======
 >>>>>>> 482d86c (i don't even know what I'm doing)
+=======
+>>>>>>> f5da2f6 (updated player ui)
 [node name="AssignButton" type="TextureButton" parent="CanvasLayer/GuestWindow" unique_id=183816250]
 layout_mode = 0
 offset_left = 216.0
@@ -125,11 +131,17 @@ offset_right = 250.0
 offset_bottom = 192.0
 texture_normal = ExtResource("9_5ay1a")
 <<<<<<< HEAD
+<<<<<<< HEAD
 texture_hover = ExtResource("10_mwyo0")
 texture_disabled = ExtResource("10_liy57")
 script = ExtResource("10_ldkr4")
 =======
 >>>>>>> 482d86c (i don't even know what I'm doing)
+=======
+texture_hover = ExtResource("10_mwyo0")
+texture_disabled = ExtResource("10_liy57")
+script = ExtResource("10_ldkr4")
+>>>>>>> f5da2f6 (updated player ui)
 
 [node name="EndDayButton" type="Button" parent="CanvasLayer/GuestWindow" unique_id=85262834]
 layout_mode = 0
