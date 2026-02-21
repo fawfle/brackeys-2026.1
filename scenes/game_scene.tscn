@@ -14,7 +14,7 @@
 [ext_resource type="Script" uid="uid://b5g34yi0rc1sf" path="res://scenes/ui/assign_button.gd" id="10_ldkr4"]
 [ext_resource type="Texture2D" uid="uid://dtdf03xaf6c5c" path="res://sprites/ui/bell_disabled.png" id="10_liy57"]
 [ext_resource type="Texture2D" uid="uid://dsgk5dkj4d3jn" path="res://sprites/ui/bell_outlined.png" id="10_mwyo0"]
-[ext_resource type="PackedScene" path="res://scenes/clock.tscn" id="11_tcjrq"]
+[ext_resource type="PackedScene" uid="uid://bkdg1tw4v3tck" path="res://scenes/clock.tscn" id="11_tcjrq"]
 [ext_resource type="Texture2D" uid="uid://bl2se4ygj4r7q" path="res://sprites/characters/reject.png" id="11_tqxxy"]
 [ext_resource type="Script" path="res://scenes/ui/reject_button.gd" id="12_5ay1a"]
 [ext_resource type="Script" uid="uid://cg3dfhj3j6yn4" path="res://scenes/ui/end_day_button.gd" id="12_rvs2r"]
@@ -30,7 +30,7 @@ position = Vector2(130, 94)
 texture = ExtResource("2_rvs2r")
 
 [node name="GuestParent" type="Node2D" parent="." unique_id=521559917]
-position = Vector2(131, 123)
+position = Vector2(131, 116)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1013869446]
 
@@ -121,9 +121,6 @@ offset_top = 173.0
 offset_right = 250.0
 offset_bottom = 192.0
 texture_normal = ExtResource("9_5ay1a")
-texture_hover = ExtResource("10_mwyo0")
-texture_disabled = ExtResource("10_liy57")
-script = ExtResource("10_ldkr4")
 texture_hover = ExtResource("10_mwyo0")
 texture_disabled = ExtResource("10_liy57")
 script = ExtResource("10_ldkr4")

@@ -28,6 +28,25 @@ class_name GuestTrait extends Resource
 
 @export var tags: Array[TraitList.Tag] = []
 
+@export var apply_type: ApplyType = ApplyType.ONCE
+
+enum ApplyType {
+	ONCE, ## condition is true if true once, checked every night
+	ALWAYS, ## condition is false if false once, checked every night
+}
+
+var met: bool = false
+## for always conditions
+var failed: bool = false
+
+func check_condition(room: Room):
+	if apply_type == ApplyType.ONCE:
+		if met: return
+		met = condition.call(room)
+	elif apply_type == ApplyType.ALWAYS:
+		if not met: return
+		met = condition.call(room)
+
 func _to_string() -> String:
 	return "(GuestTrait) " + name;
 

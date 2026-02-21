@@ -56,8 +56,9 @@ const MAX_REQUEST_DEPTH: int = 100
 
 func get_money() -> int:
 	if happiness_rating <= -1:
+		update_happiness_rating()
 		push_error("Attempted to get money before setting happiness_rating. Did you mean to call update_happiness_rating?")
-		return -1
+		# return -1
 	
 	var effective_money = money
 	
@@ -116,8 +117,8 @@ func update_happiness_rating() -> float:
 	for guest_trait: GuestTrait in traits:
 		if not guest_trait.condition.is_valid(): continue
 		if guest_trait.tags.has(TraitList.Tag.IGNORE_DEFAULT_SANITATION): ignore_sanitation = true
-		var condition_met: bool = guest_trait.condition.call(room)
-		if not condition_met:
+		guest_trait.check_condition(room)
+		if not guest_trait.met:
 			rating -= guest_trait.preference
 			if guest_trait.fail_feedback != "": fail_feedback.push_back(guest_trait.fail_feedback)
 	

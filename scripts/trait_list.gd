@@ -4,6 +4,7 @@ enum {
 	NAME, ## name of trait, for internal reference
 	CONDITION, ## Function that must be true for condition to be met.
 	REQUEST, ## Text to hit at request
+	APPLY_TYPE, ## When to apply
 	FAIL_FEEDBACK, ## response given of fail
 	ON_ENTER, ## Function applied after guest is assigned. EX making neighbors RADIOACTIVE
 	ON_LEAVE, ## Function applied after guest leaves. EX making room very messy.
@@ -116,9 +117,10 @@ static var TRAIT_DATA: Dictionary[Trait, Dictionary] = {
 	},
 	Trait.SHY: {
 		NAME: "Shy",
-		REQUEST: "I  [color=red][/color].",
+		REQUEST: " [color=red][/color].",
 		FAIL_FEEDBACK: "There were too many people, I couldn't focus.",
 		CONDITION: func(room: Room): return not room.get_floor_neighbors().any(func(r: Room): return r.guest != null),
+		APPLY_TYPE: GuestTrait.ApplyType.ALWAYS,
 		PREFERENCE: 3,
 		VALUE: 4,
 		BLACKLIST: [Trait.SOCIAL]
@@ -128,6 +130,7 @@ static var TRAIT_DATA: Dictionary[Trait, Dictionary] = {
 		REQUEST: "I want to be [color=red]around others[/color].",
 		FAIL_FEEDBACK: "No one was around. It was sooooo boring!",
 		CONDITION: func(room: Room): return room.get_floor_neighbors().all(func(r: Room): return r.guest != null),
+		APPLY_TYPE: GuestTrait.ApplyType.ALWAYS,
 		PREFERENCE: 3,
 		VALUE: 4,
 		BLACKLIST: [Trait.SHY]
@@ -152,12 +155,21 @@ static var TRAIT_DATA: Dictionary[Trait, Dictionary] = {
 	},
 	Trait.LEFT_HANDED: {
 		NAME: "LeftHanded",
-		REQUEST: "I want a really [color=red]small room[/color].",
-		FAIL_FEEDBACK: "It was too big, I almost had a panic attack!",
-		CONDITION: func(room: Room): return room.room_size == Room.RoomSize.SMALL,
+		REQUEST: "By the way, I'm [color=red]left[/color] handed.",
+		FAIL_FEEDBACK: "I wasn't happy with that room so I [color=red]left[/color].",
+		CONDITION: func(room: Room): return room.on_left(),
 		PREFERENCE: 3,
 		VALUE: 4,
-		BLACKLIST: [Trait.CLAUSTROPHOBIC]
+		BLACKLIST: [Trait.RIGHT_HANDED, Trait.CENTRIST]
+	},
+	Trait.RIGHT_HANDED: {
+		NAME: "RightHanded",
+		REQUEST: "I'm [color=red]right[/color] handed.",
+		FAIL_FEEDBACK: "You're clearly not feeling [color=red]right[/color].",
+		CONDITION: func(room: Room): return room.on_right(),
+		PREFERENCE: 3,
+		VALUE: 4,
+		BLACKLIST: [Trait.RIGHT_HANDED, Trait.CENTRIST]
 	},
 	Trait.RADIOACTIVE: { ## TODO, make neighboring guests radioactive decreasing happiness by 1
 		NAME: "Radioactive",
@@ -190,6 +202,8 @@ static func LOAD_TRAITS():
 		if data.has(TAGS): guest_trait.tags.assign(data.get(TAGS))
 		
 		if data.has(SPECIAL): guest_trait.special = true
+		
+		if data.has(APPLY_TYPE): guest_trait.apply_type = data.get(APPLY_TYPE)
 		
 		guest_trait.enum_key = key
 		

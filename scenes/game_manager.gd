@@ -162,6 +162,9 @@ func end_day() -> void:
 	if current_guest != null:
 		leave_guest()
 	
+	for guest: Guest in get_guests():
+		guest.update_happiness_rating()
+	
 	await get_tree().create_timer(2).timeout
 
 func manage_next_guest() -> void:
@@ -228,8 +231,6 @@ func begin_checkout_next_guest() -> void:
 	
 	current_guest.node.reparent(guest_parent)
 	await play_guest_enter_animation(current_guest.node)
-	
-	current_guest.update_happiness_rating()
 	
 	Globals.set_text.emit(current_guest.get_exit_lines())
 	
@@ -349,8 +350,14 @@ func play_guest_exit_animation(guest_node: Node2D):
 	
 	playing_exit_animation = false
 
-func get_rooms():
+func get_rooms() -> Array:
 	return get_tree().get_nodes_in_group("room")
+
+func get_guests() -> Array[Guest]:
+	var guests: Array[Guest] = []
+	for r: Room in get_rooms():
+		if r.guest != null: guests.push_back(r.guest)
+	return guests
 
 func create_floating_text(text: String):
 	var floating_text: FloatingText = floating_text_scene.instantiate() as FloatingText
