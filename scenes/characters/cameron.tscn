@@ -1,10 +1,13 @@
 [gd_scene format=3 uid="uid://sjl61lh7j5mg"]
 
 [ext_resource type="Texture2D" uid="uid://befp0ul5di8b" path="res://sprites/characters/cameron.png" id="1_6jwrw"]
+[ext_resource type="Script" uid="uid://cuba1v2c3urst" path="res://scripts/guest_sprite.gd" id="2_7k7df"]
 [ext_resource type="Texture2D" uid="uid://di7x6nmfrf6aa" path="res://sprites/characters/angry_icon.png" id="2_jq87l"]
 
-[node name="cameron" type="Sprite2D" unique_id=1399342781]
+[node name="cameron" type="Sprite2D" unique_id=1549379365]
 texture = ExtResource("1_6jwrw")
+script = ExtResource("2_7k7df")
+metadata/_custom_type_script = "uid://cuba1v2c3urst"
 
 [node name="AngrySprite" type="Sprite2D" parent="." unique_id=1771749519]
 visible = false

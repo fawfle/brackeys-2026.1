@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://wds1usm2hyop"]
+
+[ext_resource type="Texture2D" uid="uid://tvve6lgthjiw" path="res://sprites/characters/trooper.png" id="1_iqk4q"]
+[ext_resource type="Script" uid="uid://cuba1v2c3urst" path="res://scripts/guest_sprite.gd" id="2_mp6xy"]
+[ext_resource type="Texture2D" uid="uid://di7x6nmfrf6aa" path="res://sprites/characters/angry_icon.png" id="3_cqx6q"]
+
+[node name="trooper" type="Sprite2D" unique_id=125851373]
+texture = ExtResource("1_iqk4q")
+script = ExtResource("2_mp6xy")
+metadata/_custom_type_script = "uid://cuba1v2c3urst"
+
+[node name="AngrySprite" type="Sprite2D" parent="." unique_id=1609602493]
+visible = false
+position = Vector2(-14, -44)
+texture = ExtResource("3_cqx6q")
