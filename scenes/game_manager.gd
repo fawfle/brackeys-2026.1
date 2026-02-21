@@ -275,14 +275,24 @@ func assign_guest(room: Room):
 	
 	assigning_guest = false
 
-const AGITATED_THRESHOLD: float = 8
+const AGITATED_THRESHOLD: float = 10
+const ANGRY_THRESHOLD: float = 4
 
 func start_assign_guest_leave_timer(guest: Guest):
-	guest_leave_timer.start(assign_guest_leave_time - AGITATED_THRESHOLD)
+	guest_leave_timer.start(assign_guest_leave_time - AGITATED_THRESHOLD - ANGRY_THRESHOLD)
 	
+	var node: Node2D = guest.node
 	await guest_leave_timer.timeout
 	
-	# await 
+	if phase != Phase.MANAGEMENT or node == null: return
+	play_agitated_animation(node)
+	
+	await get_tree().create_timer(AGITATED_THRESHOLD - ANGRY_THRESHOLD).timeout
+	
+	if phase != Phase.MANAGEMENT or node == null: return
+	
+	
+	await get_tree().create_timer(ANGRY_THRESHOLD).timeout
 	
 	if current_guest != guest or current_guest == null: return
 	
@@ -349,13 +359,17 @@ func play_star_rating_animation(stars: float):
 	star_rating.visible = false
 
 func play_agitated_animation(guest_node: Node2D):
-	var duration: float = 0.6
+	var duration: float = 1.2
 	var timer: float = 0
 	
 	var start_y: float = guest_node.position.y
 	
 	while timer < duration:
-		guest_node.position.y = start_y + pow(sin(4 * timer), 4)
+		guest_node.position.y = start_y + pow(sin(2 * PI * timer / duration), 4) * 5
+		timer += get_process_delta_time()
 		await get_tree().process_frame
 	
 	guest_node.position.y = start_y
+
+func ease_out(t: float) -> float:
+	return 1 - (1 - t) * (1 - t)

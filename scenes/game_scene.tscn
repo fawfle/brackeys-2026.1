@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://fehsvnq2kohw" path="res://scenes/game_manager.gd" id="1_tcjrq"]
 [ext_resource type="FontFile" uid="uid://qo71mx2v8dp" path="res://fonts/edit-undo.brk.ttf" id="2_bw6k5"]
-[ext_resource type="Texture2D" uid="uid://2b5psd1sub38" path="res://sprites/ui/background_mockup.png" id="2_tcjrq"]
+[ext_resource type="Texture2D" uid="uid://dao5fqo2jpemv" path="res://sprites/ui/background_ver2.png" id="2_rvs2r"]
 [ext_resource type="PackedScene" uid="uid://buyxfh2m4xbm5" path="res://scenes/text_bar.tscn" id="2_ycayy"]
 [ext_resource type="Script" uid="uid://cfpiqvmer5qe" path="res://scripts/ui/day_label.gd" id="3_y3j0m"]
 [ext_resource type="Script" uid="uid://donsdw52b18or" path="res://scripts/ui/money_label.gd" id="4_rurhu"]
@@ -21,7 +21,7 @@ anchor_mode = 0
 
 [node name="Background" type="Sprite2D" parent="." unique_id=1497324429]
 position = Vector2(130, 94)
-texture = ExtResource("2_tcjrq")
+texture = ExtResource("2_rvs2r")
 
 [node name="GuestParent" type="Node2D" parent="." unique_id=521559917]
 position = Vector2(131, 130)
