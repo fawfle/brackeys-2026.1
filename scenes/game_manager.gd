@@ -195,9 +195,12 @@ func leave_guest() -> void:
 	await play_guest_exit_animation(node)
 	
 	node.queue_free()
-	if current_guest != null: return
 	
-	Globals.set_text.emit()
+	if current_guest == null: Globals.set_text.emit() # just in case overlaps with something else
+	
+	await get_tree().create_timer(0.9).timeout # time padding
+	
+	leaving_guest = false
 
 ## currently duplicate guests and set traits here. Maybe change in the future if it's confusing.
 func create_next_guest() -> Guest:
@@ -272,24 +275,15 @@ func assign_guest(room: Room):
 	
 	assigning_guest = false
 
-const AGITATED_THRESHOLD: float = 10
-const ANGRY_THRESHOLD: float = 4
+const AGITATED_THRESHOLD: float = 8
 
 func start_assign_guest_leave_timer(guest: Guest):
-	guest_leave_timer.start(assign_guest_leave_time - AGITATED_THRESHOLD - ANGRY_THRESHOLD)
+	guest_leave_timer.start(assign_guest_leave_time - AGITATED_THRESHOLD)
 	
 	var node: GuestSprite = guest.node
 	await guest_leave_timer.timeout
 	
-	if phase != Phase.MANAGEMENT or node == null: return
-	play_agitated_animation(node)
-	
-	await get_tree().create_timer(AGITATED_THRESHOLD - ANGRY_THRESHOLD).timeout
-	
-	if phase != Phase.MANAGEMENT or node == null: return
-	node.play_angry_animation()
-	
-	await get_tree().create_timer(ANGRY_THRESHOLD).timeout
+	# await 
 	
 	if current_guest != guest or current_guest == null: return
 	
@@ -356,17 +350,13 @@ func play_star_rating_animation(stars: float):
 	star_rating.visible = false
 
 func play_agitated_animation(guest_node: Node2D):
-	var duration: float = 1.2
+	var duration: float = 0.6
 	var timer: float = 0
 	
 	var start_y: float = guest_node.position.y
 	
 	while timer < duration:
-		guest_node.position.y = start_y + pow(sin(2 * PI * timer / duration), 4) * 5
-		timer += get_process_delta_time()
+		guest_node.position.y = start_y + pow(sin(4 * timer), 4)
 		await get_tree().process_frame
 	
 	guest_node.position.y = start_y
-
-func ease_out(t: float) -> float:
-	return 1 - (1 - t) * (1 - t)
