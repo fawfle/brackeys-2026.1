@@ -66,7 +66,8 @@ var playing_animation: bool:
 	get: return playing_exit_animation or playing_enter_animation
 var playing_enter_animation: bool = false ## is playing enter animation
 var playing_exit_animation: bool = false ## is currently playing exit animation
-var assigning_guest: bool = false ## is playing assign guest animation
+var assigning_guest: bool = false ## is currently assigning guest
+var leaving_guest: bool = false ## is currently leaving guest
 
 ## stores list of last n guests and "blacklists" them
 var past_guest_queue: Array[Guest] = []
@@ -108,7 +109,7 @@ func _process(delta: float) -> void:
 		end_day()
 		return
 	
-	if phase == Phase.MANAGEMENT and current_guest == null and time_since_guest >= assign_time_per_guest:
+	if phase == Phase.MANAGEMENT and current_guest == null and time_since_guest >= assign_time_per_guest and not playing_animation and not leaving_guest:
 		if guest_assign_queue.size() > 0:
 			manage_next_guest()
 	
@@ -184,6 +185,8 @@ func manage_next_guest() -> void:
 func leave_guest() -> void:
 	if current_guest == null or playing_exit_animation or assigning_guest: return
 	
+	leaving_guest = true
+	
 	var node: Node2D = current_guest.node
 	Globals.set_text.emit(current_guest.rejected_goodbye)
 	current_guest = null
@@ -192,9 +195,12 @@ func leave_guest() -> void:
 	await play_guest_exit_animation(node)
 	
 	node.queue_free()
-	if current_guest != null: return
 	
-	Globals.set_text.emit()
+	if current_guest == null: Globals.set_text.emit() # just in case overlaps with something else
+	
+	await get_tree().create_timer(0.9).timeout # time padding
+	
+	leaving_guest = false
 
 ## currently duplicate guests and set traits here. Maybe change in the future if it's confusing.
 func create_next_guest() -> Guest:
@@ -269,11 +275,14 @@ func assign_guest(room: Room):
 	
 	assigning_guest = false
 
+const AGITATED_THRESHOLD: float = 8
 
 func start_assign_guest_leave_timer(guest: Guest):
-	guest_leave_timer.start(assign_guest_leave_time)
+	guest_leave_timer.start(assign_guest_leave_time - AGITATED_THRESHOLD)
 	
 	await guest_leave_timer.timeout
+	
+	# await 
 	
 	if current_guest != guest or current_guest == null: return
 	
@@ -338,3 +347,15 @@ func play_star_rating_animation(stars: float):
 	await get_tree().create_tween().tween_property(star_rating, "modulate", Color("#ffffff00"), 1.0).finished
 	
 	star_rating.visible = false
+
+func play_agitated_animation(guest_node: Node2D):
+	var duration: float = 0.6
+	var timer: float = 0
+	
+	var start_y: float = guest_node.position.y
+	
+	while timer < duration:
+		guest_node.position.y = start_y + pow(sin(4 * timer), 4)
+		await get_tree().process_frame
+	
+	guest_node.position.y = start_y

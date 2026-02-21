@@ -117,6 +117,37 @@ offset_top = 145.0
 offset_right = 244.0
 offset_bottom = 169.0
 
+[node name="DayEndMenu" type="ColorRect" parent="CanvasLayer/GuestWindow" unique_id=648593923]
+visible = false
+layout_mode = 0
+offset_left = 70.0
+offset_top = 41.0
+offset_right = 193.0
+offset_bottom = 182.0
+color = Color(0, 0, 0, 0.8862745)
+
+[node name="Label" type="Label" parent="CanvasLayer/GuestWindow/DayEndMenu" unique_id=1402626393]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 5.0
+offset_bottom = 19.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("2_bw6k5")
+theme_override_font_sizes/font_size = 15
+text = "DAY END"
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="CanvasLayer/GuestWindow/DayEndMenu" unique_id=77998094]
+layout_mode = 0
+offset_left = 31.0
+offset_top = 111.0
+offset_right = 90.0
+offset_bottom = 135.0
+theme = ExtResource("5_utbpp")
+text = "proceed"
+clip_text = true
+
 [node name="Separator" type="ColorRect" parent="CanvasLayer" unique_id=1946174638]
 anchors_preset = 11
 anchor_left = 1.0
