@@ -263,7 +263,6 @@ func _on_assign_button_button_down() -> void:
 	if Hotel.inst.selected_room != null: assign_guest(Hotel.inst.selected_room)
 
 func _on_reject_button_down() -> void:
-	print('hi')
 	if phase == Phase.MANAGEMENT: leave_guest()
 
 func assign_guest(room: Room):

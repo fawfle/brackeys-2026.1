@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bfjv0sjmcksyh" path="res://scripts/room.gd" id="1_4oh1f"]
 [ext_resource type="Texture2D" uid="uid://c0jfuyilfsvxi" path="res://sprites/ui/room_bg.png" id="2_u8qe1"]
+[ext_resource type="Texture2D" uid="uid://ctwaeyv3ywlne" path="res://sprites/ui/room_door.png" id="3_dixxy"]
 [ext_resource type="Texture2D" uid="uid://bas8r7ai7030r" path="res://sprites/ui/room_construction.png" id="3_m5k2i"]
 [ext_resource type="Texture2D" uid="uid://cvk01ed1din40" path="res://sprites/ui/guest-icon.png" id="3_xw5ef"]
 [ext_resource type="Script" path="res://scenes/hotel/guest_indicator.gd" id="4_bn68h"]
@@ -18,6 +19,14 @@ script = ExtResource("1_4oh1f")
 
 [node name="RoomBackground" type="Sprite2D" parent="." unique_id=1364284177]
 texture = ExtResource("2_u8qe1")
+
+[node name="DoorOne" type="Sprite2D" parent="." unique_id=959816699]
+position = Vector2(3, -2)
+texture = ExtResource("3_dixxy")
+
+[node name="DoorTwo" type="Sprite2D" parent="." unique_id=1744436607]
+position = Vector2(-8, -2)
+texture = ExtResource("3_dixxy")
 
 [node name="RoomBody" type="Sprite2D" parent="." unique_id=1877173164]
 texture = ExtResource("3_m5k2i")
@@ -47,6 +56,7 @@ script = ExtResource("4_bn68h")
 texture = ExtResource("4_m5k2i")
 
 [node name="CleanProgressBar" parent="." unique_id=632993768 instance=ExtResource("6_u8qe1")]
+visible = false
 layout_mode = 0
 offset_left = -6.0
 offset_top = -6.0
@@ -57,6 +67,7 @@ max_value = 1.0
 fill_mode = 4
 
 [node name="BuildProgressBar" parent="." unique_id=1124830061 instance=ExtResource("6_u8qe1")]
+visible = false
 layout_mode = 0
 offset_left = -6.0
 offset_top = -6.0
@@ -68,6 +79,7 @@ fill_mode = 4
 tint_progress = Color(0.6, 0.8980392, 0.3137255, 1)
 
 [node name="DimOverlay" type="ColorRect" parent="." unique_id=349350901]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5

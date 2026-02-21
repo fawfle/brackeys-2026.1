@@ -14,6 +14,11 @@ const GROUP_NAME: String = "room"
 
 @onready var dim_overlay: ColorRect = $DimOverlay
 
+## the door to make appear on size 1
+@onready var door_one: Sprite2D = $DoorOne
+## the door to make appear on size 2
+@onready var door_two: Sprite2D = $DoorTwo
+
 ## location of room in hotel. Starts at 0,0 from bottom left. Floor is location.y
 @export var location: Vector2i = Vector2i.ZERO
 
@@ -41,6 +46,12 @@ const QUALITY_BODY_TEXTURES: Dictionary[Quality, Texture] = {
 	Quality.DUMP: preload("res://sprites/ui/room_body.png"),
 	Quality.NORMAL:preload("res://sprites/ui/room_normal_body.png"),
 	Quality.CLASSY:preload("res://sprites/ui/room_classy_body.png"),
+}
+
+const DOOR_SPRITES: Dictionary[Quality, Texture] = {
+	Quality.DUMP: preload("res://sprites/ui/room_door.png"),
+	Quality.NORMAL: preload("res://sprites/ui/room_door_normal.png"),
+	Quality.CLASSY: preload("res://sprites/ui/room_door_classy.png"),
 }
 
 var guest: Guest = null:
@@ -156,6 +167,11 @@ func update_room_sprite():
 	
 	room_background.texture = QUALITY_BACKGROUND_TEXTURES.get(quality)
 	dim_overlay.visible = is_inactive()
+	
+	door_one.visible = room_size == RoomSize.MEDIUM or room_size == RoomSize.LARGE
+	door_two.visible = room_size == RoomSize.LARGE
+	door_one.texture = DOOR_SPRITES.get(quality)
+	door_two.texture = DOOR_SPRITES.get(quality)
 
 func is_inactive() -> bool:
 	return not built or upgrading

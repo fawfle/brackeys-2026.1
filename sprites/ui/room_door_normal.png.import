@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://6gbpbrpf5rjm"
-path="res://.godot/imported/room_classy_body.png-7ba2358125b964bdf247497c6b9b6eab.ctex"
+uid="uid://8y0b1312kn08"
+path="res://.godot/imported/room_door_normal.png-28672b2ab6c36715c91771ef63414c6d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/ui/room_classy_body.png"
-dest_files=["res://.godot/imported/room_classy_body.png-7ba2358125b964bdf247497c6b9b6eab.ctex"]
+source_file="res://sprites/ui/room_door_normal.png"
+dest_files=["res://.godot/imported/room_door_normal.png-28672b2ab6c36715c91771ef63414c6d.ctex"]
 
 [params]
 
