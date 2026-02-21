@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://sjl61lh7j5mg"]
+
+[ext_resource type="Texture2D" uid="uid://befp0ul5di8b" path="res://sprites/characters/cameron.png" id="1_6jwrw"]
+[ext_resource type="Texture2D" uid="uid://di7x6nmfrf6aa" path="res://sprites/characters/angry_icon.png" id="2_jq87l"]
+
+[node name="cameron" type="Sprite2D" unique_id=1399342781]
+texture = ExtResource("1_6jwrw")
+
+[node name="AngrySprite" type="Sprite2D" parent="." unique_id=1771749519]
+visible = false
+position = Vector2(2, -22)
+texture = ExtResource("2_jq87l")

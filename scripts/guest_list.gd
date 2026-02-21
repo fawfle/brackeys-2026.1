@@ -15,7 +15,7 @@ enum {
 }
 
 static var GUESTS_DATA: Dictionary[String, Dictionary] = {
-	"Four Eyes": {
+	"Four Eyes": { #Michael write this! 
 		SCENE: preload("res://scenes/characters/four_eyes.tscn"),
 		DEFAULT_TRAITS: [TraitList.Trait.CLEAN],
 		GREETING: ["Hello, this is my first line of greeting.", "glorbo glub shclaoindsf sadfo. This is my second line!"],
@@ -87,11 +87,11 @@ static var GUESTS_DATA: Dictionary[String, Dictionary] = {
 	},
 	"Octovee": {
 		SCENE: preload("res://scenes/characters/octovee.tscn"),
-		DEFAULT_TRAITS: [TraitList.Trait.CHEAP],
-		GREETING: ["wsg. lookin for a 1337 room for small $$$", "u seem cool lul, gimme somethin gud :)"],
-		GOODBYE: "gtg, thx for te room ;D",
-		HAPPY_GOODBYE: "10/10. room wuz awsumsauce btw. cul8r :p",
-		ANGRY_GOODBYE: "WTF dewd. u think im a n00b or somethn? kys >:(",
+		DEFAULT_TRAITS: [TraitList.Trait.CLASSY],
+		GREETING: ["Hey friend, I'm in town for the day and I'll need a place to crash.", "Lotsa work to do, so don't keep me waiting..."],
+		GOODBYE: "Thanks for the room, friend.",
+		HAPPY_GOODBYE: "Fancy stuff, friend. I'll keep this place in mind...",
+		ANGRY_GOODBYE: "Not a fan, friend. I expect better from this fine establishment.",
 		MONEY: 10,
 	},
 	"Gobby": {
@@ -101,8 +101,20 @@ static var GUESTS_DATA: Dictionary[String, Dictionary] = {
 		GOODBYE: ["Many thankses. G-goodbye."],
 		HAPPY_GOODBYE: ["Thank you so much for the room! I'm just chuffed to bits!"],
 		ANGRY_GOODBYE: ["T-thank you for t-the room, but... I didn't... like it..."],
+		REJECTED_GOODBYE: ["T-that's fine. I wouldn't w-want me in a room either..."],
 		MONEY: 10,
 	},
+	"Bumpling": {
+		SCENE: preload("res://scenes/characters/bumpling.tscn"),
+		DEFAULT_TRAITS: [TraitList.Trait.CLAUSTROPHOBIC],
+		GREETING: ["Heyo... Can I get a ruh-ruh-rooooom?", "Looking for something good, I know you won't lemme down here."],
+		GOODBYE: ["Big thanks, big fella"],
+		HAPPY_GOODBYE: ["You've got a big heart, big fella. Grande service here."],
+		ANGRY_GOODBYE: ["You've made me feel so small, jerk..."],
+		REJECTED_GOODBYE: ["Not enough room for my awesomeness?? Understandable."],
+		MONEY: 10,
+	
+}
 }
 
 static var GUESTS: Dictionary[String, Guest]
