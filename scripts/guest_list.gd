@@ -1,6 +1,7 @@
 class_name GuestList
 
 enum {
+	NAME, ## name. If not specified, will be key
 	SCENE, ## Scene to load for guest. Consists of sprite, possibly more.
 	DEFAULT_TRAITS,	## Default traits always given to a guest.
 	GREETING, ## Message sent on greeting before request.
@@ -12,10 +13,11 @@ enum {
 	APPEAR_AFTER, ## Threshold to not appear before a certain day. For gating guests after unlocks.
 	EVENT, ## Mark a guest as an "event" type.
 	APPEAR_ON_DAY, ## appear on specific day. Only for event types
+	STOP_TIME, ## should this guest stop time when active
 }
 
 static var GUESTS_DATA: Dictionary[String, Dictionary] = {
-	"Four Eyes": { #Michael write this! 
+	"Four Eyes": {
 		SCENE: preload("res://scenes/characters/four_eyes.tscn"),
 		DEFAULT_TRAITS: [TraitList.Trait.CLEAN],
 		GREETING: ["Hello, one of my eyes can see my name behind there, how did you get my name?", "Besides the point. My eyes need a space to close!"],
@@ -179,7 +181,8 @@ static func LOAD_GUESTS():
 		
 		var guest = Guest.new();
 		
-		guest.name = key
+		if data.get(NAME): guest.name = data.get(NAME)
+		else: guest.name = key
 		
 		if data.has(SCENE): guest.scene = data.get(SCENE)
 		if data.has(DEFAULT_TRAITS): guest.default_traits.assign(data.get(DEFAULT_TRAITS))
@@ -193,9 +196,11 @@ static func LOAD_GUESTS():
 		if data.has(MONEY): guest.money = data.get(MONEY)
 		
 		if data.has(APPEAR_AFTER): guest.appear_after_day = data.get(APPEAR_AFTER)
+		if data.has(STOP_TIME): guest.stop_time = data.get(STOP_TIME)
 		
 		## event guests
 		if data.has(EVENT):
+			guest.event = data.get(EVENT)
 			if data.has(APPEAR_ON_DAY): guest.appear_on_day = data.get(APPEAR_ON_DAY)
 			EVENT_GUESTS.set(key, guest)
 		else:
