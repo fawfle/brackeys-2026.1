@@ -1,7 +1,8 @@
 [gd_scene format=3 uid="uid://4gii0y616804"]
 
 [ext_resource type="Script" uid="uid://bfjv0sjmcksyh" path="res://scripts/room.gd" id="1_4oh1f"]
-[ext_resource type="Texture2D" uid="uid://c4sqydxoo0nlf" path="res://sprites/ui/room.png" id="2_3qhai"]
+[ext_resource type="Texture2D" uid="uid://c0jfuyilfsvxi" path="res://sprites/ui/room_bg.png" id="2_u8qe1"]
+[ext_resource type="Texture2D" uid="uid://bas8r7ai7030r" path="res://sprites/ui/room_construction.png" id="3_m5k2i"]
 [ext_resource type="Texture2D" uid="uid://cvk01ed1din40" path="res://sprites/ui/guest-icon.png" id="3_xw5ef"]
 [ext_resource type="Script" path="res://scenes/hotel/guest_indicator.gd" id="4_bn68h"]
 [ext_resource type="Texture2D" uid="uid://ch6fvqd1ffg6" path="res://sprites/ui/room_selected.png" id="4_m5k2i"]
@@ -15,8 +16,11 @@ layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_4oh1f")
 
-[node name="RoomSprite" type="Sprite2D" parent="." unique_id=1364284177]
-texture = ExtResource("2_3qhai")
+[node name="RoomBackground" type="Sprite2D" parent="." unique_id=1364284177]
+texture = ExtResource("2_u8qe1")
+
+[node name="RoomBody" type="Sprite2D" parent="." unique_id=1877173164]
+texture = ExtResource("3_m5k2i")
 
 [node name="TextureButton" type="TextureButton" parent="." unique_id=692431399]
 layout_mode = 1
@@ -50,6 +54,22 @@ offset_right = 6.0
 offset_bottom = 6.0
 max_value = 1.0
 fill_mode = 4
+
+[node name="DimOverlay" type="ColorRect" parent="." unique_id=349350901]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -18.0
+offset_top = -8.0
+offset_right = 18.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0.23529412)
 
 [connection signal="button_down" from="TextureButton" to="." method="_on_texture_button_button_down"]
 [connection signal="button_up" from="TextureButton" to="." method="_on_texture_button_button_up"]

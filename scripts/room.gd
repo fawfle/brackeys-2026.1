@@ -11,6 +11,8 @@ const GROUP_NAME: String = "room"
 
 @onready var clean_progress: TextureProgressBar = $TextureProgressBar
 
+@onready var dim_overlay: ColorRect = $DimOverlay
+
 ## location of room in hotel. Starts at 0,0 from bottom left. Floor is location.y
 @export var location: Vector2i = Vector2i.ZERO
 
@@ -23,13 +25,21 @@ var hotel_floor: int:
 		built = value
 		update_room_sprite()
 
-@onready var room_sprite:Sprite2D = $RoomSprite
+@onready var room_background: Sprite2D = $RoomBody
+@onready var room_body: Sprite2D = $RoomBody
+
 const ROOM_CONSTRUCTION_TEXTURE: Texture = preload("res://sprites/ui/room_construction.png")
 
-const QUALITY_TEXTURES: Dictionary[Quality, Texture] = {
-	Quality.DUMP: preload("res://sprites/ui/room.png"),
-	Quality.NORMAL: preload("res://sprites/ui/room_normal.png"),
-	Quality.CLASSY: preload("res://sprites/ui/room_classy.png")
+const QUALITY_BACKGROUND_TEXTURES: Dictionary[Quality, Texture] = {
+	Quality.DUMP: preload("res://sprites/ui/room_bg.png"),
+	Quality.NORMAL: preload("res://sprites/ui/room_normal_bg.png"),
+	Quality.CLASSY: preload("res://sprites/ui/room_classy_bg.png")
+}
+
+const QUALITY_BODY_TEXTURES: Dictionary[Quality, Texture] = {
+	Quality.DUMP: preload("res://sprites/ui/room_body.png"),
+	Quality.NORMAL:preload("res://sprites/ui/room_normal_body.png"),
+	Quality.CLASSY:preload("res://sprites/ui/room_classy_body.png"),
 }
 
 var guest: Guest = null:
@@ -47,10 +57,14 @@ var clean_timer: float = 0
 
 var held: bool = false
 
+var upgrading: bool = false
+var upgrade_time: float = 0
+
 func _ready() -> void:
 	guest_indicator.visible = false
 	focus_outline.visible = false
 	clean_progress.visible = false
+	dim_overlay.visible = false
 	
 	Globals.select_room.connect(_on_room_select)
 	
@@ -58,6 +72,12 @@ func _ready() -> void:
 	clean_progress.max_value = time_to_clean
 
 func _process(delta: float) -> void:
+	if upgrading:
+		upgrade_time += delta
+		if upgrade_time >= GameManager.inst.total_day_length:
+			stop_upgrading()
+		return
+	
 	if sanitation == Sanitation.CLEAN: return
 	
 	if held:
@@ -120,11 +140,13 @@ func checkout_guest() -> Guest:
 	return g
 
 func update_room_sprite():
-	if not built:
-		room_sprite.texture = ROOM_CONSTRUCTION_TEXTURE
-		return
+	if not built or upgrading:
+		room_body.texture = ROOM_CONSTRUCTION_TEXTURE
+	else:
+		room_body.texture = QUALITY_BODY_TEXTURES.get(quality)
 	
-	room_sprite.texture = QUALITY_TEXTURES.get(quality)
+	room_background.texture = QUALITY_BACKGROUND_TEXTURES.get(quality)
+	dim_overlay.visible = upgrading
 
 ## makes room messier, mostly for when guests leave
 func decrease_sanitation():
@@ -182,6 +204,7 @@ func upgrade_quality():
 	if quality == Quality.CLASSY: return
 	
 	quality = (quality + 1) as Quality
+	set_upgrading()
 	update_room_sprite()
 	Globals.room_updated.emit(self)
 		
@@ -189,12 +212,22 @@ func upgrade_room_size():
 	if room_size == RoomSize.LARGE: return
 	
 	room_size = (room_size + 1) as RoomSize
+	set_upgrading()
 	Globals.room_updated.emit(self)
 
 func build():
 	if built: return
 	built = true
 	Globals.room_updated.emit(self)
+
+func set_upgrading():
+	upgrading = true
+	upgrade_time = 0
+	dim_overlay.visible = true
+
+func stop_upgrading():
+	upgrading = false
+	dim_overlay.visible = true
 
 enum Sanitation {
 	DIRTY,
