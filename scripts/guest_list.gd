@@ -144,7 +144,7 @@ static var GUESTS_DATA: Dictionary[String, Dictionary] = {
 		ANGRY_GOODBYE: "That room was terrible... There's nothing LEEEEFTTT here for me...",
 		REJECTED_GOODBYE: "I guess you'd prefer if I LEEEEFTTTT!!!!",
 		MONEY: 10,
-	}
+	},
 
 	"Manny": {
 		SCENE: preload("res://scenes/characters/manny.tscn"),
