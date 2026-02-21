@@ -1,10 +1,13 @@
 [gd_scene format=3 uid="uid://caiedeyk66p6d"]
 
 [ext_resource type="Texture2D" uid="uid://bq003alce62pl" path="res://sprites/characters/molar.png" id="1_xcrdv"]
+[ext_resource type="Script" uid="uid://cuba1v2c3urst" path="res://scripts/guest_sprite.gd" id="2_g33kv"]
 [ext_resource type="Texture2D" uid="uid://di7x6nmfrf6aa" path="res://sprites/characters/angry_icon.png" id="2_p6lj1"]
 
-[node name="molar" type="Sprite2D" unique_id=243294869]
+[node name="molar" type="Sprite2D" unique_id=1348344241]
 texture = ExtResource("1_xcrdv")
+script = ExtResource("2_g33kv")
+metadata/_custom_type_script = "uid://cuba1v2c3urst"
 
 [node name="AngrySprite" type="Sprite2D" parent="." unique_id=1020519854]
 visible = false

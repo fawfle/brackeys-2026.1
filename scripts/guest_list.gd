@@ -125,7 +125,46 @@ static var GUESTS_DATA: Dictionary[String, Dictionary] = {
 		REJECTED_GOODBYE: "Didn't know pest control was so important here...", 
 		MONEY: 10,
 	},
+	"Gurgario": {
+		SCENE: preload("res://scenes/characters/gurgario.tscn"),
+		DEFAULT_TRAITS: [TraitList.Trait.CENTRIST],
+		GREETING: ["What's looking, good cooking. Got a room for lil ol me?", "Need a place to sleep and the alley dumpsters were full."],
+		GOODBYE: "So long, and thanks for all the room.",
+		HAPPY_GOODBYE: "Good stuff. Good bed. Generally good overall.", 
+		ANGRY_GOODBYE: "Someone left scratch marks all over the room. Wasn't me.", 
+		REJECTED_GOODBYE: "Maybe those dumpsters have some room after all...",
+		MONEY: 10,
+	},
+	"Lewis": {
+		SCENE: preload("res://scenes/characters/lewis.tscn"),
+		DEFAULT_TRAITS: [TraitList.Trait.LEFT_HANDED],
+		GREETING: ["LEEEEFT!!!!!!", "LET'S GOOOO LEFT!!!!!"],
+		GOODBYE: "My time is up, so I LEEEEEEFT!!!!", 
+		HAPPY_GOODBYE: "Great room! I LEEEEEFTTT it in great condition!",
+		ANGRY_GOODBYE: "That room was terrible... There's nothing LEEEEFTTT here for me...",
+		REJECTED_GOODBYE: "I guess you'd prefer if I LEEEEFTTTT!!!!",
+		MONEY: 10,
+	},
 
+	"Manny": {
+		SCENE: preload("res://scenes/characters/manny.tscn"),
+		GREETING: [
+			"Hello and welcome to [color=00BFFF]Single Star Hotel[/color]! Where customer satisfaction is our single priority!",
+			"You must be new here! Welcome to your first day on the job! Allow me to explain to you how things work!",
+			"When a guest is in front of you, click on one of the rooms! Then click the bell to assign them to that room!",
+			"If you don't have enough space for them, or you simply don't like them, hit the button under your desk!",
+			"Do remember, we are running a hotel here! Most guests don't want a dirty room! To clean a room, simply hold down on said room!",
+			"All guests have specific requests! Try to meet them for a [color=00BFFF]5 star[/color] rating! Happy guests pay more! Guests with specific needs usually pay extra!",
+			"Corporate won't be happy if you do that! Don't worry, I won't say anything! I understand the struggle!",
+			"Guests will trickle in throughout the day and checkout in the morning! Remember, we're running on a [color=red]real clock[/color] here! Don't waste time.",
+			"If business is slow, you can play on your company mandated [color=00BFFF]SolarBoy[/color]! Just click and hold and time will just pass by!",
+			"Trust me, it will save a lot of your sanity!",
+			"Once you feel ready put me in a [color=red]clean[/color] room!"
+		],
+		MONEY: 25,
+		EVENT: true,
+		APPEAR_ON_DAY: 0,
+	}
 }
 
 static var GUESTS: Dictionary[String, Guest]

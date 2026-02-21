@@ -1,10 +1,13 @@
 [gd_scene format=3 uid="uid://u5phak7gs4ue"]
 
 [ext_resource type="Texture2D" uid="uid://bv8tdibf54p4x" path="res://sprites/characters/Mr. Mestoplis.png" id="1_d8j88"]
+[ext_resource type="Script" uid="uid://cuba1v2c3urst" path="res://scripts/guest_sprite.gd" id="2_arrig"]
 [ext_resource type="Texture2D" uid="uid://di7x6nmfrf6aa" path="res://sprites/characters/angry_icon.png" id="2_s6ya0"]
 
-[node name="mr__mestoplis" type="Sprite2D" unique_id=846212491]
+[node name="mr__mestoplis" type="Sprite2D" unique_id=909291960]
 texture = ExtResource("1_d8j88")
+script = ExtResource("2_arrig")
+metadata/_custom_type_script = "uid://cuba1v2c3urst"
 
 [node name="AngrySprite" type="Sprite2D" parent="." unique_id=2104440525]
 visible = false
