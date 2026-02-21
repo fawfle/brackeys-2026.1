@@ -78,15 +78,20 @@ mouse_filter = 2
 
 [node name="BuildFloorButton" parent="HotelUpgradeMenu" unique_id=1171972501 instance=ExtResource("4_k0vif")]
 layout_mode = 0
-offset_left = 9.0
-offset_right = 39.0
-offset_bottom = 50.0
+offset_left = 12.0
+offset_top = 4.0
+offset_right = 42.0
+offset_bottom = 52.0
 label_text = "Floor"
 description = "build a new floor"
 
 [node name="RoomUpgradeMenu" parent="." unique_id=558005973 instance=ExtResource("5_k0vif")]
-visible = false
 layout_mode = 1
+anchor_left = 0.5003429
+anchor_top = 1.0002793
+anchor_right = 0.5003429
+anchor_bottom = 1.0002793
+metadata/_edit_use_anchors_ = true
 
 [node name="RoomInfoMenu" parent="." unique_id=1346516254 instance=ExtResource("4_16lx5")]
 layout_mode = 1

@@ -30,7 +30,7 @@ position = Vector2(130, 94)
 texture = ExtResource("2_rvs2r")
 
 [node name="GuestParent" type="Node2D" parent="." unique_id=521559917]
-position = Vector2(131, 130)
+position = Vector2(131, 123)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1013869446]
 

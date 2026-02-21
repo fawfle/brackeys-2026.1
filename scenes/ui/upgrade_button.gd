@@ -19,10 +19,16 @@ class_name UpgradeButton extends TextureButton
 		cost_label.text = "$" + str(value) if cost >= 0 else "MAX"
 		update_button(GameManager.inst.money)
 
-const disabled_color: Color = Color("#ffffff22")
+const disabled_color: Color = Color("#ffffff80")
 
 ## description to display when hovering
 @export var description: String = ""
+
+@export var texture: Texture:
+	get: return texture
+	set(value):
+		texture = value
+		$Icon.texture = texture
 
 func _ready() -> void:
 	if Engine.is_editor_hint(): return
