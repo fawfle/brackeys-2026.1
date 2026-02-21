@@ -263,7 +263,6 @@ func _on_assign_button_button_down() -> void:
 	if Hotel.inst.selected_room != null: assign_guest(Hotel.inst.selected_room)
 
 func _on_reject_button_down() -> void:
-	print('hi')
 	if phase == Phase.MANAGEMENT: leave_guest()
 
 func assign_guest(room: Room):
@@ -290,6 +289,7 @@ const AGITATED_THRESHOLD: float = 10
 const ANGRY_THRESHOLD: float = 4
 
 func start_assign_guest_leave_timer(guest: Guest):
+	if guest == null: return
 	guest_leave_timer.start(assign_guest_leave_time - AGITATED_THRESHOLD - ANGRY_THRESHOLD)
 	
 	var node: GuestSprite = guest.node
@@ -320,6 +320,7 @@ func purchase_upgrade(cost: int) -> bool:
 func play_guest_enter_animation(guest_node: Node2D):
 	playing_enter_animation = true
 	var duration: float = 0.9
+	guest_node.position = Vector2.ZERO
 	
 	# var end_color: Color = Color("ffffffff")
 	
