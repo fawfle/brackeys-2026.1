@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://xs1ym4a0lhk"]
+
+[ext_resource type="Texture2D" uid="uid://cs1fdk1shr7n6" path="res://sprites/characters/plazmotron.png" id="1_jrdsv"]
+[ext_resource type="Script" uid="uid://cuba1v2c3urst" path="res://scripts/guest_sprite.gd" id="2_j6ylv"]
+[ext_resource type="Texture2D" uid="uid://di7x6nmfrf6aa" path="res://sprites/characters/angry_icon.png" id="3_c7015"]
+
+[node name="plazmotron" type="Sprite2D" unique_id=2004822231]
+texture = ExtResource("1_jrdsv")
+script = ExtResource("2_j6ylv")
+metadata/_custom_type_script = "uid://cuba1v2c3urst"
+
+[node name="AngrySprite" type="Sprite2D" parent="." unique_id=1238478407]
+visible = false
+position = Vector2(-11, -56)
+texture = ExtResource("3_c7015")

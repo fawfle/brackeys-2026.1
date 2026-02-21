@@ -2,9 +2,12 @@
 
 [ext_resource type="Texture2D" uid="uid://cnfd05qq000l5" path="res://sprites/characters/oney.png" id="1_pybry"]
 [ext_resource type="Texture2D" uid="uid://di7x6nmfrf6aa" path="res://sprites/characters/angry_icon.png" id="2_elmo1"]
+[ext_resource type="Script" uid="uid://cuba1v2c3urst" path="res://scripts/guest_sprite.gd" id="2_utykm"]
 
-[node name="oney" type="Sprite2D" unique_id=793695030]
+[node name="oney" type="Sprite2D" unique_id=463990318]
 texture = ExtResource("1_pybry")
+script = ExtResource("2_utykm")
+metadata/_custom_type_script = "uid://cuba1v2c3urst"
 
 [node name="AngrySprite" type="Sprite2D" parent="." unique_id=1417941777]
 visible = false

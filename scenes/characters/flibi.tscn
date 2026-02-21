@@ -1,11 +1,15 @@
 [gd_scene format=3 uid="uid://bflr6cu554knb"]
 
 [ext_resource type="Texture2D" uid="uid://b84ms8p6rffqr" path="res://sprites/characters/flibi.png" id="1_3xk7d"]
+[ext_resource type="Script" uid="uid://cuba1v2c3urst" path="res://scripts/guest_sprite.gd" id="2_c7xv7"]
 [ext_resource type="Texture2D" uid="uid://di7x6nmfrf6aa" path="res://sprites/characters/angry_icon.png" id="2_qhstx"]
 
-[node name="flibi" type="Sprite2D" unique_id=1612115614]
+[node name="flibi" type="Sprite2D" unique_id=1687451501]
 texture = ExtResource("1_3xk7d")
+script = ExtResource("2_c7xv7")
+metadata/_custom_type_script = "uid://cuba1v2c3urst"
 
 [node name="AngrySprite" type="Sprite2D" parent="." unique_id=7003247]
+visible = false
 position = Vector2(-14, -27)
 texture = ExtResource("2_qhstx")

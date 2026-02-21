@@ -1,12 +1,15 @@
 [gd_scene format=3 uid="uid://bc3alatlo365w"]
 
 [ext_resource type="Texture2D" uid="uid://c41o67qbifyj0" path="res://sprites/characters/pedro.png" id="1_g587n"]
+[ext_resource type="Script" uid="uid://cuba1v2c3urst" path="res://scripts/guest_sprite.gd" id="2_kv0ey"]
 [ext_resource type="Texture2D" uid="uid://di7x6nmfrf6aa" path="res://sprites/characters/angry_icon.png" id="2_usot5"]
 
-[node name="pedro" type="Sprite2D" unique_id=641451783]
+[node name="pedro" type="Sprite2D" unique_id=177009663]
 texture = ExtResource("1_g587n")
+script = ExtResource("2_kv0ey")
+metadata/_custom_type_script = "uid://cuba1v2c3urst"
 
 [node name="AngrySprite" type="Sprite2D" parent="." unique_id=1369618491]
 visible = false
-position = Vector2(-41, -42)
+position = Vector2(4, -6)
 texture = ExtResource("2_usot5")

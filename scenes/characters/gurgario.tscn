@@ -2,9 +2,12 @@
 
 [ext_resource type="Texture2D" uid="uid://b4lk3p6meb3jj" path="res://sprites/characters/gurgario.png" id="1_bhgg4"]
 [ext_resource type="Texture2D" uid="uid://di7x6nmfrf6aa" path="res://sprites/characters/angry_icon.png" id="2_1tetf"]
+[ext_resource type="Script" uid="uid://cuba1v2c3urst" path="res://scripts/guest_sprite.gd" id="2_rh3ud"]
 
-[node name="gurgario" type="Sprite2D" unique_id=1346257784]
+[node name="gurgario" type="Sprite2D" unique_id=1250751037]
 texture = ExtResource("1_bhgg4")
+script = ExtResource("2_rh3ud")
+metadata/_custom_type_script = "uid://cuba1v2c3urst"
 
 [node name="AngrySprite" type="Sprite2D" parent="." unique_id=1600096322]
 visible = false
