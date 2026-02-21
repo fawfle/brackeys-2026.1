@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://dtejyyk37uj86"]
+
+[ext_resource type="Texture2D" uid="uid://bd061x1iqgpge" path="res://sprites/characters/Manny.png" id="1_nqe5m"]
+[ext_resource type="Script" uid="uid://cuba1v2c3urst" path="res://scripts/guest_sprite.gd" id="2_27qkn"]
+[ext_resource type="Texture2D" uid="uid://di7x6nmfrf6aa" path="res://sprites/characters/angry_icon.png" id="3_m4hbi"]
+
+[node name="Manny" type="Sprite2D" unique_id=278954271]
+texture = ExtResource("1_nqe5m")
+script = ExtResource("2_27qkn")
+
+[node name="AngrySprite" type="Sprite2D" parent="." unique_id=1624133768]
+visible = false
+position = Vector2(22, -60)
+texture = ExtResource("3_m4hbi")
