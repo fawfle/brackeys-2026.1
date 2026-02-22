@@ -26,6 +26,7 @@
 [ext_resource type="Texture2D" uid="uid://ps3dbuanmo34" path="res://sprites/ui/shutter.png" id="23_pb36m"]
 [ext_resource type="AudioStream" uid="uid://o6aoddrjqivm" path="res://audio/music/Kevin_MacLeod_-_Backed_Vibes_Clean.mp3" id="24_85lt4"]
 [ext_resource type="Texture2D" uid="uid://dwbkjy2ip7vtr" path="res://sprites/ui/shutter_button.png" id="25_xgstd"]
+[ext_resource type="Texture2D" uid="uid://cyutdcjttmq1r" path="res://sprites/ui/logo.png" id="26_6irsn"]
 [ext_resource type="Texture2D" uid="uid://fy8rivl0wtjy" path="res://sprites/ui/shutter_button_hovered.png" id="27_rw4oa"]
 [ext_resource type="Texture2D" uid="uid://4apbhwgiq3od" path="res://sprites/ui/bell.png" id="28_r47aq"]
 
@@ -271,6 +272,12 @@ offset_top = -8.0
 offset_right = 260.0
 offset_bottom = 180.0
 texture = ExtResource("23_pb36m")
+
+[node name="TextureRect" type="TextureRect" parent="IntroMenu/CanvasLayer/ShutterImage" unique_id=798141803]
+layout_mode = 0
+offset_right = 260.0
+offset_bottom = 188.0
+texture = ExtResource("26_6irsn")
 
 [node name="ShutterButton" type="TextureButton" parent="IntroMenu/CanvasLayer" unique_id=364419497]
 offset_top = 163.0
