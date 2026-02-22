@@ -300,6 +300,9 @@ func assign_guest(room: Room):
 	
 	room.add_guest(current_guest)
 	current_guest.room = room
+	
+	if room.perks.has(Room.Perk.SHOWER): current_guest.stay_duration += 1
+	
 	Globals.guest_assigned.emit(current_guest)
 	current_guest = null
 	

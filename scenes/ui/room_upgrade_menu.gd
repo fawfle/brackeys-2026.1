@@ -64,3 +64,7 @@ func _on_perk_button_pressed(_button: UpgradeButton, perk_index):
 	if GameManager.inst.purchase_upgrade(UpgradeCosts.ROOM_PERKS[Hotel.inst.selected_room.perk_tier]):
 		Hotel.inst.selected_room.add_perk(Room.PERK_TIER[Hotel.inst.selected_room.perk_tier][perk_index])
 		update_button_costs(Hotel.inst.selected_room)
+		
+		var description: String = ""
+		if Hotel.inst.selected_room.perk_tier <= 2: description = Room.PERK_DESCRIPTIONS.get(Room.PERK_TIER[Hotel.inst.selected_room.perk_tier][perk_index])
+		Globals.update_upgrade_text.emit(description)

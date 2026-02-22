@@ -1,8 +1,8 @@
 @tool
 class_name PerkButton extends Control
 
-@onready var left_upgrade: UpgradeButton = $RightPerk
-@onready var right_upgrade: UpgradeButton = $LeftPerk
+@onready var left_upgrade: UpgradeButton = $LeftPerk
+@onready var right_upgrade: UpgradeButton = $RightPerk
 
 @onready var cost_label: Label = $LeftPerk/PerkCost
 
@@ -53,7 +53,16 @@ func update_textures(perk_tier: int):
 	if perk_tier >= 3:
 		left_texture = completed_icon
 		right_texture = completed_icon
+		left_description = ""
+		right_description = ""
 		return
 	
-	left_texture = Room.PERK_SPRITES[Room.PERK_TIER[perk_tier][0]]
-	right_texture = Room.PERK_SPRITES[Room.PERK_TIER[perk_tier][1]]
+	var left_perk: Room.Perk = Room.PERK_TIER[perk_tier][0]
+	var right_perk: Room.Perk = Room.PERK_TIER[perk_tier][1]
+	
+	print(Room.PERK_DESCRIPTIONS[left_perk])
+	
+	left_texture = Room.PERK_SPRITES[left_perk]
+	right_texture = Room.PERK_SPRITES[right_perk]
+	left_description = Room.PERK_DESCRIPTIONS[left_perk]
+	right_description = Room.PERK_DESCRIPTIONS[right_perk]

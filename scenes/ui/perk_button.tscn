@@ -14,8 +14,6 @@ offset_right = 40.0
 offset_bottom = 40.0
 mouse_filter = 2
 script = ExtResource("1_2xxft")
-left_description = null
-right_description = null
 
 [node name="RightPerk" parent="." unique_id=1171972501 instance=ExtResource("1_4yvkr")]
 layout_mode = 0
