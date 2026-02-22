@@ -2,7 +2,7 @@
 
 importer="wav"
 type="AudioStreamWAV"
-uid="uid://dwdtpaad3nm2q"
+uid="uid://bxcpy6uqe6sk"
 path="res://.godot/imported/dialogue.wav-4fbe4c5f01e345566dbf5b365eebb18a.sample"
 
 [deps]
@@ -14,11 +14,11 @@ dest_files=["res://.godot/imported/dialogue.wav-4fbe4c5f01e345566dbf5b365eebb18a
 
 force/8_bit=false
 force/mono=false
-force/max_rate=false
-force/max_rate_hz=44100
+force/max_rate=true
+force/max_rate_hz=99305.0
 edit/trim=false
 edit/normalize=false
-edit/loop_mode=0
+edit/loop_mode=2
 edit/loop_begin=0
 edit/loop_end=-1
 compress/mode=2

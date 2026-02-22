@@ -1,12 +1,18 @@
 extends TextureButton
 
+@onready var bell_sound: AudioStreamPlayer2D = $BellSound
+
 func _ready() -> void:
 	Globals.select_room.connect(update_disabled)
 	Globals.current_guest_changed.connect(_on_current_guest_changed)
 	Globals.managing_guest.connect(_on_manage_guest)
 	Globals.room_updated.connect(update_disabled)
 	
-	pressed.connect(func(): disabled = true)
+	button_down.connect(_on_button_down)
+
+func _on_button_down() -> void:
+	disabled = true
+	bell_sound.play()
 
 ## hook for room selection for assigning guest
 func update_disabled(room: Room):

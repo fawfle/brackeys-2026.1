@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://b3axo82ov03uu"]
+
+[ext_resource type="Texture2D" uid="uid://4apbhwgiq3od" path="res://sprites/ui/bell.png" id="1_2lnf5"]
+[ext_resource type="Texture2D" uid="uid://dsgk5dkj4d3jn" path="res://sprites/ui/bell_outlined.png" id="2_yh64p"]
+[ext_resource type="Texture2D" uid="uid://dtdf03xaf6c5c" path="res://sprites/ui/bell_disabled.png" id="3_m6krp"]
+[ext_resource type="Script" uid="uid://b5g34yi0rc1sf" path="res://scenes/ui/assign_button.gd" id="4_q0emg"]
+[ext_resource type="AudioStream" uid="uid://dmpcox8gcvnsj" path="res://audio/sounds/hotel_bell.wav" id="5_yh64p"]
+
+[node name="Bell" type="TextureButton" unique_id=306580137]
+offset_right = 36.0
+offset_bottom = 21.0
+focus_mode = 0
+texture_normal = ExtResource("1_2lnf5")
+texture_hover = ExtResource("2_yh64p")
+texture_disabled = ExtResource("3_m6krp")
+script = ExtResource("4_q0emg")
+
+[node name="BellSound" type="AudioStreamPlayer2D" parent="." unique_id=2133504078]
+stream = ExtResource("5_yh64p")
