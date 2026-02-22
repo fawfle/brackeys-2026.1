@@ -18,6 +18,8 @@ const floating_text_scene: PackedScene = preload("res://scenes/ui/floating_text.
 
 @onready var reject_button: TextureButton = $CanvasLayer/GuestWindow/RejectButton
 
+@onready var darkness_overlay: ColorRect = $CanvasLayer/DarkenOverlay
+
 var day: int = 0
 
 ## total length of day in seconds
@@ -61,6 +63,8 @@ var assign_time_per_guest: float = 0
 ## builtin time to give player to manage day easier
 var guest_assign_time_bias: float = 10
 
+var min_time_left_to_assign: float = 5
+
 ## Boolean heaven!!
 ## bool for if currently playing an animation. forces functions to wait
 var playing_animation: bool:
@@ -72,7 +76,7 @@ var leaving_guest: bool = false ## is currently leaving guest
 
 ## stores list of last n guests and "blacklists" them
 var past_guest_queue: Array[Guest] = []
-const past_guest_queue_limit: int = 24
+const past_guest_queue_limit: int = 30
 
 ## phase of gameplay. Either assigning (getting guests),  managing (upgrading), or checkout (guests leaving and paying). ASSIGN -> UPGRADE -> CHECKOUT
 enum Phase {
@@ -116,7 +120,7 @@ func _process(delta: float) -> void:
 		end_day()
 		return
 	
-	if phase == Phase.MANAGEMENT and current_guest == null and time_since_guest >= assign_time_per_guest and not playing_animation and not leaving_guest:
+	if phase == Phase.MANAGEMENT and current_guest == null and time_since_guest >= assign_time_per_guest and not playing_animation and not leaving_guest and time < min_time_left_to_assign:
 		if guest_assign_queue.size() > 0:
 			manage_next_guest()
 	
@@ -166,6 +170,10 @@ func begin_day() -> void:
 	
 	Globals.begin_day.emit(day)
 	begin_checkout_phase()
+	
+	if darkness_overlay.visible:
+		await get_tree().create_tween().tween_property(darkness_overlay, "modulate", Color("#ffffff00"), 1.8).from(Color("#ffffffff")).finished
+		darkness_overlay.visible = false
 
 ## Handle the end of the day
 func end_day() -> void:
@@ -178,6 +186,9 @@ func end_day() -> void:
 	
 	for guest: Guest in get_guests():
 		guest.update_happiness_rating()
+	
+	darkness_overlay.visible = true
+	get_tree().create_tween().tween_property(darkness_overlay, "modulate", Color("#ffffff"), 1.8).from(Color("#ffffff00"))
 	
 	await get_tree().create_timer(2).timeout
 
@@ -432,7 +443,7 @@ func ease_out(t: float) -> float:
 @onready var shutter_image: TextureRect = $IntroMenu/ShutterImage
 @onready var shutter_button: TextureButton = $IntroMenu/ShutterButton
 @onready var hotel_darkness: ColorRect = $IntroMenu/HotelDarkness
-@onready var darkness_overlay: ColorRect = $IntroMenu/DarkenOverlay
+@onready var intro_darkness_overlay: ColorRect = $IntroMenu/DarkenOverlay
 
 @onready var intro_menu: CanvasLayer = $IntroMenu
 
@@ -449,7 +460,7 @@ func begin_intro_animation():
 	shutter_button.visible = false
 	shutter_button.disabled = true
 	get_tree().create_tween().tween_property(shutter_image, "position", shutter_image.position - Vector2(0, 200), 2).set_ease(Tween.EASE_OUT)
-	get_tree().create_tween().tween_property(darkness_overlay, "modulate", Color("ffffff00"), 3)
+	get_tree().create_tween().tween_property(intro_darkness_overlay, "modulate", Color("ffffff00"), 3)
 	get_tree().create_tween().tween_property(hotel_darkness, "modulate", Color("ffffff00"), 3)
 	
 	await get_tree().create_timer(duration).timeout

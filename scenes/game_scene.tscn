@@ -130,8 +130,6 @@ offset_right = 106.0
 offset_bottom = 194.0
 
 [node name="Bell" parent="CanvasLayer/GuestWindow" unique_id=306580137 instance=ExtResource("13_pb36m")]
-top_level = true
-z_index = 5
 layout_mode = 0
 offset_left = 216.0
 offset_top = 173.0
@@ -220,6 +218,13 @@ texture_normal = ExtResource("6_xgstd")
 texture_hover = ExtResource("20_pb36m")
 script = ExtResource("8_ttvoq")
 pause_menu = NodePath("../PauseMenu")
+
+[node name="DarkenOverlay" type="ColorRect" parent="CanvasLayer" unique_id=1598492483]
+visible = false
+offset_right = 260.0
+offset_bottom = 247.0
+mouse_filter = 2
+color = Color(0, 0, 0, 0.5411765)
 
 [node name="GuestLeaveTimer" type="Timer" parent="." unique_id=1307805656]
 one_shot = true
