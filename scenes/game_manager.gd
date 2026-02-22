@@ -72,7 +72,7 @@ var leaving_guest: bool = false ## is currently leaving guest
 
 ## stores list of last n guests and "blacklists" them
 var past_guest_queue: Array[Guest] = []
-const past_guest_queue_limit: int = 10
+const past_guest_queue_limit: int = 24
 
 ## phase of gameplay. Either assigning (getting guests),  managing (upgrading), or checkout (guests leaving and paying). ASSIGN -> UPGRADE -> CHECKOUT
 enum Phase {
@@ -396,9 +396,11 @@ func create_floating_text(text: String):
 	floating_text.play_animation(text, 1.3)
 
 func play_star_rating_animation(stars: float):
-	star_rating.value = stars
 	star_rating.visible = true
 	star_rating.modulate = Color("#ffffff")
+	
+	get_tree().create_tween().tween_property(star_rating, "value", stars, 0.5).from(0)
+	
 	await get_tree().create_timer(2.0).timeout
 	
 	await get_tree().create_tween().tween_property(star_rating, "modulate", Color("#ffffff00"), 1.0).finished

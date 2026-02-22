@@ -50,11 +50,10 @@ metadata/_edit_lock_ = true
 
 [node name="StarRating" parent="CanvasLayer/GuestWindow" unique_id=2134824425 instance=ExtResource("3_xgstd")]
 layout_mode = 0
-offset_left = 57.0
-offset_top = 20.0
-offset_right = 251.0
-offset_bottom = 60.0
-scale = Vector2(0.75, 0.75)
+offset_left = 56.0
+offset_top = 10.0
+offset_right = 250.0
+offset_bottom = 50.0
 
 [node name="DayLabel" type="Label" parent="CanvasLayer/GuestWindow" unique_id=1702534556]
 layout_mode = 1

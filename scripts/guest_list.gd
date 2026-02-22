@@ -433,6 +433,8 @@ static func LOAD_GUESTS():
 			EVENT_GUESTS.set(key, guest)
 		else:
 			GUESTS.set(key, guest)
+	
+	print("TOTAL GUESTS LOADED: " + str(GUESTS.size()))
 
 # TODO: Add feature to stop duplicate guests, probably a recent_guest list
 static func create_guest_queue(length: int, current_day: int, guest_blacklist: Array[Guest] = []) -> Array[Guest]:

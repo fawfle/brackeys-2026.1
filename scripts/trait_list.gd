@@ -302,7 +302,7 @@ static func get_valid_trait(guest: Guest, depth: int = 0) -> GuestTrait:
 	
 	var random_trait: Trait = TRAITS.keys().pick_random()
 	
-	# if TRAITS[random_trait].appear_after_day < GameManager.inst.day: return get_valid_trait(guest, depth + 1)
+	if TRAITS[random_trait].appear_after_day > GameManager.inst.day: return get_valid_trait(guest, depth + 1)
 	
 	# check trait conflicts
 	for t: GuestTrait in guest.traits:
