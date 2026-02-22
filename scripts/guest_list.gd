@@ -131,6 +131,25 @@ static var GUESTS_DATA: Dictionary[String, Dictionary] = {
 			"Don't forget, you can imprvoe your hotel! Just remember to click off of a room first!",
 			"Once you feel ready put me in a [color=red]clean[/color] room!"
 		],
+		GOODBYE: [
+			"That was fine I guess, you could probably do better.",
+			"Either ways, you have 30 days until you're performace review! If you meet quota, you can become a [color=00BFFF]Star[/color] employee!",
+			],
+		HAPPY_GOODBYE: [
+			"That was exquisite! You'll truly mamge this hotel perfectly!",
+			"Either ways, you have 30 days until you're performace review! If you meet quota, you can become a [color=00BFFF]Star[/color] employee!",
+			"I'm not worried about you though! You got this!"
+			],
+		ANGRY_GOODBYE: [
+			"what are you doing? you realize you need to [color=red]MAKE[/color] your guests feel [color=red]GOOD[/color] to get [color=red]MONEY[/color] and good [color=red]REVIEWS[/color]",
+			"Either ways, you have 30 days until you're performace review! If you meet quota, you can become a [color=00BFFF]Star[/color] employee!",
+			"if you don't focus, you will not be making quota. get it together."
+			],
+		REJECTED_GOODBYE: [
+			"you realize there is a timer, right? i understand you may not like our guests, but at least work with me here.",
+			"Either ways, you have 30 days until you're performace review! If you meet quota, you can become a [color=00BFFF]Star[/color] employee!",
+			"just keep an eye on the clock next time. if you don't focus, you're gone."
+			],
 		MONEY: 25,
 		EVENT: true,
 		APPEAR_ON_DAY: 0,

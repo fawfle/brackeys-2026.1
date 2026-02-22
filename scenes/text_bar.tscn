@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://dkdr85sse58ak" path="res://scenes/text_bar.gd" id="1_0shnj"]
 [ext_resource type="FontFile" uid="uid://bnw2vf51g52tq" path="res://fonts/fs-pixel-sans-unicode-regular.ttf" id="2_3ccs0"]
 [ext_resource type="Texture2D" uid="uid://dtd64vt7rxjmj" path="res://sprites/ui/desk.png" id="3_3ccs0"]
+[ext_resource type="Texture2D" uid="uid://yh8hou6r8x3c" path="res://sprites/ui/prompt_icon.png" id="4_et6da"]
 
 [node name="TextBar" type="Control" unique_id=1473739074]
 layout_mode = 3
@@ -53,5 +54,9 @@ text = "this is [color=red]sample text[/color]. Imagine something really interes
 scroll_active = false
 shortcut_keys_enabled = false
 visible_characters_behavior = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=818936597]
+position = Vector2(252, 46)
+texture = ExtResource("4_et6da")
 
 [connection signal="button_down" from="AdvanceText" to="." method="_on_advance_text_button_down"]
