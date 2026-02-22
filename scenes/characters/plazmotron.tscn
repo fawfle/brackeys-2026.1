@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://xs1ym4a0lhk"]
+[gd_scene format=3 uid="uid://b86m8fm65r4m1"]
 
 [ext_resource type="Texture2D" uid="uid://cs1fdk1shr7n6" path="res://sprites/characters/plazmotron.png" id="1_jrdsv"]
 [ext_resource type="Script" uid="uid://cuba1v2c3urst" path="res://scripts/guest_sprite.gd" id="2_j6ylv"]

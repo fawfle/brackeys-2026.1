@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://i1kwp14l72a7"]
+[gd_scene format=3 uid="uid://cr1uko12nrkta"]
 
 [ext_resource type="Texture2D" uid="uid://herkjw8k2qb2" path="res://sprites/characters/xena.png" id="1_k2qr7"]
 [ext_resource type="Script" uid="uid://cuba1v2c3urst" path="res://scripts/guest_sprite.gd" id="2_s4nd4"]

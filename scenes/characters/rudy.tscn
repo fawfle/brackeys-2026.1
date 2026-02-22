@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://jbpgu0yuc4qx"]
+
+[ext_resource type="Texture2D" uid="uid://6y8s0pf56sy3" path="res://sprites/characters/Rudy.png" id="1_wxmqm"]
+[ext_resource type="Script" uid="uid://cuba1v2c3urst" path="res://scripts/guest_sprite.gd" id="2_uwka4"]
+[ext_resource type="Texture2D" uid="uid://di7x6nmfrf6aa" path="res://sprites/characters/angry_icon.png" id="3_h6c8q"]
+
+[node name="Rudy" type="Sprite2D" unique_id=21785530]
+position = Vector2(3, -1)
+texture = ExtResource("1_wxmqm")
+script = ExtResource("2_uwka4")
+metadata/_custom_type_script = "uid://cuba1v2c3urst"
+metadata/_edit_lock_ = true
+
+[node name="AngrySprite" type="Sprite2D" parent="." unique_id=1126611646]
+position = Vector2(19, -18)
+texture = ExtResource("3_h6c8q")
