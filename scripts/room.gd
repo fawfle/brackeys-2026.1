@@ -7,6 +7,8 @@ const GROUP_NAME: String = "room"
 @export var quality: Quality = Quality.DUMP
 @export var room_size: RoomSize = RoomSize.SMALL
 
+@onready var button: TextureButton = $TextureButton
+
 @onready var focus_outline: NinePatchRect = $FocusOutline
 
 @onready var clean_progress: TextureProgressBar = $CleanProgressBar
@@ -33,6 +35,7 @@ var hotel_floor: int:
 
 @onready var room_background: NinePatchRect = $RoomBackground
 @onready var room_body: Sprite2D = $RoomBody
+@onready var room_select_sound: AudioStreamPlayer2D = $RoomSelect
 
 const ROOM_CONSTRUCTION_TEXTURE: Texture = preload("res://sprites/ui/room_construction.png")
 
@@ -58,6 +61,12 @@ const ROOM_SIZES: Dictionary[RoomSize, Vector2] = {
 	RoomSize.SMALL: Vector2(40, 20),
 	RoomSize.MEDIUM: Vector2(44, 20),
 	RoomSize.LARGE: Vector2(48, 20)
+}
+
+const BUTTON_SIZES: Dictionary[RoomSize, Vector2] = {
+	RoomSize.SMALL: Vector2(36, 16),
+	RoomSize.MEDIUM: Vector2(40, 16),
+	RoomSize.LARGE: Vector2(44, 16)
 }
 
 var guest: Guest = null:
@@ -142,6 +151,7 @@ func _on_room_select(room: Room):
 
 func _on_texture_button_button_down() -> void:
 	held = true
+	room_select_sound.play()
 	Globals.select_room.emit(self)
 
 func _on_texture_button_button_up() -> void:
@@ -179,8 +189,16 @@ func update_room_sprite():
 	door_one.texture = DOOR_SPRITES.get(quality)
 	door_two.texture = DOOR_SPRITES.get(quality)
 	
+	# i am losing my mind. This is terrible but if's fine
 	room_background.size = ROOM_SIZES[room_size]
 	room_background.position = - ROOM_SIZES[room_size] / 2
+	focus_outline.size = ROOM_SIZES[room_size]
+	focus_outline.position = - ROOM_SIZES[room_size] / 2
+	button.set_deferred("size", BUTTON_SIZES[room_size])
+	button.position = - BUTTON_SIZES[room_size] / 2
+	dim_overlay.size = BUTTON_SIZES[room_size]
+	dim_overlay.position = - BUTTON_SIZES[room_size] / 2
+	
 
 func is_inactive() -> bool:
 	return not built or upgrading

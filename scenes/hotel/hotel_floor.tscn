@@ -49,6 +49,7 @@ offset_top = 1.0
 offset_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+location = Vector2i(0, 1)
 
 [node name="RoomRight" parent="." unique_id=1765788355 instance=ExtResource("2_m85jg")]
 layout_mode = 1
@@ -59,4 +60,5 @@ anchor_right = 0.8066666
 anchor_bottom = 0.54545456
 grow_horizontal = 2
 grow_vertical = 2
+location = Vector2i(0, 2)
 metadata/_edit_use_anchors_ = true

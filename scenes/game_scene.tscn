@@ -9,8 +9,11 @@
 [ext_resource type="Script" uid="uid://donsdw52b18or" path="res://scripts/ui/money_label.gd" id="4_rurhu"]
 [ext_resource type="Theme" uid="uid://bqm4ull505em5" path="res://themes/theme.tres" id="5_utbpp"]
 [ext_resource type="Script" uid="uid://kmp8buyv62l" path="res://scripts/ui/guest_name_label.gd" id="6_mw25s"]
+[ext_resource type="Texture2D" uid="uid://cb2crp4j3vjom" path="res://sprites/ui/pause_button.png" id="6_xgstd"]
 [ext_resource type="PackedScene" uid="uid://bntofo8m6s6ra" path="res://scenes/hotel_window.tscn" id="7_kk2rg"]
 [ext_resource type="Texture2D" uid="uid://brem4dech30km" path="res://sprites/ui/name_plaque.png" id="7_s76x2"]
+[ext_resource type="Texture2D" uid="uid://bm2twicycc3go" path="res://sprites/ui/pause_button_highlight.png" id="7_ttvoq"]
+[ext_resource type="Script" uid="uid://b4fgja3arbwhg" path="res://scripts/pause_button.gd" id="8_ttvoq"]
 [ext_resource type="Texture2D" uid="uid://4apbhwgiq3od" path="res://sprites/ui/bell.png" id="9_5ay1a"]
 [ext_resource type="Script" uid="uid://b5g34yi0rc1sf" path="res://scenes/ui/assign_button.gd" id="10_ldkr4"]
 [ext_resource type="Texture2D" uid="uid://dtdf03xaf6c5c" path="res://sprites/ui/bell_disabled.png" id="10_liy57"]
@@ -199,13 +202,62 @@ color = Color(0.17103913, 0.17103916, 0.1710391, 1)
 
 [node name="HotelWindow" parent="CanvasLayer" unique_id=1529008732 instance=ExtResource("7_kk2rg")]
 
+[node name="PauseMenu" type="ColorRect" parent="CanvasLayer" unique_id=1761047895]
+visible = false
+offset_right = 440.0
+offset_bottom = 248.0
+color = Color(0.1973345, 0.19733453, 0.1973345, 0.33333334)
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/PauseMenu" unique_id=1383382690]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -65.0
+offset_top = -15.0
+offset_right = 65.0
+offset_bottom = 7.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.19581181, 0.19581178, 0.19581178, 1)
+
+[node name="Label" type="Label" parent="CanvasLayer/PauseMenu" unique_id=1134514532]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -54.0
+offset_top = -11.5
+offset_right = 54.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_bw6k5")
+theme_override_font_sizes/font_size = 15
+text = "bathroom break"
+
+[node name="PauseButton" type="TextureButton" parent="CanvasLayer" unique_id=17333234 node_paths=PackedStringArray("pause_menu")]
+process_mode = 3
+offset_left = 239.0
+offset_top = 28.0
+offset_right = 257.0
+offset_bottom = 46.0
+texture_normal = ExtResource("6_xgstd")
+texture_hover = ExtResource("7_ttvoq")
+script = ExtResource("8_ttvoq")
+pause_menu = NodePath("../PauseMenu")
+
 [node name="GuestLeaveTimer" type="Timer" parent="." unique_id=1307805656]
 one_shot = true
 
 [node name="Clock" parent="." unique_id=670707523 instance=ExtResource("11_tcjrq")]
 position = Vector2(29.5, 37.5)
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1594157327]
+[node name="Shutter" type="Sprite2D" parent="." unique_id=1594157327]
 visible = false
 position = Vector2(130, 87)
 texture = ExtResource("23_pb36m")

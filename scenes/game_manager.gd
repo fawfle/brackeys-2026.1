@@ -3,7 +3,8 @@ class_name GameManager extends Node2D
 static var inst: GameManager = null
 
 const assign_guest_leave_time: float = 30
-var guests_per_day: int = 2
+var guests_per_day: int = 1
+var guest_stay_length_max: int = 1
 
 const floating_text_scene: PackedScene = preload("res://scenes/ui/floating_text.tscn")
 
@@ -51,7 +52,6 @@ var guest_checkout_queue: Array[Guest] = []
 		Globals.current_guest_changed.emit(current_guest)
 
 var random_trait_count: int = 1
-var stay_length_max: int = 1
 var guest_assign_start_time: float = 0
 var time_since_guest: float:
 	get: return time - guest_assign_start_time
@@ -149,9 +149,17 @@ func begin_checkout_phase() -> void:
 	guest_checkout_queue.shuffle()
 	begin_checkout_next_guest()
 
+## sets up day and updates variables
 func begin_day() -> void:
 	day += 1
 	time = 0
+	
+	# lol integer divison
+	guests_per_day = 2 + floor(day / 7.0)
+	guest_stay_length_max = 1 + floor(day / 9.0)
+	
+	if day == 0: guests_per_day = 0
+	
 	Globals.begin_day.emit(day)
 	begin_checkout_phase()
 
@@ -226,6 +234,7 @@ func leave_guest() -> void:
 func create_next_guest() -> Guest:
 	var guest: Guest = guest_assign_queue.pop_front().duplicate_deep()
 	TraitList.set_guest_traits(guest, random_trait_count if not guest.event else 0)
+	guest.stay_duration = randi_range(1, guest_stay_length_max)
 	return guest
 
 func begin_checkout_next_guest() -> void:
