@@ -13,11 +13,9 @@
 [ext_resource type="PackedScene" uid="uid://bntofo8m6s6ra" path="res://scenes/hotel_window.tscn" id="7_kk2rg"]
 [ext_resource type="Texture2D" uid="uid://brem4dech30km" path="res://sprites/ui/name_plaque.png" id="7_s76x2"]
 [ext_resource type="Script" uid="uid://b4fgja3arbwhg" path="res://scripts/pause_button.gd" id="8_ttvoq"]
-[ext_resource type="Texture2D" uid="uid://bbytofh76f3so" path="res://sprites/ui/gameboy.png" id="10_ro0ie"]
-[ext_resource type="Texture2D" uid="uid://368miocfcgm2" path="res://sprites/ui/gameboy_hovered.png" id="11_103ce"]
+[ext_resource type="PackedScene" uid="uid://c0reft866t45t" path="res://scenes/ui/pass_time_button.tscn" id="11_rw4oa"]
 [ext_resource type="PackedScene" uid="uid://bkdg1tw4v3tck" path="res://scenes/clock.tscn" id="11_tcjrq"]
 [ext_resource type="Script" uid="uid://bqgpmjcsom83f" path="res://scenes/ui/reject_button.gd" id="12_5ay1a"]
-[ext_resource type="Script" uid="uid://cg3dfhj3j6yn4" path="res://scenes/ui/pass_time_button.gd" id="12_rvs2r"]
 [ext_resource type="PackedScene" uid="uid://b3axo82ov03uu" path="res://scenes/ui/bell.tscn" id="13_pb36m"]
 [ext_resource type="Texture2D" uid="uid://bl2se4ygj4r7q" path="res://sprites/ui/reject.png" id="16_6aqbo"]
 [ext_resource type="Texture2D" uid="uid://c8vurqrhs1oum" path="res://sprites/ui/reject_hovered.png" id="17_ro0ie"]
@@ -122,15 +120,8 @@ text = "Name"
 text_overrun_behavior = 1
 script = ExtResource("6_mw25s")
 
-[node name="PassTimeButton" type="TextureButton" parent="CanvasLayer/GuestWindow" unique_id=1736797206]
+[node name="PassTimeButton" parent="CanvasLayer/GuestWindow" unique_id=461915876 instance=ExtResource("11_rw4oa")]
 layout_mode = 0
-offset_left = 89.0
-offset_top = 183.0
-offset_right = 104.0
-offset_bottom = 194.0
-texture_normal = ExtResource("10_ro0ie")
-texture_hover = ExtResource("11_103ce")
-script = ExtResource("12_rvs2r")
 
 [node name="Bell" parent="CanvasLayer/GuestWindow" unique_id=306580137 instance=ExtResource("13_pb36m")]
 top_level = true
@@ -153,7 +144,7 @@ texture_hover = ExtResource("17_ro0ie")
 texture_disabled = ExtResource("18_ro0ie")
 script = ExtResource("12_5ay1a")
 
-[node name="DayEndMenu" type="ColorRect" parent="CanvasLayer/GuestWindow" unique_id=648593923]
+[node name="PerformanceReview" type="ColorRect" parent="CanvasLayer/GuestWindow" unique_id=648593923]
 visible = false
 layout_mode = 0
 offset_left = 70.0
@@ -162,7 +153,7 @@ offset_right = 193.0
 offset_bottom = 182.0
 color = Color(0, 0, 0, 0.8862745)
 
-[node name="Label" type="Label" parent="CanvasLayer/GuestWindow/DayEndMenu" unique_id=1402626393]
+[node name="Label" type="Label" parent="CanvasLayer/GuestWindow/PerformanceReview" unique_id=1402626393]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
@@ -174,7 +165,7 @@ theme_override_font_sizes/font_size = 15
 text = "DAY END"
 horizontal_alignment = 1
 
-[node name="Button" type="Button" parent="CanvasLayer/GuestWindow/DayEndMenu" unique_id=77998094]
+[node name="Button" type="Button" parent="CanvasLayer/GuestWindow/PerformanceReview" unique_id=77998094]
 layout_mode = 0
 offset_left = 31.0
 offset_top = 111.0
@@ -256,45 +247,51 @@ position = Vector2(29.5, 37.5)
 [node name="Music" type="AudioStreamPlayer2D" parent="." unique_id=136762465]
 stream = ExtResource("24_85lt4")
 
-[node name="IntroMenu" type="Node2D" parent="." unique_id=130071243]
-
-[node name="CanvasLayer" type="CanvasLayer" parent="IntroMenu" unique_id=463834053]
+[node name="IntroMenu" type="CanvasLayer" parent="." unique_id=463834053]
 layer = 2
+visible = false
 
-[node name="HotelDarkness" type="ColorRect" parent="IntroMenu/CanvasLayer" unique_id=1386611869]
+[node name="HotelDarkness" type="ColorRect" parent="IntroMenu" unique_id=1386611869]
 offset_left = 265.0
 offset_right = 440.0
 offset_bottom = 187.0
 color = Color(0, 0, 0, 1)
 
-[node name="ShutterImage" type="TextureRect" parent="IntroMenu/CanvasLayer" unique_id=508480074]
+[node name="ShutterImage" type="TextureRect" parent="IntroMenu" unique_id=508480074]
 offset_top = -8.0
 offset_right = 260.0
 offset_bottom = 180.0
 texture = ExtResource("23_pb36m")
 
-[node name="TextureRect" type="TextureRect" parent="IntroMenu/CanvasLayer/ShutterImage" unique_id=798141803]
+[node name="TextureRect" type="TextureRect" parent="IntroMenu/ShutterImage" unique_id=798141803]
 layout_mode = 0
 offset_right = 260.0
 offset_bottom = 188.0
 texture = ExtResource("26_6irsn")
 
-[node name="ShutterButton" type="TextureButton" parent="IntroMenu/CanvasLayer" unique_id=364419497]
-offset_top = 163.0
+[node name="ShutterButton" type="TextureButton" parent="IntroMenu" unique_id=364419497]
+offset_top = 165.0
 offset_right = 260.0
-offset_bottom = 180.0
+offset_bottom = 182.0
 texture_normal = ExtResource("25_xgstd")
 texture_hover = ExtResource("27_rw4oa")
 stretch_mode = 3
 
-[node name="Bell" type="TextureRect" parent="IntroMenu/CanvasLayer" unique_id=971958067]
+[node name="Bell" type="TextureRect" parent="IntroMenu" unique_id=971958067]
 offset_left = 216.0
 offset_top = 173.0
 offset_right = 252.0
 offset_bottom = 194.0
 texture = ExtResource("28_r47aq")
 
-[node name="DarkenOverlay" type="ColorRect" parent="IntroMenu/CanvasLayer" unique_id=1523623032]
+[node name="NamePlaque" type="TextureRect" parent="IntroMenu" unique_id=1884706064]
+offset_left = 2.0
+offset_top = 178.0
+offset_right = 82.0
+offset_bottom = 194.0
+texture = ExtResource("7_s76x2")
+
+[node name="DarkenOverlay" type="ColorRect" parent="IntroMenu" unique_id=1523623032]
 offset_right = 260.0
 offset_bottom = 247.0
 mouse_filter = 2

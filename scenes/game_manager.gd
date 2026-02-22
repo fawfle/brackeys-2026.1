@@ -105,6 +105,8 @@ func _ready() -> void:
 	assign_button.button_down.connect(_on_assign_button_button_down)
 	reject_button.button_down.connect(_on_reject_button_down)
 	shutter_button.button_down.connect(_on_shutter_button_down)
+	
+	intro_menu.visible = true
 
 # begin management phase to start game
 
@@ -426,10 +428,12 @@ func play_agitated_animation(guest_node: Node2D):
 func ease_out(t: float) -> float:
 	return 1 - (1 - t) * (1 - t)
 
-@onready var shutter_image: TextureRect = $IntroMenu/CanvasLayer/ShutterImage
-@onready var shutter_button: TextureButton = $IntroMenu/CanvasLayer/ShutterButton
-@onready var hotel_darkness: ColorRect = $IntroMenu/CanvasLayer/HotelDarkness
-@onready var darkness_overlay: ColorRect = $IntroMenu/CanvasLayer/DarkenOverlay
+@onready var shutter_image: TextureRect = $IntroMenu/ShutterImage
+@onready var shutter_button: TextureButton = $IntroMenu/ShutterButton
+@onready var hotel_darkness: ColorRect = $IntroMenu/HotelDarkness
+@onready var darkness_overlay: ColorRect = $IntroMenu/DarkenOverlay
+
+@onready var intro_menu: CanvasLayer = $IntroMenu
 
 func _on_shutter_button_down():
 	await begin_intro_animation()
@@ -447,9 +451,7 @@ func begin_intro_animation():
 	
 	await get_tree().create_timer(duration).timeout
 	
-	$IntroMenu/CanvasLayer/Bell.visible = false
-	
-	$IntroMenu.visible = false
+	intro_menu.visible = false
 	hotel_darkness.mouse_filter = Control.MOUSE_FILTER_IGNORE
 
 func show_performance_review():
