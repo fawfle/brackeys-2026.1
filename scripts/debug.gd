@@ -60,3 +60,22 @@ func handle_command(command: String):
 		print("FINISHING ALL UPGRADES")
 		for room: Room in GameManager.inst.get_rooms():
 			room.finish_upgrading()
+	elif input_command[0] == "t":
+		var guest_trait: GuestTrait = get_trait_from_name(input_command.substr(1))
+		if GameManager.inst.current_guest == null:
+			push_error("Debug: Attempting to add trait to nonexistent guest")
+			return
+		if guest_trait != null:
+			print("DEBUG: ADDING TRAIT " + input_command.substr(1) + " TO CURRENT GUEST")
+			GameManager.inst.current_guest.traits.push_back(guest_trait)
+		else:
+			push_error("Trait name \'" + input_command.substr(1) + "\' entered in command was not found")
+			
+
+func get_trait_from_name(t_name: String) -> GuestTrait:
+	for t: GuestTrait in TraitList.TRAITS.values():
+		print(t.name)
+		if t.name == t_name:
+			return t
+	
+	return null
