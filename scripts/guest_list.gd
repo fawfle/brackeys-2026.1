@@ -373,7 +373,6 @@ static var GUESTS_DATA: Dictionary[String, Dictionary] = {
 		REJECTED_GOODBYE: "These people! Who dares turn away a beautiful woman such as myself?",
 		MONEY: 10,
 	},
-<<<<<<< HEAD
 	"Rudy": {
 		SCENE: preload("res://scenes/characters/rudy.tscn"),
 		DEFAULT_TRAITS: [TraitList.Trait.RIGHT_HANDED],
@@ -384,7 +383,7 @@ static var GUESTS_DATA: Dictionary[String, Dictionary] = {
 		REJECTED_GOODBYE: "I guess I'll just go RIIIGHT home!!!!",
 		MONEY: 10,
 	},
-		"Gary": {
+	"Gary": {
 		SCENE: preload("res://scenes/characters/gary.tscn"),
 		DEFAULT_TRAITS: [TraitList.Trait.MESSY],
 		GREETING: ["Brooooo, like, do you have a rooooom?"],
@@ -394,7 +393,7 @@ static var GUESTS_DATA: Dictionary[String, Dictionary] = {
 		REJECTED_GOODBYE: "Bro, that's like, so not cool.",
 		MONEY: 10,
 	},
-			"The Director": {
+	"The Director": {
 		SCENE: preload("res://scenes/characters/the_director.tscn"),
 		DEFAULT_TRAITS: [TraitList.Trait.CLASSY],
 		GREETING: ["I require your finest room. My business is very important"],
@@ -403,7 +402,7 @@ static var GUESTS_DATA: Dictionary[String, Dictionary] = {
 		ANGRY_GOODBYE: "You have terrible service. I'm going to make sure that this business fails.",
 		REJECTED_GOODBYE: "Fine! I'll just take my business somewhere else!",
 		MONEY: 10,
-=======
+	},
 	"Cameron": {
 		SCENE: preload("res://scenes/characters/cameron.tscn"),
 		DEFAULT_TRAITS: [],
@@ -423,7 +422,6 @@ static var GUESTS_DATA: Dictionary[String, Dictionary] = {
 		ANGRY_GOODBYE: "Hmmm. You're next, hehehehehe.",
 		REJECTED_GOODBYE: "Darn. Couldn't pull the wool over your eyes, huh?",
 		MONEY: 0,
->>>>>>> main
 	},
 }
 
