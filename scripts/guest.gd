@@ -65,10 +65,14 @@ const MAX_REQUEST_DEPTH: int = 100
 const NORMAL_BONUS: int = 15
 const CLASSY_BONUS: int = 25
 
-func get_money() -> int:
-	update_happiness_rating()
+var profit: int = 0
+
+func update_profit() -> int:
+	if happiness_rating <= -1:
+		push_error("Attempted to get money before setting happiness_rating. Did you mean to call update_happiness_rating?")
+		return 0
 	
-	var effective_money = money
+	var effective_money: float = money
 	
 	for t: GuestTrait in traits:
 		effective_money += t.value
@@ -84,7 +88,9 @@ func get_money() -> int:
 	if room.perks.has(Room.Perk.CABLE): effective_money *= 1.25
 	if room.perks.has(Room.Perk.CONSOLE) and stars == 5: effective_money *= 1.75
 	
-	return round(effective_money * (happiness_rating/5.0)) + ac_bonus + heater_bonus
+	profit = round(effective_money * (happiness_rating/5.0)) + ac_bonus + heater_bonus
+	
+	return profit
 
 ## TODO:ish, will return **random** dynamic request based on traits
 func generate_request() -> Array[String]:
@@ -145,10 +151,11 @@ func update_happiness_rating() -> float:
 	
 	# deduct 1 star for each sanitation issue
 	if not ignore_sanitation:
-		if room.sanitation == Room.Sanitation.DIRTY: happiness_rating -= 2
-		elif room.sanitation == Room.Sanitation.MESSY: happiness_rating -= 1
+		if room.sanitation == Room.Sanitation.DIRTY: rating -= 2
+		elif room.sanitation == Room.Sanitation.MESSY: rating -= 1
 	
 	happiness_rating = max(0, rating)
+	
 	return happiness_rating
 
 func instantiate_scene() -> Node2D:

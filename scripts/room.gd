@@ -139,7 +139,7 @@ func _process(delta: float) -> void:
 		clean_timer = 0
 		return
 	
-	clean_progress.visible = held or clean_timer > 0
+	clean_progress.visible = held and clean_timer > 0
 	clean_progress.value = clean_timer
 
 var occupied: bool:
@@ -166,7 +166,6 @@ func _on_room_select(room: Room):
 	focus_outline.visible = room == self
 
 func _on_texture_button_button_down() -> void:
-	if occupied: return
 	held = true
 	room_select_sound.play()
 	Globals.select_room.emit(self)
@@ -253,11 +252,11 @@ func has_perk(perk: Perk) -> bool:
 
 ## return rooms on left/right
 func get_floor_neighbors() -> Array[Room]:
-	return get_rooms_with(func(room: Room): return room != self and location.y == room.location.y and abs(location.x - room.location.x) < 1)
+	return get_rooms_with(func(room: Room): return room != self and location.y == room.location.y and abs(location.x - room.location.x) == 1)
 
 ## return neighbors above and below
 func get_vertical_neighbors() -> Array[Room]:
-	return get_rooms_with(func(room: Room): return room != self and location.y == room.location.x and abs(location.y - room.location.y) < 1)
+	return get_rooms_with(func(room: Room): return room != self and location.y == room.location.x and abs(location.y - room.location.y) == 1)
 
 ## return left, right, top, bottom
 func get_all_neighbors() -> Array[Room]:

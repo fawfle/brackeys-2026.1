@@ -147,6 +147,11 @@ func begin_checkout_phase() -> void:
 	
 	phase = Phase.CHECKOUT
 	guest_checkout_queue.clear()
+	
+	## update happiness before checking out
+	for room: Room in get_rooms():
+		if room.guest != null: room.guest.update_profit()
+	
 	for room: Room in get_rooms():
 		if room.guest != null and room.guest.stay_duration <= room.guest.days_stayed:
 			var guest: Guest = room.checkout_guest()
@@ -280,7 +285,7 @@ func checkout_guest() -> void:
 	if current_guest == null:
 		return
 	
-	var profit: int = current_guest.get_money()
+	var profit: int = current_guest.profit
 	money += profit
 	create_floating_text("+$" + str(profit))
 	
