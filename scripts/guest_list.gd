@@ -128,29 +128,30 @@ static var GUESTS_DATA: Dictionary[String, Dictionary] = {
 			"Corporate won't be happy if you do that! Don't worry, I won't say anything! I understand the struggle!",
 			"Do remember, we are running a hotel here! Most guests don't want a dirty room! To clean a room, simply hold down on said room!",
 			"All guests have specific requests! Try to meet them for a [color=00BFFF]5 star[/color] rating! Happy guests pay more! Guests with specific needs usually pay extra!",
+			"The longer a guest stays, the more they will pay, and they will only stay if they are comfortable!",
 			"Guests will trickle in throughout the day and checkout in the morning! Remember, we're running on a [color=red]real clock[/color] here! Don't waste time.",
 			"If business is slow, you can play on your company mandated [color=00BFFF]SolarBoy[/color]! Just click and hold and time will just pass by!",
 			"Trust me, it will save a lot of your sanity!",
-			"Don't forget, you can imprvoe your hotel! Just remember to click off of a room first!",
+			"Don't forget, you can improve your hotel! Just remember to click off of a room first!",
 			"Once you feel ready put me in a [color=red]clean[/color] room!"
 		],
 		GOODBYE: [
 			"That was fine I guess, you could probably do better.",
-			"Either ways, you have 30 days until you're performace review! If you meet quota, you can become a [color=00BFFF]Star[/color] employee!",
+			"Either way, you have 30 days until your performance review! If you meet quota, you can become a [color=00BFFF]Star[/color] employee!",
 			],
 		HAPPY_GOODBYE: [
-			"That was exquisite! You'll truly mamge this hotel perfectly!",
-			"Either ways, you have 30 days until you're performace review! If you meet quota, you can become a [color=00BFFF]Star[/color] employee!",
+			"That was exquisite! You'll truly manage this hotel perfectly!",
+			"Either way, you have 30 days until your performance review! If you meet quota, you can become a [color=00BFFF]Star[/color] employee!",
 			"I'm not worried about you though! You got this!"
 			],
 		ANGRY_GOODBYE: [
 			"what are you doing? you realize you need to [color=red]MAKE[/color] your guests feel [color=red]GOOD[/color] to get [color=red]MONEY[/color] and good [color=red]REVIEWS[/color]",
-			"Either ways, you have 30 days until you're performace review! If you meet quota, you can become a [color=00BFFF]Star[/color] employee!",
+			"Either way, you have 30 days until your performance review! If you meet quota, you can become a [color=00BFFF]Star[/color] employee!",
 			"if you don't focus, you will not be making quota. get it together."
 			],
 		REJECTED_GOODBYE: [
 			"you realize there is a timer, right? i understand you may not like our guests, but at least work with me here.",
-			"Either ways, you have 30 days until you're performace review! If you meet quota, you can become a [color=00BFFF]Star[/color] employee!",
+			"Either way, you have 30 days until your performance review! If you meet quota, you can become a [color=00BFFF]Star[/color] employee!",
 			"just keep an eye on the clock next time. if you don't focus, you're gone."
 			],
 		MONEY: 25,
@@ -162,7 +163,7 @@ static var GUESTS_DATA: Dictionary[String, Dictionary] = {
 		NAME: "Manny",
 		SCENE: preload("res://scenes/characters/manny.tscn"),
 		GREETING: [
-			"Hello, I have returned for your quota! Have you been a good employee"
+			"Hello, I have returned for your quota! Have you been a good employee?"
 		],
 		GOODBYE: [
 			"That was fine I guess, you could probably do better.",
@@ -186,6 +187,7 @@ static var GUESTS_DATA: Dictionary[String, Dictionary] = {
 		MONEY: 0,
 		EVENT: true,
 		APPEAR_ON_DAY: 31,
+		STOP_TIME: true,
 	},
 	"Flibi": {
 		SCENE: preload("res://scenes/characters/flibi.tscn"),
@@ -221,7 +223,7 @@ static var GUESTS_DATA: Dictionary[String, Dictionary] = {
 		SCENE: preload("res://scenes/characters/mr__mestoplis.tscn"),
 		DEFAULT_TRAITS: [TraitList.Trait.CLEAN],
 		GREETING: ["I am requesting one room. If you have any spare employees or annoying collegues send them my way for dinner tonight.",
-		"Oh, and do make sure it's actually clean this time. "],
+		"Oh, and do make sure it's actually clean this time."],
 		GOODBYE: "Fairwell.", 
 		HAPPY_GOODBYE: "I shall see you in the future. I hope you prosper in your ventures!",
 		ANGRY_GOODBYE: "Perish.",
@@ -232,11 +234,11 @@ static var GUESTS_DATA: Dictionary[String, Dictionary] = {
 	"Mawce": {
 		SCENE: preload("res://scenes/characters/mawce.tscn"),
 		DEFAULT_TRAITS: [TraitList.Trait.SHY],
-		GREETING: ["Hi, um- Hello? C-can I have a room? Please."],
+		GREETING: "Hi, um- Hello? C-can I have a room? Please.",
 		GOODBYE: "Um, bye... I guess", 
 		HAPPY_GOODBYE: "bye :)",
 		ANGRY_GOODBYE: "...",
-		REJECTED_GOODBYE: ["I'm sorry for bothering you."],
+		REJECTED_GOODBYE: "I'm sorry for bothering you.",
 		MONEY: 10,
 	},
 	"Treebert": {
@@ -245,8 +247,8 @@ static var GUESTS_DATA: Dictionary[String, Dictionary] = {
 		GREETING: ["Hello, I would like a room, I need one to perform photosynthesis", "I just need a lot of space, you know?"],
 		GOODBYE: "Thank you for the space",
 		HAPPY_GOODBYE: "I give you a thousand blessings, Namaste",
-		ANGRY_GOODBYE: "You won't be getting any oxygen from me.",
-		REJECTED_GOODBYE: "I'll make like a tree and leaf.",
+		ANGRY_GOODBYE: "You won't be getting any oxygen from me",
+		REJECTED_GOODBYE: "I'll make like a tree and leaf",
 		MONEY: 10,
 		SPRITE_OFFSET: Vector2i(0, -20)
 	},
@@ -296,7 +298,7 @@ static var GUESTS_DATA: Dictionary[String, Dictionary] = {
 		DEFAULT_TRAITS: [TraitList.Trait.MESSY],
 		GREETING: ["Bark!", "Woof woof!"],
 		GOODBYE: "Awoooooo!",
-		HAPPY_GOODBYE: "Woof woof! Awoooo!",
+		HAPPY_GOODBYE: "Bork bjork! Woof!",
 		ANGRY_GOODBYE: "Grrrrrrrr...",
 		REJECTED_GOODBYE: "*dejected wimpers*",
 		MONEY: 10,
@@ -354,8 +356,8 @@ static var GUESTS_DATA: Dictionary[String, Dictionary] = {
 	"Michael": {
 		SCENE: preload("res://scenes/characters/michael.tscn"),
 		DEFAULT_TRAITS: [TraitList.Trait.CLASSY],
-		GREETING: ["I'm here for the midnight release of PRODUCT.", "I need a good place to rest before I camp out the local Space Walgreens"],
-		GOODBYE: "Thanks for the restful place",
+		GREETING: ["I'm here for the midnight release of PRODUCT.", "I need a good place to rest before I camp out the local Space Walgreens."],
+		GOODBYE: "Thanks for the restful place.",
 		HAPPY_GOODBYE: "I am so ready to join the wait for PRODUCT!",
 		ANGRY_GOODBYE: "I bet I won't even be third in the queue. Thanks a lot.",
 		REJECTED_GOODBYE: "But the line doesn't start till 6 o'clock!",
@@ -371,6 +373,26 @@ static var GUESTS_DATA: Dictionary[String, Dictionary] = {
 		REJECTED_GOODBYE: "These people! Who dares turn away a beautiful woman such as myself?",
 		MONEY: 10,
 	},
+	"Cameron": {
+		SCENE: preload("res://scenes/characters/cameron.tscn"),
+		DEFAULT_TRAITS: [],
+		GREETING: ["Hey man, I got the graveyard shift and this looks like the perfect place to pass out.", "By the by, you housing any criminals? Just asking..."],
+		GOODBYE: "Time for another riveting day at work.",
+		HAPPY_GOODBYE: "Thanks for the room, man. And all the new leads. Uh, forget I said that.",
+		ANGRY_GOODBYE: "I'm watching you, man. Always watching...",
+		REJECTED_GOODBYE: "Whatever, man. I'll just sleep in my car.",
+		MONEY: 10,
+	},
+	"Molar": {
+		SCENE: preload("res://scenes/characters/molar.tscn"),
+		DEFAULT_TRAITS: [TraitList.Trait.MESSY],
+		GREETING: ["Hey, bestie. Just looking for a place to stay for the night.", "Ball and chain? It's, uhhh... a fashion statement..."],
+		GOODBYE: "Thanks. You've helped a lot more than you could ever imagine...",
+		HAPPY_GOODBYE: "If I ever need help again, I know you won't let me down.",
+		ANGRY_GOODBYE: "Hmmm. You're next, hehehehehe.",
+		REJECTED_GOODBYE: "Darn. Couldn't pull the wool over your eyes, huh?",
+		MONEY: 0,
+	}
 }
 
 static var GUESTS: Dictionary[String, Guest]
