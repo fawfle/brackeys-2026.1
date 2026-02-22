@@ -55,8 +55,12 @@ scroll_active = false
 shortcut_keys_enabled = false
 visible_characters_behavior = 1
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=818936597]
-position = Vector2(252, 46)
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1151943796]
+layout_mode = 0
+offset_left = 250.0
+offset_top = 47.0
+offset_right = 255.0
+offset_bottom = 52.0
 texture = ExtResource("4_et6da")
 
 [connection signal="button_down" from="AdvanceText" to="." method="_on_advance_text_button_down"]

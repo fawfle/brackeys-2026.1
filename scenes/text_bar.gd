@@ -4,7 +4,7 @@ var line_queue: Array[String] = []
 
 @onready var text_box: RichTextLabel = $TextBox
 @onready var advance_text_button: TextureButton = $AdvanceText
-@onready var completed_icon: Sprite2D = $Sprite2D
+@onready var completed_icon: TextureRect = $TextureRect
 
 var text_tween: Tween
 

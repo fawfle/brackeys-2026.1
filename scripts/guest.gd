@@ -44,6 +44,8 @@ var days_stayed: int = 0
 ## true if guest should stop time when entering
 @export var stop_time: bool = false
 
+@export var sprite_offset: Vector2i = Vector2i.ZERO
+
 ## reference to current node loaded in scene tree
 var node: Node2D = null
 var room: Room = null

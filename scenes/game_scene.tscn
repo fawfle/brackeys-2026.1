@@ -4,6 +4,7 @@
 [ext_resource type="FontFile" uid="uid://qo71mx2v8dp" path="res://fonts/edit-undo.brk.ttf" id="2_bw6k5"]
 [ext_resource type="Texture2D" uid="uid://dao5fqo2jpemv" path="res://sprites/ui/background_ver2.png" id="2_rvs2r"]
 [ext_resource type="PackedScene" uid="uid://buyxfh2m4xbm5" path="res://scenes/text_bar.tscn" id="2_ycayy"]
+[ext_resource type="PackedScene" uid="uid://b8yiunaief4x2" path="res://scenes/characters/1800s_guy.tscn" id="3_85lt4"]
 [ext_resource type="Script" uid="uid://cfpiqvmer5qe" path="res://scripts/ui/day_label.gd" id="3_y3j0m"]
 [ext_resource type="Script" uid="uid://donsdw52b18or" path="res://scripts/ui/money_label.gd" id="4_rurhu"]
 [ext_resource type="Theme" uid="uid://bqm4ull505em5" path="res://themes/theme.tres" id="5_utbpp"]
@@ -16,7 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://dsgk5dkj4d3jn" path="res://sprites/ui/bell_outlined.png" id="10_mwyo0"]
 [ext_resource type="Texture2D" uid="uid://bbytofh76f3so" path="res://sprites/ui/gameboy.png" id="10_ro0ie"]
 [ext_resource type="Texture2D" uid="uid://368miocfcgm2" path="res://sprites/ui/gameboy_hovered.png" id="11_103ce"]
-[ext_resource type="PackedScene" uid="uid://bkdg1tw4v3tck" path="res://scenes/clock.tscn" id="11_tcjrq"]
+[ext_resource type="PackedScene" path="res://scenes/clock.tscn" id="11_tcjrq"]
 [ext_resource type="Script" uid="uid://bqgpmjcsom83f" path="res://scenes/ui/reject_button.gd" id="12_5ay1a"]
 [ext_resource type="Script" uid="uid://cg3dfhj3j6yn4" path="res://scenes/ui/pass_time_button.gd" id="12_rvs2r"]
 [ext_resource type="Texture2D" uid="uid://bl2se4ygj4r7q" path="res://sprites/ui/reject.png" id="16_6aqbo"]
@@ -36,6 +37,9 @@ texture = ExtResource("2_rvs2r")
 
 [node name="GuestParent" type="Node2D" parent="." unique_id=521559917]
 position = Vector2(131, 116)
+
+[node name="1800s guy" parent="GuestParent" unique_id=4339577 instance=ExtResource("3_85lt4")]
+position = Vector2(17, -10)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1013869446]
 
@@ -202,5 +206,6 @@ one_shot = true
 position = Vector2(29.5, 37.5)
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1594157327]
+visible = false
 position = Vector2(130, 87)
 texture = ExtResource("23_pb36m")
