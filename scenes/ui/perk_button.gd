@@ -43,11 +43,11 @@ var completed_icon: Texture = preload("res://sprites/ui/complete_icon.png")
 		if Engine.is_editor_hint(): return
 		if cost_label: cost_label.text = "$" + str(value) if cost >= 0 else "MAX"
 
-func _on_right_perk_pressed() -> void:
-	button_clicked.emit(left_upgrade, 0)
-
 func _on_left_perk_pressed() -> void:
-	button_clicked.emit(right_upgrade, 1)
+	button_clicked.emit(right_upgrade, 0)
+
+func _on_right_perk_pressed() -> void:
+	button_clicked.emit(left_upgrade, 1)
 
 func update_textures(perk_tier: int):
 	if perk_tier >= 3:
@@ -55,6 +55,8 @@ func update_textures(perk_tier: int):
 		right_texture = completed_icon
 		left_description = ""
 		right_description = ""
+		left_upgrade.label_text = ""
+		right_upgrade.label_text = ""
 		return
 	
 	var left_perk: Room.Perk = Room.PERK_TIER[perk_tier][0]
@@ -66,3 +68,6 @@ func update_textures(perk_tier: int):
 	right_texture = Room.PERK_SPRITES[right_perk]
 	left_description = Room.PERK_DESCRIPTIONS[left_perk]
 	right_description = Room.PERK_DESCRIPTIONS[right_perk]
+	
+	left_upgrade.label_text = Room.PERK_LABEL[left_perk]
+	right_upgrade.label_text = Room.PERK_LABEL[right_perk]

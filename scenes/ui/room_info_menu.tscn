@@ -4,6 +4,8 @@
 [ext_resource type="Script" uid="uid://i75im4x6l8i" path="res://scenes/ui/room_info_menu.gd" id="1_wxk2m"]
 [ext_resource type="Texture2D" uid="uid://b18v26ttupgmj" path="res://sprites/characters/newt.png" id="2_o4yic"]
 [ext_resource type="Texture2D" uid="uid://btvt7fgyo6lpi" path="res://sprites/ui/air_conditioner_icon.png" id="4_kkx06"]
+[ext_resource type="Texture2D" uid="uid://clrp772ougjrg" path="res://sprites/ui/clean_bar.png" id="5_584dw"]
+[ext_resource type="Texture2D" uid="uid://b6y84cs5c5k7w" path="res://sprites/ui/clean_bar_fill.png" id="5_blknt"]
 
 [node name="RoomInfoMenu" type="Control" unique_id=1346516254]
 layout_mode = 3
@@ -32,14 +34,21 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 0.23529412)
 
-[node name="Sanitation" type="Label" parent="." unique_id=1803080640]
+[node name="SanitationBar" type="TextureProgressBar" parent="." unique_id=659170824]
 layout_mode = 0
-offset_left = 44.0
-offset_top = -1.0
-offset_right = 94.0
-offset_bottom = 22.0
-theme = ExtResource("1_e8e1h")
-text = "Sanitation:"
+offset_left = 58.0
+offset_top = 10.0
+offset_right = 74.0
+offset_bottom = 42.0
+max_value = 1.0
+step = 0.1
+value = 1.0
+fill_mode = 3
+texture_under = ExtResource("5_blknt")
+texture_over = ExtResource("5_584dw")
+texture_progress = ExtResource("5_blknt")
+tint_under = Color(0.17241234, 0.17241234, 0.17241234, 1)
+tint_progress = Color(0.05000007, 1, 0, 1)
 
 [node name="Size" type="Label" parent="." unique_id=2078938279]
 visible = false

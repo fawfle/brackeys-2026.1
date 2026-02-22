@@ -196,7 +196,8 @@ func update_room_sprite():
 	door_one.texture = DOOR_SPRITES.get(quality)
 	door_two.texture = DOOR_SPRITES.get(quality)
 	
-	messy_overlay.visible = sanitation == Sanitation.DIRTY or sanitation == Sanitation.MESSY
+	messy_overlay.visible = (sanitation == Sanitation.DIRTY or sanitation == Sanitation.MESSY)
+
 	dirty_overlay.visible = sanitation == Sanitation.DIRTY
 	
 	
@@ -218,6 +219,7 @@ func is_inactive() -> bool:
 func decrease_sanitation():
 	if sanitation == Sanitation.DIRTY: return
 	sanitation = (sanitation - 1) as Sanitation
+	update_room_sprite()
 	Globals.room_updated.emit(self)
 
 ## functions to get location properties
@@ -241,18 +243,20 @@ func has_perk(perk: Perk) -> bool:
 
 ## return rooms on left/right
 func get_floor_neighbors() -> Array[Room]:
-	return get_neighbors_with(func(room: Room): return room != self and abs(location.x - room.location.x) < 1)
+	return get_rooms_with(func(room: Room): return room != self and location.y == room.location.y and abs(location.x - room.location.x) < 1)
 
 ## return neighbors above and below
 func get_vertical_neighbors() -> Array[Room]:
-	return get_neighbors_with(func(room: Room): return room != self and abs(location.y - room.location.y) < 1)
+	return get_rooms_with(func(room: Room): return room != self and location.y == room.location.x and abs(location.y - room.location.y) < 1)
 
 ## return left, right, top, bottom
 func get_all_neighbors() -> Array[Room]:
-	return get_neighbors_with(func(room: Room): return room != self and abs(location.x - room.location.x) < 1 or abs(location.y - room.location.y) < 1)
+	var neighbors = get_floor_neighbors()
+	neighbors.append(get_vertical_neighbors())
+	return neighbors
 
 ## helper
-func get_neighbors_with(callable: Callable) -> Array[Room]:
+func get_rooms_with(callable: Callable) -> Array[Room]:
 	var neighbors: Array[Room] = []
 	var rooms = get_tree().get_nodes_in_group(GROUP_NAME)
 	
@@ -271,6 +275,7 @@ func upgrade_sanitation():
 	if sanitation == Sanitation.CLEAN: return
 	
 	sanitation = (sanitation + 1) as Sanitation
+	update_room_sprite()
 	Globals.room_updated.emit(self)
 	
 func upgrade_quality(): 
@@ -342,6 +347,15 @@ const PERK_SPRITES: Dictionary[Perk, Texture] = {
 	Perk.SHOWER: preload("res://sprites/ui/shower_icon.png"),
 	Perk.CABLE: preload("res://sprites/ui/cable_icon.png"),
 	Perk.CONSOLE: preload("res://sprites/ui/console_icon.png"),
+}
+
+const PERK_LABEL: Dictionary[Perk, String] = {
+	Perk.SPACE_HEATER: "SP HTR",
+	Perk.AC: "AC",
+	Perk.BATH: "Bath",
+	Perk.SHOWER: "Shower",
+	Perk.CABLE: "Cable",
+	Perk.CONSOLE: "Console",
 }
 
 const PERK_DESCRIPTIONS: Dictionary[Perk, String] = {

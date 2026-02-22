@@ -165,6 +165,15 @@ static var GUESTS_DATA: Dictionary[String, Dictionary] = {
 		GREETING: [
 			"Hello, I have returned for your quota! Have you been a good employee?"
 		],
+		#TODO: add manny's dialogues, listed below.
+		#Your net earning was: print(Pass number here)!
+		#Your official review is: print(Pass review here)!
+		#If review and money above certain threshold:
+		#Good job, keep up the good work!
+		#else:
+		#you're lucky we still need you, you're not fired this time, but you're on thin ice.
+		#Regardless, he says afterwards:
+		#Good job on completing your first month! Make sure to accomodate your guests needs, but you probably know this by now! 
 		GOODBYE: [
 			"That was fine I guess, you could probably do better.",
 			"Either ways, you have 30 days until you're performace review! If you meet quota, you can become a [color=00BFFF]Star[/color] employee!",
@@ -423,6 +432,16 @@ static var GUESTS_DATA: Dictionary[String, Dictionary] = {
 		REJECTED_GOODBYE: "Darn. Couldn't pull the wool over your eyes, huh?",
 		MONEY: 0,
 	},
+	"Mathan": {
+		SCENE: preload("res://scenes/characters/mathan.tscn"),
+		DEFAULT_TRAITS: [],
+		GREETING: ["Hello old chap, I am Mathan. I have been pushed into this fine establishment.", "While I am here, I would like a room."],
+		GOODBYE: "Thanks for the room old sport",
+		HAPPY_GOODBYE: "Jolly well, kid, I enjoyed my visit here today",
+		ANGRY_GOODBYE: "Detestable, old man, truly horrendous!",
+		REJECTED_GOODBYE: "Well, I didn't want you're service anyways, old fart.",
+		MONEY: 0,
+	},
 	"Doctor Newbie":{
 		SCENE: preload("res://scenes/characters/doctor_newbie.tscn"),
 		DEFAULT_TRAITS: [],
@@ -440,6 +459,15 @@ static var GUESTS_DATA: Dictionary[String, Dictionary] = {
 		HAPPY_GOODBYE: "That room was the cream of the crop!",
 		ANGRY_GOODBYE: ["I'm udderly disappointed in my room. We've got beef, you're just tryna milk me of my money."],
 		REJECTED_GOODBYE: ["Suck it, Brovine."],
+	},
+	"Yidhra":{
+		SCENE: preload("res://scenes/characters/yidhra.tscn"),
+		DEFAULT_TRAITS: [],
+		GREETING: ["Hello love, how has your day been going.", "I'm here on a trip, and I would like to inquire about one of your rooms."],
+		GOODBYE: "Have a good day love.",
+		HAPPY_GOODBYE: "Thank you for the service dear. It was truly splendid.",
+		ANGRY_GOODBYE: "The room was below my expectations. Any chance you could fix that?",
+		REJECTED_GOODBYE: "I understand, you must be busy dear. I'll be on my way.",
 	},
 }
 

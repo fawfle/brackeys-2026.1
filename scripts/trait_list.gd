@@ -88,7 +88,7 @@ static var TRAIT_DATA: Dictionary[Trait, Dictionary] = {
 		NAME: "Simple",
 		REQUEST: "I'm looking for something [color=red]simple[/color].",
 		FAIL_FEEDBACK: "This place is [color=red]too fancy[/color]. I wanted something that felt like home.",
-		CONDITION: func(room: Room): return room.quality == Room.Quality.DUMP,
+		CONDITION: func(room: Room): return room.quality == Room.Quality.NORMAL,
 		PREFERENCE: 3,
 		VALUE: 2,
 		BLACKLIST: [Trait.CLASSY, Trait.CHEAP]
@@ -109,7 +109,7 @@ static var TRAIT_DATA: Dictionary[Trait, Dictionary] = {
 		CONDITION: func(room: Room): return room.on_ground_floor(),
 		PREFERENCE: 3,
 		VALUE: 4,
-		BLACKLIST: [Trait.CLASSY]
+		BLACKLIST: [Trait.VIEW_SEEKER]
 	},
 	Trait.VIEW_SEEKER: {
 		NAME: "View Seeker",
@@ -118,7 +118,7 @@ static var TRAIT_DATA: Dictionary[Trait, Dictionary] = {
 		CONDITION: func(room: Room): return room.on_top_floor(),
 		PREFERENCE: 3,
 		VALUE: 4,
-		BLACKLIST: [Trait.CLASSY]
+		BLACKLIST: [Trait.ACROPHOBIA]
 	},
 	Trait.SHY: {
 		NAME: "Shy",
@@ -133,7 +133,7 @@ static var TRAIT_DATA: Dictionary[Trait, Dictionary] = {
 	Trait.SOCIAL: {
 		NAME: "Social",
 		REQUEST: "I want to be [color=red]around others[/color].",
-		FAIL_FEEDBACK: "[color=red]No one[/color] was around. It was sooooo boring!",
+		FAIL_FEEDBACK: "[color=red]No one[/color] was around. There weren't enough people, it was sooooo boring!",
 		CONDITION: func(room: Room): return room.get_floor_neighbors().all(func(r: Room): return r.guest != null),
 		APPLY_TYPE: GuestTrait.ApplyType.ALWAYS,
 		PREFERENCE: 3,
@@ -197,7 +197,7 @@ static var TRAIT_DATA: Dictionary[Trait, Dictionary] = {
 	Trait.HEATER: {
 		NAME: "Centrist",
 		REQUEST: "I'm [color=red]freezing[/color] out there! I should warm up.",
-		FAIL_FEEDBACK: "[color=red]BRRRR[/color]! I couldn't stand the room any longer",
+		FAIL_FEEDBACK: "[color=red]BRRRR[/color]! I couldn't stand the room any longer.",
 		CONDITION: func(room: Room): return room.has_perk(Room.Perk.SPACE_HEATER),
 		PREFERENCE: 3,
 		VALUE: 4,

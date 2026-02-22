@@ -53,7 +53,7 @@ func _ready() -> void:
 	
 	## give player 1 room to start
 	get_room(Vector2i(0, 0)).built = true
-	get_room(Vector2i(0, 0)).sanitation = Room.Sanitation.MESSY
+	get_room(Vector2i(0, 0)).decrease_sanitation()
 
 func _on_select_room(room: Room):
 	selected_room = room
