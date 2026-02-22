@@ -67,6 +67,6 @@ texture = ExtResource("4_et6da")
 
 [node name="TextSound" type="AudioStreamPlayer2D" parent="." unique_id=400715929]
 stream = ExtResource("5_i3ya7")
-volume_db = 10.0
+volume_db = 24.0
 
 [connection signal="button_down" from="AdvanceText" to="." method="_on_advance_text_button_down"]

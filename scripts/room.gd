@@ -7,6 +7,10 @@ const GROUP_NAME: String = "room"
 @export var quality: Quality = Quality.DUMP
 @export var room_size: RoomSize = RoomSize.SMALL
 
+@export var perks: Array[Perk] = []
+var perk_tier: int:
+	get: return perks.size()
+
 @onready var button: TextureButton = $TextureButton
 
 @onready var focus_outline: NinePatchRect = $FocusOutline
@@ -115,7 +119,7 @@ func _process(delta: float) -> void:
 	
 	if sanitation == Sanitation.CLEAN: return
 	
-	if held:
+	if held and guest == null:
 		clean_timer += delta
 	elif clean_timer > 0:
 		clean_timer -= delta
@@ -225,17 +229,20 @@ func on_ground_floor() -> bool:
 func on_top_floor() -> bool:
 	return location.y == Hotel.inst.floors - 1
 
+func has_perk(perk: Perk) -> bool:
+	return perks.has(perk)
+
 ## return rooms on left/right
 func get_floor_neighbors() -> Array[Room]:
-	return get_neighbors_with(func(room: Room): return abs(location.x - room.location.x) < 1)
+	return get_neighbors_with(func(room: Room): return room != self and abs(location.x - room.location.x) < 1)
 
 ## return neighbors above and below
 func get_vertical_neighbors() -> Array[Room]:
-	return get_neighbors_with(func(room: Room): return abs(location.y - room.location.y) < 1)
+	return get_neighbors_with(func(room: Room): return room != self and abs(location.y - room.location.y) < 1)
 
 ## return left, right, top, bottom
 func get_all_neighbors() -> Array[Room]:
-	return get_neighbors_with(func(room: Room): return abs(location.x - room.location.x) < 1 or abs(location.y - room.location.y) < 1)
+	return get_neighbors_with(func(room: Room): return room != self and abs(location.x - room.location.x) < 1 or abs(location.y - room.location.y) < 1)
 
 ## helper
 func get_neighbors_with(callable: Callable) -> Array[Room]:
@@ -247,6 +254,10 @@ func get_neighbors_with(callable: Callable) -> Array[Room]:
 			neighbors.push_back(room)
 	
 	return neighbors
+
+func add_perk(perk: Perk) -> void:
+	perks.push_back(perk)
+	Globals.room_updated.emit(self)
 
 # TODO: some visual/menu indicator
 func upgrade_sanitation(): 
@@ -308,9 +319,37 @@ enum RoomSize {
 	LARGE,
 }
 
-## TODO, one or the other type upgrades
-enum Perks {
-	
+enum Perk {
+	SPACE_HEATER,
+	AC,
+	BATH,
+	SHOWER,
+	CABLE,
+	CONSOLE
+}
+
+const PERK_SPRITES: Dictionary[Perk, Texture] = {
+	Perk.SPACE_HEATER: preload("res://sprites/ui/space_heater_icon.png"),
+	Perk.AC: preload("res://sprites/ui/air_conditioner_icon.png"),
+	Perk.BATH: preload("res://sprites/ui/bathtub_icon.png"),
+	Perk.SHOWER: preload("res://sprites/ui/shower_icon.png"),
+	Perk.CABLE: preload("res://sprites/ui/cable_icon.png"),
+	Perk.CONSOLE: preload("res://sprites/ui/console_icon.png"),
+}
+
+const PERK_DESCRIPTIONS: Dictionary[Perk, String] = {
+	Perk.SPACE_HEATER: "+$2 per star", ## +2 per star
+	Perk.AC: "+$5 always",
+	Perk.BATH: "Guests are less harsh", ##  guest preferences are lower. -0.1 per
+	Perk.SHOWER: "Guest stays an extra day", ## applied to effective money
+	Perk.CABLE: "Guests pay x$1.25",  ## if you believe they'll pay
+	Perk.CONSOLE: "If 5 stars, x$1.75", ## 15% chance to stop trait from applying
+}
+
+const PERK_TIER: Dictionary[int, Array] = {
+	0: [Perk.SPACE_HEATER, Perk.AC],
+	1: [Perk.BATH, Perk.SHOWER],
+	2: [Perk.CABLE, Perk.CONSOLE]
 }
 
 # helper functions, enum -> string
