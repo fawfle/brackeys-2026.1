@@ -392,7 +392,7 @@ static var GUESTS_DATA: Dictionary[String, Dictionary] = {
 		ANGRY_GOODBYE: "Hmmm. You're next, hehehehehe.",
 		REJECTED_GOODBYE: "Darn. Couldn't pull the wool over your eyes, huh?",
 		MONEY: 0,
-	}
+	},
 }
 
 static var GUESTS: Dictionary[String, Guest]
