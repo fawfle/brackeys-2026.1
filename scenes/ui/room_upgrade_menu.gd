@@ -41,26 +41,26 @@ func update_button_costs(room: Room):
 	
 
 func _on_quality_pressed() -> void:
-	if Hotel.inst.selected_room == null or Hotel.inst.selected_room.quality == Room.Quality.CLASSY: return
+	if Hotel.inst.selected_room == null or Hotel.inst.selected_room.quality == Room.Quality.CLASSY or Hotel.inst.selected_room.occupied: return
 	if GameManager.inst.purchase_upgrade(UpgradeCosts.QUALITY[Hotel.inst.selected_room.quality]):
 		Hotel.inst.selected_room.upgrade_quality()
 		update_button_costs(Hotel.inst.selected_room)
 
 
 func _on_size_pressed() -> void:
-	if Hotel.inst.selected_room == null or Hotel.inst.selected_room.room_size == Room.RoomSize.LARGE: return
+	if Hotel.inst.selected_room == null or Hotel.inst.selected_room.room_size == Room.RoomSize.LARGE or Hotel.inst.selected_room.occupied: return
 	if GameManager.inst.purchase_upgrade(UpgradeCosts.ROOM_SIZE[Hotel.inst.selected_room.room_size]):
 		Hotel.inst.selected_room.upgrade_room_size()
 		update_button_costs(Hotel.inst.selected_room)
 
 func _on_build_pressed() -> void:
-	if Hotel.inst.selected_room == null or Hotel.inst.selected_room.built: return
+	if Hotel.inst.selected_room == null or Hotel.inst.selected_room.built or Hotel.inst.selected_room.occupied: return
 	if GameManager.inst.purchase_upgrade(UpgradeCosts.BUILD_ROOM[Hotel.inst.selected_room.hotel_floor]):
 		Hotel.inst.selected_room.build()
 		update_button_costs(Hotel.inst.selected_room)
 
 func _on_perk_button_pressed(_button: UpgradeButton, perk_index):
-	if Hotel.inst.selected_room == null or Hotel.inst.selected_room.perk_tier >= 3: return
+	if Hotel.inst.selected_room == null or Hotel.inst.selected_room.perk_tier >= 3 or Hotel.inst.selected_room.occupied: return
 	if GameManager.inst.purchase_upgrade(UpgradeCosts.ROOM_PERKS[Hotel.inst.selected_room.perk_tier]):
 		Hotel.inst.selected_room.add_perk(Room.PERK_TIER[Hotel.inst.selected_room.perk_tier][perk_index])
 		update_button_costs(Hotel.inst.selected_room)

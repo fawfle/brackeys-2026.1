@@ -310,6 +310,9 @@ func assign_guest(room: Room):
 	
 	Globals.set_text.emit()
 	
+	room.guest_flag = true
+	Globals.room_updated.emit(room)
+	
 	await play_guest_exit_animation(current_guest.node)
 	current_guest.node.reparent(room)
 	await get_tree().create_timer(0.8).timeout

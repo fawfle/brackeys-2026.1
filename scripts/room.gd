@@ -85,6 +85,7 @@ var guest: Guest = null:
 	get: return guest
 	set(value):
 		guest = value
+		guest_flag = false
 		guest_indicator.visible = guest != null
 
 @onready var guest_indicator: Sprite2D = $GuestIndicator
@@ -144,10 +145,13 @@ func _process(delta: float) -> void:
 var occupied: bool:
 	get: return guest != null
 
+## store if guest is being assigned/playing animation
+var guest_flag: bool = false
+
 ## returns if adding was successful
 func add_guest(_guest: Guest) -> bool:
 	if not can_assign_guest():
-		push_error("Attempting to assign guest to occupied or unbuilt room")
+		push_error("Attempting to assign guest to occupied or unbuilt or upgrading room")
 		return false
 		
 	if Globals.DEBUG: print("ASSIGNING GUEST " + str(_guest) + " TO ROOM " + str(self))
@@ -162,6 +166,7 @@ func _on_room_select(room: Room):
 	focus_outline.visible = room == self
 
 func _on_texture_button_button_down() -> void:
+	if occupied: return
 	held = true
 	room_select_sound.play()
 	Globals.select_room.emit(self)
