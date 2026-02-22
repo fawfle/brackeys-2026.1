@@ -12,7 +12,7 @@ class_name RoomUpgradeMenu extends Control
 
 func _ready() -> void:
 	Globals.select_room.connect(update_menu)
-	Globals.room_updated.connect(update_menu)
+	Globals.room_updated.connect(func(r: Room): if Hotel.inst.selected_room == r: update_menu(r))
 	
 	perk_button.button_clicked.connect(_on_perk_button_pressed)
 	

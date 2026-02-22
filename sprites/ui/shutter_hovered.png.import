@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://clrp772ougjrg"
-path="res://.godot/imported/clean_bar.png-047d0f0fede536eaf48819670c4b9ea1.ctex"
+uid="uid://byj1rg1nl56fj"
+path="res://.godot/imported/shutter_hovered.png-47d266d7e464ea16fb8d9d8f82a81e27.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/ui/clean_bar.png"
-dest_files=["res://.godot/imported/clean_bar.png-047d0f0fede536eaf48819670c4b9ea1.ctex"]
+source_file="res://sprites/ui/shutter_hovered.png"
+dest_files=["res://.godot/imported/shutter_hovered.png-47d266d7e464ea16fb8d9d8f82a81e27.ctex"]
 
 [params]
 

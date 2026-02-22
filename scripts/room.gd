@@ -3,7 +3,12 @@ class_name Room extends Control
 ## name of room group
 const GROUP_NAME: String = "room"
 
-@export var sanitation: Sanitation = Sanitation.CLEAN
+@export var sanitation: Sanitation = Sanitation.CLEAN:
+	get: return sanitation
+	set(value):
+		sanitation = value
+		update_room_sprite()
+
 @export var quality: Quality = Quality.DUMP
 @export var room_size: RoomSize = RoomSize.SMALL
 
@@ -151,7 +156,7 @@ func add_guest(_guest: Guest) -> bool:
 	return true
 
 func can_assign_guest() -> bool:
-	return not occupied and built
+	return not occupied and built and not upgrading and not GameManager.inst.assigning_guest
 
 func _on_room_select(room: Room):
 	focus_outline.visible = room == self
