@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://cyifx4xjo5tno"]
+
+[ext_resource type="Texture2D" uid="uid://cqtuw63fdtp1t" path="res://sprites/characters/michael.png" id="1_t87xg"]
+[ext_resource type="Script" uid="uid://cuba1v2c3urst" path="res://scripts/guest_sprite.gd" id="2_agxhy"]
+[ext_resource type="Texture2D" uid="uid://di7x6nmfrf6aa" path="res://sprites/characters/angry_icon.png" id="3_d3wfx"]
+
+[node name="Michael" type="Sprite2D" unique_id=1206305761]
+texture = ExtResource("1_t87xg")
+script = ExtResource("2_agxhy")
+metadata/_custom_type_script = "uid://cuba1v2c3urst"
+metadata/_edit_lock_ = true
+
+[node name="AngrySprite" type="Sprite2D" parent="." unique_id=915076049]
+position = Vector2(10, -50)
+texture = ExtResource("3_d3wfx")

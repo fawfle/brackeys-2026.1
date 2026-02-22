@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://cc6lbeege68fq"]
+
+[ext_resource type="Texture2D" uid="uid://n6xl5cd446pl" path="res://sprites/characters/Birbert.png" id="1_kdwnr"]
+[ext_resource type="Script" uid="uid://cuba1v2c3urst" path="res://scripts/guest_sprite.gd" id="2_w44ix"]
+[ext_resource type="Texture2D" uid="uid://di7x6nmfrf6aa" path="res://sprites/characters/angry_icon.png" id="3_i7dl2"]
+
+[node name="Birbert" type="Sprite2D" unique_id=497588261]
+texture = ExtResource("1_kdwnr")
+script = ExtResource("2_w44ix")
+metadata/_custom_type_script = "uid://cuba1v2c3urst"
+
+[node name="AngrySprite" type="Sprite2D" parent="." unique_id=1456858261]
+position = Vector2(-22, -42)
+texture = ExtResource("3_i7dl2")
