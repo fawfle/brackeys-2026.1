@@ -5,4 +5,4 @@ class_name HotelFloor extends Control
 func set_floor(floor_num: int):
 	for room: Room in floor_rooms:
 		room.location.y = floor_num
-		print("HOTEL_FLOOR: " + str(floor_num))
+		# print("HOTEL_FLOOR: " + str(floor_num))

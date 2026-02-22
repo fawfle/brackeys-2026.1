@@ -192,7 +192,7 @@ func update_room_sprite():
 	room_background.position = - ROOM_SIZES[room_size] / 2
 	focus_outline.size = ROOM_SIZES[room_size]
 	focus_outline.position = - ROOM_SIZES[room_size] / 2
-	button.size = BUTTON_SIZES[room_size]
+	button.set_deferred("size", BUTTON_SIZES[room_size])
 	button.position = - BUTTON_SIZES[room_size] / 2
 	dim_overlay.size = BUTTON_SIZES[room_size]
 	dim_overlay.position = - BUTTON_SIZES[room_size] / 2

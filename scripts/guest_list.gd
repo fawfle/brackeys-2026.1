@@ -136,6 +136,7 @@ static var GUESTS_DATA: Dictionary[String, Dictionary] = {
 		MONEY: 25,
 		EVENT: true,
 		APPEAR_ON_DAY: 0,
+		STOP_TIME: true,
 	},
 	"Flibi": {
 		SCENE: preload("res://scenes/characters/flibi.tscn"),
