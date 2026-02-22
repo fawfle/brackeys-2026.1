@@ -431,7 +431,16 @@ static var GUESTS_DATA: Dictionary[String, Dictionary] = {
 		HAPPY_GOODBYE: "BA-BYE",
 		ANGRY_GOODBYE: "BAD BYE",
 		REJECTED_GOODBYE: ["You have vastly underestimated my abilities. You have hurt an important member of the scientific community.", "This establishment is not worth my patronage. None in my microentroprise shall interact with you or any of your affiliates ever again!"]
-	}
+	},
+	"Sir Loin": {
+		SCENE: preload("res://scenes/characters/jaben.tscn"),
+		DEFAULT_TRAITS: [TraitList.Trait.CLAUSTROPHOBIC],
+		GREETING: ["Sup. I herd ya got some rooms.", "Your branding has got me moo-ved."],
+		GOODBYE: "I knew you'd steer me in the right direction. I've got a bulls-eye for this kinda thing.",
+		HAPPY_GOODBYE: "That room was the cream of the crop!",
+		ANGRY_GOODBYE: ["I'm udderly disappointed in my room. We've got beef, you're just tryna milk me of my money."],
+		REJECTED_GOODBYE: ["Suck it, Brovine."],
+	},
 }
 
 static var GUESTS: Dictionary[String, Guest]
