@@ -18,6 +18,7 @@
 [ext_resource type="Script" uid="uid://bqgpmjcsom83f" path="res://scenes/ui/reject_button.gd" id="12_5ay1a"]
 [ext_resource type="PackedScene" path="res://scenes/ui/bell.tscn" id="13_pb36m"]
 [ext_resource type="Texture2D" uid="uid://bl2se4ygj4r7q" path="res://sprites/ui/reject.png" id="16_6aqbo"]
+[ext_resource type="PackedScene" uid="uid://cbgae4lhyclq" path="res://scenes/ui/performance_review.tscn" id="17_r47aq"]
 [ext_resource type="Texture2D" uid="uid://c8vurqrhs1oum" path="res://sprites/ui/reject_hovered.png" id="17_ro0ie"]
 [ext_resource type="Texture2D" uid="uid://dqx33kklfqboq" path="res://sprites/ui/reject_disabled.png" id="18_ro0ie"]
 [ext_resource type="Texture2D" uid="uid://33hjfwcgpri2" path="res://sprites/ui/pause_button_outlined.png" id="20_pb36m"]
@@ -148,36 +149,12 @@ texture_hover = ExtResource("17_ro0ie")
 texture_disabled = ExtResource("18_ro0ie")
 script = ExtResource("12_5ay1a")
 
-[node name="PerformanceReview" type="ColorRect" parent="CanvasLayer/GuestWindow" unique_id=648593923]
-visible = false
+[node name="PerformanceReview" parent="CanvasLayer/GuestWindow" unique_id=1636565824 instance=ExtResource("17_r47aq")]
 layout_mode = 0
-offset_left = 70.0
-offset_top = 41.0
-offset_right = 193.0
-offset_bottom = 182.0
-color = Color(0, 0, 0, 0.8862745)
-
-[node name="Label" type="Label" parent="CanvasLayer/GuestWindow/PerformanceReview" unique_id=1402626393]
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_top = 5.0
-offset_bottom = 19.0
-grow_horizontal = 2
-theme_override_fonts/font = ExtResource("2_bw6k5")
-theme_override_font_sizes/font_size = 15
-text = "DAY END"
-horizontal_alignment = 1
-
-[node name="Button" type="Button" parent="CanvasLayer/GuestWindow/PerformanceReview" unique_id=77998094]
-layout_mode = 0
-offset_left = 31.0
-offset_top = 111.0
-offset_right = 90.0
-offset_bottom = 135.0
-theme = ExtResource("5_utbpp")
-text = "proceed"
-clip_text = true
+offset_left = 69.0
+offset_top = 24.0
+offset_right = 192.0
+offset_bottom = 165.0
 
 [node name="Separator" type="ColorRect" parent="CanvasLayer" unique_id=1946174638]
 anchors_preset = 11
