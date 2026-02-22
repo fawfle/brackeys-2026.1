@@ -13,8 +13,7 @@ const floating_text_scene: PackedScene = preload("res://scenes/ui/floating_text.
 
 @onready var guest_window: Control = $CanvasLayer/GuestWindow
 
-#TODO: placeholder, replace with actual stars
-@onready var star_rating: Label = $"CanvasLayer/GuestWindow/StarRating"
+@onready var star_rating: TextureProgressBar = $CanvasLayer/GuestWindow/StarRating
 @onready var assign_button: TextureButton = $CanvasLayer/GuestWindow/Bell
 
 @onready var reject_button: TextureButton = $CanvasLayer/GuestWindow/RejectButton
@@ -397,7 +396,7 @@ func create_floating_text(text: String):
 	floating_text.play_animation(text, 1.3)
 
 func play_star_rating_animation(stars: float):
-	star_rating.text = str(stars) + " Stars"
+	star_rating.value = stars
 	star_rating.visible = true
 	star_rating.modulate = Color("#ffffff")
 	await get_tree().create_timer(2.0).timeout

@@ -4,6 +4,7 @@
 [ext_resource type="FontFile" uid="uid://qo71mx2v8dp" path="res://fonts/edit-undo.brk.ttf" id="2_bw6k5"]
 [ext_resource type="Texture2D" uid="uid://dao5fqo2jpemv" path="res://sprites/ui/background_ver2.png" id="2_rvs2r"]
 [ext_resource type="PackedScene" uid="uid://buyxfh2m4xbm5" path="res://scenes/text_bar.tscn" id="2_ycayy"]
+[ext_resource type="PackedScene" uid="uid://bluftfdfc261o" path="res://scenes/ui/star_rating.tscn" id="3_xgstd"]
 [ext_resource type="Script" uid="uid://cfpiqvmer5qe" path="res://scripts/ui/day_label.gd" id="3_y3j0m"]
 [ext_resource type="Script" uid="uid://donsdw52b18or" path="res://scripts/ui/money_label.gd" id="4_rurhu"]
 [ext_resource type="Theme" uid="uid://bqm4ull505em5" path="res://themes/theme.tres" id="5_utbpp"]
@@ -47,16 +48,13 @@ offset_right = 263.0
 offset_bottom = 247.0
 metadata/_edit_lock_ = true
 
-[node name="StarRating" type="Label" parent="CanvasLayer/GuestWindow" unique_id=38881109]
+[node name="StarRating" parent="CanvasLayer/GuestWindow" unique_id=2134824425 instance=ExtResource("3_xgstd")]
 layout_mode = 0
-offset_left = 95.0
-offset_top = 24.0
-offset_right = 165.0
-offset_bottom = 39.0
-theme_override_fonts/font = ExtResource("2_bw6k5")
-text = "5 Stars"
-horizontal_alignment = 1
-vertical_alignment = 1
+offset_left = 57.0
+offset_top = 20.0
+offset_right = 251.0
+offset_bottom = 60.0
+scale = Vector2(0.75, 0.75)
 
 [node name="DayLabel" type="Label" parent="CanvasLayer/GuestWindow" unique_id=1702534556]
 layout_mode = 1
