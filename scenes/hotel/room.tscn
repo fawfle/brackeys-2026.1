@@ -17,8 +17,14 @@ layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_4oh1f")
 
-[node name="RoomBackground" type="Sprite2D" parent="." unique_id=1364284177]
+[node name="RoomBackground" type="NinePatchRect" parent="." unique_id=458775747]
+layout_mode = 0
+offset_left = -20.0
+offset_top = -10.0
+offset_right = 20.0
+offset_bottom = 10.0
 texture = ExtResource("2_u8qe1")
+region_rect = Rect2(2, 2, 40, 20)
 
 [node name="DoorOne" type="Sprite2D" parent="." unique_id=959816699]
 position = Vector2(3, -2)
@@ -52,8 +58,14 @@ stretch_mode = 3
 texture = ExtResource("3_xw5ef")
 script = ExtResource("4_bn68h")
 
-[node name="FocusOutline" type="Sprite2D" parent="." unique_id=278915414]
+[node name="FocusOutline" type="NinePatchRect" parent="." unique_id=879180029]
+layout_mode = 0
+offset_left = -20.0
+offset_top = -10.0
+offset_right = 20.0
+offset_bottom = 10.0
 texture = ExtResource("4_m5k2i")
+region_rect = Rect2(2, 2, 40, 20)
 
 [node name="CleanProgressBar" parent="." unique_id=632993768 instance=ExtResource("6_u8qe1")]
 visible = false

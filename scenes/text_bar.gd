@@ -31,6 +31,7 @@ func load_line_from_queue():
 	await text_tween.finished
 	
 	Globals.text_displayed.emit()
+	if line_queue.size() == 0: Globals.text_final_line_displayed.emit()
 
 func on_set_text(lines: Array[String] = [""]) -> void:
 	line_queue = lines
@@ -39,8 +40,15 @@ func on_set_text(lines: Array[String] = [""]) -> void:
 
 func _on_advance_text_button_down() -> void:
 	if text_tween != null and text_tween.is_running():
-		text_tween.kill()
+		text_tween.stop()
+		text_tween.finished.emit()
 		text_box.visible_ratio = 1
 		return
 	
 	load_line_from_queue()
+
+func _input(event: InputEvent) -> void:
+	if event is not InputEventKey: return;
+	event = event as InputEventKey;
+	if event.is_pressed() and event.keycode == Key.KEY_SPACE:
+		_on_advance_text_button_down()

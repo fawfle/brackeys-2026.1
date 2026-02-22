@@ -27,8 +27,6 @@ enum Trait {
 	ACROPHOBIA, ## afraid of heights, wants floor 0
 	VIEW_SEEKER, ## wants top floor
 	
-	LIAR, ## Lies about having lots of money
-	
 	SHY, ## doesn't want neighbors
 	SOCIAL, ## wants neighbors
 	
@@ -77,7 +75,7 @@ static var TRAIT_DATA: Dictionary[Trait, Dictionary] = {
 		CONDITION: func(room: Room): return room.quality == Room.Quality.CLASSY,
 		PREFERENCE: 3,
 		VALUE: 10,
-		BLACKLIST: [Trait.CHEAP]
+		BLACKLIST: [Trait.CHEAP, Trait.SIMPLE]
 	},
 	Trait.SIMPLE: {
 		NAME: "Simple",
@@ -86,7 +84,7 @@ static var TRAIT_DATA: Dictionary[Trait, Dictionary] = {
 		CONDITION: func(room: Room): return room.quality == Room.Quality.DUMP,
 		PREFERENCE: 3,
 		VALUE: 2,
-		BLACKLIST: [Trait.CLASSY]
+		BLACKLIST: [Trait.CLASSY, Trait.CHEAP]
 	},
 	Trait.CHEAP: {
 		NAME: "Cheap",
@@ -95,7 +93,7 @@ static var TRAIT_DATA: Dictionary[Trait, Dictionary] = {
 		CONDITION: func(room: Room): return room.quality == Room.Quality.DUMP,
 		PREFERENCE: 3,
 		VALUE: 2,
-		BLACKLIST: [Trait.CLASSY]
+		BLACKLIST: [Trait.CLASSY, Trait.SIMPLE]
 	},
 	Trait.ACROPHOBIA: {
 		NAME: "Acrophobia",
@@ -117,7 +115,7 @@ static var TRAIT_DATA: Dictionary[Trait, Dictionary] = {
 	},
 	Trait.SHY: {
 		NAME: "Shy",
-		REQUEST: " [color=red][/color].",
+		REQUEST: "I don't do well in [color=red]big[/color] crowds.",
 		FAIL_FEEDBACK: "There were [color=red]too many people[/color], I couldn't focus.",
 		CONDITION: func(room: Room): return not room.get_floor_neighbors().any(func(r: Room): return r.guest != null),
 		APPLY_TYPE: GuestTrait.ApplyType.ALWAYS,
@@ -171,9 +169,18 @@ static var TRAIT_DATA: Dictionary[Trait, Dictionary] = {
 		VALUE: 4,
 		BLACKLIST: [Trait.RIGHT_HANDED, Trait.CENTRIST]
 	},
+	Trait.CENTRIST: {
+		NAME: "Centrist",
+		REQUEST: "I'm always [color=red]middle[/color] of the road.",
+		FAIL_FEEDBACK: "You're too [color=red]extreme[/color] for me.",
+		CONDITION: func(room: Room): return room.in_center(),
+		PREFERENCE: 3,
+		VALUE: 4,
+		BLACKLIST: [Trait.RIGHT_HANDED, Trait.CENTRIST]
+	},
 	Trait.RADIOACTIVE: { ## TODO, make neighboring guests radioactive decreasing happiness by 1
 		NAME: "Radioactive",
-		REQUEST: "",
+		REQUEST: "Everyone around me so [color=green]green[/color].",
 		ON_ENTER: func(room: Room): return,
 		VALUE: 10,
 		SPECIAL: true
@@ -208,6 +215,9 @@ static func LOAD_TRAITS():
 		guest_trait.enum_key = key
 		
 		TRAITS.set(key, guest_trait);
+	
+	if TRAITS.size() != Trait.size():
+		push_error("Number of defined traits is not equal to Trait enum keys")
 
 ## set guest traits of a guest
 static func set_guest_traits(guest: Guest, trait_count: int):
@@ -231,7 +241,9 @@ static func get_valid_trait(guest: Guest, depth: int = 0) -> GuestTrait:
 	
 	# check trait conflicts
 	for t: GuestTrait in guest.traits:
-		if TRAITS.get(random_trait).special or t.enum_key == random_trait or t.blacklisted_traits.has(random_trait):
+		if t == null:
+			push_error("Guest trait is null")
+		if TRAITS.get(random_trait).special or t == null or t.enum_key == random_trait or t.blacklisted_traits.has(random_trait):
 			return get_valid_trait(guest, depth + 1)
 	
 	return TRAITS.get(random_trait)
