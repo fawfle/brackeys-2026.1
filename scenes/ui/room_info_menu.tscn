@@ -3,6 +3,7 @@
 [ext_resource type="Theme" uid="uid://bqm4ull505em5" path="res://themes/theme.tres" id="1_e8e1h"]
 [ext_resource type="Script" uid="uid://i75im4x6l8i" path="res://scenes/ui/room_info_menu.gd" id="1_wxk2m"]
 [ext_resource type="Texture2D" uid="uid://b18v26ttupgmj" path="res://sprites/characters/newt.png" id="2_o4yic"]
+[ext_resource type="Texture2D" uid="uid://btvt7fgyo6lpi" path="res://sprites/ui/air_conditioner_icon.png" id="4_kkx06"]
 
 [node name="RoomInfoMenu" type="Control" unique_id=1346516254]
 layout_mode = 3
@@ -33,18 +34,43 @@ color = Color(0, 0, 0, 0.23529412)
 
 [node name="Sanitation" type="Label" parent="." unique_id=1803080640]
 layout_mode = 0
-offset_left = 76.0
-offset_top = 5.0
-offset_right = 116.0
-offset_bottom = 28.0
+offset_left = 44.0
+offset_top = -1.0
+offset_right = 94.0
+offset_bottom = 22.0
 theme = ExtResource("1_e8e1h")
 text = "Sanitation:"
 
 [node name="Size" type="Label" parent="." unique_id=2078938279]
+visible = false
 layout_mode = 0
-offset_left = 74.0
-offset_top = 23.0
-offset_right = 114.0
-offset_bottom = 46.0
+offset_left = 53.0
+offset_top = 12.0
+offset_right = 93.0
+offset_bottom = 35.0
 theme = ExtResource("1_e8e1h")
 text = "Size:"
+
+[node name="Perk1" type="TextureRect" parent="." unique_id=1746974292]
+layout_mode = 0
+offset_left = 95.0
+offset_top = 14.0
+offset_right = 119.0
+offset_bottom = 38.0
+texture = ExtResource("4_kkx06")
+
+[node name="Perk2" type="TextureRect" parent="." unique_id=1969499966]
+layout_mode = 0
+offset_left = 120.0
+offset_top = 14.0
+offset_right = 144.0
+offset_bottom = 38.0
+texture = ExtResource("4_kkx06")
+
+[node name="Perk3" type="TextureRect" parent="." unique_id=1910122902]
+layout_mode = 0
+offset_left = 145.0
+offset_top = 14.0
+offset_right = 169.0
+offset_bottom = 38.0
+texture = ExtResource("4_kkx06")

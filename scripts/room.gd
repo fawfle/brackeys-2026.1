@@ -7,7 +7,7 @@ const GROUP_NAME: String = "room"
 @export var quality: Quality = Quality.DUMP
 @export var room_size: RoomSize = RoomSize.SMALL
 
-@export var perks: Array[Perks] = []
+@export var perks: Array[Perk] = []
 var perk_tier: int:
 	get: return perks.size()
 
@@ -252,6 +252,10 @@ func get_neighbors_with(callable: Callable) -> Array[Room]:
 	
 	return neighbors
 
+func add_perk(perk: Perk) -> void:
+	perks.push_back(perk)
+	Globals.room_updated.emit(self)
+
 # TODO: some visual/menu indicator
 func upgrade_sanitation(): 
 	if sanitation == Sanitation.CLEAN: return
@@ -312,7 +316,7 @@ enum RoomSize {
 	LARGE,
 }
 
-enum Perks {
+enum Perk {
 	SPACE_HEATER,
 	AC,
 	BATH,
@@ -321,19 +325,19 @@ enum Perks {
 	CONSOLE
 }
 
-var PERK_SPRITES: Dictionary[Perks, Texture] = {
-	Perks.SPACE_HEATER: preload("res://sprites/ui/space_heater_icon.png"),
-	Perks.AC: preload("res://sprites/ui/air_conditioner_icon.png"),
-	Perks.BATH: preload("res://sprites/ui/space_heater_icon.png"),
-	Perks.SHOWER: preload("res://sprites/ui/air_conditioner_icon.png"),
-	Perks.CABLE: preload("res://sprites/ui/space_heater_icon.png"),
-	Perks.CONSOLE: preload("res://sprites/ui/air_conditioner_icon.png"),
+const PERK_SPRITES: Dictionary[Perk, Texture] = {
+	Perk.SPACE_HEATER: preload("res://sprites/ui/space_heater_icon.png"),
+	Perk.AC: preload("res://sprites/ui/air_conditioner_icon.png"),
+	Perk.BATH: preload("res://sprites/ui/bathtub_icon.png"),
+	Perk.SHOWER: preload("res://sprites/ui/shower_icon.png"),
+	Perk.CABLE: preload("res://sprites/ui/cable_icon.png"),
+	Perk.CONSOLE: preload("res://sprites/ui/console_icon.png"),
 }
 
-var PERK_TIER: Dictionary[int, Array] = {
-	0: [Perks.SPACE_HEATER, Perks.AC],
-	1: [Perks.BATH, Perks.SHOWER],
-	2: [Perks.CABLE, Perks.CONSOLE]
+const PERK_TIER: Dictionary[int, Array] = {
+	0: [Perk.SPACE_HEATER, Perk.AC],
+	1: [Perk.BATH, Perk.SHOWER],
+	2: [Perk.CABLE, Perk.CONSOLE]
 }
 
 # helper functions, enum -> string

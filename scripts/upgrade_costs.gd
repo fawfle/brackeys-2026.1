@@ -31,7 +31,8 @@ const ROOM_SIZE: Dictionary[Room.RoomSize, int] = {
 const ROOM_PERKS: Dictionary[int, int] = {
 	0: 40,
 	1: 60,
-	2: 100
+	2: 100,
+	3: -1
 }
 
 ## cost to upgrade number of floors

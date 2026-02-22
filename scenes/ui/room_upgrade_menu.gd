@@ -59,8 +59,8 @@ func _on_build_pressed() -> void:
 		Hotel.inst.selected_room.build()
 		update_button_costs(Hotel.inst.selected_room)
 
-func _on_perk_button_pressed(button: UpgradeButton):
+func _on_perk_button_pressed(_button: UpgradeButton, perk_index):
 	if Hotel.inst.selected_room == null or Hotel.inst.selected_room.perk_tier >= 3: return
 	if GameManager.inst.purchase_upgrade(UpgradeCosts.ROOM_PERKS[Hotel.inst.selected_room.perk_tier]):
-		Hotel.inst.selected_room.add_perk()
+		Hotel.inst.selected_room.add_perk(Room.PERK_TIER[Hotel.inst.selected_room.perk_tier][perk_index])
 		update_button_costs(Hotel.inst.selected_room)
