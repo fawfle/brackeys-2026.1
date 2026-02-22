@@ -1,8 +1,9 @@
-[gd_scene format=3 uid="uid://c0reft866t45t"]
+[gd_scene format=3 uid="uid://b0jbiecpwxxuo"]
 
 [ext_resource type="Texture2D" uid="uid://bbytofh76f3so" path="res://sprites/ui/gameboy.png" id="1_d7rsh"]
 [ext_resource type="Texture2D" uid="uid://368miocfcgm2" path="res://sprites/ui/gameboy_hovered.png" id="2_el1kg"]
 [ext_resource type="Script" uid="uid://cg3dfhj3j6yn4" path="res://scenes/ui/pass_time_button.gd" id="3_hbbil"]
+[ext_resource type="AudioStream" uid="uid://bdvwv31xh40xf" path="res://audio/sounds/663197__xcreenplay__video-game3.wav" id="4_el1kg"]
 
 [node name="PassTimeButton" type="TextureButton" unique_id=461915876]
 offset_left = 89.0
@@ -12,3 +13,6 @@ offset_bottom = 194.0
 texture_normal = ExtResource("1_d7rsh")
 texture_hover = ExtResource("2_el1kg")
 script = ExtResource("3_hbbil")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1405058332]
+stream = ExtResource("4_el1kg")

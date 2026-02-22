@@ -3,8 +3,8 @@
 [ext_resource type="Script" uid="uid://fehsvnq2kohw" path="res://scenes/game_manager.gd" id="1_tcjrq"]
 [ext_resource type="FontFile" uid="uid://qo71mx2v8dp" path="res://fonts/edit-undo.brk.ttf" id="2_bw6k5"]
 [ext_resource type="Texture2D" uid="uid://dao5fqo2jpemv" path="res://sprites/ui/background_ver2.png" id="2_rvs2r"]
-[ext_resource type="PackedScene" uid="uid://buyxfh2m4xbm5" path="res://scenes/text_bar.tscn" id="2_ycayy"]
-[ext_resource type="PackedScene" uid="uid://bluftfdfc261o" path="res://scenes/ui/star_rating.tscn" id="3_xgstd"]
+[ext_resource type="PackedScene" path="res://scenes/text_bar.tscn" id="2_ycayy"]
+[ext_resource type="PackedScene" path="res://scenes/ui/star_rating.tscn" id="3_xgstd"]
 [ext_resource type="Script" uid="uid://cfpiqvmer5qe" path="res://scripts/ui/day_label.gd" id="3_y3j0m"]
 [ext_resource type="Script" uid="uid://donsdw52b18or" path="res://scripts/ui/money_label.gd" id="4_rurhu"]
 [ext_resource type="Theme" uid="uid://bqm4ull505em5" path="res://themes/theme.tres" id="5_utbpp"]
@@ -12,11 +12,11 @@
 [ext_resource type="Texture2D" uid="uid://cb2crp4j3vjom" path="res://sprites/ui/pause_button.png" id="6_xgstd"]
 [ext_resource type="PackedScene" uid="uid://bntofo8m6s6ra" path="res://scenes/hotel_window.tscn" id="7_kk2rg"]
 [ext_resource type="Texture2D" uid="uid://brem4dech30km" path="res://sprites/ui/name_plaque.png" id="7_s76x2"]
-[ext_resource type="Script" uid="uid://b4fgja3arbwhg" path="res://scripts/pause_button.gd" id="8_ttvoq"]
-[ext_resource type="PackedScene" uid="uid://c0reft866t45t" path="res://scenes/ui/pass_time_button.tscn" id="11_rw4oa"]
+[ext_resource type="Script" path="res://scripts/pause_button.gd" id="8_ttvoq"]
+[ext_resource type="PackedScene" uid="uid://b0jbiecpwxxuo" path="res://scenes/ui/pass_time_button.tscn" id="11_rw4oa"]
 [ext_resource type="PackedScene" uid="uid://bkdg1tw4v3tck" path="res://scenes/clock.tscn" id="11_tcjrq"]
 [ext_resource type="Script" uid="uid://bqgpmjcsom83f" path="res://scenes/ui/reject_button.gd" id="12_5ay1a"]
-[ext_resource type="PackedScene" uid="uid://b3axo82ov03uu" path="res://scenes/ui/bell.tscn" id="13_pb36m"]
+[ext_resource type="PackedScene" path="res://scenes/ui/bell.tscn" id="13_pb36m"]
 [ext_resource type="Texture2D" uid="uid://bl2se4ygj4r7q" path="res://sprites/ui/reject.png" id="16_6aqbo"]
 [ext_resource type="Texture2D" uid="uid://c8vurqrhs1oum" path="res://sprites/ui/reject_hovered.png" id="17_ro0ie"]
 [ext_resource type="Texture2D" uid="uid://dqx33kklfqboq" path="res://sprites/ui/reject_disabled.png" id="18_ro0ie"]
@@ -122,6 +122,10 @@ script = ExtResource("6_mw25s")
 
 [node name="PassTimeButton" parent="CanvasLayer/GuestWindow" unique_id=461915876 instance=ExtResource("11_rw4oa")]
 layout_mode = 0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 15.0
+offset_bottom = 11.0
 
 [node name="Bell" parent="CanvasLayer/GuestWindow" unique_id=306580137 instance=ExtResource("13_pb36m")]
 top_level = true
