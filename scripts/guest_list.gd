@@ -396,7 +396,7 @@ static var GUESTS_DATA: Dictionary[String, Dictionary] = {
 	"The Director": {
 		SCENE: preload("res://scenes/characters/the_director.tscn"),
 		DEFAULT_TRAITS: [TraitList.Trait.CLASSY],
-		GREETING: ["I require your finest room. My business is very important"],
+		GREETING: ["I require your finest room. My business is very important."],
 		GOODBYE: "Good business.", 
 		HAPPY_GOODBYE: "Business business",
 		ANGRY_GOODBYE: "You have terrible service. I'm going to make sure that this business fails.",
@@ -423,6 +423,15 @@ static var GUESTS_DATA: Dictionary[String, Dictionary] = {
 		REJECTED_GOODBYE: "Darn. Couldn't pull the wool over your eyes, huh?",
 		MONEY: 0,
 	},
+	"Doctor Newbie":{
+		SCENE: preload("res://scenes/characters/doctor_newbie.tscn"),
+		DEFAULT_TRAITS: [],
+		GREETING: ["ROOM! NOW!"],
+		GOODBYE: "BYE BYE.",
+		HAPPY_GOODBYE: "BA-BYE",
+		ANGRY_GOODBYE: "BAD BYE",
+		REJECTED_GOODBYE: ["You have vastly underestimated my abilities. You have hurt an important member of the scientific community.", "This establishment is not worth my patronage. None in my microentroprise shall interact with you or any of your affiliates ever again!"]
+	}
 }
 
 static var GUESTS: Dictionary[String, Guest]

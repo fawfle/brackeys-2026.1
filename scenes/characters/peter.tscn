@@ -10,5 +10,6 @@ script = ExtResource("2_l4qkq")
 metadata/_custom_type_script = "uid://cuba1v2c3urst"
 
 [node name="AngrySprite" type="Sprite2D" parent="." unique_id=1759837430]
+visible = false
 position = Vector2(27, -57)
 texture = ExtResource("3_jpsc3")

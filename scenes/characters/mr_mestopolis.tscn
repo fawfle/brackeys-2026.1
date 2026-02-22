@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://crn20in4a8ie3"]
+[gd_scene format=3 uid="uid://dmf05jh7kousm"]
 
 [ext_resource type="Texture2D" uid="uid://bv8tdibf54p4x" path="res://sprites/characters/Mr. Mestoplis.png" id="1_lvta7"]
 [ext_resource type="Texture2D" uid="uid://di7x6nmfrf6aa" path="res://sprites/characters/angry_icon.png" id="2_d6gcp"]
@@ -7,5 +7,6 @@
 texture = ExtResource("1_lvta7")
 
 [node name="AngrySprite" type="Sprite2D" parent="." unique_id=757051467]
+visible = false
 position = Vector2(8, -34)
 texture = ExtResource("2_d6gcp")
