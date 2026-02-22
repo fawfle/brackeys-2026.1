@@ -8,6 +8,8 @@
 texture = ExtResource("1_no74o")
 script = ExtResource("2_on04o")
 metadata/_custom_type_script = "uid://cuba1v2c3urst"
+metadata/_edit_lock_ = true
 
 [node name="AngrySprite" type="Sprite2D" parent="." unique_id=1186976314]
+position = Vector2(28, -72)
 texture = ExtResource("3_on04o")

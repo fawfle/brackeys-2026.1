@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://crk6t7t4rnop7"]
+[gd_scene format=3 uid="uid://cbmgw1k1u0ogq"]
 
 [ext_resource type="Texture2D" uid="uid://bkvg3j8h8r0n2" path="res://sprites/characters/lewis.png" id="1_3i4ih"]
 [ext_resource type="Script" uid="uid://cuba1v2c3urst" path="res://scripts/guest_sprite.gd" id="2_3sxkr"]
@@ -10,6 +10,5 @@ script = ExtResource("2_3sxkr")
 metadata/_custom_type_script = "uid://cuba1v2c3urst"
 
 [node name="AngrySprite" type="Sprite2D" parent="." unique_id=168871821]
-visible = false
 position = Vector2(-17, -16)
 texture = ExtResource("3_keyab")

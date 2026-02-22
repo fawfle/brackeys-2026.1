@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://wds1usm2hyop"]
+[gd_scene format=3 uid="uid://dfy0ob6lw6o4t"]
 
 [ext_resource type="Texture2D" uid="uid://tvve6lgthjiw" path="res://sprites/characters/trooper.png" id="1_iqk4q"]
 [ext_resource type="Script" uid="uid://cuba1v2c3urst" path="res://scripts/guest_sprite.gd" id="2_mp6xy"]

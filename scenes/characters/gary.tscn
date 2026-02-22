@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://dqwspfx27jixm"]
+
+[ext_resource type="Texture2D" uid="uid://cqlsgan1kx027" path="res://sprites/ui/source/Gary.png" id="1_vky4l"]
+[ext_resource type="Script" uid="uid://cuba1v2c3urst" path="res://scripts/guest_sprite.gd" id="2_4ggw8"]
+[ext_resource type="Texture2D" uid="uid://di7x6nmfrf6aa" path="res://sprites/characters/angry_icon.png" id="3_wih4d"]
+
+[node name="gary" type="Sprite2D" unique_id=1776323961]
+position = Vector2(-1, 0)
+texture = ExtResource("1_vky4l")
+script = ExtResource("2_4ggw8")
+metadata/_custom_type_script = "uid://cuba1v2c3urst"
+metadata/_edit_lock_ = true
+
+[node name="Angry Sprite" type="Sprite2D" parent="." unique_id=2018929091]
+position = Vector2(16, -44)
+texture = ExtResource("3_wih4d")

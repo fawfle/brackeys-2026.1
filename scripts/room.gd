@@ -197,6 +197,7 @@ func update_room_sprite():
 	door_two.texture = DOOR_SPRITES.get(quality)
 	
 	messy_overlay.visible = sanitation == Sanitation.DIRTY or sanitation == Sanitation.MESSY
+
 	dirty_overlay.visible = sanitation == Sanitation.DIRTY
 	
 	

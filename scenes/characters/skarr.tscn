@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://buuqxw6vf7f57"]
+[gd_scene format=3 uid="uid://b3xfr01u2rf2v"]
 
 [ext_resource type="Texture2D" uid="uid://jv7bn2yes43x" path="res://sprites/characters/skarr.png" id="1_sqxc3"]
 [ext_resource type="Script" uid="uid://cuba1v2c3urst" path="res://scripts/guest_sprite.gd" id="2_gyl7y"]
