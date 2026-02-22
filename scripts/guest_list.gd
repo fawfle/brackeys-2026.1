@@ -14,6 +14,7 @@ enum {
 	EVENT, ## Mark a guest as an "event" type.
 	APPEAR_ON_DAY, ## appear on specific day. Only for event types
 	STOP_TIME, ## should this guest stop time when active
+	SPRITE_OFFSET, ## amnt to offset sprite in guestparent
 }
 
 static var GUESTS_DATA: Dictionary[String, Dictionary] = {
@@ -133,10 +134,58 @@ static var GUESTS_DATA: Dictionary[String, Dictionary] = {
 			"Don't forget, you can imprvoe your hotel! Just remember to click off of a room first!",
 			"Once you feel ready put me in a [color=red]clean[/color] room!"
 		],
+		GOODBYE: [
+			"That was fine I guess, you could probably do better.",
+			"Either ways, you have 30 days until you're performace review! If you meet quota, you can become a [color=00BFFF]Star[/color] employee!",
+			],
+		HAPPY_GOODBYE: [
+			"That was exquisite! You'll truly mamge this hotel perfectly!",
+			"Either ways, you have 30 days until you're performace review! If you meet quota, you can become a [color=00BFFF]Star[/color] employee!",
+			"I'm not worried about you though! You got this!"
+			],
+		ANGRY_GOODBYE: [
+			"what are you doing? you realize you need to [color=red]MAKE[/color] your guests feel [color=red]GOOD[/color] to get [color=red]MONEY[/color] and good [color=red]REVIEWS[/color]",
+			"Either ways, you have 30 days until you're performace review! If you meet quota, you can become a [color=00BFFF]Star[/color] employee!",
+			"if you don't focus, you will not be making quota. get it together."
+			],
+		REJECTED_GOODBYE: [
+			"you realize there is a timer, right? i understand you may not like our guests, but at least work with me here.",
+			"Either ways, you have 30 days until you're performace review! If you meet quota, you can become a [color=00BFFF]Star[/color] employee!",
+			"just keep an eye on the clock next time. if you don't focus, you're gone."
+			],
 		MONEY: 25,
 		EVENT: true,
 		APPEAR_ON_DAY: 0,
 		STOP_TIME: true,
+	},
+	"Manny 2": {
+		NAME: "Manny",
+		SCENE: preload("res://scenes/characters/manny.tscn"),
+		GREETING: [
+			"Hello, I have returned for your quota! Have you been a good employee"
+		],
+		GOODBYE: [
+			"That was fine I guess, you could probably do better.",
+			"Either ways, you have 30 days until you're performace review! If you meet quota, you can become a [color=00BFFF]Star[/color] employee!",
+			],
+		HAPPY_GOODBYE: [
+			"That was exquisite! You'll truly mamge this hotel perfectly!",
+			"Either ways, you have 30 days until you're performace review! If you meet quota, you can become a [color=00BFFF]Star[/color] employee!",
+			"I'm not worried about you though! You got this!"
+			],
+		ANGRY_GOODBYE: [
+			"what are you doing? you realize you need to [color=red]MAKE[/color] your guests feel [color=red]GOOD[/color] to get [color=red]MONEY[/color] and good [color=red]REVIEWS[/color]",
+			"Either ways, you have 30 days until you're performace review! If you meet quota, you can become a [color=00BFFF]Star[/color] employee!",
+			"if you don't focus, you will not be making quota. get it together."
+			],
+		REJECTED_GOODBYE: [
+			"you realize there is a timer, right? i understand you may not like our guests, but at least work with me here.",
+			"Either ways, you have 30 days until you're performace review! If you meet quota, you can become a [color=00BFFF]Star[/color] employee!",
+			"just keep an eye on the clock next time. if you don't focus, you're gone."
+			],
+		MONEY: 0,
+		EVENT: true,
+		APPEAR_ON_DAY: 31,
 	},
 	"Flibi": {
 		SCENE: preload("res://scenes/characters/flibi.tscn"),
@@ -167,6 +216,50 @@ static var GUESTS_DATA: Dictionary[String, Dictionary] = {
 		ANGRY_GOODBYE: "That room was terrible... There's nothing LEEEEFTTT here for me...",
 		REJECTED_GOODBYE: "I guess you'd prefer if I LEEEEFTTTT!!!!",
 		MONEY: 10,
+	},
+	"Mr Mestopli": {
+		SCENE: preload("res://scenes/characters/mr__mestoplis.tscn"),
+		DEFAULT_TRAITS: [TraitList.Trait.CLEAN],
+		GREETING: ["I am requesting one room. If you have any spare employees or annoying collegues send them my way for dinner tonight.",
+		"Oh, and do make sure it's actually clean this time. "],
+		GOODBYE: "Fairwell.", 
+		HAPPY_GOODBYE: "I shall see you in the future. I hope you prosper in your ventures!",
+		ANGRY_GOODBYE: "Perish.",
+		REJECTED_GOODBYE: ["I will cast you to the void! Count your days. You have scorned me for the last time!", 
+		"I shall destroy your lineage!", "I will leave you for last so I can see the terror in your eyes when I drink your entire bloodline extinct."],
+		MONEY: 10,
+	},
+	"Mawce": {
+		SCENE: preload("res://scenes/characters/mawce.tscn"),
+		DEFAULT_TRAITS: [TraitList.Trait.SHY],
+		GREETING: ["Hi, um- Hello? C-can I have a room? Please."],
+		GOODBYE: "Um, bye... I guess", 
+		HAPPY_GOODBYE: "bye :)",
+		ANGRY_GOODBYE: "...",
+		REJECTED_GOODBYE: ["I'm sorry for bothering you."],
+		MONEY: 10,
+	},
+	"Treebert": {
+		SCENE: preload("res://scenes/characters/treebert.tscn"),
+		DEFAULT_TRAITS: [TraitList.Trait.CLAUSTROPHOBIC],
+		GREETING: ["Hello, I would like a room, I need one to perform photosynthesis", "I just need a lot of space, you know?"],
+		GOODBYE: "Thank you for the space",
+		HAPPY_GOODBYE: "I give you a thousand blessings, Namaste",
+		ANGRY_GOODBYE: "You won't be getting any oxygen from me.",
+		REJECTED_GOODBYE: "I'll make like a tree and leaf.",
+		MONEY: 10,
+		SPRITE_OFFSET: Vector2i(0, -20)
+	},
+	"Bertrum": {
+		SCENE: preload("res://scenes/characters/1800s_guy.tscn"),
+		DEFAULT_TRAITS: [TraitList.Trait.VIEW_SEEKER],
+		GREETING: ["Excuse me good friend, I would like some lodging.", "I come from a long away place, so I want to experience new things."],
+		GOODBYE: "Farewell, my friend",
+		HAPPY_GOODBYE: "That was a tremendous view, good show young chap!",
+		ANGRY_GOODBYE: "How incredulous, truly terrible!",
+		REJECTED_GOODBYE: "Why I should duel you for this establishment, but I won't... today.",
+		MONEY: 10,
+		SPRITE_OFFSET: Vector2i(17, -10)
 	},
 	"Oney": {
 		SCENE: preload("res://scenes/characters/oney.tscn"),
@@ -268,6 +361,8 @@ static func LOAD_GUESTS():
 		
 		if data.has(APPEAR_AFTER): guest.appear_after_day = data.get(APPEAR_AFTER)
 		if data.has(STOP_TIME): guest.stop_time = data.get(STOP_TIME)
+		
+		if data.has(SPRITE_OFFSET): guest.sprite_offset = data.get(SPRITE_OFFSET)
 		
 		## event guests
 		if data.has(EVENT):

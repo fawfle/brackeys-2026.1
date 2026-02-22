@@ -4,14 +4,17 @@ var line_queue: Array[String] = []
 
 @onready var text_box: RichTextLabel = $TextBox
 @onready var advance_text_button: TextureButton = $AdvanceText
+@onready var completed_icon: TextureRect = $TextureRect
 
 var text_tween: Tween
 
 func _ready() -> void:
 	Globals.set_text.connect(on_set_text)
 	text_box.text = ""
+	completed_icon.visible = false
 
 func load_line_from_queue():
+	completed_icon.visible = false
 	if line_queue.size() == 0:
 		Globals.text_finished.emit()
 		return
@@ -29,6 +32,8 @@ func load_line_from_queue():
 	text_tween.tween_property(text_box, "visible_ratio", 1, line.length() * 0.02)
 	
 	await text_tween.finished
+	
+	completed_icon.visible = true
 	
 	Globals.text_displayed.emit()
 	if line_queue.size() == 0: Globals.text_final_line_displayed.emit()

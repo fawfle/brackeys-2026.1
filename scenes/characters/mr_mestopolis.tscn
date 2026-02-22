@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://crn20in4a8ie3"]
+
+[ext_resource type="Texture2D" uid="uid://bv8tdibf54p4x" path="res://sprites/characters/Mr. Mestoplis.png" id="1_lvta7"]
+
+[node name="Mr Mestopolis" type="Sprite2D" unique_id=915361650]
+
+[node name="AngrySprite" type="Sprite2D" parent="." unique_id=757051467]
+texture = ExtResource("1_lvta7")

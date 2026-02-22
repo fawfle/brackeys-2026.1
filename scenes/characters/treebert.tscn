@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://dcsyih57v444s"]
+
+[ext_resource type="Texture2D" uid="uid://iextt3gwjtr4" path="res://sprites/characters/treebert.png" id="1_no74o"]
+[ext_resource type="Script" uid="uid://cuba1v2c3urst" path="res://scripts/guest_sprite.gd" id="2_on04o"]
+[ext_resource type="Texture2D" uid="uid://di7x6nmfrf6aa" path="res://sprites/characters/angry_icon.png" id="3_on04o"]
+
+[node name="Treebert" type="Sprite2D" unique_id=492064173]
+texture = ExtResource("1_no74o")
+script = ExtResource("2_on04o")
+metadata/_custom_type_script = "uid://cuba1v2c3urst"
+
+[node name="AngrySprite" type="Sprite2D" parent="." unique_id=1186976314]
+texture = ExtResource("3_on04o")
