@@ -25,6 +25,9 @@ var perk_tier: int:
 ## the door to make appear on size 2
 @onready var door_two: Sprite2D = $DoorTwo
 
+@onready var messy_overlay: Node2D = $Messy
+@onready var dirty_overlay: Node2D = $Dirty
+
 ## location of room in hotel. Starts at 0,0 from bottom left. Floor is location.y
 @export var location: Vector2i = Vector2i.ZERO
 
@@ -192,6 +195,10 @@ func update_room_sprite():
 	door_two.visible = room_size == RoomSize.LARGE
 	door_one.texture = DOOR_SPRITES.get(quality)
 	door_two.texture = DOOR_SPRITES.get(quality)
+	
+	messy_overlay.visible = sanitation == Sanitation.DIRTY or sanitation == Sanitation.MESSY
+	dirty_overlay.visible = sanitation == Sanitation.DIRTY
+	
 	
 	# i am losing my mind. This is terrible but if's fine
 	room_background.size = ROOM_SIZES[room_size]

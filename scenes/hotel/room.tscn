@@ -3,6 +3,8 @@
 [ext_resource type="Script" uid="uid://bfjv0sjmcksyh" path="res://scripts/room.gd" id="1_4oh1f"]
 [ext_resource type="Texture2D" uid="uid://c0jfuyilfsvxi" path="res://sprites/ui/room_bg.png" id="2_u8qe1"]
 [ext_resource type="Texture2D" uid="uid://ctwaeyv3ywlne" path="res://sprites/ui/room_door.png" id="3_dixxy"]
+[ext_resource type="Texture2D" uid="uid://dna4eo78nhwi1" path="res://sprites/ui/trashbag.png" id="3_iy2aq"]
+[ext_resource type="Texture2D" uid="uid://dpjh3013f1sae" path="res://sprites/ui/Muck.png" id="3_j86ms"]
 [ext_resource type="Texture2D" uid="uid://bas8r7ai7030r" path="res://sprites/ui/room_construction.png" id="3_m5k2i"]
 [ext_resource type="Texture2D" uid="uid://cvk01ed1din40" path="res://sprites/ui/guest-icon.png" id="3_xw5ef"]
 [ext_resource type="Script" path="res://scenes/hotel/guest_indicator.gd" id="4_bn68h"]
@@ -28,6 +30,18 @@ patch_margin_top = 2
 patch_margin_right = 2
 patch_margin_bottom = 2
 
+[node name="Dirty" type="Node2D" parent="." unique_id=1300569747]
+
+[node name="Muck1" type="Sprite2D" parent="Dirty" unique_id=1701771466]
+position = Vector2(-8.999998, -1.9999993)
+scale = Vector2(0.31818175, 0.33333325)
+texture = ExtResource("3_j86ms")
+
+[node name="Muck2" type="Sprite2D" parent="Dirty" unique_id=544736201]
+position = Vector2(9, -1.9999999)
+scale = Vector2(0.31818184, 0.33333325)
+texture = ExtResource("3_j86ms")
+
 [node name="DoorOne" type="Sprite2D" parent="." unique_id=959816699]
 position = Vector2(3, -2)
 texture = ExtResource("3_dixxy")
@@ -38,6 +52,18 @@ texture = ExtResource("3_dixxy")
 
 [node name="RoomBody" type="Sprite2D" parent="." unique_id=1877173164]
 texture = ExtResource("3_m5k2i")
+
+[node name="Messy" type="Node2D" parent="." unique_id=1750538984]
+
+[node name="Bag1" type="Sprite2D" parent="Messy" unique_id=2131443842]
+position = Vector2(-9, 4)
+scale = Vector2(0.31818175, 0.33333325)
+texture = ExtResource("3_iy2aq")
+
+[node name="Bag2" type="Sprite2D" parent="Messy" unique_id=367733274]
+position = Vector2(10, 3.0000005)
+scale = Vector2(0.31818184, 0.33333325)
+texture = ExtResource("3_iy2aq")
 
 [node name="TextureButton" type="TextureButton" parent="." unique_id=692431399]
 layout_mode = 1

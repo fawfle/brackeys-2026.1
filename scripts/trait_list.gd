@@ -206,6 +206,8 @@ static func LOAD_TRAITS():
 		if data.has(VALUE): guest_trait.value = data.get(VALUE)
 		if data.has(BLACKLIST): guest_trait.blacklisted_traits.assign(data.get(BLACKLIST))
 		
+		if data.has(APPEAR_AFTER): guest_trait.appear_after_day = data.get(APPEAR_AFTER)
+		
 		if data.has(TAGS): guest_trait.tags.assign(data.get(TAGS))
 		
 		if data.has(SPECIAL): guest_trait.special = data.get(SPECIAL)
@@ -238,6 +240,8 @@ static func get_valid_trait(guest: Guest, depth: int = 0) -> GuestTrait:
 	if depth >= MAX_DEPTH: return null
 	
 	var random_trait: Trait = TRAITS.keys().pick_random()
+	
+	# if TRAITS[random_trait].appear_after_day < GameManager.inst.day: return get_valid_trait(guest, depth + 1)
 	
 	# check trait conflicts
 	for t: GuestTrait in guest.traits:
