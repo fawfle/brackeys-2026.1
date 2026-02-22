@@ -18,11 +18,11 @@ static var GUESTS_DATA: Dictionary[String, Dictionary] = {
 	"Four Eyes": { #Michael write this! 
 		SCENE: preload("res://scenes/characters/four_eyes.tscn"),
 		DEFAULT_TRAITS: [TraitList.Trait.CLEAN],
-		GREETING: ["Hello, this is my first line of greeting.", "glorbo glub shclaoindsf sadfo. This is my second line!"],
-		GOODBYE: "Goodbye",
-		HAPPY_GOODBYE: "I was so happy. Goodbye.",
-		ANGRY_GOODBYE: "I am angry and goodbying",
-		REJECTED_GOODBYE: "I didn't want to stay here anyway.",
+		GREETING: ["Hello, one of my eyes can see my name behind there, how did you get my name?", "Besides the point. My eyes need a space to close!"],
+		GOODBYE: "I feel well rested.",
+		HAPPY_GOODBYE: "I am tearimg up from ecstasy, thank you!",
+		ANGRY_GOODBYE: "I couldn't get a wink of sleep!",
+		REJECTED_GOODBYE: "I can see that you don't want me here, I'll take my leave.",
 		MONEY: 10,
 	},
 	"Hazmat": {
@@ -115,6 +115,26 @@ static var GUESTS_DATA: Dictionary[String, Dictionary] = {
 		REJECTED_GOODBYE: "Not enough room for my awesomeness?? Understandable.",
 		MONEY: 10,
 	},
+	"Manny": {
+		SCENE: preload("res://scenes/characters/manny.tscn"),
+		GREETING: [
+			"Hello and welcome to [color=00BFFF]Single Star Hotel[/color]! Where customer satisfaction is our single priority!",
+			"You must be new here! Welcome to your first day on the job! Allow me to explain to you how things work!",
+			"When a guest is in front of you, click on one of the rooms! Then click the bell to assign them to that room!",
+			"If you don't have enough space for them, or you simply don't like them, hit the button under your desk!",
+			"Corporate won't be happy if you do that! Don't worry, I won't say anything! I understand the struggle!",
+			"Do remember, we are running a hotel here! Most guests don't want a dirty room! To clean a room, simply hold down on said room!",
+			"All guests have specific requests! Try to meet them for a [color=00BFFF]5 star[/color] rating! Happy guests pay more! Guests with specific needs usually pay extra!",
+			"Guests will trickle in throughout the day and checkout in the morning! Remember, we're running on a [color=red]real clock[/color] here! Don't waste time.",
+			"If business is slow, you can play on your company mandated [color=00BFFF]SolarBoy[/color]! Just click and hold and time will just pass by!",
+			"Trust me, it will save a lot of your sanity!",
+			"Don't forget, you can imprvoe your hotel! Just remember to click off of a room first!",
+			"Once you feel ready put me in a [color=red]clean[/color] room!"
+		],
+		MONEY: 25,
+		EVENT: true,
+		APPEAR_ON_DAY: 0,
+	},
 	"Flibi": {
 		SCENE: preload("res://scenes/characters/flibi.tscn"),
 		DEFAULT_TRAITS: [TraitList.Trait.CLEAN],
@@ -165,27 +185,15 @@ static var GUESTS_DATA: Dictionary[String, Dictionary] = {
 		REJECTED_GOODBYE: "My appointment is in 20 minutes anyway...",
 		MONEY: 10,
 	},
-	
-
-	"Manny": {
-		SCENE: preload("res://scenes/characters/manny.tscn"),
-		GREETING: [
-			"Hello and welcome to [color=00BFFF]Single Star Hotel[/color]! Where customer satisfaction is our single priority!",
-			"You must be new here! Welcome to your first day on the job! Allow me to explain to you how things work!",
-			"When a guest is in front of you, click on one of the rooms! Then click the bell to assign them to that room!",
-			"If you don't have enough space for them, or you simply don't like them, hit the button under your desk!",
-			"Do remember, we are running a hotel here! Most guests don't want a dirty room! To clean a room, simply hold down on said room!",
-			"All guests have specific requests! Try to meet them for a [color=00BFFF]5 star[/color] rating! Happy guests pay more! Guests with specific needs usually pay extra!",
-			"Corporate won't be happy if you do that! Don't worry, I won't say anything! I understand the struggle!",
-			"Guests will trickle in throughout the day and checkout in the morning! Remember, we're running on a [color=red]real clock[/color] here! Don't waste time.",
-			"If business is slow, you can play on your company mandated [color=00BFFF]SolarBoy[/color]! Just click and hold and time will just pass by!",
-			"Trust me, it will save a lot of your sanity!",
-			"Once you feel ready put me in a [color=red]clean[/color] room!"
-		],
-		MONEY: 25,
-		EVENT: true,
-		APPEAR_ON_DAY: 0,
-	}
+	"Plazmotron": {
+		SCENE: preload("res://scenes/characters/plazmotron.tscn"),
+		GREETING: ["SALUTATIONS CARBON-BASED LIFEFORM", "BATTERIES RUNNING LOW: RECHARGE REQUESTED"],
+		GOODBYE: "ACTIVATE MONEY DISPENSE", 
+		HAPPY_GOODBYE: "SUFFICIENT WORK, ORGANIC SERVANT",
+		ANGRY_GOODBYE: "FAILURE TO RECHARGE: EXPECT TERMINATION SOON",
+		REJECTED_GOODBYE: "ERROR: NO INTELLIGENT LIFE DETECTED",
+		MONEY: 10,
+	},
 }
 
 static var GUESTS: Dictionary[String, Guest]
