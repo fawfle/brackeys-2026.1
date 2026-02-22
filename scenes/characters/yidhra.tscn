@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://ct4lo6xdkkvdp"]
+
+[ext_resource type="Texture2D" path="res://sprites/characters/Yidhra.png" id="1_vsmay"]
+[ext_resource type="Script" uid="uid://cuba1v2c3urst" path="res://scripts/guest_sprite.gd" id="2_8posx"]
+[ext_resource type="Texture2D" uid="uid://di7x6nmfrf6aa" path="res://sprites/characters/angry_icon.png" id="3_fxhww"]
+
+[node name="Yidhra" type="Sprite2D" unique_id=90228476]
+texture = ExtResource("1_vsmay")
+script = ExtResource("2_8posx")
+metadata/_custom_type_script = "uid://cuba1v2c3urst"
+
+[node name="AngrySprite" type="Sprite2D" parent="." unique_id=1931489964]
+texture = ExtResource("3_fxhww")
