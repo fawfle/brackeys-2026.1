@@ -35,6 +35,7 @@ var hotel_floor: int:
 
 @onready var room_background: NinePatchRect = $RoomBackground
 @onready var room_body: Sprite2D = $RoomBody
+@onready var room_select_sound: AudioStreamPlayer2D = $RoomSelect
 
 const ROOM_CONSTRUCTION_TEXTURE: Texture = preload("res://sprites/ui/room_construction.png")
 
@@ -150,6 +151,7 @@ func _on_room_select(room: Room):
 
 func _on_texture_button_button_down() -> void:
 	held = true
+	room_select_sound.play()
 	Globals.select_room.emit(self)
 
 func _on_texture_button_button_up() -> void:

@@ -109,6 +109,9 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 0.23529412)
 
+[node name="RoomSelect" type="AudioStreamPlayer2D" parent="." unique_id=177637766]
+max_polyphony = 10
+
 [connection signal="button_down" from="TextureButton" to="." method="_on_texture_button_button_down"]
 [connection signal="button_up" from="TextureButton" to="." method="_on_texture_button_button_up"]
 [connection signal="mouse_entered" from="TextureButton" to="." method="_on_texture_button_mouse_entered"]

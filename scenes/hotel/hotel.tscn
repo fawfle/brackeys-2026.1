@@ -28,4 +28,5 @@ offset_left = -80.0
 offset_top = -107.0
 offset_right = 80.0
 offset_bottom = 21.0
+mouse_filter = 2
 texture = ExtResource("3_hv5qa")
