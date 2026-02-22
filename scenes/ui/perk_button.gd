@@ -60,7 +60,7 @@ func update_textures(perk_tier: int):
 	var left_perk: Room.Perk = Room.PERK_TIER[perk_tier][0]
 	var right_perk: Room.Perk = Room.PERK_TIER[perk_tier][1]
 	
-	print(Room.PERK_DESCRIPTIONS[left_perk])
+	# print(Room.PERK_DESCRIPTIONS[left_perk])
 	
 	left_texture = Room.PERK_SPRITES[left_perk]
 	right_texture = Room.PERK_SPRITES[right_perk]
