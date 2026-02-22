@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dajdo2sedm1xu" path="res://sprites/ui/space-background.png" id="2_5tjn0"]
 [ext_resource type="PackedScene" uid="uid://cv2oiqhjqdy6a" path="res://scenes/ui/room_info_menu.tscn" id="4_16lx5"]
 [ext_resource type="PackedScene" uid="uid://dcral81s8l3e1" path="res://scenes/ui/upgrade_button.tscn" id="4_k0vif"]
-[ext_resource type="PackedScene" path="res://scenes/hotel/hotel.tscn" id="5_0w18b"]
+[ext_resource type="PackedScene" uid="uid://b87og8aspii1h" path="res://scenes/hotel/hotel.tscn" id="5_0w18b"]
 [ext_resource type="PackedScene" uid="uid://bj50tgerq1y6t" path="res://scenes/ui/room_upgrade_menu.tscn" id="5_k0vif"]
 [ext_resource type="PackedScene" path="res://scenes/ui/block_manage.tscn" id="6_5tjn0"]
 [ext_resource type="PackedScene" uid="uid://8glmdx6xa26o" path="res://scenes/ui/upgrade_description.tscn" id="9_irplg"]
@@ -86,6 +86,7 @@ label_text = "Floor"
 description = "build a new floor"
 
 [node name="RoomUpgradeMenu" parent="." unique_id=558005973 instance=ExtResource("5_k0vif")]
+visible = false
 layout_mode = 1
 anchor_left = 0.5003429
 anchor_top = 1.0002793
