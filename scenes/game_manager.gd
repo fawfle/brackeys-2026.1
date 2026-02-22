@@ -63,6 +63,7 @@ var assign_time_per_guest: float = 0
 ## builtin time to give player to manage day easier
 var guest_assign_time_bias: float = 10
 
+## time required in day to see another guest appear
 var min_time_left_to_assign: float = 5
 
 ## Boolean heaven!!
@@ -120,7 +121,7 @@ func _process(delta: float) -> void:
 		end_day()
 		return
 	
-	if phase == Phase.MANAGEMENT and current_guest == null and time_since_guest >= assign_time_per_guest and not playing_animation and not leaving_guest and time < min_time_left_to_assign:
+	if phase == Phase.MANAGEMENT and current_guest == null and time_since_guest >= assign_time_per_guest and not playing_animation and not leaving_guest and daytime_length - time > min_time_left_to_assign:
 		if guest_assign_queue.size() > 0:
 			manage_next_guest()
 	
