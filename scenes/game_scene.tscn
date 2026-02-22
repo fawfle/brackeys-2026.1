@@ -23,6 +23,7 @@
 [ext_resource type="Texture2D" uid="uid://dqx33kklfqboq" path="res://sprites/ui/reject_disabled.png" id="18_ro0ie"]
 [ext_resource type="Texture2D" uid="uid://33hjfwcgpri2" path="res://sprites/ui/pause_button_outlined.png" id="20_pb36m"]
 [ext_resource type="Texture2D" uid="uid://ps3dbuanmo34" path="res://sprites/ui/shutter.png" id="23_pb36m"]
+[ext_resource type="AudioStream" uid="uid://o6aoddrjqivm" path="res://audio/music/Kevin_MacLeod_-_Backed_Vibes_Clean.mp3" id="24_85lt4"]
 
 [node name="GameScene" type="Node2D" unique_id=1746918585]
 script = ExtResource("1_tcjrq")
@@ -252,3 +253,7 @@ position = Vector2(29.5, 37.5)
 visible = false
 position = Vector2(130, 87)
 texture = ExtResource("23_pb36m")
+
+[node name="Music" type="AudioStreamPlayer2D" parent="." unique_id=136762465]
+stream = ExtResource("24_85lt4")
+autoplay = true

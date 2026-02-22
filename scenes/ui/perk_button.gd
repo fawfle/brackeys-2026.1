@@ -8,6 +8,8 @@ class_name PerkButton extends Control
 
 signal button_clicked(upgrade_button: UpgradeButton, perk_index: int)
 
+var completed_icon: Texture = preload("res://sprites/ui/complete_icon.png")
+
 @export var left_texture: Texture:
 	get: return left_texture
 	set(value):
@@ -48,5 +50,10 @@ func _on_left_perk_pressed() -> void:
 	button_clicked.emit(right_upgrade, 1)
 
 func update_textures(perk_tier: int):
+	if perk_tier >= 3:
+		left_texture = completed_icon
+		right_texture = completed_icon
+		return
+	
 	left_texture = Room.PERK_SPRITES[Room.PERK_TIER[perk_tier][0]]
 	right_texture = Room.PERK_SPRITES[Room.PERK_TIER[perk_tier][1]]

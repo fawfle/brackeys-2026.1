@@ -17,7 +17,7 @@ func update_viewed_room(room: Room):
 	
 	guest_texture_rect.texture = room.guest.node.texture if room.guest != null else null
 	
-	if room != null: return
+	if room == null: return
 	
 	for icon in perk_icons: icon.visible = false
 	
