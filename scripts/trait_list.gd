@@ -38,6 +38,13 @@ enum Trait {
 	
 	CENTRIST, ## wants a center room
 	
+	AC,
+	HEATER,
+	CONSOLE,
+	CABLE,
+	SHOWER,
+	BATH,
+	
 	RADIOACTIVE, # makes surrounding guests/rooms less happy TODO
 }
 
@@ -167,7 +174,7 @@ static var TRAIT_DATA: Dictionary[Trait, Dictionary] = {
 		CONDITION: func(room: Room): return room.on_right(),
 		PREFERENCE: 3,
 		VALUE: 4,
-		BLACKLIST: [Trait.RIGHT_HANDED, Trait.CENTRIST]
+		BLACKLIST: [Trait.LEFT_HANDED, Trait.CENTRIST]
 	},
 	Trait.CENTRIST: {
 		NAME: "Centrist",
@@ -176,7 +183,61 @@ static var TRAIT_DATA: Dictionary[Trait, Dictionary] = {
 		CONDITION: func(room: Room): return room.in_center(),
 		PREFERENCE: 3,
 		VALUE: 4,
-		BLACKLIST: [Trait.RIGHT_HANDED, Trait.CENTRIST]
+		BLACKLIST: [Trait.RIGHT_HANDED, Trait.LEFT_HANDED]
+	},
+	Trait.AC: {
+		NAME: "AC",
+		REQUEST: "I'm way [color=red]too hot[/color]! I need to cool down.",
+		FAIL_FEEDBACK: "I was [color=red]melting[/color] in there. Please cool it down.",
+		CONDITION: func(room: Room): return room.has_perk(Room.Perk.AC),
+		PREFERENCE: 3,
+		VALUE: 4,
+		BLACKLIST: [Trait.HEATER]
+	},
+	Trait.HEATER: {
+		NAME: "Centrist",
+		REQUEST: "I'm [color=red]freezing[/color] out there! I should warm up.",
+		FAIL_FEEDBACK: "[color=red]BRRRR[/color]! I couldn't stand the room any longer",
+		CONDITION: func(room: Room): return room.has_perk(Room.Perk.SPACE_HEATER),
+		PREFERENCE: 3,
+		VALUE: 4,
+		BLACKLIST: [Trait.AC]
+	},
+	Trait.CONSOLE: {
+		NAME: "Console",
+		REQUEST: "I'm a [color=red]gamer[/color]! I love playing modern releases!",
+		FAIL_FEEDBACK: "I couldn't [color=red]play[/color] the new game release. Bummer.",
+		CONDITION: func(room: Room): return room.has_perk(Room.Perk.CABLE),
+		PREFERENCE: 3,
+		VALUE: 4,
+		BLACKLIST: [Trait.CABLE]
+	},
+	Trait.CABLE: {
+		NAME: "Cable",
+		REQUEST: "I need to [color=red]rewatch[/color] my favorite show again.",
+		FAIL_FEEDBACK: "I couldn't [color=red]catch up[/color] in time for the new season. Now I'll get spoiled.",
+		CONDITION: func(room: Room): return room.has_perk(Room.Perk.CONSOLE),
+		PREFERENCE: 3,
+		VALUE: 4,
+		BLACKLIST: [Trait.CONSOLE]
+	},
+	Trait.BATH: {
+		NAME: "Bath",
+		REQUEST: "I need a nice hot [color=red]bath[/color] to relax tonight.",
+		FAIL_FEEDBACK: "How was I supposed to [color=red]relax[/color] in there.",
+		CONDITION: func(room: Room): return room.has_perk(Room.Perk.BATH),
+		PREFERENCE: 3,
+		VALUE: 4,
+		BLACKLIST: [Trait.SHOWER]
+	},
+	Trait.SHOWER: {
+		NAME: "Centrist",
+		REQUEST: "I need a cold [color=red]shower[/color] to really unwind.",
+		FAIL_FEEDBACK: "I'm way too uptight, I needed to [color=red]unwind[/color] a bit",
+		CONDITION: func(room: Room): return room.has_perk(Room.Perk.SHOWER),
+		PREFERENCE: 3,
+		VALUE: 4,
+		BLACKLIST: [Trait.BATH]
 	},
 	Trait.RADIOACTIVE: { ## TODO, make neighboring guests radioactive decreasing happiness by 1
 		NAME: "Radioactive",
@@ -206,9 +267,11 @@ static func LOAD_TRAITS():
 		if data.has(VALUE): guest_trait.value = data.get(VALUE)
 		if data.has(BLACKLIST): guest_trait.blacklisted_traits.assign(data.get(BLACKLIST))
 		
+		if data.has(APPEAR_AFTER): guest_trait.appear_after_day = data.get(APPEAR_AFTER)
+		
 		if data.has(TAGS): guest_trait.tags.assign(data.get(TAGS))
 		
-		if data.has(SPECIAL): guest_trait.special = true
+		if data.has(SPECIAL): guest_trait.special = data.get(SPECIAL)
 		
 		if data.has(APPLY_TYPE): guest_trait.apply_type = data.get(APPLY_TYPE)
 		
@@ -238,6 +301,8 @@ static func get_valid_trait(guest: Guest, depth: int = 0) -> GuestTrait:
 	if depth >= MAX_DEPTH: return null
 	
 	var random_trait: Trait = TRAITS.keys().pick_random()
+	
+	if TRAITS[random_trait].appear_after_day > GameManager.inst.day: return get_valid_trait(guest, depth + 1)
 	
 	# check trait conflicts
 	for t: GuestTrait in guest.traits:

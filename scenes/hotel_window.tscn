@@ -86,7 +86,6 @@ label_text = "Floor"
 description = "build a new floor"
 
 [node name="RoomUpgradeMenu" parent="." unique_id=558005973 instance=ExtResource("5_k0vif")]
-visible = false
 layout_mode = 1
 anchor_left = 0.5003429
 anchor_top = 1.0002793

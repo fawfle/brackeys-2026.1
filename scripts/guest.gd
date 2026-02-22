@@ -66,10 +66,7 @@ const NORMAL_BONUS: int = 15
 const CLASSY_BONUS: int = 25
 
 func get_money() -> int:
-	if happiness_rating <= -1:
-		update_happiness_rating()
-		push_error("Attempted to get money before setting happiness_rating. Did you mean to call update_happiness_rating?")
-		# return -1
+	update_happiness_rating()
 	
 	var effective_money = money
 	
@@ -79,7 +76,15 @@ func get_money() -> int:
 	if room.quality == Room.Quality.NORMAL: effective_money += NORMAL_BONUS
 	if room.quality == Room.Quality.CLASSY: effective_money += CLASSY_BONUS
 	
-	return round(effective_money * (happiness_rating/5.0))
+	var stars: int = floor(happiness_rating / 5)
+	
+	var ac_bonus: int = 5 if room.perks.has(Room.Perk.AC) else 0
+	var heater_bonus: int = stars * 2 if room.perks.has(Room.Perk.SPACE_HEATER) else 0
+	
+	if room.perks.has(Room.Perk.CABLE): effective_money *= 1.25
+	if room.perks.has(Room.Perk.CONSOLE) and stars == 5: effective_money *= 1.75
+	
+	return round(effective_money * (happiness_rating/5.0)) + ac_bonus + heater_bonus
 
 ## TODO:ish, will return **random** dynamic request based on traits
 func generate_request() -> Array[String]:
@@ -120,7 +125,7 @@ func get_exit_lines() -> Array[String]:
 ## has big side effects. Sets happiness_rating and updates fail_lines
 func update_happiness_rating() -> float:
 	if room == null:
-		push_error("attempted to get happiness rating of guest without a roomm")
+		push_error("attempted to get happiness rating of guest without a room")
 		return -1
 	
 	# if a trait has this flag, ignore sanitation
@@ -133,7 +138,9 @@ func update_happiness_rating() -> float:
 		if guest_trait.tags.has(TraitList.Tag.IGNORE_DEFAULT_SANITATION): ignore_sanitation = true
 		guest_trait.check_condition(room)
 		if not guest_trait.met:
-			rating -= guest_trait.preference
+			var effective_preference: float = guest_trait.preference
+			if room.perks.has(Room.Perk.BATH): effective_preference = max(0, effective_preference- 0.1)
+			rating -= effective_preference
 			if guest_trait.fail_feedback != "": fail_feedback.push_back(guest_trait.fail_feedback)
 	
 	# deduct 1 star for each sanitation issue
@@ -150,6 +157,7 @@ func instantiate_scene() -> Node2D:
 		return null
 	
 	node = scene.instantiate()
+	node.sprite_offset = sprite_offset
 	return node
 
 func _to_string() -> String:	

@@ -4,6 +4,7 @@
 [ext_resource type="FontFile" uid="uid://qo71mx2v8dp" path="res://fonts/edit-undo.brk.ttf" id="2_bw6k5"]
 [ext_resource type="Texture2D" uid="uid://dao5fqo2jpemv" path="res://sprites/ui/background_ver2.png" id="2_rvs2r"]
 [ext_resource type="PackedScene" uid="uid://buyxfh2m4xbm5" path="res://scenes/text_bar.tscn" id="2_ycayy"]
+[ext_resource type="PackedScene" uid="uid://bluftfdfc261o" path="res://scenes/ui/star_rating.tscn" id="3_xgstd"]
 [ext_resource type="Script" uid="uid://cfpiqvmer5qe" path="res://scripts/ui/day_label.gd" id="3_y3j0m"]
 [ext_resource type="Script" uid="uid://donsdw52b18or" path="res://scripts/ui/money_label.gd" id="4_rurhu"]
 [ext_resource type="Theme" uid="uid://bqm4ull505em5" path="res://themes/theme.tres" id="5_utbpp"]
@@ -11,18 +12,19 @@
 [ext_resource type="Texture2D" uid="uid://cb2crp4j3vjom" path="res://sprites/ui/pause_button.png" id="6_xgstd"]
 [ext_resource type="PackedScene" uid="uid://bntofo8m6s6ra" path="res://scenes/hotel_window.tscn" id="7_kk2rg"]
 [ext_resource type="Texture2D" uid="uid://brem4dech30km" path="res://sprites/ui/name_plaque.png" id="7_s76x2"]
-[ext_resource type="Texture2D" uid="uid://bm2twicycc3go" path="res://sprites/ui/pause_button_highlight.png" id="7_ttvoq"]
-[ext_resource type="Script" uid="uid://b4fgja3arbwhg" path="res://scripts/pause_button.gd" id="8_ttvoq"]
+[ext_resource type="Script" path="res://scripts/pause_button.gd" id="8_ttvoq"]
 [ext_resource type="Texture2D" uid="uid://bbytofh76f3so" path="res://sprites/ui/gameboy.png" id="10_ro0ie"]
 [ext_resource type="Texture2D" uid="uid://368miocfcgm2" path="res://sprites/ui/gameboy_hovered.png" id="11_103ce"]
 [ext_resource type="PackedScene" uid="uid://bkdg1tw4v3tck" path="res://scenes/clock.tscn" id="11_tcjrq"]
 [ext_resource type="Script" uid="uid://bqgpmjcsom83f" path="res://scenes/ui/reject_button.gd" id="12_5ay1a"]
 [ext_resource type="Script" uid="uid://cg3dfhj3j6yn4" path="res://scenes/ui/pass_time_button.gd" id="12_rvs2r"]
-[ext_resource type="PackedScene" uid="uid://b3axo82ov03uu" path="res://scenes/ui/bell.tscn" id="13_pb36m"]
+[ext_resource type="PackedScene" path="res://scenes/ui/bell.tscn" id="13_pb36m"]
 [ext_resource type="Texture2D" uid="uid://bl2se4ygj4r7q" path="res://sprites/ui/reject.png" id="16_6aqbo"]
 [ext_resource type="Texture2D" uid="uid://c8vurqrhs1oum" path="res://sprites/ui/reject_hovered.png" id="17_ro0ie"]
 [ext_resource type="Texture2D" uid="uid://dqx33kklfqboq" path="res://sprites/ui/reject_disabled.png" id="18_ro0ie"]
+[ext_resource type="Texture2D" uid="uid://33hjfwcgpri2" path="res://sprites/ui/pause_button_outlined.png" id="20_pb36m"]
 [ext_resource type="Texture2D" uid="uid://ps3dbuanmo34" path="res://sprites/ui/shutter.png" id="23_pb36m"]
+[ext_resource type="AudioStream" uid="uid://o6aoddrjqivm" path="res://audio/music/Kevin_MacLeod_-_Backed_Vibes_Clean.mp3" id="24_85lt4"]
 
 [node name="GameScene" type="Node2D" unique_id=1746918585]
 script = ExtResource("1_tcjrq")
@@ -31,7 +33,7 @@ script = ExtResource("1_tcjrq")
 anchor_mode = 0
 
 [node name="Background" type="Sprite2D" parent="." unique_id=1497324429]
-position = Vector2(130.5, 94)
+position = Vector2(130, 94)
 texture = ExtResource("2_rvs2r")
 
 [node name="GuestParent" type="Node2D" parent="." unique_id=521559917]
@@ -46,16 +48,12 @@ offset_right = 263.0
 offset_bottom = 247.0
 metadata/_edit_lock_ = true
 
-[node name="StarRating" type="Label" parent="CanvasLayer/GuestWindow" unique_id=38881109]
+[node name="StarRating" parent="CanvasLayer/GuestWindow" unique_id=2134824425 instance=ExtResource("3_xgstd")]
 layout_mode = 0
-offset_left = 95.0
-offset_top = 24.0
-offset_right = 165.0
-offset_bottom = 39.0
-theme_override_fonts/font = ExtResource("2_bw6k5")
-text = "5 Stars"
-horizontal_alignment = 1
-vertical_alignment = 1
+offset_left = 56.0
+offset_top = 10.0
+offset_right = 250.0
+offset_bottom = 50.0
 
 [node name="DayLabel" type="Label" parent="CanvasLayer/GuestWindow" unique_id=1702534556]
 layout_mode = 1
@@ -238,7 +236,7 @@ offset_right = 257.0
 offset_bottom = 46.0
 focus_mode = 0
 texture_normal = ExtResource("6_xgstd")
-texture_hover = ExtResource("7_ttvoq")
+texture_hover = ExtResource("20_pb36m")
 script = ExtResource("8_ttvoq")
 pause_menu = NodePath("../PauseMenu")
 
@@ -252,3 +250,7 @@ position = Vector2(29.5, 37.5)
 visible = false
 position = Vector2(130, 87)
 texture = ExtResource("23_pb36m")
+
+[node name="Music" type="AudioStreamPlayer2D" parent="." unique_id=136762465]
+stream = ExtResource("24_85lt4")
+autoplay = true

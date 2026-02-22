@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bm2twicycc3go"
-path="res://.godot/imported/pause_button_highlight.png-2c9396c6c459d598b860dbde5c84d48e.ctex"
+uid="uid://dna4eo78nhwi1"
+path="res://.godot/imported/trashbag.png-11bd5563623180fb487c81a4ae32a930.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/ui/pause_button_highlight.png"
-dest_files=["res://.godot/imported/pause_button_highlight.png-2c9396c6c459d598b860dbde5c84d48e.ctex"]
+source_file="res://sprites/ui/trashbag.png"
+dest_files=["res://.godot/imported/trashbag.png-11bd5563623180fb487c81a4ae32a930.ctex"]
 
 [params]
 

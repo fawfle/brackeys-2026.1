@@ -16,7 +16,7 @@ class_name UpgradeButton extends TextureButton
 	set(value):
 		cost = value
 		if Engine.is_editor_hint(): return
-		cost_label.text = "$" + str(value) if cost >= 0 else "MAX"
+		if cost_label: cost_label.text = "$" + str(value) if cost >= 0 else "MAX"
 		update_button(GameManager.inst.money)
 
 const disabled_color: Color = Color("#ffffff80")
