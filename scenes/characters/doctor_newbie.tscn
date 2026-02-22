@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://bg31rqrp76d7y"]
+
+[ext_resource type="Texture2D" uid="uid://dc22r3cdnmol2" path="res://sprites/characters/doctor_newbie.png" id="1_evydo"]
+[ext_resource type="Script" uid="uid://cuba1v2c3urst" path="res://scripts/guest_sprite.gd" id="2_wx3aj"]
+[ext_resource type="Texture2D" uid="uid://di7x6nmfrf6aa" path="res://sprites/characters/angry_icon.png" id="3_iawp4"]
+
+[node name="doctor_newbie" type="Sprite2D" unique_id=984762197]
+texture = ExtResource("1_evydo")
+script = ExtResource("2_wx3aj")
+metadata/_custom_type_script = "uid://cuba1v2c3urst"
+
+[node name="AngrySprite" type="Sprite2D" parent="." unique_id=1465506432]
+visible = false
+position = Vector2(11, -19)
+texture = ExtResource("3_iawp4")
