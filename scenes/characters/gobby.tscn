@@ -9,5 +9,6 @@ texture = ExtResource("1_8vsbc")
 script = ExtResource("2_g2x4k")
 
 [node name="AngrySprite" type="Sprite2D" parent="." unique_id=189524797]
+visible = false
 position = Vector2(-28, 54)
 texture = ExtResource("3_e5jfv")
