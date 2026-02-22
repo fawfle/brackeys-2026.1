@@ -160,8 +160,9 @@ func begin_day() -> void:
 	guest_stay_length_max = 1 + floor(day / 9.0)
 	
 	if day == 0: guests_per_day = 0
-	if day == 31: guests_per_day = 0
-	show_performance_review()
+	if day == 31:
+		guests_per_day = 0
+		show_performance_review()
 	
 	Globals.begin_day.emit(day)
 	begin_checkout_phase()
@@ -443,6 +444,8 @@ func _on_shutter_button_down():
 func begin_intro_animation():
 	var duration: float = 4
 	
+	$RollerShutter.play()
+	
 	shutter_button.visible = false
 	shutter_button.disabled = true
 	get_tree().create_tween().tween_property(shutter_image, "position", shutter_image.position - Vector2(0, 200), 2).set_ease(Tween.EASE_OUT)
@@ -451,8 +454,10 @@ func begin_intro_animation():
 	
 	await get_tree().create_timer(duration).timeout
 	
+	$RollerShutter.stop()
+	
 	intro_menu.visible = false
 	hotel_darkness.mouse_filter = Control.MOUSE_FILTER_IGNORE
 
 func show_performance_review():
-	pass
+	$CanvasLayer/GuestWindow/PerformanceReview.visible = true

@@ -54,3 +54,5 @@ theme_override_constants/line_spacing = 0
 text = "congatulations! Your performance was satisfactory."
 horizontal_alignment = 1
 autowrap_mode = 2
+
+[connection signal="button_down" from="Button" to="." method="_on_button_button_down"]

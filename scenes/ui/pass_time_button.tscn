@@ -6,10 +6,8 @@
 [ext_resource type="AudioStream" uid="uid://bdvwv31xh40xf" path="res://audio/sounds/663197__xcreenplay__video-game3.wav" id="4_el1kg"]
 
 [node name="PassTimeButton" type="TextureButton" unique_id=461915876]
-offset_left = 89.0
-offset_top = 183.0
-offset_right = 104.0
-offset_bottom = 194.0
+offset_right = 15.0
+offset_bottom = 11.0
 texture_normal = ExtResource("1_d7rsh")
 texture_hover = ExtResource("2_el1kg")
 script = ExtResource("3_hbbil")
