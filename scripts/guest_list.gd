@@ -450,7 +450,16 @@ static var GUESTS_DATA: Dictionary[String, Dictionary] = {
 		HAPPY_GOODBYE: "BA-BYE",
 		ANGRY_GOODBYE: "BAD BYE",
 		REJECTED_GOODBYE: ["You have vastly underestimated my abilities. You have hurt an important member of the scientific community.", "This establishment is not worth my patronage. None in my microentroprise shall interact with you or any of your affiliates ever again!"]
-	}
+	},
+	"Yidhra":{
+		SCENE: preload("res://scenes/characters/yidhra.tscn"),
+		DEFAULT_TRAITS: [],
+		GREETING: ["Hello love, how has your day been going.", "I'm here on a trip, and I would like to inquire about one of your rooms."],
+		GOODBYE: "Have a good day love.",
+		HAPPY_GOODBYE: "Thank you for the service dear. It was truly splendid.",
+		ANGRY_GOODBYE: "The room was below my expectations. Any chance you could fix that?",
+		REJECTED_GOODBYE: "I understand, you must be busy dear. I'll be on my way."
+	},
 }
 
 static var GUESTS: Dictionary[String, Guest]

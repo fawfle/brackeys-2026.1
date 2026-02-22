@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://uuo47er5yhe7"]
+[gd_scene format=3 uid="uid://bdpvolobte8ks"]
 
 [ext_resource type="Texture2D" uid="uid://cp8ycn68on524" path="res://sprites/characters/Yidhra.png" id="1_vsmay"]
 [ext_resource type="Script" uid="uid://cuba1v2c3urst" path="res://scripts/guest_sprite.gd" id="2_8posx"]
