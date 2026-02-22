@@ -91,6 +91,8 @@ var phase: Phase = Phase.MANAGEMENT:
 		phase = value
 		Globals.phase_changed.emit(phase)
 
+var time_stopped: bool = false
+
 func _init():
 	inst = self
 
@@ -107,7 +109,7 @@ func _ready() -> void:
 	begin_management_phase()
 
 func _process(delta: float) -> void:
-	time += delta
+	if not time_stopped: time += delta
 	if is_daytime_phase and time > daytime_length:
 		end_day()
 		return
@@ -174,6 +176,8 @@ func manage_next_guest() -> void:
 	current_guest = create_next_guest()
 	guest_assign_start_time = time
 	
+	time_stopped = current_guest.stop_time
+	
 	# clean children
 	for child in guest_parent.get_children(): guest_parent.remove_child(child)
 	
@@ -186,16 +190,22 @@ func manage_next_guest() -> void:
 	
 	if phase != Phase.MANAGEMENT: return
 	
-	start_assign_guest_leave_timer(current_guest)
+	if not time_stopped: start_assign_guest_leave_timer(current_guest)
 	
 	if current_guest != null: Globals.set_text.emit(current_guest.get_intro_lines())
 	Globals.managing_guest.emit(current_guest)
+	
+	await Globals.text_final_line_displayed
+	
+	time_stopped = false
 
 ## have guest leave
 func leave_guest() -> void:
 	if current_guest == null or playing_exit_animation or assigning_guest: return
 	
 	leaving_guest = true
+	if current_guest.stop_time:
+		time_stopped = false
 	
 	var node: Node2D = current_guest.node
 	Globals.set_text.emit(current_guest.rejected_goodbye)
@@ -215,7 +225,7 @@ func leave_guest() -> void:
 ## currently duplicate guests and set traits here. Maybe change in the future if it's confusing.
 func create_next_guest() -> Guest:
 	var guest: Guest = guest_assign_queue.pop_front().duplicate_deep()
-	TraitList.set_guest_traits(guest, random_trait_count)
+	TraitList.set_guest_traits(guest, random_trait_count if not guest.event else 0)
 	return guest
 
 func begin_checkout_next_guest() -> void:
@@ -268,6 +278,9 @@ func _on_reject_button_down() -> void:
 func assign_guest(room: Room):
 	if room.guest != null or current_guest == null or playing_animation: return
 	assigning_guest = true
+	
+	if current_guest.stop_time:
+		time_stopped = false
 	
 	Globals.set_text.emit()
 	

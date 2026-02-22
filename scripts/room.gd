@@ -7,7 +7,7 @@ const GROUP_NAME: String = "room"
 @export var quality: Quality = Quality.DUMP
 @export var room_size: RoomSize = RoomSize.SMALL
 
-@onready var focus_outline: Sprite2D = $FocusOutline
+@onready var focus_outline: NinePatchRect = $FocusOutline
 
 @onready var clean_progress: TextureProgressBar = $CleanProgressBar
 @onready var build_progress: TextureProgressBar = $BuildProgressBar
@@ -31,7 +31,7 @@ var hotel_floor: int:
 		built = value
 		update_room_sprite()
 
-@onready var room_background: Sprite2D = $RoomBackground
+@onready var room_background: NinePatchRect = $RoomBackground
 @onready var room_body: Sprite2D = $RoomBody
 
 const ROOM_CONSTRUCTION_TEXTURE: Texture = preload("res://sprites/ui/room_construction.png")
@@ -52,6 +52,12 @@ const DOOR_SPRITES: Dictionary[Quality, Texture] = {
 	Quality.DUMP: preload("res://sprites/ui/room_door.png"),
 	Quality.NORMAL: preload("res://sprites/ui/room_door_normal.png"),
 	Quality.CLASSY: preload("res://sprites/ui/room_door_classy.png"),
+}
+
+const ROOM_SIZES: Dictionary[RoomSize, Vector2] = {
+	RoomSize.SMALL: Vector2(40, 20),
+	RoomSize.MEDIUM: Vector2(44, 20),
+	RoomSize.LARGE: Vector2(48, 20)
 }
 
 var guest: Guest = null:
@@ -172,6 +178,9 @@ func update_room_sprite():
 	door_two.visible = room_size == RoomSize.LARGE
 	door_one.texture = DOOR_SPRITES.get(quality)
 	door_two.texture = DOOR_SPRITES.get(quality)
+	
+	room_background.size = ROOM_SIZES[room_size]
+	room_background.position = - ROOM_SIZES[room_size] / 2
 
 func is_inactive() -> bool:
 	return not built or upgrading

@@ -35,8 +35,14 @@ var days_stayed: int = 0
 ## Guest won't appear until day has passed
 @export var appear_after_day: int = 0
 
+## if guest is special
+@export var event: bool = false
+
 ## basically reserved for event types
 @export var appear_on_day: int = -1
+
+## true if guest should stop time when entering
+@export var stop_time: bool = false
 
 ## reference to current node loaded in scene tree
 var node: Node2D = null

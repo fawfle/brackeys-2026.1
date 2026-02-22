@@ -22,6 +22,10 @@ signal text_finished()
 @warning_ignore("unused_signal")
 signal text_displayed()
 
+## emitted when text is fully displayed and finished
+@warning_ignore(("unused_signal"))
+signal text_final_line_displayed()
+
 ## used to signal money updated
 @warning_ignore("unused_signal")
 signal set_money(money: int)
