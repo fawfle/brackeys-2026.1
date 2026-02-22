@@ -125,7 +125,7 @@ func get_exit_lines() -> Array[String]:
 ## has big side effects. Sets happiness_rating and updates fail_lines
 func update_happiness_rating() -> float:
 	if room == null:
-		push_error("attempted to get happiness rating of guest without a roomm")
+		push_error("attempted to get happiness rating of guest without a room")
 		return -1
 	
 	# if a trait has this flag, ignore sanitation
