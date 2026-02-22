@@ -5,6 +5,7 @@ class_name RoomUpgradeMenu extends Control
 
 @onready var quality_button: UpgradeButton = $Manage/QualityButton
 @onready var size_button: UpgradeButton = $Manage/SizeButton
+@onready var perk_button: PerkButton = $Manage/PerkButton
 
 @onready var build_button: UpgradeButton = $Build/BuildButton
 
@@ -12,6 +13,8 @@ class_name RoomUpgradeMenu extends Control
 func _ready() -> void:
 	Globals.select_room.connect(update_menu)
 	Globals.room_updated.connect(update_menu)
+	
+	perk_button.button_clicked.connect(_on_perk_button_pressed)
 	
 	build_menu.visible = false
 	manage_menu.visible = false
@@ -33,6 +36,9 @@ func update_button_costs(room: Room):
 	quality_button.cost = UpgradeCosts.QUALITY.get(room.quality)
 	size_button.cost = UpgradeCosts.ROOM_SIZE.get(room.room_size)
 	build_button.cost = UpgradeCosts.BUILD_ROOM.get(room.hotel_floor)
+	perk_button.cost = UpgradeCosts.ROOM_PERKS.get(room.perk_tier)
+	perk_button.update_textures(room.perk_tier)
+	
 
 func _on_quality_pressed() -> void:
 	if Hotel.inst.selected_room == null or Hotel.inst.selected_room.quality == Room.Quality.CLASSY: return
@@ -52,3 +58,13 @@ func _on_build_pressed() -> void:
 	if GameManager.inst.purchase_upgrade(UpgradeCosts.BUILD_ROOM[Hotel.inst.selected_room.hotel_floor]):
 		Hotel.inst.selected_room.build()
 		update_button_costs(Hotel.inst.selected_room)
+
+func _on_perk_button_pressed(_button: UpgradeButton, perk_index):
+	if Hotel.inst.selected_room == null or Hotel.inst.selected_room.perk_tier >= 3: return
+	if GameManager.inst.purchase_upgrade(UpgradeCosts.ROOM_PERKS[Hotel.inst.selected_room.perk_tier]):
+		Hotel.inst.selected_room.add_perk(Room.PERK_TIER[Hotel.inst.selected_room.perk_tier][perk_index])
+		update_button_costs(Hotel.inst.selected_room)
+		
+		var description: String = ""
+		if Hotel.inst.selected_room.perk_tier <= 2: description = Room.PERK_DESCRIPTIONS.get(Room.PERK_TIER[Hotel.inst.selected_room.perk_tier][perk_index])
+		Globals.update_upgrade_text.emit(description)

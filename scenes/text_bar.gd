@@ -10,10 +10,15 @@ var line_queue: Array[String] = []
 
 var text_tween: Tween
 
+var initial_volume_linear: float = 0
+var text_sound_tween: Tween
+
 func _ready() -> void:
 	Globals.set_text.connect(on_set_text)
 	text_box.text = ""
 	completed_icon.visible = false
+	
+	initial_volume_linear = text_sound.volume_linear
 
 func load_line_from_queue():
 	completed_icon.visible = false
@@ -30,21 +35,25 @@ func load_line_from_queue():
 		load_line_from_queue()
 		return
 	
-	if text_tween != null and text_tween.is_valid(): text_tween.stop()
+	if text_tween: text_tween.kill()
 	
 	text_tween = get_tree().create_tween()
 	text_tween.tween_property(text_box, "visible_ratio", 1, line.length() * 0.02)
 	
+	if text_sound_tween: text_sound_tween.kill()
 	text_sound.play(randf() * text_sound.stream.get_length())
+	text_sound.volume_linear = initial_volume_linear
 	
 	await text_tween.finished
-	
-	text_sound.stop()
 	
 	completed_icon.visible = true
 	
 	Globals.text_displayed.emit()
 	if line_queue.size() == 0: Globals.text_final_line_displayed.emit()
+	
+	# extra stuff for sound
+	text_sound_tween = text_sound.create_tween()
+	text_sound_tween.tween_property(text_sound, "volume_linear", 0, 0.8).from(initial_volume_linear)
 
 func on_set_text(lines: Array[String] = [""]) -> void:
 	line_queue = lines
