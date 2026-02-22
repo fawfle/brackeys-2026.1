@@ -158,6 +158,8 @@ func begin_day() -> void:
 	guest_stay_length_max = 1 + floor(day / 9.0)
 	
 	if day == 0: guests_per_day = 0
+	if day == 31: guests_per_day = 0
+	show_performance_review()
 	
 	Globals.begin_day.emit(day)
 	begin_checkout_phase()
@@ -287,7 +289,6 @@ func _on_reject_button_down() -> void:
 
 func assign_guest(room: Room):
 	if room.guest != null or current_guest == null or playing_animation: return
-	assigning_guest = true
 	
 	if current_guest.stop_time:
 		time_stopped = false
@@ -305,6 +306,7 @@ func assign_guest(room: Room):
 	
 	Globals.guest_assigned.emit(current_guest)
 	current_guest = null
+	assigning_guest = true
 	
 	guest_leave_timer.stop()
 	guest_leave_timer.timeout.emit() # need to call manually :)
@@ -449,3 +451,6 @@ func begin_intro_animation():
 	
 	$IntroMenu.visible = false
 	hotel_darkness.mouse_filter = Control.MOUSE_FILTER_IGNORE
+
+func show_performance_review():
+	pass
