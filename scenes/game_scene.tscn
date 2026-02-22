@@ -25,6 +25,10 @@
 [ext_resource type="Texture2D" uid="uid://33hjfwcgpri2" path="res://sprites/ui/pause_button_outlined.png" id="20_pb36m"]
 [ext_resource type="Texture2D" uid="uid://ps3dbuanmo34" path="res://sprites/ui/shutter.png" id="23_pb36m"]
 [ext_resource type="AudioStream" uid="uid://o6aoddrjqivm" path="res://audio/music/Kevin_MacLeod_-_Backed_Vibes_Clean.mp3" id="24_85lt4"]
+[ext_resource type="Texture2D" uid="uid://dwbkjy2ip7vtr" path="res://sprites/ui/shutter_button.png" id="25_xgstd"]
+[ext_resource type="Texture2D" uid="uid://cyutdcjttmq1r" path="res://sprites/ui/logo.png" id="26_6irsn"]
+[ext_resource type="Texture2D" uid="uid://fy8rivl0wtjy" path="res://sprites/ui/shutter_button_hovered.png" id="27_rw4oa"]
+[ext_resource type="Texture2D" uid="uid://4apbhwgiq3od" path="res://sprites/ui/bell.png" id="28_r47aq"]
 
 [node name="GameScene" type="Node2D" unique_id=1746918585]
 script = ExtResource("1_tcjrq")
@@ -110,11 +114,12 @@ anchor_top = 0.757
 anchor_bottom = 0.757
 offset_left = 12.0
 offset_top = -9.979004
-offset_right = 71.0
+offset_right = 79.0
 offset_bottom = 6.020996
 grow_horizontal = 0
 theme = ExtResource("5_utbpp")
 text = "Name"
+text_overrun_behavior = 1
 script = ExtResource("6_mw25s")
 
 [node name="PassTimeButton" type="TextureButton" parent="CanvasLayer/GuestWindow" unique_id=1736797206]
@@ -128,6 +133,8 @@ texture_hover = ExtResource("11_103ce")
 script = ExtResource("12_rvs2r")
 
 [node name="Bell" parent="CanvasLayer/GuestWindow" unique_id=306580137 instance=ExtResource("13_pb36m")]
+top_level = true
+z_index = 5
 layout_mode = 0
 offset_left = 216.0
 offset_top = 173.0
@@ -246,11 +253,49 @@ one_shot = true
 [node name="Clock" parent="." unique_id=670707523 instance=ExtResource("11_tcjrq")]
 position = Vector2(29.5, 37.5)
 
-[node name="Shutter" type="Sprite2D" parent="." unique_id=1594157327]
-visible = false
-position = Vector2(130, 87)
-texture = ExtResource("23_pb36m")
-
 [node name="Music" type="AudioStreamPlayer2D" parent="." unique_id=136762465]
 stream = ExtResource("24_85lt4")
-autoplay = true
+
+[node name="IntroMenu" type="Node2D" parent="." unique_id=130071243]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="IntroMenu" unique_id=463834053]
+layer = 2
+
+[node name="HotelDarkness" type="ColorRect" parent="IntroMenu/CanvasLayer" unique_id=1386611869]
+offset_left = 265.0
+offset_right = 440.0
+offset_bottom = 187.0
+color = Color(0, 0, 0, 1)
+
+[node name="ShutterImage" type="TextureRect" parent="IntroMenu/CanvasLayer" unique_id=508480074]
+offset_top = -8.0
+offset_right = 260.0
+offset_bottom = 180.0
+texture = ExtResource("23_pb36m")
+
+[node name="TextureRect" type="TextureRect" parent="IntroMenu/CanvasLayer/ShutterImage" unique_id=798141803]
+layout_mode = 0
+offset_right = 260.0
+offset_bottom = 188.0
+texture = ExtResource("26_6irsn")
+
+[node name="ShutterButton" type="TextureButton" parent="IntroMenu/CanvasLayer" unique_id=364419497]
+offset_top = 163.0
+offset_right = 260.0
+offset_bottom = 180.0
+texture_normal = ExtResource("25_xgstd")
+texture_hover = ExtResource("27_rw4oa")
+stretch_mode = 3
+
+[node name="Bell" type="TextureRect" parent="IntroMenu/CanvasLayer" unique_id=971958067]
+offset_left = 216.0
+offset_top = 173.0
+offset_right = 252.0
+offset_bottom = 194.0
+texture = ExtResource("28_r47aq")
+
+[node name="DarkenOverlay" type="ColorRect" parent="IntroMenu/CanvasLayer" unique_id=1523623032]
+offset_right = 260.0
+offset_bottom = 247.0
+mouse_filter = 2
+color = Color(0, 0, 0, 0.5411765)

@@ -104,8 +104,9 @@ func _ready() -> void:
 	
 	assign_button.button_down.connect(_on_assign_button_button_down)
 	reject_button.button_down.connect(_on_reject_button_down)
-	
-	begin_management_phase()
+	shutter_button.button_down.connect(_on_shutter_button_down)
+
+# begin management phase to start game
 
 func _process(delta: float) -> void:
 	if not time_stopped: time += delta
@@ -422,3 +423,29 @@ func play_agitated_animation(guest_node: Node2D):
 
 func ease_out(t: float) -> float:
 	return 1 - (1 - t) * (1 - t)
+
+@onready var shutter_image: TextureRect = $IntroMenu/CanvasLayer/ShutterImage
+@onready var shutter_button: TextureButton = $IntroMenu/CanvasLayer/ShutterButton
+@onready var hotel_darkness: ColorRect = $IntroMenu/CanvasLayer/HotelDarkness
+@onready var darkness_overlay: ColorRect = $IntroMenu/CanvasLayer/DarkenOverlay
+
+func _on_shutter_button_down():
+	await begin_intro_animation()
+	$Music.play()
+	begin_checkout_phase()
+
+func begin_intro_animation():
+	var duration: float = 4
+	
+	shutter_button.visible = false
+	shutter_button.disabled = true
+	get_tree().create_tween().tween_property(shutter_image, "position", shutter_image.position - Vector2(0, 200), 2).set_ease(Tween.EASE_OUT)
+	get_tree().create_tween().tween_property(darkness_overlay, "modulate", Color("ffffff00"), 3)
+	get_tree().create_tween().tween_property(hotel_darkness, "modulate", Color("ffffff00"), 3)
+	
+	await get_tree().create_timer(duration).timeout
+	
+	$IntroMenu/CanvasLayer/Bell.visible = false
+	
+	$IntroMenu.visible = false
+	hotel_darkness.mouse_filter = Control.MOUSE_FILTER_IGNORE

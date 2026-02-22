@@ -3,8 +3,8 @@
 [ext_resource type="Theme" uid="uid://bqm4ull505em5" path="res://themes/theme.tres" id="1_e8e1h"]
 [ext_resource type="Script" uid="uid://i75im4x6l8i" path="res://scenes/ui/room_info_menu.gd" id="1_wxk2m"]
 [ext_resource type="Texture2D" uid="uid://b18v26ttupgmj" path="res://sprites/characters/newt.png" id="2_o4yic"]
+[ext_resource type="Texture2D" uid="uid://dpjyta0fqbyxw" path="res://sprites/ui/clean_bar_over.png" id="4_blknt"]
 [ext_resource type="Texture2D" uid="uid://btvt7fgyo6lpi" path="res://sprites/ui/air_conditioner_icon.png" id="4_kkx06"]
-[ext_resource type="Texture2D" uid="uid://clrp772ougjrg" path="res://sprites/ui/clean_bar.png" id="5_584dw"]
 [ext_resource type="Texture2D" uid="uid://b6y84cs5c5k7w" path="res://sprites/ui/clean_bar_fill.png" id="5_blknt"]
 
 [node name="RoomInfoMenu" type="Control" unique_id=1346516254]
@@ -37,15 +37,15 @@ color = Color(0, 0, 0, 0.23529412)
 [node name="SanitationBar" type="TextureProgressBar" parent="." unique_id=659170824]
 layout_mode = 0
 offset_left = 58.0
-offset_top = 10.0
+offset_top = 11.0
 offset_right = 74.0
-offset_bottom = 42.0
+offset_bottom = 43.0
 max_value = 1.0
 step = 0.1
 value = 1.0
 fill_mode = 3
 texture_under = ExtResource("5_blknt")
-texture_over = ExtResource("5_584dw")
+texture_over = ExtResource("4_blknt")
 texture_progress = ExtResource("5_blknt")
 tint_under = Color(0.17241234, 0.17241234, 0.17241234, 1)
 tint_progress = Color(0.05000007, 1, 0, 1)

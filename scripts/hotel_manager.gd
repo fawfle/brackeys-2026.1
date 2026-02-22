@@ -46,7 +46,7 @@ func _ready() -> void:
 	Globals.room_updated.connect(func(_room: Room): update_room_info_menu())
 	
 	room_info_menu.visible = false
-	hotel_upgrade_menu.visible = true
+	hotel_upgrade_menu.visible = false
 	room_upgrade_menu.visible = false
 	
 	build_floor_button.cost = UpgradeCosts.FLOOR[floors]
