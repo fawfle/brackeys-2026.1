@@ -431,7 +431,6 @@ static var GUESTS_DATA: Dictionary[String, Dictionary] = {
 		ANGRY_GOODBYE: "Hmmm. You're next, hehehehehe.",
 		REJECTED_GOODBYE: "Darn. Couldn't pull the wool over your eyes, huh?",
 		MONEY: 0,
-<<<<<<< HEAD
 	},
 	"Mathan": {
 		SCENE: preload("res://scenes/characters/mathan.tscn"),
@@ -442,8 +441,6 @@ static var GUESTS_DATA: Dictionary[String, Dictionary] = {
 		ANGRY_GOODBYE: "Detestable, old man, truly horrendous!",
 		REJECTED_GOODBYE: "Well, I didn't want you're service anyways, old fart.",
 		MONEY: 0,
-=======
->>>>>>> main
 	},
 	"Doctor Newbie":{
 		SCENE: preload("res://scenes/characters/doctor_newbie.tscn"),
