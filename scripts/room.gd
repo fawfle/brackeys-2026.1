@@ -199,7 +199,6 @@ func update_room_sprite():
 	messy_overlay.visible = (sanitation == Sanitation.DIRTY or sanitation == Sanitation.MESSY)
 
 	dirty_overlay.visible = sanitation == Sanitation.DIRTY
-	print(sanitation)
 	
 	
 	# i am losing my mind. This is terrible but if's fine
