@@ -53,8 +53,6 @@ texture = ExtResource("4_14b1w")
 
 [node name="PerkButton" parent="Manage" unique_id=1862632053 instance=ExtResource("5_14b1w")]
 layout_mode = 0
-left_description = ""
-right_description = ""
 
 [node name="Build" type="Control" parent="." unique_id=1823050550]
 visible = false
