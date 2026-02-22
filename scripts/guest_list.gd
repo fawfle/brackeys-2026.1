@@ -460,6 +460,15 @@ static var GUESTS_DATA: Dictionary[String, Dictionary] = {
 		ANGRY_GOODBYE: "The room was below my expectations. Any chance you could fix that?",
 		REJECTED_GOODBYE: "I understand, you must be busy dear. I'll be on my way."
 	},
+	"Nephthys":{
+		SCENE: preload("res://scenes/characters/nephthys.tscn"),
+		DEFAULT_TRAITS: [TraitList.Trait.SHY],
+		GREETING: ["Hello, I need a room for the night", "I stole this coffin from my ex when we broke up and I don't feel like returng to her."],
+		GOODBYE: "Maybe I should return the coffin...",
+		HAPPY_GOODBYE: "That was way better than the embrace of my ex.",
+		ANGRY_GOODBYE: "*sigh* I miss my ex...",
+		REJECTED_GOODBYE: "You're worse than my ex was."
+	},
 }
 
 static var GUESTS: Dictionary[String, Guest]
