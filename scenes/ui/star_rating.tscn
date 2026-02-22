@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://bluftfdfc261o"]
+
+[ext_resource type="Texture2D" uid="uid://c36tf45ivfap8" path="res://sprites/ui/empty_star_rating.png" id="1_cemdw"]
+[ext_resource type="Texture2D" uid="uid://r6nx3x3yb4q5" path="res://sprites/ui/full_star_rating.png" id="2_p13xm"]
+
+[node name="TextureProgressBar" type="TextureProgressBar" unique_id=2134824425]
+offset_right = 40.0
+offset_bottom = 40.0
+max_value = 5.0
+texture_under = ExtResource("1_cemdw")
+texture_progress = ExtResource("2_p13xm")
