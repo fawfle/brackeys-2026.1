@@ -60,6 +60,9 @@ func get_intro_lines() -> Array[String]:
 
 const MAX_REQUEST_DEPTH: int = 100
 
+const NORMAL_BONUS: int = 15
+const CLASSY_BONUS: int = 25
+
 func get_money() -> int:
 	if happiness_rating <= -1:
 		update_happiness_rating()
@@ -70,6 +73,9 @@ func get_money() -> int:
 	
 	for t: GuestTrait in traits:
 		effective_money += t.value
+	
+	if room.quality == Room.Quality.NORMAL: effective_money += NORMAL_BONUS
+	if room.quality == Room.Quality.CLASSY: effective_money += CLASSY_BONUS
 	
 	return round(effective_money * (happiness_rating/5.0))
 

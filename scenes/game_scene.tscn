@@ -202,5 +202,6 @@ one_shot = true
 position = Vector2(29.5, 37.5)
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1594157327]
+visible = false
 position = Vector2(130, 87)
 texture = ExtResource("23_pb36m")
