@@ -1,6 +1,6 @@
-[gd_scene format=3 uid="uid://bgoemwfplrqqw"]
+[gd_scene format=3 uid="uid://bb413m3r1nsoi"]
 
-[ext_resource type="Texture2D" path="res://sprites/characters/Mathan.png" id="1_ktnxr"]
+[ext_resource type="Texture2D" uid="uid://chtx855x43ckh" path="res://sprites/characters/Mathan.png" id="1_ktnxr"]
 [ext_resource type="Script" uid="uid://cuba1v2c3urst" path="res://scripts/guest_sprite.gd" id="2_lx8ey"]
 [ext_resource type="Texture2D" uid="uid://di7x6nmfrf6aa" path="res://sprites/characters/angry_icon.png" id="3_jm5el"]
 
