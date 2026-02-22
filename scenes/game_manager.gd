@@ -15,7 +15,7 @@ const floating_text_scene: PackedScene = preload("res://scenes/ui/floating_text.
 
 #TODO: placeholder, replace with actual stars
 @onready var star_rating: Label = $"CanvasLayer/GuestWindow/StarRating"
-@onready var assign_button: TextureButton = $CanvasLayer/GuestWindow/AssignButton
+@onready var assign_button: TextureButton = $CanvasLayer/GuestWindow/Bell
 
 @onready var reject_button: TextureButton = $CanvasLayer/GuestWindow/RejectButton
 

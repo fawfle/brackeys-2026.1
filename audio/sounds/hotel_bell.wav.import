@@ -2,13 +2,13 @@
 
 importer="wav"
 type="AudioStreamWAV"
-uid="uid://bldjxd8dfjml0"
-path="res://.godot/imported/room_enter.wav-f9a0504afb40349b054f6c86872de1e9.sample"
+uid="uid://dmpcox8gcvnsj"
+path="res://.godot/imported/hotel_bell.wav-a544d0983a0b64445f36c94199f1eff6.sample"
 
 [deps]
 
-source_file="res://audio/sounds/room_enter.wav"
-dest_files=["res://.godot/imported/room_enter.wav-f9a0504afb40349b054f6c86872de1e9.sample"]
+source_file="res://audio/sounds/hotel_bell.wav"
+dest_files=["res://.godot/imported/hotel_bell.wav-a544d0983a0b64445f36c94199f1eff6.sample"]
 
 [params]
 

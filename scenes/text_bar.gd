@@ -4,7 +4,9 @@ var line_queue: Array[String] = []
 
 @onready var text_box: RichTextLabel = $TextBox
 @onready var advance_text_button: TextureButton = $AdvanceText
-@onready var completed_icon: TextureRect = $TextureRect
+@onready var completed_icon: TextureRect = $CompletedIcon
+
+@onready var text_sound: AudioStreamPlayer2D = $TextSound
 
 var text_tween: Tween
 
@@ -24,14 +26,20 @@ func load_line_from_queue():
 	text_box.text = line
 	
 	# if line is empty, skip
-	if line == "": load_line_from_queue()
+	if line == "":
+		load_line_from_queue()
+		return
 	
 	if text_tween != null and text_tween.is_valid(): text_tween.stop()
 	
 	text_tween = get_tree().create_tween()
 	text_tween.tween_property(text_box, "visible_ratio", 1, line.length() * 0.02)
 	
+	text_sound.play(randf() * text_sound.stream.get_length())
+	
 	await text_tween.finished
+	
+	text_sound.stop()
 	
 	completed_icon.visible = true
 	
