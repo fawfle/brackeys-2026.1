@@ -40,6 +40,6 @@ const FLOOR: Dictionary[int, int] = {
 	1: 30,
 	2: 50,
 	3: 100,
-	4: 140,
+	4: 200,
 	5: -1,
 }
