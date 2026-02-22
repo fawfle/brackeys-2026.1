@@ -44,8 +44,9 @@ func check_condition(room: Room):
 		if met: return
 		met = condition.call(room)
 	elif apply_type == ApplyType.ALWAYS:
-		if not met: return
+		if failed: return
 		met = condition.call(room)
+		failed = met
 
 func _to_string() -> String:
 	return "(GuestTrait) " + name;
