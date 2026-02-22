@@ -32,6 +32,7 @@ layout_mode = 0
 offset_top = -4.0
 offset_right = 262.0
 offset_bottom = 57.0
+focus_mode = 0
 
 [node name="TextBox" type="RichTextLabel" parent="." unique_id=1186750473]
 layout_mode = 1

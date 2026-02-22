@@ -191,6 +191,7 @@ func manage_next_guest() -> void:
 	
 	current_guest.instantiate_scene()
 	guest_parent.add_child(current_guest.node)
+	# current_guest.node.position = current_guest.sprite_offset
 	
 	if Globals.DEBUG: print("LOADING GUEST: " + str(current_guest))
 	

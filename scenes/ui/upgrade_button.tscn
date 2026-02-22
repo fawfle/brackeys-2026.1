@@ -8,6 +8,7 @@
 [node name="UpgradeButton" type="TextureButton" unique_id=1171972501]
 offset_right = 24.0
 offset_bottom = 46.0
+focus_mode = 0
 script = ExtResource("1_3io4o")
 
 [node name="Icon" type="TextureRect" parent="." unique_id=2140366965]
