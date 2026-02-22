@@ -1,0 +1,90 @@
+[gd_scene format=3 uid="uid://d0jfsvxrggjtl"]
+
+[ext_resource type="Script" uid="uid://b527wkd6bsbli" path="res://scenes/ui/perk_button.gd" id="1_2xxft"]
+[ext_resource type="PackedScene" uid="uid://dcral81s8l3e1" path="res://scenes/ui/upgrade_button.tscn" id="1_4yvkr"]
+[ext_resource type="Texture2D" uid="uid://btvt7fgyo6lpi" path="res://sprites/ui/air_conditioner_icon.png" id="2_2xxft"]
+[ext_resource type="Theme" uid="uid://bqm4ull505em5" path="res://themes/theme.tres" id="3_rvngr"]
+[ext_resource type="Texture2D" uid="uid://bnkttr8e25p77" path="res://sprites/ui/space_heater_icon.png" id="4_fqjy6"]
+[ext_resource type="FontFile" uid="uid://cfcnwmuwy7hoa" path="res://fonts/m5x7.ttf" id="6_rvngr"]
+
+[node name="PerkButton" type="Control" unique_id=1862632053]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+script = ExtResource("1_2xxft")
+left_description = null
+right_description = null
+
+[node name="RightPerk" parent="." unique_id=1171972501 instance=ExtResource("1_4yvkr")]
+layout_mode = 0
+offset_left = 136.0
+offset_top = 4.0
+offset_right = 160.0
+offset_bottom = 52.0
+label_text = "AC"
+description = "upgrade size of room"
+texture = ExtResource("2_2xxft")
+
+[node name="Icon" parent="RightPerk" index="0" unique_id=2140366965]
+texture = ExtResource("2_2xxft")
+
+[node name="Label" parent="RightPerk" index="1" unique_id=1961633605]
+text = "AC"
+
+[node name="Cost" parent="RightPerk" index="2" unique_id=988113982]
+visible = false
+
+[node name="LeftPerk" parent="." unique_id=1169072204 instance=ExtResource("1_4yvkr")]
+layout_mode = 0
+offset_left = 97.0
+offset_top = 4.0
+offset_right = 121.0
+offset_bottom = 52.0
+label_text = "SP HTR"
+description = "space heater: +$10"
+texture = ExtResource("4_fqjy6")
+
+[node name="Icon" parent="LeftPerk" index="0" unique_id=2140366965]
+texture = ExtResource("4_fqjy6")
+
+[node name="Label" parent="LeftPerk" index="1" unique_id=1961633605]
+text = "SP HTR"
+
+[node name="Cost" parent="LeftPerk" index="2" unique_id=988113982]
+visible = false
+
+[node name="OR" type="Label" parent="LeftPerk" unique_id=481227570]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 3.0
+offset_right = 41.0
+offset_bottom = 19.0
+theme = ExtResource("3_rvngr")
+text = "or"
+horizontal_alignment = 1
+
+[node name="PerkCost" type="Label" parent="LeftPerk" unique_id=2132548790]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.975
+anchor_top = 0.741
+anchor_right = 0.975
+anchor_bottom = 0.741
+offset_left = -4.4000015
+offset_top = -0.51599884
+offset_right = 19.599998
+offset_bottom = 15.484001
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("6_rvngr")
+text = "$0"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[connection signal="pressed" from="RightPerk" to="." method="_on_right_perk_pressed"]
+[connection signal="pressed" from="LeftPerk" to="." method="_on_left_perk_pressed"]
+
+[editable path="RightPerk"]
+[editable path="LeftPerk"]

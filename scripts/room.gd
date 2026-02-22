@@ -7,6 +7,10 @@ const GROUP_NAME: String = "room"
 @export var quality: Quality = Quality.DUMP
 @export var room_size: RoomSize = RoomSize.SMALL
 
+@export var perks: Array[Perks] = []
+var perk_tier: int:
+	get: return perks.size()
+
 @onready var button: TextureButton = $TextureButton
 
 @onready var focus_outline: NinePatchRect = $FocusOutline
@@ -115,7 +119,7 @@ func _process(delta: float) -> void:
 	
 	if sanitation == Sanitation.CLEAN: return
 	
-	if held:
+	if held and guest == null:
 		clean_timer += delta
 	elif clean_timer > 0:
 		clean_timer -= delta
@@ -227,15 +231,15 @@ func on_top_floor() -> bool:
 
 ## return rooms on left/right
 func get_floor_neighbors() -> Array[Room]:
-	return get_neighbors_with(func(room: Room): return abs(location.x - room.location.x) < 1)
+	return get_neighbors_with(func(room: Room): return room != self and abs(location.x - room.location.x) < 1)
 
 ## return neighbors above and below
 func get_vertical_neighbors() -> Array[Room]:
-	return get_neighbors_with(func(room: Room): return abs(location.y - room.location.y) < 1)
+	return get_neighbors_with(func(room: Room): return room != self and abs(location.y - room.location.y) < 1)
 
 ## return left, right, top, bottom
 func get_all_neighbors() -> Array[Room]:
-	return get_neighbors_with(func(room: Room): return abs(location.x - room.location.x) < 1 or abs(location.y - room.location.y) < 1)
+	return get_neighbors_with(func(room: Room): return room != self and abs(location.x - room.location.x) < 1 or abs(location.y - room.location.y) < 1)
 
 ## helper
 func get_neighbors_with(callable: Callable) -> Array[Room]:
@@ -308,9 +312,28 @@ enum RoomSize {
 	LARGE,
 }
 
-## TODO, one or the other type upgrades
 enum Perks {
-	
+	SPACE_HEATER,
+	AC,
+	BATH,
+	SHOWER,
+	CABLE,
+	CONSOLE
+}
+
+var PERK_SPRITES: Dictionary[Perks, Texture] = {
+	Perks.SPACE_HEATER: preload("res://sprites/ui/space_heater_icon.png"),
+	Perks.AC: preload("res://sprites/ui/air_conditioner_icon.png"),
+	Perks.BATH: preload("res://sprites/ui/space_heater_icon.png"),
+	Perks.SHOWER: preload("res://sprites/ui/air_conditioner_icon.png"),
+	Perks.CABLE: preload("res://sprites/ui/space_heater_icon.png"),
+	Perks.CONSOLE: preload("res://sprites/ui/air_conditioner_icon.png"),
+}
+
+var PERK_TIER: Dictionary[int, Array] = {
+	0: [Perks.SPACE_HEATER, Perks.AC],
+	1: [Perks.BATH, Perks.SHOWER],
+	2: [Perks.CABLE, Perks.CONSOLE]
 }
 
 # helper functions, enum -> string

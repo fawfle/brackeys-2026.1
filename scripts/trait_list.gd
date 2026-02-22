@@ -208,7 +208,7 @@ static func LOAD_TRAITS():
 		
 		if data.has(TAGS): guest_trait.tags.assign(data.get(TAGS))
 		
-		if data.has(SPECIAL): guest_trait.special = true
+		if data.has(SPECIAL): guest_trait.special = data.get(SPECIAL)
 		
 		if data.has(APPLY_TYPE): guest_trait.apply_type = data.get(APPLY_TYPE)
 		

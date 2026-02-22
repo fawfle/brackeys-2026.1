@@ -73,7 +73,7 @@ var leaving_guest: bool = false ## is currently leaving guest
 
 ## stores list of last n guests and "blacklists" them
 var past_guest_queue: Array[Guest] = []
-const past_guest_queue_limit: int = 5
+const past_guest_queue_limit: int = 10
 
 ## phase of gameplay. Either assigning (getting guests),  managing (upgrading), or checkout (guests leaving and paying). ASSIGN -> UPGRADE -> CHECKOUT
 enum Phase {
@@ -130,7 +130,6 @@ func begin_management_phase() -> void:
 		past_guest_queue.reverse()
 		past_guest_queue.resize(past_guest_queue_limit)
 		past_guest_queue.reverse()
-		
 	
 	assign_time_per_guest = (daytime_length - guest_assign_time_bias) / guest_assign_queue.size()
 
@@ -191,7 +190,6 @@ func manage_next_guest() -> void:
 	
 	current_guest.instantiate_scene()
 	guest_parent.add_child(current_guest.node)
-	# current_guest.node.position = current_guest.sprite_offset
 	
 	if Globals.DEBUG: print("LOADING GUEST: " + str(current_guest))
 	
@@ -235,6 +233,7 @@ func leave_guest() -> void:
 func create_next_guest() -> Guest:
 	var guest: Guest = guest_assign_queue.pop_front().duplicate_deep()
 	TraitList.set_guest_traits(guest, random_trait_count if not guest.event else 0)
+	# if guest.traits.any(func(t: GuestTrait): return t.enum_key == TraitList.Trait.RADIOACTIVE): push_error("radioactive!!!" + str(guest.name))
 	guest.stay_duration = randi_range(1, guest_stay_length_max)
 	return guest
 
@@ -250,6 +249,7 @@ func begin_checkout_next_guest() -> void:
 	if Globals.DEBUG: print("CHECKING OUT: " + str(current_guest))
 	
 	current_guest.node.reparent(guest_parent)
+	
 	await play_guest_enter_animation(current_guest.node)
 	
 	Globals.set_text.emit(current_guest.get_exit_lines())
@@ -340,10 +340,10 @@ func purchase_upgrade(cost: int) -> bool:
 	return true
 
 
-func play_guest_enter_animation(guest_node: Node2D):
+func play_guest_enter_animation(guest_node: GuestSprite):
 	playing_enter_animation = true
 	var duration: float = 0.9
-	guest_node.position = Vector2.ZERO
+	guest_node.position = guest_node.sprite_offset
 	
 	# var end_color: Color = Color("ffffffff")
 	

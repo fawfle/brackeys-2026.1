@@ -150,6 +150,7 @@ func instantiate_scene() -> Node2D:
 		return null
 	
 	node = scene.instantiate()
+	node.sprite_offset = sprite_offset
 	return node
 
 func _to_string() -> String:	
