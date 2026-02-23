@@ -82,13 +82,14 @@ static var TRAIT_DATA: Dictionary[Trait, Dictionary] = {
 		CONDITION: func(room: Room): return room.quality == Room.Quality.CLASSY,
 		PREFERENCE: 3,
 		VALUE: 10,
-		BLACKLIST: [Trait.CHEAP, Trait.SIMPLE]
+		BLACKLIST: [Trait.CHEAP, Trait.SIMPLE],
+		APPEAR_AFTER: 10,
 	},
 	Trait.SIMPLE: {
 		NAME: "Simple",
 		REQUEST: "I'm looking for something [color=red]simple[/color].",
 		FAIL_FEEDBACK: "This place is [color=red]too fancy[/color]. I wanted something that felt like home.",
-		CONDITION: func(room: Room): return room.quality == Room.Quality.DUMP,
+		CONDITION: func(room: Room): return room.quality == Room.Quality.NORMAL,
 		PREFERENCE: 3,
 		VALUE: 2,
 		BLACKLIST: [Trait.CLASSY, Trait.CHEAP]
@@ -109,7 +110,7 @@ static var TRAIT_DATA: Dictionary[Trait, Dictionary] = {
 		CONDITION: func(room: Room): return room.on_ground_floor(),
 		PREFERENCE: 3,
 		VALUE: 4,
-		BLACKLIST: [Trait.CLASSY]
+		BLACKLIST: [Trait.VIEW_SEEKER]
 	},
 	Trait.VIEW_SEEKER: {
 		NAME: "View Seeker",
@@ -118,7 +119,7 @@ static var TRAIT_DATA: Dictionary[Trait, Dictionary] = {
 		CONDITION: func(room: Room): return room.on_top_floor(),
 		PREFERENCE: 3,
 		VALUE: 4,
-		BLACKLIST: [Trait.CLASSY]
+		BLACKLIST: [Trait.ACROPHOBIA]
 	},
 	Trait.SHY: {
 		NAME: "Shy",
@@ -133,7 +134,7 @@ static var TRAIT_DATA: Dictionary[Trait, Dictionary] = {
 	Trait.SOCIAL: {
 		NAME: "Social",
 		REQUEST: "I want to be [color=red]around others[/color].",
-		FAIL_FEEDBACK: "[color=red]No one[/color] was around. It was sooooo boring!",
+		FAIL_FEEDBACK: "There weren't enough people, it was sooooo boring! I need to be [color=red]surrounded[/color].",
 		CONDITION: func(room: Room): return room.get_floor_neighbors().all(func(r: Room): return r.guest != null),
 		APPLY_TYPE: GuestTrait.ApplyType.ALWAYS,
 		PREFERENCE: 3,
@@ -147,7 +148,8 @@ static var TRAIT_DATA: Dictionary[Trait, Dictionary] = {
 		CONDITION: func(room: Room): return room.room_size == Room.RoomSize.LARGE,
 		PREFERENCE: 3,
 		VALUE: 4,
-		BLACKLIST: [Trait.AGORAPHOBIA]
+		BLACKLIST: [Trait.AGORAPHOBIA],
+		APPEAR_AFTER: 10,
 	},
 	Trait.AGORAPHOBIA: {
 		NAME: "Agoraphobia",
@@ -174,7 +176,7 @@ static var TRAIT_DATA: Dictionary[Trait, Dictionary] = {
 		CONDITION: func(room: Room): return room.on_right(),
 		PREFERENCE: 3,
 		VALUE: 4,
-		BLACKLIST: [Trait.LEFT_HANDED, Trait.CENTRIST]
+		BLACKLIST: [Trait.LEFT_HANDED, Trait.CENTRIST],
 	},
 	Trait.CENTRIST: {
 		NAME: "Centrist",
@@ -183,7 +185,7 @@ static var TRAIT_DATA: Dictionary[Trait, Dictionary] = {
 		CONDITION: func(room: Room): return room.in_center(),
 		PREFERENCE: 3,
 		VALUE: 4,
-		BLACKLIST: [Trait.RIGHT_HANDED, Trait.LEFT_HANDED]
+		BLACKLIST: [Trait.RIGHT_HANDED, Trait.LEFT_HANDED],
 	},
 	Trait.AC: {
 		NAME: "AC",
@@ -192,34 +194,18 @@ static var TRAIT_DATA: Dictionary[Trait, Dictionary] = {
 		CONDITION: func(room: Room): return room.has_perk(Room.Perk.AC),
 		PREFERENCE: 3,
 		VALUE: 4,
-		BLACKLIST: [Trait.HEATER]
+		BLACKLIST: [Trait.HEATER],
+		APPEAR_AFTER: 5,
 	},
 	Trait.HEATER: {
 		NAME: "Centrist",
 		REQUEST: "I'm [color=red]freezing[/color] out there! I should warm up.",
-		FAIL_FEEDBACK: "[color=red]BRRRR[/color]! I couldn't stand the room any longer",
+		FAIL_FEEDBACK: "[color=red]BRRRR[/color]! I couldn't stand the room any longer.",
 		CONDITION: func(room: Room): return room.has_perk(Room.Perk.SPACE_HEATER),
 		PREFERENCE: 3,
 		VALUE: 4,
-		BLACKLIST: [Trait.AC]
-	},
-	Trait.CONSOLE: {
-		NAME: "Console",
-		REQUEST: "I'm a [color=red]gamer[/color]! I love playing modern releases!",
-		FAIL_FEEDBACK: "I couldn't [color=red]play[/color] the new game release. Bummer.",
-		CONDITION: func(room: Room): return room.has_perk(Room.Perk.CABLE),
-		PREFERENCE: 3,
-		VALUE: 4,
-		BLACKLIST: [Trait.CABLE]
-	},
-	Trait.CABLE: {
-		NAME: "Cable",
-		REQUEST: "I need to [color=red]rewatch[/color] my favorite show again.",
-		FAIL_FEEDBACK: "I couldn't [color=red]catch up[/color] in time for the new season. Now I'll get spoiled.",
-		CONDITION: func(room: Room): return room.has_perk(Room.Perk.CONSOLE),
-		PREFERENCE: 3,
-		VALUE: 4,
-		BLACKLIST: [Trait.CONSOLE]
+		BLACKLIST: [Trait.AC],
+		APPEAR_AFTER: 5,
 	},
 	Trait.BATH: {
 		NAME: "Bath",
@@ -228,7 +214,8 @@ static var TRAIT_DATA: Dictionary[Trait, Dictionary] = {
 		CONDITION: func(room: Room): return room.has_perk(Room.Perk.BATH),
 		PREFERENCE: 3,
 		VALUE: 4,
-		BLACKLIST: [Trait.SHOWER]
+		BLACKLIST: [Trait.SHOWER],
+		APPEAR_AFTER: 10,
 	},
 	Trait.SHOWER: {
 		NAME: "Centrist",
@@ -237,7 +224,28 @@ static var TRAIT_DATA: Dictionary[Trait, Dictionary] = {
 		CONDITION: func(room: Room): return room.has_perk(Room.Perk.SHOWER),
 		PREFERENCE: 3,
 		VALUE: 4,
-		BLACKLIST: [Trait.BATH]
+		BLACKLIST: [Trait.BATH],
+		APPEAR_AFTER: 10,
+	},
+	Trait.CONSOLE: {
+		NAME: "Console",
+		REQUEST: "I'm a [color=red]gamer[/color]! I love playing modern releases!",
+		FAIL_FEEDBACK: "I couldn't [color=red]play[/color] the new game release. Bummer.",
+		CONDITION: func(room: Room): return room.has_perk(Room.Perk.CONSOLE),
+		PREFERENCE: 3,
+		VALUE: 4,
+		BLACKLIST: [Trait.CABLE],
+		APPEAR_AFTER: 17,
+	},
+	Trait.CABLE: {
+		NAME: "Cable",
+		REQUEST: "I need to [color=red]rewatch[/color] my favorite show again.",
+		FAIL_FEEDBACK: "I couldn't [color=red]catch up[/color] in time for the new season. Now I'll get spoiled.",
+		CONDITION: func(room: Room): return room.has_perk(Room.Perk.CABLE),
+		PREFERENCE: 3,
+		VALUE: 4,
+		BLACKLIST: [Trait.CONSOLE],
+		APPEAR_AFTER: 17,
 	},
 	Trait.RADIOACTIVE: { ## TODO, make neighboring guests radioactive decreasing happiness by 1
 		NAME: "Radioactive",

@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://dsn2juxkr4ud2"]
+
+[ext_resource type="Texture2D" uid="uid://dt7cnvh1dxmhi" path="res://sprites/characters/jaben.png" id="1_0coi0"]
+[ext_resource type="Script" uid="uid://cuba1v2c3urst" path="res://scripts/guest_sprite.gd" id="2_xupwp"]
+[ext_resource type="Texture2D" uid="uid://di7x6nmfrf6aa" path="res://sprites/characters/angry_icon.png" id="3_aw0bt"]
+
+[node name="jaben" type="Sprite2D" unique_id=1276012488]
+texture = ExtResource("1_0coi0")
+script = ExtResource("2_xupwp")
+metadata/_custom_type_script = "uid://cuba1v2c3urst"
+
+[node name="AngrySprite" type="Sprite2D" parent="." unique_id=1170945330]
+position = Vector2(-32, -31)
+texture = ExtResource("3_aw0bt")

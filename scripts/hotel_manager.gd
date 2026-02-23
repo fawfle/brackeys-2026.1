@@ -46,14 +46,14 @@ func _ready() -> void:
 	Globals.room_updated.connect(func(_room: Room): update_room_info_menu())
 	
 	room_info_menu.visible = false
-	hotel_upgrade_menu.visible = true
+	hotel_upgrade_menu.visible = false
 	room_upgrade_menu.visible = false
 	
 	build_floor_button.cost = UpgradeCosts.FLOOR[floors]
 	
 	## give player 1 room to start
 	get_room(Vector2i(0, 0)).built = true
-	get_room(Vector2i(0, 0)).sanitation = Room.Sanitation.MESSY
+	get_room(Vector2i(0, 0)).decrease_sanitation()
 
 func _on_select_room(room: Room):
 	selected_room = room

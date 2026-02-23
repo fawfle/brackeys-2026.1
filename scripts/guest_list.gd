@@ -440,7 +440,7 @@ static var GUESTS_DATA: Dictionary[String, Dictionary] = {
 		HAPPY_GOODBYE: "Jolly well, kid, I enjoyed my visit here today",
 		ANGRY_GOODBYE: "Detestable, old man, truly horrendous!",
 		REJECTED_GOODBYE: "Well, I didn't want you're service anyways, old fart.",
-		MONEY: 0,
+		MONEY: 10,
 	},
 	"Doctor Newbie":{
 		SCENE: preload("res://scenes/characters/doctor_newbie.tscn"),
@@ -449,7 +449,18 @@ static var GUESTS_DATA: Dictionary[String, Dictionary] = {
 		GOODBYE: "BYE BYE.",
 		HAPPY_GOODBYE: "BA-BYE",
 		ANGRY_GOODBYE: "BAD BYE",
-		REJECTED_GOODBYE: ["You have vastly underestimated my abilities. You have hurt an important member of the scientific community.", "This establishment is not worth my patronage. None in my microentroprise shall interact with you or any of your affiliates ever again!"]
+		REJECTED_GOODBYE: ["You have vastly underestimated my abilities. You have hurt an important member of the scientific community.", "This establishment is not worth my patronage. None in my microentroprise shall interact with you or any of your affiliates ever again!"],
+		MONEY: 10,
+	},
+	"Sir Loin": {
+		SCENE: preload("res://scenes/characters/jaben.tscn"),
+		DEFAULT_TRAITS: [TraitList.Trait.CLAUSTROPHOBIC],
+		GREETING: ["Sup. I herd ya got some rooms.", "Your branding has got me moo-ved."],
+		GOODBYE: "I knew you'd steer me in the right direction. I've got a bulls-eye for this kinda thing.",
+		HAPPY_GOODBYE: "That room was the cream of the crop!",
+		ANGRY_GOODBYE: ["I'm udderly disappointed in my room. We've got beef, you're just tryna milk me of my money."],
+		REJECTED_GOODBYE: ["Suck it, Brovine."],
+		MONEY: 10,
 	},
 	"Yidhra":{
 		SCENE: preload("res://scenes/characters/yidhra.tscn"),
@@ -458,7 +469,8 @@ static var GUESTS_DATA: Dictionary[String, Dictionary] = {
 		GOODBYE: "Have a good day love.",
 		HAPPY_GOODBYE: "Thank you for the service dear. It was truly splendid.",
 		ANGRY_GOODBYE: "The room was below my expectations. Any chance you could fix that?",
-		REJECTED_GOODBYE: "I understand, you must be busy dear. I'll be on my way."
+		REJECTED_GOODBYE: "I understand, you must be busy dear. I'll be on my way.",
+		MONEY: 10,
 	},
 	"Nephthys":{
 		SCENE: preload("res://scenes/characters/nephthys.tscn"),

@@ -6,6 +6,8 @@ func _ready() -> void:
 
 func _on_button_down():
 	Engine.time_scale = 10
+	$AudioStreamPlayer2D.play()
 
 func _on_button_up():
 	Engine.time_scale = 1
+	$AudioStreamPlayer2D.stop()

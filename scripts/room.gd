@@ -3,7 +3,12 @@ class_name Room extends Control
 ## name of room group
 const GROUP_NAME: String = "room"
 
-@export var sanitation: Sanitation = Sanitation.CLEAN
+@export var sanitation: Sanitation = Sanitation.CLEAN:
+	get: return sanitation
+	set(value):
+		sanitation = value
+		update_room_sprite()
+
 @export var quality: Quality = Quality.DUMP
 @export var room_size: RoomSize = RoomSize.SMALL
 
@@ -80,6 +85,7 @@ var guest: Guest = null:
 	get: return guest
 	set(value):
 		guest = value
+		guest_flag = false
 		guest_indicator.visible = guest != null
 
 @onready var guest_indicator: Sprite2D = $GuestIndicator
@@ -96,6 +102,7 @@ var upgrade_time: float = 0
 
 ## time to complete an upgrade. Set to be day_length
 var time_to_upgrade: float = 120
+var time_to_upgrade_short: float = 3
 
 func _ready() -> void:
 	guest_indicator.visible = false
@@ -105,8 +112,6 @@ func _ready() -> void:
 	dim_overlay.visible = false
 	
 	Globals.select_room.connect(_on_room_select)
-	
-	time_to_upgrade = GameManager.inst.total_day_length
 	
 	update_room_sprite()
 	clean_progress.max_value = time_to_clean
@@ -133,16 +138,19 @@ func _process(delta: float) -> void:
 		clean_timer = 0
 		return
 	
-	clean_progress.visible = held or clean_timer > 0
+	clean_progress.visible = held and clean_timer > 0
 	clean_progress.value = clean_timer
 
 var occupied: bool:
 	get: return guest != null
 
+## store if guest is being assigned/playing animation
+var guest_flag: bool = false
+
 ## returns if adding was successful
 func add_guest(_guest: Guest) -> bool:
 	if not can_assign_guest():
-		push_error("Attempting to assign guest to occupied or unbuilt room")
+		push_error("Attempting to assign guest to occupied or unbuilt or upgrading room")
 		return false
 		
 	if Globals.DEBUG: print("ASSIGNING GUEST " + str(_guest) + " TO ROOM " + str(self))
@@ -151,7 +159,7 @@ func add_guest(_guest: Guest) -> bool:
 	return true
 
 func can_assign_guest() -> bool:
-	return not occupied and built
+	return not occupied and built and not upgrading and not GameManager.inst.assigning_guest
 
 func _on_room_select(room: Room):
 	focus_outline.visible = room == self
@@ -196,7 +204,8 @@ func update_room_sprite():
 	door_one.texture = DOOR_SPRITES.get(quality)
 	door_two.texture = DOOR_SPRITES.get(quality)
 	
-	messy_overlay.visible = sanitation == Sanitation.DIRTY or sanitation == Sanitation.MESSY
+	messy_overlay.visible = (sanitation == Sanitation.DIRTY or sanitation == Sanitation.MESSY)
+
 	dirty_overlay.visible = sanitation == Sanitation.DIRTY
 	
 	
@@ -218,6 +227,7 @@ func is_inactive() -> bool:
 func decrease_sanitation():
 	if sanitation == Sanitation.DIRTY: return
 	sanitation = (sanitation - 1) as Sanitation
+	update_room_sprite()
 	Globals.room_updated.emit(self)
 
 ## functions to get location properties
@@ -241,18 +251,20 @@ func has_perk(perk: Perk) -> bool:
 
 ## return rooms on left/right
 func get_floor_neighbors() -> Array[Room]:
-	return get_neighbors_with(func(room: Room): return room != self and abs(location.x - room.location.x) < 1)
+	return get_rooms_with(func(room: Room): return room != self and location.y == room.location.y and abs(location.x - room.location.x) == 1)
 
 ## return neighbors above and below
 func get_vertical_neighbors() -> Array[Room]:
-	return get_neighbors_with(func(room: Room): return room != self and abs(location.y - room.location.y) < 1)
+	return get_rooms_with(func(room: Room): return room != self and location.y == room.location.x and abs(location.y - room.location.y) == 1)
 
 ## return left, right, top, bottom
 func get_all_neighbors() -> Array[Room]:
-	return get_neighbors_with(func(room: Room): return room != self and abs(location.x - room.location.x) < 1 or abs(location.y - room.location.y) < 1)
+	var neighbors = get_floor_neighbors()
+	neighbors.append(get_vertical_neighbors())
+	return neighbors
 
 ## helper
-func get_neighbors_with(callable: Callable) -> Array[Room]:
+func get_rooms_with(callable: Callable) -> Array[Room]:
 	var neighbors: Array[Room] = []
 	var rooms = get_tree().get_nodes_in_group(GROUP_NAME)
 	
@@ -264,6 +276,7 @@ func get_neighbors_with(callable: Callable) -> Array[Room]:
 
 func add_perk(perk: Perk) -> void:
 	perks.push_back(perk)
+	start_upgrading(time_to_upgrade_short)
 	Globals.room_updated.emit(self)
 
 # TODO: some visual/menu indicator
@@ -271,13 +284,14 @@ func upgrade_sanitation():
 	if sanitation == Sanitation.CLEAN: return
 	
 	sanitation = (sanitation + 1) as Sanitation
+	update_room_sprite()
 	Globals.room_updated.emit(self)
 	
 func upgrade_quality(): 
 	if quality == Quality.CLASSY: return
 	
 	quality = (quality + 1) as Quality
-	start_upgrading()
+	start_upgrading(GameManager.inst.total_day_length)
 	update_room_sprite()
 	Globals.room_updated.emit(self)
 		
@@ -285,17 +299,20 @@ func upgrade_room_size():
 	if room_size == RoomSize.LARGE: return
 	
 	room_size = (room_size + 1) as RoomSize
-	start_upgrading()
+	start_upgrading(GameManager.inst.total_day_length)
 	Globals.room_updated.emit(self)
 
 func build():
 	if built: return
 	built = true
+	start_upgrading(time_to_upgrade_short)
 	Globals.room_updated.emit(self)
 
-func start_upgrading():
+func start_upgrading(duration: float):
 	upgrading = true
 	upgrade_time = 0
+	time_to_upgrade = duration
+	build_progress.max_value = time_to_upgrade
 	dim_overlay.visible = true
 	build_progress.visible = true
 	Globals.room_updated.emit(self)
@@ -342,6 +359,15 @@ const PERK_SPRITES: Dictionary[Perk, Texture] = {
 	Perk.SHOWER: preload("res://sprites/ui/shower_icon.png"),
 	Perk.CABLE: preload("res://sprites/ui/cable_icon.png"),
 	Perk.CONSOLE: preload("res://sprites/ui/console_icon.png"),
+}
+
+const PERK_LABEL: Dictionary[Perk, String] = {
+	Perk.SPACE_HEATER: "SP HTR",
+	Perk.AC: "AC",
+	Perk.BATH: "Bath",
+	Perk.SHOWER: "Shower",
+	Perk.CABLE: "Cable",
+	Perk.CONSOLE: "Console",
 }
 
 const PERK_DESCRIPTIONS: Dictionary[Perk, String] = {

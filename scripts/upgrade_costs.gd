@@ -29,17 +29,17 @@ const ROOM_SIZE: Dictionary[Room.RoomSize, int] = {
 
 ## cost of room perks. First part is tier
 const ROOM_PERKS: Dictionary[int, int] = {
-	0: 40,
-	1: 60,
-	2: 100,
+	0: 30,
+	1: 50,
+	2: 75,
 	3: -1
 }
 
 ## cost to upgrade number of floors
 const FLOOR: Dictionary[int, int] = {
-	1: 100,
-	2: 200,
-	3: 300,
-	4: 400,
+	1: 30,
+	2: 50,
+	3: 100,
+	4: 200,
 	5: -1,
 }

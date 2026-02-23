@@ -56,13 +56,7 @@ texture = ExtResource("3_m5k2i")
 [node name="Messy" type="Node2D" parent="." unique_id=1750538984]
 
 [node name="Bag1" type="Sprite2D" parent="Messy" unique_id=2131443842]
-position = Vector2(-9, 4)
-scale = Vector2(0.31818175, 0.33333325)
-texture = ExtResource("3_iy2aq")
-
-[node name="Bag2" type="Sprite2D" parent="Messy" unique_id=367733274]
-position = Vector2(10, 3.0000005)
-scale = Vector2(0.31818184, 0.33333325)
+position = Vector2(2, -1)
 texture = ExtResource("3_iy2aq")
 
 [node name="TextureButton" type="TextureButton" parent="." unique_id=692431399]
