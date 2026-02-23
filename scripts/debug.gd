@@ -66,7 +66,7 @@ func handle_command(command: String):
 			push_error("Debug: Attempting to add trait to nonexistent guest")
 			return
 		if guest_trait != null:
-			print("DEBUG: ADDING TRAIT " + input_command.substr(1) + " TO CURRENT GUEST")
+			print("DEBUG: ADDING TRAIT " + input_command.substr(1) + " TO CURRENT GUEST " + GameManager.inst.current_guest.name)
 			GameManager.inst.current_guest.traits.push_back(guest_trait)
 		else:
 			push_error("Trait name \'" + input_command.substr(1) + "\' entered in command was not found")

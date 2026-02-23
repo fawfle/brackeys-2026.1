@@ -8,6 +8,7 @@
 [node name="PassTimeButton" type="TextureButton" unique_id=461915876]
 offset_right = 15.0
 offset_bottom = 11.0
+focus_mode = 0
 texture_normal = ExtResource("1_d7rsh")
 texture_hover = ExtResource("2_el1kg")
 script = ExtResource("3_hbbil")
