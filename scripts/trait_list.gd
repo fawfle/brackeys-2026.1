@@ -299,7 +299,7 @@ static func set_guest_traits(guest: Guest, trait_count: int):
 	
 	for i in range(trait_count):
 		var guest_trait: GuestTrait = get_valid_trait(guest)
-		guest.traits.push_back(guest_trait)
+		if guest_trait != null: guest.traits.push_back(guest_trait)
 
 ## Maximum recursive depth for get_valid_trait.
 const MAX_DEPTH: int = 100
@@ -312,10 +312,6 @@ static func get_valid_trait(guest: Guest, depth: int = 0) -> GuestTrait:
 	
 	if TRAITS[random_trait].appear_after_day > GameManager.inst.day: return get_valid_trait(guest, depth + 1)
 	
-	
-	if random_trait == Trait.RADIOACTIVE:
-		push_warning("radioactive" + guest.name)
-		push_warning("is special: " + str(TRAITS.get(random_trait).special))
 		
 	if TRAITS.get(random_trait).special:
 		return get_valid_trait(guest, depth + 1)
