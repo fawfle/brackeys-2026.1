@@ -17,7 +17,7 @@ func _on_button_down() -> void:
 ## hook for room selection for assigning guest
 func update_disabled(room: Room):
 	if GameManager.inst.phase == GameManager.Phase.MANAGEMENT:
-		disabled = room == null or not room.can_assign_guest()
+		disabled = room == null or not room.can_assign_guest() or room.guest_flag
 
 func _on_current_guest_changed(_guest: Guest):
 	disabled  = true

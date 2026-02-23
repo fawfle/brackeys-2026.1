@@ -6,6 +6,8 @@ const assign_guest_leave_time: float = 30
 var guests_per_day: int = 1
 var guest_stay_length_max: int = 1
 
+const MAX_GUESTS_PER_DAY: int = 12
+
 const floating_text_scene: PackedScene = preload("res://scenes/ui/floating_text.tscn")
 
 @onready var guest_parent: Node2D = $GuestParent
@@ -77,7 +79,7 @@ var leaving_guest: bool = false ## is currently leaving guest
 
 ## stores list of last n guests and "blacklists" them
 var past_guest_queue: Array[Guest] = []
-const past_guest_queue_limit: int = 30
+var past_guest_queue_limit: int = 26
 
 ## phase of gameplay. Either assigning (getting guests),  managing (upgrading), or checkout (guests leaving and paying). ASSIGN -> UPGRADE -> CHECKOUT
 enum Phase {
@@ -166,13 +168,17 @@ func begin_day() -> void:
 	time = 0
 	
 	# lol integer divison
-	guests_per_day = 2 + floor(day / 7.0)
+	guests_per_day = min(2 + floor(day / 7.0), MAX_GUESTS_PER_DAY)
 	guest_stay_length_max = 1 + floor(day / 9.0)
 	
 	if day == 0: guests_per_day = 0
 	if day == 31:
 		guests_per_day = 0
 		show_performance_review()
+	
+	# hopefully prevent past_guest_limit from messing things up
+	if guests_per_day + past_guest_queue_limit >= GuestList.GUESTS.size():
+		past_guest_queue_limit = GuestList.GUESTS.size() - guests_per_day - 1
 	
 	Globals.begin_day.emit(day)
 	begin_checkout_phase()

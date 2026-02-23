@@ -312,11 +312,19 @@ static func get_valid_trait(guest: Guest, depth: int = 0) -> GuestTrait:
 	
 	if TRAITS[random_trait].appear_after_day > GameManager.inst.day: return get_valid_trait(guest, depth + 1)
 	
+	
+	if random_trait == Trait.RADIOACTIVE:
+		push_warning("radioactive" + guest.name)
+		push_warning("is special: " + str(TRAITS.get(random_trait).special))
+		
+	if TRAITS.get(random_trait).special:
+		return get_valid_trait(guest, depth + 1)
+			
 	# check trait conflicts
 	for t: GuestTrait in guest.traits:
 		if t == null:
 			push_error("Guest trait is null")
-		if TRAITS.get(random_trait).special or t == null or t.enum_key == random_trait or t.blacklisted_traits.has(random_trait):
+		if  t == null or t.enum_key == random_trait or t.blacklisted_traits.has(random_trait):
 			return get_valid_trait(guest, depth + 1)
 	
 	return TRAITS.get(random_trait)

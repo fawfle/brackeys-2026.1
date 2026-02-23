@@ -527,6 +527,7 @@ static func LOAD_GUESTS():
 # TODO: Add feature to stop duplicate guests, probably a recent_guest list
 static func create_guest_queue(length: int, current_day: int, guest_blacklist: Array[Guest] = []) -> Array[Guest]:
 	var guest_queue: Array[Guest] = [];
+	var guests_to_pick = GUESTS.values().duplicate()
 	
 	# add event guests
 	for g: Guest in EVENT_GUESTS.values():
@@ -535,8 +536,8 @@ static func create_guest_queue(length: int, current_day: int, guest_blacklist: A
 	
 	if guest_queue.size() >= length: return guest_queue
 	
-	for _i in range(100):
-		var guest = GUESTS.values().pick_random()
+	for _i in range(guests_to_pick.size()):
+		var guest = guests_to_pick.pop_at(randi_range(0, guests_to_pick.size() - 1))
 		
 		if guest.appear_after_day > current_day: continue
 		if guest_queue.has(guest): continue
