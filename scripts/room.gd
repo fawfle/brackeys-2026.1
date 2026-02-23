@@ -102,6 +102,7 @@ var upgrade_time: float = 0
 
 ## time to complete an upgrade. Set to be day_length
 var time_to_upgrade: float = 120
+var time_to_upgrade_short: float = 3
 
 func _ready() -> void:
 	guest_indicator.visible = false
@@ -111,8 +112,6 @@ func _ready() -> void:
 	dim_overlay.visible = false
 	
 	Globals.select_room.connect(_on_room_select)
-	
-	time_to_upgrade = GameManager.inst.total_day_length
 	
 	update_room_sprite()
 	clean_progress.max_value = time_to_clean
@@ -277,6 +276,7 @@ func get_rooms_with(callable: Callable) -> Array[Room]:
 
 func add_perk(perk: Perk) -> void:
 	perks.push_back(perk)
+	start_upgrading(time_to_upgrade_short)
 	Globals.room_updated.emit(self)
 
 # TODO: some visual/menu indicator
@@ -291,7 +291,7 @@ func upgrade_quality():
 	if quality == Quality.CLASSY: return
 	
 	quality = (quality + 1) as Quality
-	start_upgrading()
+	start_upgrading(GameManager.inst.total_day_length)
 	update_room_sprite()
 	Globals.room_updated.emit(self)
 		
@@ -299,17 +299,20 @@ func upgrade_room_size():
 	if room_size == RoomSize.LARGE: return
 	
 	room_size = (room_size + 1) as RoomSize
-	start_upgrading()
+	start_upgrading(GameManager.inst.total_day_length)
 	Globals.room_updated.emit(self)
 
 func build():
 	if built: return
 	built = true
+	start_upgrading(time_to_upgrade_short)
 	Globals.room_updated.emit(self)
 
-func start_upgrading():
+func start_upgrading(duration: float):
 	upgrading = true
 	upgrade_time = 0
+	time_to_upgrade = duration
+	build_progress.max_value = time_to_upgrade
 	dim_overlay.visible = true
 	build_progress.visible = true
 	Globals.room_updated.emit(self)
