@@ -134,7 +134,7 @@ static var TRAIT_DATA: Dictionary[Trait, Dictionary] = {
 	Trait.SOCIAL: {
 		NAME: "Social",
 		REQUEST: "I want to be [color=red]around others[/color].",
-		FAIL_FEEDBACK: "[color=red]No one[/color] was around. There weren't enough people, it was sooooo boring!",
+		FAIL_FEEDBACK: "There weren't enough people, it was sooooo boring! I need to be [color=red]surrounded[/color].",
 		CONDITION: func(room: Room): return room.get_floor_neighbors().all(func(r: Room): return r.guest != null),
 		APPLY_TYPE: GuestTrait.ApplyType.ALWAYS,
 		PREFERENCE: 3,
