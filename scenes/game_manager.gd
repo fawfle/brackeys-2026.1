@@ -293,6 +293,9 @@ func checkout_guest() -> void:
 	
 	var profit: int = current_guest.profit
 	money += profit
+	Globals.total_profit += profit
+	Globals.total_guests += 1
+	Globals.add_average_rating(current_guest.happiness_rating)
 	create_floating_text("+$" + str(profit))
 	
 	play_star_rating_animation(current_guest.happiness_rating)
@@ -486,4 +489,5 @@ func begin_intro_animation():
 	hotel_darkness.mouse_filter = Control.MOUSE_FILTER_IGNORE
 
 func show_performance_review():
+	await get_tree().create_timer(1.8).timeout
 	$CanvasLayer/GuestWindow/PerformanceReview.visible = true

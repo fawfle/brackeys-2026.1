@@ -7,6 +7,19 @@ var paused: bool = false
 ## if in debug mode, for conditional logging
 var DEBUG: bool = true
 
+## average star rating of player
+var average_rating: float = 0
+
+var total_ratings: int = 0
+## total money gained during playthrough
+var total_profit: int = 0
+## total guests player checked out
+var total_guests: int = 0
+
+func add_average_rating(rating: float) -> void:
+	average_rating = (average_rating * total_ratings + rating) / (total_ratings + 1)
+	total_ratings += 1
+
 ## signals phase changes
 @warning_ignore("unused_signal")
 signal phase_changed(phase: GameManager.Phase)

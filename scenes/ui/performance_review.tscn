@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://b56j7gy3ngrwx" path="res://scenes/ui/performance_review.gd" id="1_2gfb0"]
 [ext_resource type="FontFile" uid="uid://qo71mx2v8dp" path="res://fonts/edit-undo.brk.ttf" id="1_f6s1k"]
 [ext_resource type="Theme" uid="uid://bqm4ull505em5" path="res://themes/theme.tres" id="2_2gfb0"]
-[ext_resource type="Texture2D" uid="uid://r6nx3x3yb4q5" path="res://sprites/ui/full_star_rating.png" id="4_r3g5j"]
+[ext_resource type="PackedScene" uid="uid://bluftfdfc261o" path="res://scenes/ui/star_rating.tscn" id="4_r3g5j"]
 
 [node name="PerformanceReview" type="ColorRect" unique_id=1636565824]
 offset_left = 70.0
@@ -35,15 +35,14 @@ theme = ExtResource("2_2gfb0")
 text = "proceed"
 clip_text = true
 
-[node name="FullStarRating" type="TextureRect" parent="." unique_id=1263218491]
+[node name="StarProgressBar" parent="." unique_id=2134824425 instance=ExtResource("4_r3g5j")]
 layout_mode = 0
 offset_left = -14.0
 offset_top = 26.0
 offset_right = 135.0
-offset_bottom = 51.0
-texture = ExtResource("4_r3g5j")
+offset_bottom = 66.0
 
-[node name="Label2" type="Label" parent="." unique_id=419441431]
+[node name="Stats" type="Label" parent="." unique_id=419441431]
 layout_mode = 0
 offset_left = 4.0
 offset_top = 61.0
@@ -51,7 +50,8 @@ offset_right = 118.0
 offset_bottom = 109.0
 theme = ExtResource("2_2gfb0")
 theme_override_constants/line_spacing = 0
-text = "congatulations! Your performance was satisfactory."
+text = "Total Profit:
+Total Guests:"
 horizontal_alignment = 1
 autowrap_mode = 2
 
