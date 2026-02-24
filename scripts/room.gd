@@ -255,7 +255,7 @@ func get_floor_neighbors() -> Array[Room]:
 
 ## return neighbors above and below
 func get_vertical_neighbors() -> Array[Room]:
-	return get_rooms_with(func(room: Room): return room != self and location.y == room.location.x and abs(location.y - room.location.y) == 1)
+	return get_rooms_with(func(room: Room): return room != self and location.x == room.location.x and abs(location.y - room.location.y) == 1)
 
 ## return left, right, top, bottom
 func get_all_neighbors() -> Array[Room]:
@@ -271,6 +271,7 @@ func get_rooms_with(callable: Callable) -> Array[Room]:
 	for room: Room in rooms:
 		if callable.call(room):
 			neighbors.push_back(room)
+			# print(room.location)
 	
 	return neighbors
 

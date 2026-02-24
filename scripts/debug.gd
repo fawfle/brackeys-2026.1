@@ -74,7 +74,7 @@ func handle_command(command: String):
 
 func get_trait_from_name(t_name: String) -> GuestTrait:
 	for t: GuestTrait in TraitList.TRAITS.values():
-		print(t.name)
+		# print(t.name)
 		if t.name == t_name:
 			return t
 	

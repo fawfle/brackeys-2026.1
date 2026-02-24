@@ -32,6 +32,7 @@ metadata/_edit_lock_ = true
 layout_mode = 0
 offset_right = 175.0
 offset_bottom = 187.0
+focus_mode = 0
 metadata/_edit_lock_ = true
 
 [node name="Hotel" parent="." unique_id=1354698565 instance=ExtResource("5_0w18b")]

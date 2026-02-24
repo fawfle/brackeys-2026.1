@@ -118,6 +118,9 @@ func _ready() -> void:
 # begin management phase to start game
 
 func _process(delta: float) -> void:
+	# if get_viewport().gui_get_focus_owner() != null:
+	# 	print(get_viewport().gui_get_focus_owner())
+	
 	if not time_stopped: time += delta
 	if is_daytime_phase and time > daytime_length:
 		end_day()
@@ -280,7 +283,7 @@ func begin_checkout_next_guest() -> void:
 	
 	await play_guest_enter_animation(current_guest.node)
 	
-	Globals.set_text.emit(current_guest.get_exit_lines())
+	if current_guest != null: Globals.set_text.emit(current_guest.get_exit_lines())
 	
 	await Globals.text_finished
 	

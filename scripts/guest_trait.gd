@@ -46,7 +46,6 @@ func check_condition(room: Room):
 	elif apply_type == ApplyType.ALWAYS:
 		if failed: return
 		met = condition.call(room)
-		print(met)
 		failed = not met
 
 func _to_string() -> String:
