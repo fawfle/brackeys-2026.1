@@ -87,8 +87,8 @@ static var TRAIT_DATA: Dictionary[Trait, Dictionary] = {
 	},
 	Trait.SIMPLE: {
 		NAME: "Simple",
-		REQUEST: "I'm looking for something [color=red]simple[/color].",
-		FAIL_FEEDBACK: "This place is [color=red]too fancy[/color]. I wanted something that felt like home.",
+		REQUEST: "I'm looking for something moderately [color=red]nice[/color]. Don't make it too fancy.",
+		FAIL_FEEDBACK: "This place wasn't [color=red]just right[/color]. I wanted something that felt like home.",
 		CONDITION: func(room: Room): return room.quality == Room.Quality.NORMAL,
 		PREFERENCE: 3,
 		VALUE: 2,
